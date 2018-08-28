@@ -7,15 +7,23 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  *
  * @author estudiante
  */
+@Path("ciudadanos")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
 public class CiudadanoResource 
 {
     private static final Logger LOGGER = Logger.getLogger(CiudadanoResource.class.getName());
