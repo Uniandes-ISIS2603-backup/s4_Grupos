@@ -23,19 +23,9 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     
     private ArrayList<CategoriaDTO> categorias;
     
-    public GrupoDeInteresDetailDTO(String pNombre, String pDescripcion, String pId){
+    public GrupoDeInteresDetailDTO(){
         
-        super(pNombre, pDescripcion, pId);   
-        
-        blogs = new ArrayList<>();
-        
-        administradores = new ArrayList<>();
-        
-        noticias = new ArrayList<>();
-        
-        eventos = new ArrayList<>();
-        
-        categorias = new ArrayList<>();
+       
     }
     
     public  ArrayList<BlogDTO> getBlogs(){

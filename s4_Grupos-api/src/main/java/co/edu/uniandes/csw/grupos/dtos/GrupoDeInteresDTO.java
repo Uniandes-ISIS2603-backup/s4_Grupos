@@ -21,17 +21,9 @@ public class GrupoDeInteresDTO {
     
     private ArrayList<CiudadanoDetailDTO> ciudadanos;
     
-    public GrupoDeInteresDTO(String pNombre, String pDescripcion, String pId){
+    public GrupoDeInteresDTO(){
         
-        nombre = pNombre;
-        
-        descripcion = pDescripcion;
-        
-        id = pId;
-        
-        ciudadanos = new ArrayList();
-        
-    }   
+    }
     
     public String getNombre(){
         

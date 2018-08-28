@@ -17,9 +17,9 @@ public class CategoriaDetailDTO extends CategoriaDTO {
     
     
     
-    public CategoriaDetailDTO(String pDescripcion, String pNombre){
+    public CategoriaDetailDTO(){
         
-        super(pDescripcion, pNombre);
+     
         
     }
     

@@ -15,11 +15,7 @@ public class CategoriaDTO {
     
     private String nombre;
     
-    public CategoriaDTO(String pDescripcion, String pNombre){
-        
-        descripcion = pDescripcion;
-        
-        nombre = pNombre;
+    public CategoriaDTO(){
         
     }
     
