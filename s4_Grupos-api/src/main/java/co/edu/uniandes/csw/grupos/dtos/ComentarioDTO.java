@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class ComentarioDTO implements Serializable
 {
-    private long id;
+    private Long id;
     private String nombre;
     private String texto;
     
@@ -35,11 +35,11 @@ public class ComentarioDTO implements Serializable
         }
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public abstract class PersonaDTO implements Serializable
 {
-    private long usuario;
+    private Long usuario;
     private String nombre;
     private String contraseña;
     
@@ -43,11 +43,11 @@ public abstract class PersonaDTO implements Serializable
         }   
     }
 
-    public long getUsuario() {
+    public Long getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(long usuario) {
+    public void setUsuario(Long usuario) {
         this.usuario = usuario;
     }
 

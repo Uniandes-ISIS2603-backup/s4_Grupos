@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -46,19 +47,9 @@ public class CiudadanoResource
      * @return la información de un ciudadano
      */
     @GET
-    public CiudadanoDTO consultaUnCiudadano(CiudadanoDTO ciudadano)
+    public void consultaUnCiudadano()
     {
-        return ciudadano;
-    }
-    
-    /**
-     * Consulta la información de los ciudadanos creados
-     * @return la información de los ciudadanos creados
-     */
-    @GET
-    public CiudadanoDTO consultaCiudadano()
-    {
-        return new CiudadanoDTO();
+        
     }
     
     /**

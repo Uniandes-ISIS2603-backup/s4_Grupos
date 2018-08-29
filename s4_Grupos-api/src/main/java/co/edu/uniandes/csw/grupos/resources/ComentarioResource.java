@@ -16,6 +16,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 
@@ -49,10 +50,18 @@ public class ComentarioResource
     
     /**
      * Consulta los comentario de un usuario
+     * @param comentario
      * @return los comentarios de un usuario
      */
     @GET
     public ComentarioDTO consultarComentario()
+    {
+        return new ComentarioDTO();
+    }
+    
+    @GET
+    @Path("(comentariosId: \\d+)")
+    public ComentarioDTO consultarUnCiudadano(@PathParam("comentariosId") Long comentariosId)
     {
         return new ComentarioDTO();
     }
@@ -72,7 +81,8 @@ public class ComentarioResource
      * Elimina un comentario
      */
     @DELETE
-    public void eliminarComentario()
+    @Path("{comentariosId: \\d+}")
+    public void eliminarComentario(@PathParam("comentariosId" )Long pId)
     {
         
     }
