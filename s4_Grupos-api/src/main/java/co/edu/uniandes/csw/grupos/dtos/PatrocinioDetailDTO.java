@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.cuniandes.csw.grupos.dtos;
+package co.edu.uniandes.csw.grupos.dtos;
 
 import java.io.Serializable;
 import java.util.List;
@@ -32,6 +32,7 @@ import java.util.List;
  */
 public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
 {
+    /**
     // relación  cero a muchos Eventos
     private List<EventosDTO> eventos;
 
@@ -44,6 +45,7 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
        *
        * @param PatrocinioEntity La entidad de la cual se construye el DTO
        */
+    /**
       public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
 
       }
@@ -53,6 +55,7 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
        *
        * @return La entidad que representa un administrador.
        */
+    /**
       public PatrocinadorEntity toEntity() {
           
           
@@ -64,6 +67,7 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
      *
      * @return Lista de DTOs de eventos
      */
+    /**
     public List<EventosDTO> getEventos() {
         return eventos;
     }
@@ -73,7 +77,9 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
      *
      * @param eventos eventos que se quieren modificar
      */
+    /**
     public void setEventos(List<EventosDTO> gruposDeInteres) {
         this.eventos = gruposDeInteres;
-    }
+    }    
+    */
 }

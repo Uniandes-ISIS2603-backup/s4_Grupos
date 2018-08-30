@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.resources;
-import co.edu.cuniandes.csw.grupos.dtos.LocacionDTO;
+import co.edu.uniandes.csw.grupos.dtos.LocacionDTO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +51,7 @@ public class LocacionResource {
     @GET
     public List<LocacionDTO> getLocaciones() 
     {
-        return new LocacionDTO();
+        return new ArrayList<>();
     }
 
     /**
@@ -61,7 +62,7 @@ public class LocacionResource {
      * @return JSON {@link localizacionDTO} - La localizacion que se deseaba buscar.
      */
     @GET
-    @Path("locacionId: \\d+}")
+    @Path("{locacionId: \\d+}")
     public LocacionDTO getLocacion(@PathParam("locacionId") Long localizacionId) 
     {
         return new LocacionDTO();
@@ -75,7 +76,7 @@ public class LocacionResource {
      * @return JSON {@link LocalizacionDTO} - La locacion guardado.
      */
     @PUT
-    @Path("locacionId: \\d+}")
+    @Path("{locacionId: \\d+}")
     public LocacionDTO updateLocacion(@PathParam("LocacionId") Long locacionId, LocacionDTO locacion) 
     {
         return locacion;

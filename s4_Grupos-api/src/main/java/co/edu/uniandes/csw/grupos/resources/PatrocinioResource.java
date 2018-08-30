@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.resources;
-import co.edu.cuniandes.csw.grupos.dtos.LocacionDTO;
-import co.edu.cuniandes.csw.grupos.dtos.PatrocinioDTO;
+import co.edu.uniandes.csw.grupos.dtos.LocacionDTO;
+import co.edu.uniandes.csw.grupos.dtos.PatrocinioDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -36,7 +37,7 @@ public class PatrocinioResource {
      */
     @POST
     public PatrocinioDTO crearPatrocinador(PatrocinioDTO patrocionioDto) {
-    
+        return patrocionioDto;
     }
 
     /**
@@ -46,8 +47,11 @@ public class PatrocinioResource {
      * registrados. Si no hay ninguna retorna una lista vac�a.
      */
     @GET
-    public List<PatrocinioDTO> getPatrocinadores() {
+    public List<PatrocinioDTO> getPatrocinadores()
+    {
+        return new ArrayList<PatrocinioDTO>();
     }
+    
 
     /**
      * Busca un patrocinio por su nombre y lo retorna.
@@ -57,8 +61,10 @@ public class PatrocinioResource {
      * @return JSON {@link patrocinioDTO} - EL patrocinio que se deseaba buscar.
      */
     @GET
-    @Path("patrocinadorNombre: [a-zA-Z][a-zA-Z]*")
-    public LocacionDTO getPatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre) {
+    @Path("{patrocinadorNombre: [a-zA-Z][a-zA-Z]*}")
+    public PatrocinioDTO getPatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre) 
+    {
+        return new PatrocinioDTO();
     }
 
     /**
@@ -69,8 +75,10 @@ public class PatrocinioResource {
      * @return JSON {@link PatrocinioDTO} - El patrocinio guardado.
      */
     @PUT
-    @Path("patrocinadorNombre: [a-zA-Z][a-zA-Z]*")
-    public PatrocinioDTO updatePatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre, PatrocinadorDTO patrocinio) {
+    @Path("{patrocinadorNombre: [a-zA-Z][a-zA-Z]*}")
+    public PatrocinioDTO updatePatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre, PatrocinioDTO patrocinio) 
+    {
+        return new PatrocinioDTO();
     }
 
     /**
@@ -80,7 +88,7 @@ public class PatrocinioResource {
      * una cadena de caracteres.
      */
     @DELETE
-    @Path("patrocinadorNombre: [a-zA-Z][a-zA-Z]*")
+    @Path("{patrocinadorNombre: [a-zA-Z][a-zA-Z]*}")
     public void deletePatrocinador(@PathParam("patrocinadorNombre") String patrocniadorNombre) {
     	
     }

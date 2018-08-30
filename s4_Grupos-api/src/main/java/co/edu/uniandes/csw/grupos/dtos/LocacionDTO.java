@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.cuniandes.csw.grupos.dtos;
+package co.edu.uniandes.csw.grupos.dtos;
 
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -63,6 +63,7 @@ public class LocacionDTO implements Serializable
      *
      * @param locacionEntity: Es la entidad que se va a convertir a DTO
      */
+    /**
     public LocacionDTO(LocacionEntity editorialEntity) {
         if (editorialEntity != null)
         {
@@ -75,6 +76,7 @@ public class LocacionDTO implements Serializable
             
         }
     }
+    * /
     
     /**
      * Devuelve el Nombre de la locacion.
@@ -189,6 +191,8 @@ public class LocacionDTO implements Serializable
      *
      * @return Un Entity con los valores del DTO
      */
+    
+    /**
     public LocacionEntity toEntity() {
         LocacionEntity locacionEntity = new LocacionEntity();
        
@@ -200,6 +204,7 @@ public class LocacionDTO implements Serializable
          locacionEntity.setLongitud(this.longitud);
         return locacionEntity;
     }
+    */
 
     @Override
     public String toString() {
