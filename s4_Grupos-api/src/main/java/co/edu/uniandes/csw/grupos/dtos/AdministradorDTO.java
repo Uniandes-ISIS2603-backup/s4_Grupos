@@ -14,28 +14,29 @@ import java.io.Serializable;
 public class AdministradorDTO implements Serializable{
     //atributos
 
-    /**
-     * Constructor por defecto
-     */
-    public AdministradorDTO() {
-    }
-
-      /**
-       * Constructor a partir de la entidad
-       *
-       * @param administradorEntity La entidad del administrador
-       */
-      public AdministradorDTO(AdministradorEntity administradorEntity) {
-         
-      }
-  
-      /**
-       * Método para transformar el DTO a una entidad.
-       *
-       * @return La entidad del administrador asociado.
-       */
-      public AdministradorEntity toEntity() {
-      }
-
-    //metodos de los atributos get y set
+//    /**
+//     * Constructor por defecto
+//     */
+//    public AdministradorDTO() {
+//    }
+//
+//      /**
+//       * Constructor a partir de la entidad
+//       *
+//       * @param administradorEntity La entidad del administrador
+//       */
+//      public AdministradorDTO(AdministradorEntity administradorEntity) {
+//         return null;
+//      }
+//  
+//      /**
+//       * Método para transformar el DTO a una entidad.
+//       *
+//       * @return La entidad del administrador asociado.
+//       */
+//      public AdministradorEntity toEntity() {
+//          return null;
+//      }
+//
+//    //metodos de los atributos get y set
 }

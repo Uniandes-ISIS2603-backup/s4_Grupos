@@ -2,6 +2,7 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDTO;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +21,7 @@ import javax.ws.rs.Produces;
 @Path("administradores")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class AdministradorResource {
 
     /**
@@ -30,7 +32,7 @@ public class AdministradorResource {
      */
     @POST
     public AdministradorDTO createAdministrador(AdministradorDTO administrador) {
-        return null;    
+        return administrador;    
     }
 
     /**
@@ -54,7 +56,7 @@ public class AdministradorResource {
     @GET
     @Path("{administradorId: \\d+}")
     public AdministradorDTO getAdministrador(@PathParam("administradorId") Long administradorId) {
-        return null;
+        return new AdministradorDTO();
     }
 
     /**
@@ -67,7 +69,7 @@ public class AdministradorResource {
     @PUT
     @Path("{administradorId: \\d+}")
     public AdministradorDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) {
-        return null;    
+        return administrador;    
     }
 
     /**
@@ -75,10 +77,11 @@ public class AdministradorResource {
      *
      * @param administradorId Identificador del administrador que se desea borrar. Este debe ser
      * una cadena de d�gitos.
+     * @return 
      */
     @DELETE
     @Path("{administradorId: \\d+}")
-    public void deleteAdministrador(@PathParam("administradorId") Long administradorId) {
-    	
+    public AdministradorDTO deleteAdministrador(@PathParam("administradorId") Long administradorId) {
+    	return new AdministradorDTO();
     }
 }

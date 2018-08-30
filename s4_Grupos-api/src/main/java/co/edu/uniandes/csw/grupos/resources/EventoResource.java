@@ -30,7 +30,7 @@ public class EventoResource {
      */
     @POST
     public EventoDTO createEvento(EventoDTO evento) {
-        return null;
+        return new EventoDTO();
     }
 
     /**
@@ -53,7 +53,7 @@ public class EventoResource {
     @GET
     @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
     public EventoDTO getEvento(@PathParam("nombreEvento") String nombreEvento) {
-        return null;
+        return new EventoDTO();
     }
 
     /**
@@ -66,7 +66,7 @@ public class EventoResource {
     @PUT
     @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
     public EventoDTO updateEvento(@PathParam("nombreEvento") String nombreEvento, EventoDTO evento) {
-        return null;
+        return evento;
     }
 
     /**
@@ -77,7 +77,7 @@ public class EventoResource {
      */
     @DELETE
     @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public void deleteEvento(@PathParam("nombreEvento") String nombreEvento) {
-    	
+    public EventoDTO deleteEvento(@PathParam("nombreEvento") String nombreEvento) {
+    	return new EventoDTO();
     }
 }
