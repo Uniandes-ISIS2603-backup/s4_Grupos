@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.uniandes.csw.grupos.dtos;
+package co.edu.uniandes.csw.grupos.dtos;
+import co.uniandes.csw.grupos.dtos.*;
 import java.io.Serializable;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 
