@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.cuniandes.csw.grupos.dtos;
+package co.edu.uniandes.csw.grupos.dtos;
 
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -52,6 +52,8 @@ public class PatrocinioDTO implements Serializable
      *
      * @param patrocinioEntity: Es la entidad que se va a convertir a DTO
      */
+    
+    /**
     public PatrocinioDTO(PatrocinoEntity patrocinioEntity) {
         if (PatrocinoEntity != null)
         {
@@ -59,6 +61,7 @@ public class PatrocinioDTO implements Serializable
            this.valor = PatrocinioEntity.getValor();
         }
     }
+    * /
 
      /**
      * Devuelve el Nombre del patrocinador.
@@ -101,6 +104,8 @@ public class PatrocinioDTO implements Serializable
      *
      * @return Un Entity con los valores del DTO
      */
+    
+    /**
     public PatrocinioEntity toEntity() {
         PatrocinioEntity locacionEntity = new PatrocinioEntity();
        
@@ -109,6 +114,7 @@ public class PatrocinioDTO implements Serializable
               
         return locacionEntity;
     }
+    */
 
     @Override
     public String toString() {
