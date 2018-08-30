@@ -40,7 +40,6 @@ import javax.ws.rs.Produces;
 /**
  * Clase que implementa el recurso "distritos".
  *
- * @author ISIS2603
  * @version 1.0
  */
 @Path("distritos")
@@ -52,8 +51,7 @@ public class DistritoResource {
     
     /**
      * Crea un nuevo distrito con la informacion que se recibe en el cuerpo de
-     * la petición y se regresa un objeto identico con un id auto-generado por
-     * la base de datos.
+     * la petición y se regresa un objeto identico 
      *
      * @param distrito {@link DistritoDTO} - La distrito que se desea
      
@@ -70,7 +68,7 @@ public class DistritoResource {
      *
      * @param distritosId Identificador de el distrito que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSON {@link DistritoDetailDTO} - La distrito buscada
+     * @return JSON {@link DistritoDetailDTO} - El distrito buscada
      
      */
     @GET
@@ -88,7 +86,7 @@ public class DistritoResource {
      * actualizar. Este debe ser una cadena de dígitos.
      * @param distrito {@link DistritoDetailDTO} El distrito que se desea
      * guardar.
-     * @return JSON {@link DistritoDetailDTO} - La distrito guardada.
+     * @return JSON {@link DistritoDetailDTO} - El distrito guardada.
      
      */
     @PUT
