@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.dtos;
+
 import java.io.Serializable;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 
