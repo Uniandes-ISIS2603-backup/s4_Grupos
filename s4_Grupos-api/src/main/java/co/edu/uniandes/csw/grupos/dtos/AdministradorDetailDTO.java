@@ -19,42 +19,42 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
         public AdministradorDetailDTO() {
             super();
         }
-//  
-//      /**
-//       * Constructor para transformar un Entity a un DTO
-//       *
-//       * @param AdministradorEntity La entidad de la cual se construye el DTO
-//       */
-//      public AdministradorDetailDTO(AdministradorEntity administradorEntity) {
-//
-//      }
-//  
-//      /**
-//       * Transformar el DTO a una entidad
-//       *
-//       * @return La entidad que representa un administrador.
-//       */
-//      @Override
-//      public AdministradorEntity toEntity() {          
-//          
-//          return null;
-//      }
+  
+      /**
+       * Constructor para transformar un Entity a un DTO
+       *
+       * @param AdministradorEntity La entidad de la cual se construye el DTO
+       */
+      public AdministradorDetailDTO(AdministradorEntity administradorEntity) {
 
-//    /**
-//     * Devuelve los grupos de interes asociados al administrador
-//     *
-//     * @return Lista de DTOs de grupos de interes
-//     */
-//    public List<GrupoDeInteresDTO> getGruposDeInteres() {
-//        return gruposDeInteres;
-//    }
-//
-//    /**
-//     * Modifica los grupos de interes del administrador.
-//     *
-//     * @param gruposDeInteres grupos de interes que se quieren modificar
-//     */
-//    public void setGruposDeInteres(List<GrupoDeInteresDTO> gruposDeInteres) {
-//        this.gruposDeInteres = gruposDeInteres;
-//    }
+      }
+  
+      /**
+       * Transformar el DTO a una entidad
+       *
+       * @return La entidad que representa un administrador.
+       */
+      @Override
+      public AdministradorEntity toEntity() {          
+          
+          return null;
+      }
+
+    /**
+     * Devuelve los grupos de interes asociados al administrador
+     *
+     * @return Lista de DTOs de grupos de interes
+     */
+    public List<GrupoDeInteresDTO> getGruposDeInteres() {
+        return gruposDeInteres;
+    }
+
+    /**
+     * Modifica los grupos de interes del administrador.
+     *
+     * @param gruposDeInteres grupos de interes que se quieren modificar
+     */
+    public void setGruposDeInteres(List<GrupoDeInteresDTO> gruposDeInteres) {
+        this.gruposDeInteres = gruposDeInteres;
+    }
 }

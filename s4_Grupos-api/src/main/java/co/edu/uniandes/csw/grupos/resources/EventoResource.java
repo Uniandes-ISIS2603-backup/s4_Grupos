@@ -1,7 +1,9 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.EventoDTO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -30,7 +32,7 @@ public class EventoResource {
      */
     @POST
     public EventoDTO createEvento(EventoDTO evento) {
-        return new EventoDTO();
+        return evento;
     }
 
     /**
@@ -40,8 +42,8 @@ public class EventoResource {
      * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
-    public List<EventoDTO> getEventos() {
-        return null;
+    public List<EventoDTO> getEventos(List<EventoDTO> eventos) {
+        return eventos;
     }
 
     /**
