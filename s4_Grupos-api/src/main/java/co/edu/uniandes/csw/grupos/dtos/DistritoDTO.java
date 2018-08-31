@@ -103,10 +103,11 @@ public class DistritoDTO implements Serializable {
         distritoEntity.setName(this.name);
         return distritoEntity;
     }
-    * */
+    * 
 
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+    */
 }

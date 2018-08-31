@@ -25,7 +25,7 @@ import javax.ws.rs.PathParam;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class NoticiaResourse {
+public class NoticiaResource {
    /**
      * Crea una nueva noticia con la informacion que se recibe en el cuerpo de la
      * petición y se regresa un objeto identico.

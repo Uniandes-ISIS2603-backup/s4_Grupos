@@ -1,30 +1,10 @@
-/*
-MIT License
 
-Copyright (c) 2017 Universidad de los Andes - ISIS2603
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
 package co.edu.uniandes.csw.grupos.resources;
 
 
 import co.edu.uniandes.csw.grupos.dtos.DistritoDTO;
+import co.edu.uniandes.csw.grupos.dtos.DistritoDetailDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -73,9 +53,9 @@ public class DistritoResource {
      */
     @GET
     @Path("{distritosId: \\d+}")
-    public DistritoDTO getDistrito(@PathParam("distritosId") Long distritosId)  {
+    public DistritoDetailDTO getDistrito(@PathParam("distritosId") Long distritosId)  {
         
-        return new DistritoDTO();
+        return new DistritoDetailDTO();
     }
 
     /**
@@ -91,7 +71,7 @@ public class DistritoResource {
      */
     @PUT
     @Path("{distritosId: \\d+}")
-    public DistritoDTO updateDistrito(@PathParam("distritosId") Long distritosId, DistritoDTO distrito) {
+    public DistritoDetailDTO updateDistrito(@PathParam("distritosId") Long distritosId, DistritoDetailDTO distrito) {
        
         return distrito;
 
@@ -115,13 +95,12 @@ public class DistritoResource {
      * @return JSONArray {@link DistritoDetailDTO} - Las distritoes
      * encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
-    /**
+    /**/
     @GET
-    public List<DistritoDTO> getDistritos() {
-        LOGGER.info("DistritoResource getDistritos: input: void");
-        List<DistritoDetailDTO> listaDistritoes = listEntity2DetailDTO(distritoLogic.getDistritos());
-        LOGGER.log(Level.INFO, "DistritoResource getDistritos: output: {0}", listaDistritoes.toString());
+    public List<DistritoDetailDTO> getDistritos() {
+        
+        List<DistritoDetailDTO> listaDistritoes = new ArrayList<>();
         return listaDistritoes;
     }
-    */
+    
 }
