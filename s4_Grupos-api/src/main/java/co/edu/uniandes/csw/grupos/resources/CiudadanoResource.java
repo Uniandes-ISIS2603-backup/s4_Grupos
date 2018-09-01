@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
-import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -43,17 +42,7 @@ public class CiudadanoResource
         return ciudadano;
     }
     
-    /**
-     * Consulta la información de un ciudadano
-     * @param ciudadano
-     * @return la información de un ciudadano
-     */
-    @GET
-    @PathParam("(ciudadanosId: \\d++)")
-    public List<CiudadanoDTO> consultaDeCiudadanos(@PathParam("ciudadanosId") List<CiudadanoDTO> ciudadanos) throws BusinessLogicException
-    {
-        return ciudadanos;
-    }
+  
     
     /**
      * Actualiza un ciudadano con sus nuevas caacteristicas
