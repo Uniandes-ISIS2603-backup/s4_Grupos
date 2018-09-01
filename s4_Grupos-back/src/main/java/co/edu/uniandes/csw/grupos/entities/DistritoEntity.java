@@ -24,11 +24,11 @@ public class DistritoEntity extends BaseEntity implements Serializable {
    
     private String name;
 
-    /*
+    
     @PodamExclude
     @OneToMany(mappedBy = "ditrito")
-    private List<LocacionEntity> locaciones = new ArrayList<BookEntity>();
-    */
+    private List<LocacionEntity> locaciones = new ArrayList<LocacionEntity>();
+    
 
     /**
      * Devuelve el nombre de el distrito.
@@ -52,21 +52,21 @@ public class DistritoEntity extends BaseEntity implements Serializable {
      * Devuelve las locaciones de el distrito.
      *
      * @return Lista de entidades de Distrito.
-     
+     */
     public List<LocacionEntity> getLocaciones () {
         return locaciones;
     }
-    * */
+  
 
     /**
      * Modifica las locaciones de el distrito.
      *
      * @param locaciones Las nuevos locaciones.
-     
-    public void setLocaciones(List<LocacionEntity> books) {
+     */
+    public void setLocaciones(List<LocacionEntity> locaciones) {
         this.locaciones = locaciones;
     }
-    **/
+    
 
 
 }

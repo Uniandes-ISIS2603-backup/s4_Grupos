@@ -5,8 +5,12 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -23,7 +27,7 @@ import java.util.List;
  *   }
  * @author sarabepu
  */
-public class DistritoDetailDTO {
+public class DistritoDetailDTO extends DistritoDTO {
     
     /*
     * Esta lista de tipo BookDTO contiene los books que estan asociados a una distrito
@@ -36,46 +40,47 @@ public class DistritoDetailDTO {
      * Constructor por defecto
      */
     public DistritoDetailDTO() {
+        super();
     }
 
     /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param distritoEntity La entidad de el distrito para transformar a DTO.
-     *
+     **/
     public DistritoDetailDTO(DistritoEntity distritoEntity) {
         super(distritoEntity);
         if (distritoEntity != null) {
-            if (distritoEntity.getBooks() != null) {
-                books = new ArrayList<>();
-                for (BookEntity entityBook : distritoEntity.getBooks()) {
-                    books.add(new BookDTO(entityBook));
+            if (distritoEntity.getLocaciones() != null) {
+                locaciones = new ArrayList<>();
+                for (LocacionEntity entityLoc : distritoEntity.getLocaciones()) {
+                   // locaciones.add(new LocacionDTO(entityLoc));
                 }
             }
         }
         
     }
-    */
+    
 
     /**
      * Transformar un DTO a un Entity
      *
      * @return El DTO de el distrito para transformar a Entity
-     *
+     */
     @Override
     public DistritoEntity toEntity() {
         DistritoEntity distritoEntity = super.toEntity();
-        if (books != null) {
-            List<BookEntity> booksEntity = new ArrayList<>();
-            for (BookDTO dtoBook : books) {
-                booksEntity.add(dtoBook.toEntity());
+        if (locaciones != null) {
+            List<LocacionEntity> locacionesEntity = new ArrayList<>();
+            for (LocacionDTO dtoLocacion : locaciones) {
+                //locacionsEntity.add(dtoLocacion.toEntity());
             }
-            distritoEntity.setBooks(booksEntity);
+            distritoEntity.setLocaciones(locacionesEntity);
         }
         return distritoEntity;
         
     }
-    * */
+    
 
     /**
      * Devuelve el lista de locaciones de el distrito.
@@ -90,15 +95,14 @@ public class DistritoDetailDTO {
     /**
      * Modifica el lista de libros de el distrito.
      *
-     * @param books the books to set
+     * @param locaciones the locaciones to set
      */
     public void setLocaciones(List<LocacionDTO> locaciones) {
         this.locaciones = locaciones;
     }
-/**
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-    **/
+    
 }

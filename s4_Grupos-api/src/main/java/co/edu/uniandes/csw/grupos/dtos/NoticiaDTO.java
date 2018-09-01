@@ -17,6 +17,40 @@ public class NoticiaDTO implements Serializable {
 private String rutaImagen;
 private Long id;
 
+/*
+    * Relación a un grupo de interes  
+    * dado que esta tiene cardinalidad 1.
+     */
+    //private GrupoIntereDTO grupo;
+ /**
+     * Constructor a partir de la entidad
+     *
+     * @param noticiaEntity La entidad del libro
+     */
+    public NoticiaDTO(NoticiaEntity noticia) {
+        if (noticia != null) {
+            this.id = noticia.getId();
+            noticia.setId(id);
+        noticia.setDescripcion(descripcion);
+        noticia.setRutaImagen(rutaImagen);
+        /**
+            if (noticiaEntity.getGrupo() != null) {
+                this.editorial = new EditorialDTO(noticiaEntity.getEditorial());
+            } else {
+                this.editorial = null;
+            }
+            * **/
+        }
+    }
+    /**Constructor sin parametros
+     * 
+     */
+    public NoticiaDTO()
+    {
+        
+    }
+
+
   /**
      * Devuelve la descripcion de la noticia..
      *
