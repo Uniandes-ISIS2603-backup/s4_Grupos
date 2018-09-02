@@ -1,6 +1,8 @@
 
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,7 @@ import java.util.List;
 public class NoticiaDetailDTO extends NoticiaDTO implements Serializable {
 
     /*
-    * Esta lista de tipo ComentarioDTO contiene los books que estan asociados a una editorial
+    * Esta lista de tipo ComentarioDTO contiene los books que estan asociados a una noticia
      */
     private List<ComentarioDTO> comentarios;
 
@@ -33,47 +35,48 @@ public class NoticiaDetailDTO extends NoticiaDTO implements Serializable {
      * Constructor por defecto
      */
     public NoticiaDetailDTO() {
+    super();
     }
 
     /**
      * Constructor para transformar un Entity a un DTO
      *
-     * @param editorialEntity La entidad de la editorial para transformar a DTO.
-     *
-    public NoticiaDetailDTO(NoticiaEntity editorialEntity) {
-        super(editorialEntity);
-        if (editorialEntity != null) {
-            if (editorialEntity.getBooks() != null) {
-                books = new ArrayList<>();
-                for (BookEntity entityBook : editorialEntity.getBooks()) {
-                    books.add(new BookDTO(entityBook));
+     * @param noticiaEntity La entidad de la noticia para transformar a DTO.
+     **/
+    public NoticiaDetailDTO(NoticiaEntity noticiaEntity) {
+        super(noticiaEntity);
+        if (noticiaEntity != null) {
+            if (noticiaEntity.getComentarios()!= null) {
+                comentarios = new ArrayList<>();
+                for (  ComentarioEntity entityCom : noticiaEntity.getComentarios()) {
+                    comentarios.add(new ComentarioDTO(entityCom));
                 }
             }
         }
     }
-    * */
+    
 
     /**
      * Transformar un DTO a un Entity
      *
-     * @return El DTO de la editorial para transformar a Entity
+     * @return El DTO de la noticia para transformar a Entity
      *
     @Override
     public NoticiaEntity toEntity() {
-        NoticiaEntity editorialEntity = super.toEntity();
+        NoticiaEntity noticiaEntity = super.toEntity();
         if (books != null) {
             List<BookEntity> booksEntity = new ArrayList<>();
             for (BookDTO dtoBook : books) {
                 booksEntity.add(dtoBook.toEntity());
             }
-            editorialEntity.setBooks(booksEntity);
+            noticiaEntity.setBooks(booksEntity);
         }
-        return editorialEntity;
+        return noticiaEntity;
     }
     * */
 
     /**
-     * Devuelve la lista de libros de la editorial.
+     * Devuelve la lista de libros de la noticia.
      *
      * @return the books
      */
@@ -82,7 +85,7 @@ public class NoticiaDetailDTO extends NoticiaDTO implements Serializable {
     }
 
     /**
-     * Modifica la lista de libros de la editorial.
+     * Modifica la lista de libros de la noticia.
      *
      * @param books the books to set
      */
