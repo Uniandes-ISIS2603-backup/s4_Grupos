@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
@@ -27,6 +26,8 @@ private GruposInteresEntity grupo;
 @PodamExclude
     @OneToMany(mappedBy = "noticia", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+
+
 
     public List<ComentarioEntity> getComentarios() {
         return comentarios;
