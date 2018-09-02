@@ -23,8 +23,7 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     
     private ArrayList<CategoriaDTO> categorias;
     
-    public GrupoDeInteresDetailDTO(){
-        
+    public GrupoDeInteresDetailDTO(){        
        
     }
     
@@ -52,10 +51,7 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     public ArrayList<CategoriaDTO> getCategorias(){
         
         return categorias;
-    }
-    
-    
-    
+    }  
     
     
     public void setBlogs(ArrayList<BlogDTO> pBlogs){

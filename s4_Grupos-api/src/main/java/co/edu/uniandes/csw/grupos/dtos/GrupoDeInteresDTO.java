@@ -5,13 +5,15 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author estudiante
  */
-public class GrupoDeInteresDTO {
+public class GrupoDeInteresDTO implements Serializable {
     
     private String nombre;
     
@@ -21,9 +23,27 @@ public class GrupoDeInteresDTO {
     
     private ArrayList<CiudadanoDetailDTO> ciudadanos;
     
+    
+    /**
+     * Constructor por defecto.
+     */    
     public GrupoDeInteresDTO(){
         
     }
+    
+    /**
+     * Convierte un Entity a DTO con los valores del Entity que recibe por Parámetro.
+     * @param grupoEntity Entity a convertir a DTO.
+     */
+    public GrupoDeInteresDTO(GrupoDeInteresEntity grupoEntity){
+        
+         if (grupoEntity != null) {
+         
+            nombre = grupoEntity.getNombre();
+            descripcion = grupoEntity.getDescripcion();
+        }   
+    }    
+ 
     
     public String getNombre(){
         
@@ -65,7 +85,14 @@ public class GrupoDeInteresDTO {
         ciudadanos = pCiudadanos;        
     }
     
-    
+ 
+    public GrupoDeInteresEntity toEntity()
+    {
+        GrupoDeInteresEntity grupoEntity = new GrupoDeInteresEntity();      
+        grupoEntity.setNombre(nombre);
+        grupoEntity.setDescripcion(descripcion);
+        return grupoEntity;
+    }  
     
     
     

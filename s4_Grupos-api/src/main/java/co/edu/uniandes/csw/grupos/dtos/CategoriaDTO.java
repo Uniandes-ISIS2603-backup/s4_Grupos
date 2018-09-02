@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
+
 /**
  *
  * @author estudiante
@@ -18,6 +20,19 @@ public class CategoriaDTO {
     public CategoriaDTO(){
         
     }
+    
+      /**
+     * Convierte un Entity a DTO con los valores del Entity que recibe por Parámetro.
+     * @param catEntity Entity a convertir a DTO.
+     */
+    public CategoriaDTO(CategoriaEntity catEntity){
+        
+         if (catEntity != null) {
+         
+            nombre = catEntity.getNombre();
+            descripcion = catEntity.getDescripcion();
+        }   
+    } 
     
     public String getDescripcion(){
         
@@ -40,4 +55,13 @@ public class CategoriaDTO {
         nombre = pNombre;
         
     }
+    
+     public CategoriaEntity toEntity()
+    {
+        CategoriaEntity catEntity = new CategoriaEntity();      
+        catEntity.setNombre(nombre);
+        catEntity.setDescripcion(descripcion);
+        return catEntity;
+    }
+    
 }
