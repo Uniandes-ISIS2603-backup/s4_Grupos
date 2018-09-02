@@ -5,10 +5,21 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
 /**
- *
+ * Clase que modela la asociación de un grupo de interes con un ciudadano.
  * @author estudiante
  */
-public class GrupoDeInteresCiudadanoResource {
+@Path("gruposDeInteresCiudadanos")
+@Consumes("application/json")
+@Produces("application/json")
+@RequestScoped
+public class GrupoDeInteresCiudadanoResource
+{
     
 }
+
