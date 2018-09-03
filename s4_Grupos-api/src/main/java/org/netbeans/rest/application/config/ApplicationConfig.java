@@ -31,7 +31,18 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.edu.uniandes.csw.grupos.mappers.BusinessLogicExceptionMapper.class);
         resources.add(co.edu.uniandes.csw.grupos.mappers.WebApplicationExceptionMapper.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.AdministradorResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.CategoriaResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.CiudadanoGrupoDeInteresResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.CiudadanoResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.ComentarioResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.DistritoResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.EventoResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.GrupoDeInteresCiudadanoResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.GrupoDeInteresResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.LocacionResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.NoticiaResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.PatrocinioResource.class);
     }
     
 }
