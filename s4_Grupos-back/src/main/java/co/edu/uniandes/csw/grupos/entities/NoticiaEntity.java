@@ -20,7 +20,7 @@ public class NoticiaEntity extends BaseEntity implements Serializable{
     private String descripcion;
 private String rutaImagen;
 /**@PodamExclude
-@ManyToOne(cascade = CascadeType.PERSIST)
+@ManyToOne(cascade = CascadeType.ALL)
 private GruposInteresEntity grupo;
 **/
 @PodamExclude

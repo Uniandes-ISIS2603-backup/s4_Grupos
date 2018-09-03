@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class LocacionEntity extends BaseEntity {
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private DistritoEntity distrito;
 
     public DistritoEntity getDistrito() {
