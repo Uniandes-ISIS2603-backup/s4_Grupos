@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Clase que extiende de {@link PatrocinioDTO} para manejar las relaciones entre los
+ * Clase que extiende de {@link PatrocinioDto} para manejar las relaciones entre los
  * PatrocinioDTO y otros DTOs. Para conocer el contenido de un Patrocinio vaya a la
  * documentacion de {@link PatrocinoDTO}
  *
@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Josealejandro Barbosa Jacome
  */
-public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
+public class PatrocinioDetailDto extends PatrocinioDto implements Serializable
 {
     /**
     // relación  cero a muchos Eventos
