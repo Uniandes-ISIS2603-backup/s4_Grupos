@@ -6,10 +6,9 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
-import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
-import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,9 +27,7 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class CiudadanoResource 
-{
-    private static final Logger LOGGER = Logger.getLogger(CiudadanoResource.class.getName());
-    
+{    
     /**
      * Crea un nuevo ciudadano
      * @param ciudadano
@@ -43,17 +40,23 @@ public class CiudadanoResource
         return ciudadano;
     }
     
+    @GET
+    public CiudadanoDTO consultaCiudadanos()
+    {
+        return new CiudadanoDTO();
+    }
+    
     /**
      * Consulta la información de un ciudadano
-     * @param ciudadano
+     * @param ciudadanos
      * @return la información de un ciudadano
      */
-    @GET
-    @PathParam("(ciudadanosId: \\d++)")
-    public List<CiudadanoDTO> consultaDeCiudadanos(@PathParam("ciudadanosId") List<CiudadanoDTO> ciudadanos) throws BusinessLogicException
-    {
-        return ciudadanos;
-    }
+//    @GET
+//    @Path("{user: \\d+`}")
+//    public CiudadanoDTO consultaDeCiudadanos(@PathParam("user") Long ciudadanos)
+//    {       
+//        return new CiudadanoDTO();
+//    }
     
     /**
      * Actualiza un ciudadano con sus nuevas caacteristicas
@@ -61,16 +64,18 @@ public class CiudadanoResource
      * @return un ciudadano actualizado
      */
     @PUT
-    public CiudadanoDTO modificaCiudadano(CiudadanoDTO ciudadano)
+    @Path("{usuer :\\d+`}")
+    public CiudadanoDTO modificaCiudadano(@PathParam("user") Long user)
     {
-        return ciudadano;
+        return new CiudadanoDTO();
     }
     
     /**
      * Elimina un ciudadano
      */
     @DELETE
-    public void eliminarCiudadano()
+    @Path("{user: \\d+}")
+    public void eliminarCiudadano(@PathParam("user")Long user)
     {
         
     }

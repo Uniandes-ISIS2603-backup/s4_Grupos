@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
+@Entity
 public class ComentarioEntity extends BaseEntity implements Serializable
 {
     private int id;
