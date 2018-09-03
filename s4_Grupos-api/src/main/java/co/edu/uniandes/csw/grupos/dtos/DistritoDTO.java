@@ -1,6 +1,7 @@
 
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -46,14 +47,14 @@ public class DistritoDTO implements Serializable {
      * la entidad que viene de argumento.
      *
      * @param distritoEntity: Es la entidad que se va a convertir a DTO
-     
+     */
     public DistritoDTO(DistritoEntity distritoEntity) {
         if (distritoEntity != null) {
             this.id = distritoEntity.getId();
             this.name = distritoEntity.getName();
         }
     }
-    * /
+   
 
     /**
      * Devuelve el ID de la distrito.
@@ -96,18 +97,18 @@ public class DistritoDTO implements Serializable {
      *
      * @return Un Entity con los valores del DTO
      */
-    /**
+    
     public DistritoEntity toEntity() {
         DistritoEntity distritoEntity = new DistritoEntity();
         distritoEntity.setId(this.id);
         distritoEntity.setName(this.name);
         return distritoEntity;
     }
-    * 
+    
 
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
-    */
+    
 }
