@@ -26,7 +26,7 @@ public class DistritoEntity extends BaseEntity implements Serializable {
 
     
     @PodamExclude
-    @OneToMany(mappedBy = "ditrito")
+    @OneToMany(mappedBy = "distrito")
     private List<LocacionEntity> locaciones = new ArrayList<LocacionEntity>();
     
 

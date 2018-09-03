@@ -10,6 +10,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import co.edu.uniandes.csw.grupos.dtos.NoticiaDTO;
+import co.edu.uniandes.csw.grupos.dtos.NoticiaDetailDTO;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -96,4 +98,41 @@ public class NoticiaResource {
     public void deleteNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) {
        
     }
+    /**
+     * Conexión con el servicio de comentarios para una noticia. {@link ComentarioResource}
+     *
+     * Este método conecta la ruta de /noticias con las rutas de /comentatios que
+     * dependen de la noticia, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las comentarios.
+     *
+     * @param noticiasId El ID de la noticia con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Comentarios para ese libro en paricular.\
+     */
+    @Path("{noticiasId: \\d+}/comentarios")
+    public Class<ComentarioResource> getReviewResource(@PathParam("noticiasId") Long noticiassId) {
+        /**if (bookLogic.getBook(booksId) == null) {
+            throw new WebApplicationException("El recurso /books/" + booksId + "/reviews no existe.", 404);
+        }
+        * */
+        return ComentarioResource.class;
+    }
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos NoticiaEntity a una lista de
+     * objetos NoticiaDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de noticias de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista de noticias en forma DTO (json)
+     */
+    private List<NoticiaDetailDTO> listEntity2DetailDTO(List<NoticiaEntity> entityList) {
+        List<NoticiaDetailDTO> list = new ArrayList<>();
+        for (NoticiaEntity entity : entityList) {
+            list.add(new NoticiaDetailDTO(entity));
+        }
+        return list;
+    }
+
 }
