@@ -5,19 +5,21 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author ac.beltrans
  */
-public class EventDetailDTO extends EventoDTO implements Serializable {
+public class EventoDetailDTO extends EventoDTO implements Serializable {
 
-//    // relación  cero o muchos patrocinio
-//    private List<PatrocinioDTO> patrocinios;
+//    // relación  cero o muchos patrocinios
+     private List<PatrocinioDTO> patrocinios;
 //
-    public EventDetailDTO() {
+    public EventoDetailDTO() {
         super();
     }
 
@@ -27,6 +29,13 @@ public class EventDetailDTO extends EventoDTO implements Serializable {
        * @param eventoEntity La entidad de la cual se construye el DTO
        */
       public EventoDetailDTO(EventoEntity eventoEntity) {
+         super(eventoEntity);
+        if (eventoEntity.getPatrocinios() != null) {
+            patrocinios = new ArrayList<>();
+            for (PatrocinioEntity entityPatrocinio : eventoEntity.getPatrocinios()) {
+                patrocinios.add(new PatrocinioDTO(entityPatrocinio));
+            }
+        }
       }
       /**
        * Transformar el DTO a una entidad
@@ -35,7 +44,14 @@ public class EventDetailDTO extends EventoDTO implements Serializable {
        */
       @Override
       public EventoEntity toEntity() {
-        return null;
+        EventoEntity eventoEntity = super.toEntity();
+        if (patrocinios!= null) {
+            List<PatrocinioEntity> patrociniosEntity = new ArrayList<>();
+            for (PatrocinioDTO dtoPatrocinio : getPatrocinios()) {
+                patrociniosEntity.add(dtoPatrocinio.toEntity());
+            }
+            eventoEntity.setPatrocinios(patrociniosEntity);
+        }
       }
 
     /**

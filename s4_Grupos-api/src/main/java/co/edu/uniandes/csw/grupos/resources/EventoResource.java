@@ -38,6 +38,7 @@ public class EventoResource {
     /**
      * Devuelve todos los eventos registrados.
      *
+     * @param eventos
      * @return JSONArray {@link EventoDTO} - Los eventos
      * registrados. Si no hay ninguno retorna una lista vac�a.
      */
@@ -62,7 +63,7 @@ public class EventoResource {
      * Actualiza el evento con el nombre recibido desde la petici�n.
      * @param nombreEvento Nombre del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
-     * @param nombreEvento {@link EventoDTO} El evento que se desea guardar.
+     * @param evento {@link EventoDTO} El evento que se desea guardar.
      * @return JSON {@link EventoDTO} - El evento guardado.
      */
     @PUT
@@ -76,6 +77,7 @@ public class EventoResource {
      *
      * @param nombreEvento Nombre del evento que se desea borrar. Este debe ser
      * una cadena de caracteres.
+     * @return evento que se eliminò
      */
     @DELETE
     @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
