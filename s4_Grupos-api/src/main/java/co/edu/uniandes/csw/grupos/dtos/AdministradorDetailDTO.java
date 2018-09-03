@@ -14,31 +14,11 @@ import java.util.List;
  */
 public class AdministradorDetailDTO extends AdministradorDTO implements Serializable {
       //relación  uno o muchos grupos de interés
-      //private List<GrupoDeInteresDTO> gruposDeInteres;
+      private List<GrupoDeInteresDTO> gruposDeInteres;
 
         public AdministradorDetailDTO() {
             super();
         }
-  
-      /**
-       * Constructor para transformar un Entity a un DTO
-       *
-       * @param AdministradorEntity La entidad de la cual se construye el DTO
-       */
-      public AdministradorDetailDTO(AdministradorEntity administradorEntity) {
-
-      }
-  
-      /**
-       * Transformar el DTO a una entidad
-       *
-       * @return La entidad que representa un administrador.
-       */
-      @Override
-      public AdministradorEntity toEntity() {          
-          
-          return null;
-      }
 
     /**
      * Devuelve los grupos de interes asociados al administrador

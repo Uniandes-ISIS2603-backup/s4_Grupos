@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.Calendar;
 public class EventoDTO implements Serializable {
 
     private String nombre;
-    private String fecha;
+    private Date fecha;
 
     /*
     * Relaci�n a una locaci�n 
@@ -27,7 +28,7 @@ public class EventoDTO implements Serializable {
     * Relaci�n con un grupo de inter�s 
     * dado que esta tiene cardinalidad 1.
      */
-      private GrupoDeInteresDTO gruposDeInteres;
+      private GrupoDeInteresDTO grupoDeInteres;
 
     /**
      * Constructor por defecto
@@ -41,16 +42,30 @@ public class EventoDTO implements Serializable {
        * @param eventoEntity La entidad del evento
        */
       public EventoDTO(EventoEntity eventoEntity) {
-        
+          if (eventoEntity != null) {
+            this.nombre = eventoEntity.getNombre();
+            this.fecha = eventoEntity.getFecha();
+            if (eventoEntity.getGrupoDeInteres() != null) {
+                this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
+            } else {
+                this.grupoDeInteres = null;
+            }
+        }
       }
   
       /**
        * M�todo para transformar el DTO a una entidad.
        *
-       * @return La entidad del libro asociado.
+       * @return La entidad del evento asociado.
        */
       public EventoEntity toEntity() {
-          return eventoEntity;
+        EventoEntity eventoEntity = new EventoEntity();
+        eventoEntity.setNombre(this.nombre);
+        eventoEntity.setFecha(this.fecha);
+        if (this.grupoDeInteres != null) {
+            eventoEntity.setEditorial(this.grupoDeInteres.toEntity());
+        }
+        return eventoEntity;
       }
 
     /**
@@ -76,7 +91,7 @@ public class EventoDTO implements Serializable {
      *
      * @return fecha evento
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -85,7 +100,7 @@ public class EventoDTO implements Serializable {
      *
      * @param fecha fecha evento a modificar
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -113,7 +128,7 @@ public class EventoDTO implements Serializable {
      * @return grupo de interes
      */
     public GrupoDeInteresDTO getGrupoDeInteres() {
-        return gruposDeInteres;
+        return grupoDeInteres;
     }
 
     /**
@@ -122,6 +137,6 @@ public class EventoDTO implements Serializable {
      * @param grupoDeInteres el grupo de interes a modificar
      */
     public void setGrupoDeInteres(GrupoDeInteresDTO grupoDeInteres) {
-        this.gruposDeInteres = grupoDeInteres;
+        this.grupoDeInteres = grupoDeInteres;
     }
 }
