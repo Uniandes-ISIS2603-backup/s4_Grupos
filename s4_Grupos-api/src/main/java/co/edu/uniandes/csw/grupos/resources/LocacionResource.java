@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.resources;
-import co.edu.uniandes.csw.grupos.dtos.LocacionDTO;
+import co.edu.uniandes.csw.grupos.dtos.LocacionDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,18 +38,18 @@ public class LocacionResource {
      * @return JSON {@link LocaiconDTO} -La locacion  guardado con su id
      */
     @POST
-    public LocacionDTO crearLocacion(LocacionDTO locacionDto) {
+    public LocacionDto crearLocacion(LocacionDto locacionDto) {
     
-        return locacionDto;
+        return  new LocacionDto();
     }
     /**
      * Devuelve todos las locaciones registradas.
      *
-     * @return JSONArray {@link LocacionDTO} - Las locaciones
+     * @return JSONArray {@link LocacionDto} - Las locaciones
      * registradas. Si no hay ninguna retorna una lista vac�a.
      */
     @GET
-    public List<LocacionDTO> getLocaciones() 
+    public List<LocacionDto> getLocaciones() 
     {
         return new ArrayList<>();
     }
@@ -63,9 +63,9 @@ public class LocacionResource {
      */
     @GET
     @Path("{locacionId: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("locacionId") Long localizacionId) 
+    public LocacionDto getLocacion(@PathParam("locacionId") Long localizacionId) 
     {
-        return new LocacionDTO();
+        return new LocacionDto();
     }
 
     /**
@@ -77,7 +77,7 @@ public class LocacionResource {
      */
     @PUT
     @Path("{locacionId: \\d+}")
-    public LocacionDTO updateLocacion(@PathParam("LocacionId") Long locacionId, LocacionDTO locacion) 
+    public LocacionDto updateLocacion(@PathParam("LocacionId") Long locacionId, LocacionDto locacion) 
     {
         return locacion;
     }
@@ -90,8 +90,8 @@ public class LocacionResource {
      */
     @DELETE
     @Path("{locacionId: \\d+}")
-    public LocacionDTO deleteLocaciones(@PathParam("locacionId") Long locacionId) 
+    public LocacionDto deleteLocaciones(@PathParam("locacionId") Long locacionId) 
     {
-    	return new LocacionDTO();
+    	return new LocacionDto();
     }
 }
