@@ -15,7 +15,7 @@ public class CategoriaDTO {
     
     private String descripcion;
     
-    private String nombre;
+    private long nombre;
     
     public CategoriaDTO(){
         
@@ -39,7 +39,7 @@ public class CategoriaDTO {
         return descripcion;
     }
     
-    public String getNombre(){
+    public long  getNombre(){
         
         return nombre;
     }    
@@ -50,7 +50,7 @@ public class CategoriaDTO {
         
     }
     
-    public void setNombre(String pNombre){
+    public void setNombre(long pNombre){
         
         nombre = pNombre;
         
