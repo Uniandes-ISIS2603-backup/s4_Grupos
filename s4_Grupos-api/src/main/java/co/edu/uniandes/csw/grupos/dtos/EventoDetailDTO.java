@@ -52,6 +52,7 @@ public class EventoDetailDTO extends EventoDTO implements Serializable {
             }
             eventoEntity.setPatrocinios(patrociniosEntity);
         }
+        return eventoEntity;
       }
 
     /**

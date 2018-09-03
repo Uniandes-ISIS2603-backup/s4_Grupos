@@ -63,7 +63,7 @@ public abstract class AdministradorEntity extends PersonaEntity implements Seria
      *
      * @return Lista de DTOs de grupos de interes
      */
-    public List<GrupoDeInteresDTO> getGruposDeInteres() {
+    public List<GrupoDeInteresEntity> getGruposDeInteres() {
         return gruposDeInteres;
     }
 
@@ -72,7 +72,7 @@ public abstract class AdministradorEntity extends PersonaEntity implements Seria
      *
      * @param gruposDeInteres grupos de interes que se quieren modificar
      */
-    public void setGruposDeInteres(List<GrupoDeInteresDTO> gruposDeInteres) {
+    public void setGruposDeInteres(List<GrupoDeInteresEntity> gruposDeInteres) {
         this.gruposDeInteres = gruposDeInteres;
     }
     
