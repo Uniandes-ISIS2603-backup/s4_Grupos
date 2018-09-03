@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author ac.beltrans
  */
-public abstract class AdministradorDTO extends PersonaDTO implements Serializable{
+public class AdministradorDTO extends PersonaDTO implements Serializable{
     //atributos
 
     /**

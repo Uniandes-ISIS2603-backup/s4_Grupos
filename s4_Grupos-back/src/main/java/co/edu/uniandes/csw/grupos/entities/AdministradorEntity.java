@@ -53,6 +53,7 @@ public abstract class AdministradorEntity extends PersonaEntity implements Seria
     }
 
     
+    @Override
     public long getUsuario() {
         return super.getUsuario();
     }
