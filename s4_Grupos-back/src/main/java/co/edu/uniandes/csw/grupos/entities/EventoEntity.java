@@ -31,10 +31,10 @@ public class EventoEntity extends BaseEntity implements Serializable{
     @ManyToOne
     private GrupoDeInteresEntity grupoDeInteres;
     
-    @PodamExclude
-    @ManyToMany(mappedBy = "patrocinios", fetch = javax.persistence.FetchType.LAZY)
-    private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
-    
+//    @PodamExclude
+//    @ManyToMany(mappedBy = "patrocinios", fetch = javax.persistence.FetchType.LAZY)
+//    private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
+//    
     @PodamExclude
     @OneToOne
     private LocacionEntity locacion;
@@ -113,22 +113,22 @@ public class EventoEntity extends BaseEntity implements Serializable{
         this.locacion = locacionEntity;
     }
     
-    /**
-     * Devuelve los patrocinios de un evento
-     *
-     * @return los patrocinios
-     */
-    public List<PatrocinioEntity> getPatrocinios() {
-        return patrocinios;
-    }
-
-    /**
-     * Modifica los patrocinios de un evento
-     *
-     * @param patrocinios los patrocinios a modificar
-     */
-    public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
-        this.patrocinios = patrocinios;
-    }
+//    /**
+//     * Devuelve los patrocinios de un evento
+//     *
+//     * @return los patrocinios
+//     */
+//    public List<PatrocinioEntity> getPatrocinios() {
+//        return patrocinios;
+//    }
+//
+//    /**
+//     * Modifica los patrocinios de un evento
+//     *
+//     * @param patrocinios los patrocinios a modificar
+//     */
+//    public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
+//        this.patrocinios = patrocinios;
+//    }
     
 }
