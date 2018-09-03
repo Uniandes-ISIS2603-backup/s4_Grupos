@@ -41,7 +41,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author Estudiante Josealejandro Barbosa ISIS2603
  */
-public class LocacionDTO implements Serializable
+public class LocacionDto implements Serializable
 {
     private String locacion;
     private Integer direcion;
@@ -53,7 +53,7 @@ public class LocacionDTO implements Serializable
     /**
      * Constructor por defecto
      */
-    public LocacionDTO()
+    public LocacionDto()
     {
     }
     
