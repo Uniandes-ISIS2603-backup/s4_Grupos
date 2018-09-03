@@ -40,23 +40,7 @@ public class CiudadanoResource
         return ciudadano;
     }
     
-    @GET
-    public CiudadanoDTO consultaCiudadanos()
-    {
-        return new CiudadanoDTO();
-    }
-    
-    /**
-     * Consulta la información de un ciudadano
-     * @param ciudadanos
-     * @return la información de un ciudadano
-     */
-//    @GET
-//    @Path("{user: \\d+`}")
-//    public CiudadanoDTO consultaDeCiudadanos(@PathParam("user") Long ciudadanos)
-//    {       
-//        return new CiudadanoDTO();
-//    }
+  
     
     /**
      * Actualiza un ciudadano con sus nuevas caacteristicas

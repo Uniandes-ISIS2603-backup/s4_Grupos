@@ -9,8 +9,6 @@ package co.edu.uniandes.csw.grupos.dtos;
  *
  * @author estudiante
  */
-public class CiudadanoDetailDTO extends CiudadanoDTO
-{
+public class BlogDTO {
     
 }
-
