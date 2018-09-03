@@ -39,6 +39,7 @@ public class NoticiaResourse {
     {
         return new NoticiaDTO();
     }
+    
     @PUT
      @Path("{id:\\d+`}")
     public NoticiaDTO editarNoticia(@PathParam("id") Long id)
