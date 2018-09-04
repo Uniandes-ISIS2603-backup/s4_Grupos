@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +34,9 @@ import java.util.List;
  */
 public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
 {
-    /**
+    
     // relación  cero a muchos Eventos
-    private List<EventosDTO> eventos;
+    private List<EventoDTO> eventos ;
 
     public PatrocinioDetailDTO() {
         super();
@@ -45,7 +47,7 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
        *
        * @param PatrocinioEntity La entidad de la cual se construye el DTO
        */
-    /**
+    
       public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
 
       }
@@ -55,11 +57,11 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
        *
        * @return La entidad que representa un administrador.
        */
-    /**
-      public PatrocinadorEntity toEntity() {
+    
+      public PatrocinioEntity toEntity() {
           
           
-          return  PatrocinadorEntity;
+          return  new PatrocinioEntity();
       }
 
     /**
@@ -67,9 +69,9 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
      *
      * @return Lista de DTOs de eventos
      */
-    /**
-    public List<EventosDTO> getEventos() {
-        return eventos;
+    
+    public List<EventoDTO> getEventos() {
+        return new ArrayList<EventoDTO>();
     }
 
     /**
@@ -77,9 +79,9 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
      *
      * @param eventos eventos que se quieren modificar
      */
-    /**
-    public void setEventos(List<EventosDTO> gruposDeInteres) {
-        this.eventos = gruposDeInteres;
+    
+    public void setEventos(List<EventoDTO> gruposDeInteres) {
+        this.eventos   = gruposDeInteres;
     }    
-    */
+    
 }
