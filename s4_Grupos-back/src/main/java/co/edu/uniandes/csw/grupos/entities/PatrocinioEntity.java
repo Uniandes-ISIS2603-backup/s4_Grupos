@@ -15,7 +15,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author j.barbosaj
  */
 @Entity
 class PatrocinioEntity extends BaseEntity implements Serializable 

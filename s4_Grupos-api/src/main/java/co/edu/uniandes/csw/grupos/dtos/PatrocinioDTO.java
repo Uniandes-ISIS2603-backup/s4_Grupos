@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -31,7 +32,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * </pre>
  *
- * @author Estudiante Josealejandro Barbosa ISIS2603
+ * @author j.barbosaj  Josealejandro Barbosa ISIS2603
  */
 public class PatrocinioDTO implements Serializable
  {
@@ -54,7 +55,7 @@ public class PatrocinioDTO implements Serializable
      */
     
     
-    public PatrocinioDTO(PatrocinoEntity patrocinioEntity) {
+    public PatrocinioDTO(p) {
         if (PatrocinoEntity != null)
         {
            this.nombre = PatrocinioEntity.getNombre();

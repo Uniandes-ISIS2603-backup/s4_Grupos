@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -39,12 +40,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * </pre>
  *
- * @author Estudiante Josealejandro Barbosa ISIS2603
+ * @author j.barbosaj Josealejandro Barbosa ISIS2603
  */
 public class LocacionDTO implements Serializable
 {
     private String locacion;
-    private Integer direcion;
+    private String direcion;
     private String tipo;
     private Long latitud;
     private Long longitud;
@@ -64,17 +65,8 @@ public class LocacionDTO implements Serializable
      * @param locacionEntity: Es la entidad que se va a convertir a DTO
      */
    
-    public LocacionDTO(LocacionEntity editorialEntity) {
-        if (editorialEntity != null)
-        {
-            this.id = LocacionEntity.getId();
-            this.locacion = LocacionEntity.getLocacion();
-            this.direcion = LocacionEntity.getDirecion();
-            this.tipo = LocacionEntity.getTipo();
-            this.latitud = LocacionEntity.getLatitud();
-            this.longitud= LocacionEntity.getLongitud();
-            
-        }
+    public  LocacionDTO(LocacionEntity locaionEntiy) {
+       
     }
     
     
@@ -101,7 +93,7 @@ public class LocacionDTO implements Serializable
      *
      * @return la direcion
      */
-    public Integer getDirecion() {
+    public String getDirecion() {
         return direcion;
     }
 
@@ -110,7 +102,7 @@ public class LocacionDTO implements Serializable
      *
      * @param direcion la direcion de la locacion
      */
-    public void setDirecion(Integer direcion) {
+    public void setDirecion(String direcion) {
         this.direcion = direcion;
     }
     

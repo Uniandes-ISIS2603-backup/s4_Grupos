@@ -15,7 +15,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author j.barbosaj
  */
 @Entity
 public class LocacionEntity extends BaseEntity implements Serializable  {
@@ -49,7 +49,12 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
      *La direcion de la locacion
      * por ejemplo car 1# 12-43
      */
-     private String direccion;
+     private String direcion;
+     
+     /**
+      * representa el tipo de locacion
+      */
+     private String tipo;
       /**
      *componente de latitud geografica de la locacion
      */
@@ -114,16 +119,16 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
      * @return String
      */
 
-    public String getDireccion() {
-        return direccion;
+    public String getDirecion() {
+        return direcion;
     }
 
     /**
      * modifica la dorecion asociada a la locacion
      * @param direccion 
      */
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDirecion(String direccion) {
+        this.direcion = direccion;
     }
     
     /**
@@ -175,6 +180,23 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
      */
     public void setEvento(EventoEntity evento) {
         this.evento = evento;
+    }
+
+    /**
+     * retorna el tipo de locacion
+     * @return el tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+    
+    /**
+     * modifica el tipo de locacion 
+     * @param tipo el nuevo tipo
+     */
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     
