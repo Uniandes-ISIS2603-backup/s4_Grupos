@@ -40,7 +40,7 @@ public class LocacionResource {
     @POST
     public LocacionDTO crearLocacion(LocacionDTO locacionDto) {
     
-        return locacionDto;
+        return  new LocacionDTO();
     }
     /**
      * Devuelve todos las locaciones registradas.

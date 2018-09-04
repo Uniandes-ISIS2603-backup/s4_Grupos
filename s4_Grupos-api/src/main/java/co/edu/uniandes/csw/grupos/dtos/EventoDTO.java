@@ -41,17 +41,17 @@ public class EventoDTO implements Serializable {
        *
        * @param eventoEntity La entidad del evento
        */
-//      public EventoDTO(EventoEntity eventoEntity) {
-//          if (eventoEntity != null) {
-//            this.nombre = eventoEntity.getNombre();
-//            this.fecha = eventoEntity.getFecha();
-//            if (eventoEntity.getGrupoDeInteres() != null) {
-//                this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
-//            } else {
-//                this.grupoDeInteres = null;
-//            }
-//        }
-//      }
+      public EventoDTO(EventoEntity eventoEntity) {
+          if (eventoEntity != null) {
+            this.nombre = eventoEntity.getNombre();
+            this.fecha = eventoEntity.getFecha();
+            if (eventoEntity.getGrupoDeInteres() != null) {
+                this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
+            } else {
+                this.grupoDeInteres = null;
+            }
+        }
+      }
   
       /**
        * M�todo para transformar el DTO a una entidad.
@@ -63,7 +63,7 @@ public class EventoDTO implements Serializable {
         eventoEntity.setNombre(this.nombre);
         eventoEntity.setFecha(this.fecha);
         if (this.grupoDeInteres != null) {
-//            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
+            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
         }
         return eventoEntity;
       }

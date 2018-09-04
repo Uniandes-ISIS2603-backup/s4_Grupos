@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -31,7 +32,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * </pre>
  *
- * @author Estudiante Josealejandro Barbosa ISIS2603
+ * @author j.barbosaj  Josealejandro Barbosa ISIS2603
  */
 public class PatrocinioDTO implements Serializable
  {
@@ -53,15 +54,11 @@ public class PatrocinioDTO implements Serializable
      * @param patrocinioEntity: Es la entidad que se va a convertir a DTO
      */
     
-    /**
-    public PatrocinioDTO(PatrocinoEntity patrocinioEntity) {
-        if (PatrocinoEntity != null)
-        {
-           this.nombre = PatrocinioEntity.getNombre();
-           this.valor = PatrocinioEntity.getValor();
-        }
+    
+    public PatrocinioDTO(PatrocinioEntity patrocinioEntity) {
+       
     }
-    * /
+    
 
      /**
      * Devuelve el Nombre del patrocinador.
@@ -105,16 +102,16 @@ public class PatrocinioDTO implements Serializable
      * @return Un Entity con los valores del DTO
      */
     
-    /**
+    
     public PatrocinioEntity toEntity() {
-        PatrocinioEntity locacionEntity = new PatrocinioEntity();
-       
-        PatrocinioEntity.setNombre(this.nombre);
-        PatrocinioEntity.setValor(this.valor);
+         PatrocinioEntity patrocinioEntity = new PatrocinioEntity();
+   
+        patrocinioEntity.setNombre(this.nombre);
+        patrocinioEntity.setValor(this.valor);
               
-        return locacionEntity;
+        return patrocinioEntity;
     }
-    */
+    
 
     @Override
     public String toString() {

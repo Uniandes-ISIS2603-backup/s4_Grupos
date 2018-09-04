@@ -4,6 +4,7 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.DistritoDTO;
 import co.edu.uniandes.csw.grupos.dtos.DistritoDetailDTO;
+import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -102,5 +103,41 @@ public class DistritoResource {
         List<DistritoDetailDTO> listaDistritoes = new ArrayList<>();
         return listaDistritoes;
     }
-    
+
+     /**
+     * Conexión con el servicio de locaciones para un distrito. {@link LocacionResource}
+     *
+     * Este método conecta la ruta de /distritos con las rutas de /comentarios que
+     * dependen de el distrito, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las comentarios.
+     *
+     * @param distritosId El ID de el distrito con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Comentarios para ese distrito en paricular.\
+     */
+    @Path("{distritosId: \\d+}/comentarios")
+    public Class<ComentarioResource> getReviewResource(@PathParam("distritosId") Long distritosId) {
+        /**if (bookLogic.getBook(booksId) == null) {
+            throw new WebApplicationException("El recurso /books/" + booksId + "/reviews no existe.", 404);
+        }
+        * */
+        return ComentarioResource.class;
+    }
+    /**
+     * Convierte una lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos DistritoEntity a una lista de
+     * objetos DistritoDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista del Distrito de tipo Entity que
+     * vamos a convertir a DTO.
+     * @return la lista del Distrito en forma DTO (json)
+     */
+    private List<DistritoDetailDTO> listEntity2DetailDTO(List<DistritoEntity> entityList) {
+        List<DistritoDetailDTO> list = new ArrayList<>();
+        for (DistritoEntity entity : entityList) {
+            list.add(new DistritoDetailDTO(entity));
+        }
+        return list;
+    }
 }
