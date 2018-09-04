@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.csw.grupos.entities;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -16,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author estudiante
  */
 @Entity
-public class LocacionEntity extends BaseEntity {
+public class LocacionEntity extends BaseEntity implements Serializable  {
     
     /**
      * primary key
@@ -31,6 +33,13 @@ public class LocacionEntity extends BaseEntity {
     @PodamExclude
     @ManyToOne(cascade = CascadeType.ALL)
     private DistritoEntity distrito;
+    
+    /**
+     * representa un evento vinculado a la locacion
+     */
+    @PodamExclude
+    @OneToOne
+    private EventoEntity evento;
     
      /**
      * El nombre de la locacion
@@ -146,11 +155,28 @@ public class LocacionEntity extends BaseEntity {
 
     /**
      * modifica la longitud de la locacion
-     * @param longitud 
+     * @param longitud la nueva longitud
      */
     public void setLongitud(Long longitud) {
         this.longitud = longitud;
     }
+
+    /**
+     * retorna el evento vinculado a la locacion (este puede ser Nulo)
+     * @return el evento relacionado
+     */
+    public EventoEntity getEvento() {
+        return evento;
+    }
+
+    /**
+     * modifica el evento relacionado con la locacion (puede ser Nulo)
+     * @param evento el nuevo evento
+     */
+    public void setEvento(EventoEntity evento) {
+        this.evento = evento;
+    }
+    
     
     
 }
