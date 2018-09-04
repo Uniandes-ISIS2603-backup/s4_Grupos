@@ -22,12 +22,13 @@ import javax.ws.rs.Produces;
 @Path("eventos")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class EventoResource {
 
     /**
      * Crea un nuevo evento y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
-     * @param evento {@link EventoDTO} - EL evento que se desea a�adir.
+     * @param evento {@link EventoDTO} - EL evento que se desea a?adir.
      * @return JSON {@link EventoDTO} - El evento guardado con su id
      */
     @POST
@@ -40,7 +41,7 @@ public class EventoResource {
      *
      * @param eventos
      * @return JSONArray {@link EventoDTO} - Los eventos
-     * registrados. Si no hay ninguno retorna una lista vac�a.
+     * registrados. Si no hay ninguno retorna una lista vac?a.
      */
     @GET
     public List<EventoDTO> getEventos() {
@@ -60,7 +61,7 @@ public class EventoResource {
     }
 
     /**
-     * Actualiza el evento con el nombre recibido desde la petici�n.
+     * Actualiza el evento con el nombre recibido desde la petici?n.
      * @param nombreEvento Nombre del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
      * @param evento {@link EventoDTO} El evento que se desea guardar.
