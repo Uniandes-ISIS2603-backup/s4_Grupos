@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

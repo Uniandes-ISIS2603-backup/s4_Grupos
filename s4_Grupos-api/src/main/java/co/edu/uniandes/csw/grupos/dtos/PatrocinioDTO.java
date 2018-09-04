@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
-import co.edu.uniandes.csw.grupos.entities.
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -55,12 +55,8 @@ public class PatrocinioDTO implements Serializable
      */
     
     
-    public PatrocinioDTO(p) {
-        if (PatrocinoEntity != null)
-        {
-           this.nombre = PatrocinioEntity.getNombre();
-           this.valor = PatrocinioEntity.getValor();
-        }
+    public PatrocinioDTO(PatrocinioEntity patrocinioEntity) {
+       
     }
     
 
@@ -108,12 +104,12 @@ public class PatrocinioDTO implements Serializable
     
     
     public PatrocinioEntity toEntity() {
-        PatrocinioEntity locacionEntity = new PatrocinioEntity();
-       
-        PatrocinioEntity.setNombre(this.nombre);
-        PatrocinioEntity.setValor(this.valor);
+         PatrocinioEntity patrocinioEntity = new PatrocinioEntity();
+   
+        patrocinioEntity.setNombre(this.nombre);
+        patrocinioEntity.setValor(this.valor);
               
-        return locacionEntity;
+        return patrocinioEntity;
     }
     
 

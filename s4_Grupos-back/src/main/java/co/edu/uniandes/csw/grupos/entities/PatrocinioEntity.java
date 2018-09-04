@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author j.barbosaj
  */
 @Entity
-class PatrocinioEntity extends BaseEntity implements Serializable 
+public class PatrocinioEntity extends BaseEntity implements Serializable 
 {
     /**
      * el identificador unico
