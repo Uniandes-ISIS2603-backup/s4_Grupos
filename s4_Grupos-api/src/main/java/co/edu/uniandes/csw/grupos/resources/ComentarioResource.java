@@ -71,12 +71,12 @@ public class ComentarioResource
      * @param texto
      * @return el comentario modificado
      */
-//    @PUT
-//    @Path("{id:\\d+`}")
-//    public ComentarioDTO modificarComentario(@PathParam("id") Long id)
-//    {
-//        return new ComentarioDTO();
-//    }
+    @PUT
+    @Path("{id:\\d+`}")
+    public ComentarioDTO modificarComentario(@PathParam("id") Long id)
+    {
+        return new ComentarioDTO();
+    }
     
     /**
      * Elimina un comentario

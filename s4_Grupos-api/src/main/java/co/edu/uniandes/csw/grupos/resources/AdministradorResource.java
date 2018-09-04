@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDTO;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -42,8 +43,8 @@ public class AdministradorResource {
      * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
-    public List<AdministradorDTO> getAdministradores(List<AdministradorDTO> administradores) {
-        return administradores;
+    public List<AdministradorDTO> getAdministradores() {
+        return new ArrayList<AdministradorDTO>();
     }
 
     /**

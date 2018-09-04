@@ -43,8 +43,8 @@ public class EventoResource {
      * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
-    public List<EventoDTO> getEventos(List<EventoDTO> eventos) {
-        return eventos;
+    public List<EventoDTO> getEventos() {
+        return new ArrayList<EventoDTO>();
     }
 
     /**

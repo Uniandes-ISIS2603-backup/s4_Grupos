@@ -6,37 +6,14 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author estudiante
  */
-public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
+@Entity
+public class GrupoDeInteresEntity extends BaseEntity implements Serializable
+{
     
-    private String nombre;
-    
-    private String descripcion;
-    
-    
-    
-    public String getNombre() {
-        
-        return nombre;
-    }
-
-    public void setNombre(String pNombre) {
-        nombre = pNombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-    
-     public void setDescripcion(String pDescripcion) {
-        descripcion = pDescripcion;
-    }
-
-   
-
-   
 }
