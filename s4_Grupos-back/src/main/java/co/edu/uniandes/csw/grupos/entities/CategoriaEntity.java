@@ -6,14 +6,22 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author estudiante
  */
+
+@Entity
 public class CategoriaEntity extends BaseEntity implements Serializable {
     
-     private String nombre;
+    @PodamExclude
+    @OneToMany(mappedBy = "grupodeinteres")        
+    
+    private String nombre;
     
     private String descripcion;
     

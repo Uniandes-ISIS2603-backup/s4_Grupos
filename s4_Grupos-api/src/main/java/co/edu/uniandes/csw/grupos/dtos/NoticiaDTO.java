@@ -21,7 +21,7 @@ private Long id;
     * Relación a un grupo de interes  
     * dado que esta tiene cardinalidad 1.
      */
-    //private GrupoIntereDTO grupo;
+    private GrupoDeInteresDTO grupo;
  /**
      * Constructor a partir de la entidad
      *
@@ -33,13 +33,14 @@ private Long id;
             noticia.setId(id);
         noticia.setDescripcion(descripcion);
         noticia.setRutaImagen(rutaImagen);
-        /**
-            if (noticiaEntity.getGrupo() != null) {
-                this.editorial = new EditorialDTO(noticiaEntity.getEditorial());
-            } else {
-                this.editorial = null;
+ 
+            if (noticia.getGrupoDeInteres() != null) {
+                this.grupo = new GrupoDeInteresDTO(noticia.getGrupoDeInteres());
+            } 
+            else {
+                this.grupo = null;
             }
-            * **/
+            
         }
     }
     /**Constructor sin parametros

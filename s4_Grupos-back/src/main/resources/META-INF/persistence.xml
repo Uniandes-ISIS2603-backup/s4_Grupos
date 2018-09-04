@@ -6,6 +6,9 @@
     <class>co.edu.uniandes.csw.grupos.entities.DistritoEntity</class>
     <class>co.edu.uniandes.csw.grupos.entities.NoticiaEntity</class>
     <class>co.edu.uniandes.csw.grupos.entities.ComentarioEntity</class>
+    <class>co.edu.uniandes.csw.grupos.entities.EventoEntity</class>
+    <class>co.edu.uniandes.csw.grupos.entities.LocacionEntity</class>
+    <class>co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>

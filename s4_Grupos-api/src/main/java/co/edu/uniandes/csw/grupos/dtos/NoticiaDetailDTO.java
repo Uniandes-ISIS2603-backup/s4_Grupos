@@ -60,20 +60,20 @@ public class NoticiaDetailDTO extends NoticiaDTO implements Serializable {
      * Transformar un DTO a un Entity
      *
      * @return El DTO de la noticia para transformar a Entity
-     *
+     **/
     @Override
     public NoticiaEntity toEntity() {
-        NoticiaEntity noticiaEntity = super.toEntity();
-        if (books != null) {
-            List<BookEntity> booksEntity = new ArrayList<>();
-            for (BookDTO dtoBook : books) {
-                booksEntity.add(dtoBook.toEntity());
+        NoticiaEntity noticiaEntity = new NoticiaEntity();
+        if (comentarios != null) {
+            List<ComentarioEntity> comentsEntity = new ArrayList<>();
+            for (ComentarioDTO dtoComent : comentarios) {
+                comentsEntity.add(dtoComent.toEntity());
             }
-            noticiaEntity.setBooks(booksEntity);
+            noticiaEntity.setComentarios(comentsEntity);
         }
         return noticiaEntity;
     }
-    * */
+    
 
     /**
      * Devuelve la lista de libros de la noticia.

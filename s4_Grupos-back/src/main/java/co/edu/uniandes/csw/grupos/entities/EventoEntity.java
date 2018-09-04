@@ -113,11 +113,11 @@ public class EventoEntity extends BaseEntity implements Serializable{
         this.locacion = locacionEntity;
     }
     
-//    /**
-//     * Devuelve los patrocinios de un evento
-//     *
-//     * @return los patrocinios
-//     */
+    /**
+     * Devuelve los patrocinios de un evento
+     *
+     * @return los patrocinios
+     */
 //    public List<PatrocinioEntity> getPatrocinios() {
 //        return patrocinios;
 //    }
