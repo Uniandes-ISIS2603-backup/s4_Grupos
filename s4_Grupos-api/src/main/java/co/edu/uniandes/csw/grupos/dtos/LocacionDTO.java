@@ -41,7 +41,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author Estudiante Josealejandro Barbosa ISIS2603
  */
-public class LocacionDto implements Serializable
+public class LocacionDTO implements Serializable
 {
     private String locacion;
     private Integer direcion;
@@ -53,7 +53,7 @@ public class LocacionDto implements Serializable
     /**
      * Constructor por defecto
      */
-    public LocacionDto()
+    public LocacionDTO()
     {
     }
     
@@ -63,7 +63,7 @@ public class LocacionDto implements Serializable
      *
      * @param locacionEntity: Es la entidad que se va a convertir a DTO
      */
-    /**
+   
     public LocacionDTO(LocacionEntity editorialEntity) {
         if (editorialEntity != null)
         {
@@ -76,7 +76,7 @@ public class LocacionDto implements Serializable
             
         }
     }
-    * /
+    
     
     /**
      * Devuelve el Nombre de la locacion.
@@ -192,7 +192,7 @@ public class LocacionDto implements Serializable
      * @return Un Entity con los valores del DTO
      */
     
-    /**
+    
     public LocacionEntity toEntity() {
         LocacionEntity locacionEntity = new LocacionEntity();
        
@@ -204,7 +204,7 @@ public class LocacionDto implements Serializable
          locacionEntity.setLongitud(this.longitud);
         return locacionEntity;
     }
-    */
+    
 
     @Override
     public String toString() {

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Clase que extiende de {@link PatrocinioDto} para manejar las relaciones entre los
+ * Clase que extiende de {@link PatrocinioDTO} para manejar las relaciones entre los
  * PatrocinioDTO y otros DTOs. Para conocer el contenido de un Patrocinio vaya a la
  * documentacion de {@link PatrocinoDTO}
  *
@@ -30,11 +30,11 @@ import java.util.List;
  *
  * @author Josealejandro Barbosa Jacome
  */
-public class PatrocinioDetailDto extends PatrocinioDto implements Serializable
+public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
 {
-    /**
+    
     // relación  cero a muchos Eventos
-    private List<EventosDTO> eventos;
+    private List<EventoDTO}> eventos;
 
     public PatrocinioDetailDTO() {
         super();
@@ -45,7 +45,7 @@ public class PatrocinioDetailDto extends PatrocinioDto implements Serializable
        *
        * @param PatrocinioEntity La entidad de la cual se construye el DTO
        */
-    /**
+    
       public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
 
       }
@@ -55,7 +55,7 @@ public class PatrocinioDetailDto extends PatrocinioDto implements Serializable
        *
        * @return La entidad que representa un administrador.
        */
-    /**
+    
       public PatrocinadorEntity toEntity() {
           
           
@@ -67,7 +67,7 @@ public class PatrocinioDetailDto extends PatrocinioDto implements Serializable
      *
      * @return Lista de DTOs de eventos
      */
-    /**
+    
     public List<EventosDTO> getEventos() {
         return eventos;
     }
@@ -77,9 +77,9 @@ public class PatrocinioDetailDto extends PatrocinioDto implements Serializable
      *
      * @param eventos eventos que se quieren modificar
      */
-    /**
+    
     public void setEventos(List<EventosDTO> gruposDeInteres) {
         this.eventos = gruposDeInteres;
     }    
-    */
+    
 }

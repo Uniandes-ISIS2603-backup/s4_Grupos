@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.resources;
-import co.edu.uniandes.csw.grupos.dtos.LocacionDto;
-import co.edu.uniandes.csw.grupos.dtos.PatrocinioDto;
+import co.edu.uniandes.csw.grupos.dtos.LocacionDTO;
+import co.edu.uniandes.csw.grupos.dtos.PatrocinioDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -36,20 +36,20 @@ public class PatrocinioResource {
      * @return JSON {@link PatrocionioDto} -La locacion  guardado con su id
      */
     @POST
-    public PatrocinioDto crearPatrocinador(PatrocinioDto patrocionioDto) {
+    public PatrocinioDTO crearPatrocinador(PatrocinioDTO patrocionioDto) {
         return patrocionioDto;
     }
 
     /**
      * Devuelve todos los patrocinadores registrados.
      *
-     * @return JSONArray {@link PatrocinioDto} - Los patrocinadores
+     * @return JSONArray {@link PatrocinioDTO} - Los patrocinadores
      * registrados. Si no hay ninguna retorna una lista vac�a.
      */
     @GET
-    public List<PatrocinioDto> getPatrocinadores()
+    public List<PatrocinioDTO> getPatrocinadores()
     {
-        return new ArrayList<PatrocinioDto>();
+        return new ArrayList<PatrocinioDTO>();
     }
     
 
@@ -62,23 +62,23 @@ public class PatrocinioResource {
      */
     @GET
     @Path("{patrocinadorNombre: [a-zA-Z][a-zA-Z]*}")
-    public PatrocinioDto getPatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre) 
+    public PatrocinioDTO getPatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre) 
     {
-        return new PatrocinioDto();
+        return new PatrocinioDTO();
     }
 
     /**
      * Actualiza el localizacion con el id recibido desde la petici�n.
      * @param patrocinadorNombre Identificador del patrocinio que se desea actualizar. Este debe
      * ser una cadena de caracteres.
-     * @param patrocinio {@link PatrocinioDto} El patrocinioo que se desea guardar.
-     * @return JSON {@link PatrocinioDto} - El patrocinio guardado.
+     * @param patrocinio {@link PatrocinioDTO} El patrocinioo que se desea guardar.
+     * @return JSON {@link PatrocinioDTO} - El patrocinio guardado.
      */
     @PUT
     @Path("{patrocinadorNombre: [a-zA-Z][a-zA-Z]*}")
-    public PatrocinioDto updatePatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre, PatrocinioDto patrocinio) 
+    public PatrocinioDTO updatePatrocinador(@PathParam("patrocinadorNombre") String patrocinadorNombre, PatrocinioDTO patrocinio) 
     {
-        return new PatrocinioDto();
+        return new PatrocinioDTO();
     }
 
     /**

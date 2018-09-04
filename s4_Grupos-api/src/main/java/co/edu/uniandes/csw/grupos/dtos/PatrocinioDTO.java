@@ -33,7 +33,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author Estudiante Josealejandro Barbosa ISIS2603
  */
-public class PatrocinioDto implements Serializable
+public class PatrocinioDTO implements Serializable
  {
     
     private String nombre;
@@ -42,7 +42,7 @@ public class PatrocinioDto implements Serializable
     /**
      * Constructor por defecto
      */
-    public PatrocinioDto ()
+    public PatrocinioDTO ()
     {
     }
     
@@ -53,7 +53,7 @@ public class PatrocinioDto implements Serializable
      * @param patrocinioEntity: Es la entidad que se va a convertir a DTO
      */
     
-    /**
+    
     public PatrocinioDTO(PatrocinoEntity patrocinioEntity) {
         if (PatrocinoEntity != null)
         {
@@ -61,7 +61,7 @@ public class PatrocinioDto implements Serializable
            this.valor = PatrocinioEntity.getValor();
         }
     }
-    * /
+    
 
      /**
      * Devuelve el Nombre del patrocinador.
@@ -105,7 +105,7 @@ public class PatrocinioDto implements Serializable
      * @return Un Entity con los valores del DTO
      */
     
-    /**
+    
     public PatrocinioEntity toEntity() {
         PatrocinioEntity locacionEntity = new PatrocinioEntity();
        
@@ -114,7 +114,7 @@ public class PatrocinioDto implements Serializable
               
         return locacionEntity;
     }
-    */
+    
 
     @Override
     public String toString() {
