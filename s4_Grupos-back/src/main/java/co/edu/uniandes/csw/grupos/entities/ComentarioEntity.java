@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.Entity;
 import uk.co.jemos.podam.common.PodamExclude;
+
 
 /**
  *

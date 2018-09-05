@@ -47,3 +47,4 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
 
    
 }
+

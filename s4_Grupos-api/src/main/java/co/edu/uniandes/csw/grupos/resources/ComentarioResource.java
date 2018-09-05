@@ -60,7 +60,7 @@ public class ComentarioResource
     }
     
     @GET
-    @Path("(comentariosId: \\d+)")
+    @Path("{comentariosId: \\d+}")
     public ComentarioDTO consultarUnCiudadano(@PathParam("comentariosId") Long comentariosId)
     {
         return new ComentarioDTO();
@@ -72,9 +72,10 @@ public class ComentarioResource
      * @return el comentario modificado
      */
     @PUT
-    public ComentarioDTO modificarComentario(ComentarioDTO texto)
+    @Path("{id:\\d+`}")
+    public ComentarioDTO modificarComentario(@PathParam("id") Long id)
     {
-        return texto;
+        return new ComentarioDTO();
     }
     
     /**

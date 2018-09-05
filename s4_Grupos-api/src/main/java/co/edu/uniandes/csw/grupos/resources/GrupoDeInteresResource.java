@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.GrupoDeInteresDTO;
 import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,39 +26,41 @@ import javax.ws.rs.Produces;
 @Produces ("application/json")
 @Consumes ("application/json")
 @RequestScoped
-
 public class GrupoDeInteresResource {   
     
-   
     @POST
-    public GrupoDeInteresDTO createGrupo(@PathParam("nombregrupo") GrupoDeInteresDTO pGrupo){
+    public GrupoDeInteresDTO createGrupo( GrupoDeInteresDTO pGrupo){
         
         return pGrupo;        
         
     }    
     
     @GET
-    public ArrayList<GrupoDeInteresDTO> getGrupos(ArrayList<GrupoDeInteresDTO> pGrupos){
+    public List<GrupoDeInteresDTO> getGrupos(){
         
-        return pGrupos;      
+        return new ArrayList<GrupoDeInteresDTO>();      
     }
     
      @GET
-    public GrupoDeInteresDTO getGrupo(@PathParam("nombregrupo") GrupoDeInteresDTO pGrupo){
+     @Path("{nombreGrupo: [a-zA-Z][a-zA-Z]*}")
+    public GrupoDeInteresDTO getGrupo(@PathParam("nombregrupo") String pGrupo){
         
-        return pGrupo;      
+        return new GrupoDeInteresDTO();      
     }
     
     
      @PUT
-    public GrupoDeInteresDTO modifyGrupo(@PathParam("nombregrupo") GrupoDeInteresDTO pGrupo){
+     @Path("{nombregrupo: [a-zA-Z][a-zA-Z]*}")
+    public GrupoDeInteresDTO modifyGrupo(@PathParam("nombregrupo") String pGrupo){
         
-        return pGrupo;        
+        return new GrupoDeInteresDTO();        
         
     }
     
     @DELETE
-     public void deleteGrupo(@PathParam("nombregrupo") GrupoDeInteresDTO pGrupo){              
+    @Path("{nombregrupo: [a-zA-Z][a-zA-Z]*}")
+     public void deleteGrupo(@PathParam("nombregrupo") String pGrupo)
+     {              
         
     }
     

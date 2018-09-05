@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Daniel Augusto Ramirez Dueñas
  */
-public abstract class CiudadanoDTO extends PersonaDTO implements Serializable
+public class CiudadanoDTO extends PersonaDTO implements Serializable
 {
     public CiudadanoDTO()
     {

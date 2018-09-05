@@ -23,7 +23,7 @@ public class EventoPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(EventoPersistence.class.getName());
 
-    @PersistenceContext(unitName = "EventoStorePU")
+    @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
 
     /**
