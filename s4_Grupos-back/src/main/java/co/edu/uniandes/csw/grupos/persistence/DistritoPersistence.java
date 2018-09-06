@@ -20,7 +20,6 @@ import javax.persistence.TypedQuery;
  * @author sarabepu
  */
 @Stateless
-
 public class DistritoPersistence {
    
 

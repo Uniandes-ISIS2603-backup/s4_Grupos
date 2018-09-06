@@ -29,7 +29,10 @@ public class DistritoEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "distrito")
     private List<LocacionEntity> locaciones = new ArrayList<LocacionEntity>();
     
-
+public DistritoEntity()
+{
+    
+}
     /**
      * Devuelve el nombre de el distrito.
      *

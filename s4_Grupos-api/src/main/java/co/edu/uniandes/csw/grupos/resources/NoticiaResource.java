@@ -95,8 +95,8 @@ public class NoticiaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) {
-       
+    public NoticiaDTO deleteNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) {
+       return new NoticiaDTO();
     }
     /**
      * Conexión con el servicio de comentarios para una noticia. {@link ComentarioResource}

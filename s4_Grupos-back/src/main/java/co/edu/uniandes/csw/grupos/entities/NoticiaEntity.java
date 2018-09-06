@@ -28,7 +28,10 @@ private GruposInteresEntity grupo;
     private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
 
 
-
+public NoticiaEntity()
+{
+    
+}
     public List<ComentarioEntity> getComentarios() {
         return comentarios;
     }

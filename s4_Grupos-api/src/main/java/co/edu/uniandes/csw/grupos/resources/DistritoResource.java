@@ -87,8 +87,8 @@ public class DistritoResource {
      */
     @DELETE
     @Path("{distritosId: \\d+}")
-    public void deleteDistrito(@PathParam("distritosId") Long distritosId)  {
-        
+    public DistritoDTO deleteDistrito(@PathParam("distritosId") Long distritosId)  {
+        return new DistritoDetailDTO();
     }
    /**
      * Busca y devuelve todas las distoitos que existen en la aplicacion.

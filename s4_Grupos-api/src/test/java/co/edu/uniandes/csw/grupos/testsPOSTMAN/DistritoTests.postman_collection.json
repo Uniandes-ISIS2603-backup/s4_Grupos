@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "be4f23ca-1e83-445e-921c-545e1fc15fd8",
+		"name": "DistritoTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post distrito",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"nombre\", \n\"id\": \"4\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/distritos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"distritos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dar un distrstrito especifico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/distritos/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"distritos",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dar todos distritos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/distritos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"distritos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteDistrito",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/distritos/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"distritos",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put distrito ",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"nombre\", \n\"id\": \"4\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/distritos/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"distritos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
