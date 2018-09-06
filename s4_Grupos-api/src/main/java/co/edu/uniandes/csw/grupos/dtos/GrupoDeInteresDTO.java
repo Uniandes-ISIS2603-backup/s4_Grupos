@@ -35,12 +35,16 @@ public class GrupoDeInteresDTO implements Serializable {
      * Convierte un Entity a DTO con los valores del Entity que recibe por Parámetro.
      * @param grupoEntity Entity a convertir a DTO.
      */
+
     public GrupoDeInteresDTO(GrupoDeInteresEntity grupoEntity){        
+
          if (grupoEntity != null) {
          
             nombre = grupoEntity.getNombre();
             descripcion = grupoEntity.getDescripcion();
+
         }   
+
     }    
  
     
