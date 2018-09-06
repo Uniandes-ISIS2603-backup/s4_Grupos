@@ -107,21 +107,21 @@ public class DistritoResource {
      /**
      * Conexión con el servicio de locaciones para un distrito. {@link LocacionResource}
      *
-     * Este método conecta la ruta de /distritos con las rutas de /comentarios que
+     * Este método conecta la ruta de /distritos con las rutas de /locaciones que
      * dependen de el distrito, es una redirección al servicio que maneja el segmento
-     * de la URL que se encarga de las comentarios.
+     * de la URL que se encarga de las locaciones.
      *
      * @param distritosId El ID de el distrito con respecto al cual se accede al
      * servicio.
      * @return El servicio de Comentarios para ese distrito en paricular.\
      */
     @Path("{distritosId: \\d+}/comentarios")
-    public Class<ComentarioResource> getReviewResource(@PathParam("distritosId") Long distritosId) {
+    public Class<LocacionResource> getLocacionResource(@PathParam("distritosId") Long distritosId) {
         /**if (bookLogic.getBook(booksId) == null) {
             throw new WebApplicationException("El recurso /books/" + booksId + "/reviews no existe.", 404);
         }
         * */
-        return ComentarioResource.class;
+        return LocacionResource.class;
     }
     /**
      * Convierte una lista de entidades a DTO.

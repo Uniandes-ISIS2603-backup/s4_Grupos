@@ -40,7 +40,7 @@ public class PatrocinioEntity extends BaseEntity implements Serializable
      * eventos patrocinados
      */
     @PodamExclude
-    @ManyToMany(mappedBy = "eventos", fetch = javax.persistence.FetchType.LAZY)
+    @ManyToMany
     private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
 
     /**
