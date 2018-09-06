@@ -17,8 +17,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     
-    @PodamExclude
-    @OneToMany(mappedBy = "grupodeinteres")
     
     private String nombre;
     

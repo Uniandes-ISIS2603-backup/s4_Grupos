@@ -64,7 +64,7 @@ public class NoticiaResource {
      * @return {@link NoticiaDTO} - La noticia encontrada en el grupo.
      */
     @GET
-    @Path("{id:\\d+`}")
+    @Path("{id:\\d+}")
     public NoticiaDTO consultarNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id)
     {
         return new NoticiaDTO();
@@ -82,7 +82,7 @@ public class NoticiaResource {
     
      */
     @PUT
-     @Path("{id:\\d+`}")
+     @Path("{id:\\d+}")
     public NoticiaDTO editarNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id,NoticiaDTO noticia)
     {
         return new NoticiaDTO();
@@ -110,7 +110,7 @@ public class NoticiaResource {
      * @return El servicio de Comentarios para ese libro en paricular.\
      */
     @Path("{noticiasId: \\d+}/comentarios")
-    public Class<ComentarioResource> getReviewResource(@PathParam("noticiasId") Long noticiassId) {
+    public Class<ComentarioResource> getComentarioResource(@PathParam("noticiasId") Long noticiassId) {
         /**if (bookLogic.getBook(booksId) == null) {
             throw new WebApplicationException("El recurso /books/" + booksId + "/reviews no existe.", 404);
         }

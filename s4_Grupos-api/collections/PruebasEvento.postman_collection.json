@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "8abdb867-db48-498d-b48d-cef53b7cc616",
+		"name": "PruebasEvento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetEventos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/eventos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEventoPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/eventos/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"eventos",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearEventos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"12\", \"nombre\": \"evento1\", \"fecha\":\"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/eventos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarEvento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"12\", \"nombre\": \"evento2\",\"fecha\":\"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/eventos/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"eventos",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarEvento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/eventos/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"eventos",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

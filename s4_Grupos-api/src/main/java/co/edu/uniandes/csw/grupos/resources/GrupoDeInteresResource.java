@@ -63,5 +63,24 @@ public class GrupoDeInteresResource {
      {              
         
     }
+     /**
+     * Conexión con el servicio de noticias para un grupo. {@link LocacionResource}
+     *
+     * Este método conecta la ruta de /grupos con las rutas de /noticias que
+     * dependen de el grupo, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de las noticias.
+     *
+     * @param gruposId El ID de el grupo con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Noticias para ese grupo en paricular.\
+     */
+    @Path("{gruposId: \\d+}/noticias")
+    public Class<NoticiaResource> getNoticiaResource(@PathParam("gruposId") Long gruposId) {
+        /**if (bookLogic.getBook(booksId) == null) {
+            throw new WebApplicationException("El recurso /books/" + booksId + "/reviews no existe.", 404);
+        }
+        * */
+        return NoticiaResource.class;
+    }
     
 }

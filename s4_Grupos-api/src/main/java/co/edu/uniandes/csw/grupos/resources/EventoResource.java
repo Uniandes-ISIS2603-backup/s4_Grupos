@@ -55,8 +55,8 @@ public class EventoResource {
      * @return JSON {@link EventoDTO} - El evento que se deseaba buscar.
      */
     @GET
-    @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public EventoDTO getEvento(@PathParam("nombreEvento") String nombreEvento) {
+    @Path("{idEvento:\\d+}")
+    public EventoDTO getEvento(@PathParam("idEvento") Long idEvento) {
         return new EventoDTO();
     }
 
@@ -68,8 +68,8 @@ public class EventoResource {
      * @return JSON {@link EventoDTO} - El evento guardado.
      */
     @PUT
-    @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public EventoDTO updateEvento(@PathParam("nombreEvento") String nombreEvento, EventoDTO evento) {
+    @Path("{idEvento:\\d+}")
+    public EventoDTO updateEvento(@PathParam("idEvento") Long idEvento, EventoDTO evento) {
         return evento;
     }
 
@@ -81,8 +81,8 @@ public class EventoResource {
      * @return evento que se eliminò
      */
     @DELETE
-    @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public EventoDTO deleteEvento(@PathParam("nombreEvento") String nombreEvento) {
+    @Path("{idEvento: \\d+}")
+    public EventoDTO deleteEvento(@PathParam("idEvento") Long idEvento) {
     	return new EventoDTO();
     }
 }

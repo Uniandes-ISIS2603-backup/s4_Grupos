@@ -1,6 +1,7 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDTO;
+import co.edu.uniandes.csw.grupos.dtos.AdministradorDetailDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -43,8 +44,8 @@ public class AdministradorResource {
      * registrados. Si no hay ninguno retorna una lista vac?a.
      */
     @GET
-    public List<AdministradorDTO> getAdministradores() {
-        return new ArrayList<AdministradorDTO>();
+    public List<AdministradorDetailDTO> getAdministradores() {
+        return new ArrayList<AdministradorDetailDTO>();
     }
 
     /**
@@ -56,8 +57,8 @@ public class AdministradorResource {
      */
     @GET
     @Path("{administradorId: \\d+}")
-    public AdministradorDTO getAdministrador(@PathParam("administradorId") Long administradorId) {
-        return new AdministradorDTO();
+    public AdministradorDetailDTO getAdministrador(@PathParam("administradorId") Long administradorId) {
+        return new AdministradorDetailDTO();
     }
 
     /**
@@ -69,7 +70,7 @@ public class AdministradorResource {
      */
     @PUT
     @Path("{administradorId: \\d+}")
-    public AdministradorDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) {
+    public AdministradorDetailDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDetailDTO administrador) {
         return administrador;    
     }
 

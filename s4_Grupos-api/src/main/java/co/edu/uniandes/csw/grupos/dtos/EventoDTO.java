@@ -15,6 +15,7 @@ import java.util.Date;
  */
 public class EventoDTO implements Serializable {
 
+    private Long id;
     private String nombre;
     private Date fecha;
 
@@ -41,33 +42,54 @@ public class EventoDTO implements Serializable {
        *
        * @param eventoEntity La entidad del evento
        */
-      public EventoDTO(EventoEntity eventoEntity) {
-          if (eventoEntity != null) {
-            this.nombre = eventoEntity.getNombre();
-            this.fecha = eventoEntity.getFecha();
-            if (eventoEntity.getGrupoDeInteres() != null) {
-                this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
-            } else {
-                this.grupoDeInteres = null;
-            }
-        }
-      }
-  
-      /**
-       * M�todo para transformar el DTO a una entidad.
-       *
-       * @return La entidad del evento asociado.
-       */
-      public EventoEntity toEntity() {
-        EventoEntity eventoEntity = new EventoEntity();
-        eventoEntity.setNombre(this.nombre);
-        eventoEntity.setFecha(this.fecha);
-        if (this.grupoDeInteres != null) {
-            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
-        }
-        return eventoEntity;
-      }
+//      public EventoDTO(EventoEntity eventoEntity) {
+//          if (eventoEntity != null) {
+//            this.nombre = eventoEntity.getNombre();
+//            this.fecha = eventoEntity.getFecha();
+//            this.id = eventoEntity.getId();
+//            if (eventoEntity.getGrupoDeInteres() != null) {
+//                this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
+//            } else {
+//                this.grupoDeInteres = null;
+//            }
+//        }
+//      }
+//  
+//      /**
+//       * M�todo para transformar el DTO a una entidad.
+//       *
+//       * @return La entidad del evento asociado.
+//       */
+//      public EventoEntity toEntity() {
+//        EventoEntity eventoEntity = new EventoEntity();
+//        eventoEntity.setNombre(this.nombre);
+//        eventoEntity.setFecha(this.fecha);
+//        eventoEntity.setId(this.id);
+//        if (this.grupoDeInteres != null) {
+//            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
+//        }
+//        return eventoEntity;
+//      }
+     
+     /**
+     * Devuelve el id del evento
+     *
+     * @return el id
+     */
+    public Long getId() {
+        return id;
+    }
 
+    /**
+     * Modifica el id del evento
+     *
+     * @param id id del evento a modificar
+     */
+    public void setId(Long id) {
+        this.id = id;
+    } 
+      
+      
     /**
      * Devuelve el nombre del evento
      *

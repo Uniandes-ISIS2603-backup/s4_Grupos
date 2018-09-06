@@ -24,37 +24,37 @@ public class EventoDetailDTO extends EventoDTO implements Serializable {
         super();
     }
 
-      /**
-       * Constructor para transformar un Entity a un DTO
-       *
-       * @param eventoEntity La entidad de la cual se construye el DTO
-       */
-      public EventoDetailDTO(EventoEntity eventoEntity) {
-         super(eventoEntity);
-        if (eventoEntity.getPatrocinios() != null) {
-            patrocinios = new ArrayList<>();
-            for (PatrocinioEntity entityPatrocinio : eventoEntity.getPatrocinios()) {
-                patrocinios.add(new PatrocinioDTO(entityPatrocinio));
-            }
-        }
-      }
+//      /**
+//       * Constructor para transformar un Entity a un DTO
+//       *
+//       * @param eventoEntity La entidad de la cual se construye el DTO
+//       */
+//      public EventoDetailDTO(EventoEntity eventoEntity) {
+//         super(eventoEntity);
+//        if (eventoEntity.getPatrocinios() != null) {
+//            patrocinios = new ArrayList<>();
+//            for (PatrocinioEntity entityPatrocinio : eventoEntity.getPatrocinios()) {
+//                patrocinios.add(new PatrocinioDTO(entityPatrocinio));
+//            }
+//        }
+//      }
       /**
        * Transformar el DTO a una entidad
        *
        * @return La entidad que representa el evento.
        */
-      @Override
-      public EventoEntity toEntity() {
-        EventoEntity eventoEntity = super.toEntity();
-        if (patrocinios!= null) {
-            List<PatrocinioEntity> patrociniosEntity = new ArrayList<>();
-            for (PatrocinioDTO dtoPatrocinio : getPatrocinios()) {
-                patrociniosEntity.add(dtoPatrocinio.toEntity());
-            }
-            eventoEntity.setPatrocinios(patrociniosEntity);
-        }
-        return eventoEntity;
-      }
+//      @Override
+//      public EventoEntity toEntity() {
+//        EventoEntity eventoEntity = super.toEntity();
+//        if (patrocinios!= null) {
+//            List<PatrocinioEntity> patrociniosEntity = new ArrayList<>();
+//            for (PatrocinioDTO dtoPatrocinio : getPatrocinios()) {
+//                patrociniosEntity.add(dtoPatrocinio.toEntity());
+//            }
+//            eventoEntity.setPatrocinios(patrociniosEntity);
+//        }
+//        return eventoEntity;
+//      }
 
     /**
      * Devuelve los patrocinios asociados a un evento

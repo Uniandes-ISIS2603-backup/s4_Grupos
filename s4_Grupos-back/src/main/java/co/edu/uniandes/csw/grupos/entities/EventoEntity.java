@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -23,21 +24,44 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EventoEntity extends BaseEntity implements Serializable{
     
+    private Long id;
     private String nombre;    
     @Temporal(TemporalType.DATE)
     private Date fecha;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private GrupoDeInteresEntity grupoDeInteres;
     
 //    @PodamExclude
 //    @ManyToMany(mappedBy = "patrocinios", fetch = javax.persistence.FetchType.LAZY)
-//    private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
+   // private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
     
     @PodamExclude
     @OneToOne
     private LocacionEntity locacion;
+    
+    /**
+     * Devuelve el id del evento.
+     *
+     * @return el id
+     */
+    @Override
+    public Long getId()
+    {
+        return id;
+    }
+    
+    /**
+     * Modifica el id del evento.
+     *
+     * @param id id a cambiar
+     */
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     
     /**
      * Devuelve el nombre del evento.
@@ -113,20 +137,20 @@ public class EventoEntity extends BaseEntity implements Serializable{
         this.locacion = locacionEntity;
     }
     
-    /**
-     * Devuelve los patrocinios de un evento
-     *
-     * @return los patrocinios
+//    /**
+//     * Devuelve los patrocinios de un evento
+//     *
+//     * @return los patrocinios
 //     */
 //    public List<PatrocinioEntity> getPatrocinios() {
 //        return patrocinios;
 //    }
-
-    /**
-     * Modifica los patrocinios de un evento
-     *
-     * @param patrocinios los patrocinios a modificar
-     */
+//
+//    /**
+//     * Modifica los patrocinios de un evento
+//     *
+//     * @param patrocinios los patrocinios a modificar
+//     */
 //    public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
 //        this.patrocinios = patrocinios;
 //    }
