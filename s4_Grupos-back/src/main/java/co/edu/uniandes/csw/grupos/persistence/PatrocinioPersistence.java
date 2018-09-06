@@ -5,8 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.persistence;
 
-
-import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
+import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,10 +17,9 @@ import javax.persistence.Query;
  *
  * @author j.barbosaj
  */
-public class LocacionPersistence {
-    
-    
-    private static final Logger LOGGER = Logger.getLogger(LocacionEntity.class.getName());
+public class PatrocinioPersistence 
+{
+      private static final Logger LOGGER = Logger.getLogger(PatrocinioEntity.class.getName());
 
     @PersistenceContext(unitName = "AdministradorStorePU")
     protected EntityManager em;
@@ -29,38 +27,37 @@ public class LocacionPersistence {
     /**
      * Método para persisitir la entidad en la base de datos.
      *
-     * @param LocacionEntity  objeto locacion que se creará en la base de datos
+     * @param patrocinioEntity  objeto locacion que se creará en la base de datos
      * @return devuelve la entidad creada con el nombre dado por la base de datos.
      */
-    public LocacionEntity create(LocacionEntity locacionEntity) {
-        LOGGER.log(Level.INFO, "Creando una nueva locacion");
-        em.persist(locacionEntity);
-        LOGGER.log(Level.INFO, "Locacion creado");
-        return locacionEntity;
+    public PatrocinioEntity create(PatrocinioEntity patrocinioEntity) {
+        LOGGER.log(Level.INFO, "Creando una nuevo patrocinio");
+        em.persist(patrocinioEntity);
+        LOGGER.log(Level.INFO, "Patrocinio creado");
+        return patrocinioEntity;
     }
-
     /**
-     * Devuelve todos las locaciones de la base de datos.
+     * Devuelve todos los patrocinadores de la base de datos.
      *
-     * @return una lista con todas las locaciones que encuentre en la base de datos,
-     * "select u from LocacionesEntity u" es como un "select * from LocacionEntity;" -
+     * @return una lista con todas los patrocinadores que encuentre en la base de datos,
+     * "select u from PatrocinioEntity u" es como un "select * from PatrocinioEntity;" -
      * "SELECT * FROM table_name" en SQL.
      */
-    public List<LocacionEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todas las locaciones");
-        Query q = em.createQuery("select u from LocacionEntity u");
+    public List<PatrocinioEntity> findAll() {
+        LOGGER.log(Level.INFO, "Consultando todos los patrocinadores");
+        Query q = em.createQuery("select u from PatrocinioEntity u");
         return q.getResultList();
     }
 
     /**
-     * Busca si hay alguna localizacion con el nombre que se envía de argumento
+     * Busca si hay algun patrocinador con el nombre que se envía de argumento
      *
-     * @param idLocacion: nombre correspondiente la localizacon buscada.
+     * @param idPatrocinio: nombre correspondiente al patrocinio buscado.
      * @return una locacion.
      */
-    public LocacionEntity find(String idLocacion) {
-        LOGGER.log(Level.INFO, "Consultando la localizacion por id", idLocacion);
-        return em.find(LocacionEntity.class, idLocacion);
+    public PatrocinioEntity find(String idPatrocinio) {
+        LOGGER.log(Level.INFO, "Consultando la localizacion por id", idPatrocinio);
+        return em.find(PatrocinioEntity .class, idPatrocinio);
     }
 
     /**
@@ -84,5 +81,5 @@ public class LocacionPersistence {
         LOGGER.log(Level.INFO, "Borrando la locacion con el id", idLocacion);
         LocacionEntity locacionEntity = em.find(LocacionEntity.class, idLocacion);
         em.remove(locacionEntity);
-    }
+    }  
 }
