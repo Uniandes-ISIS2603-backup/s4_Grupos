@@ -10,7 +10,10 @@
     <packaging>pom</packaging>
     <name>s4_groupTeam</name>
  
-    <modules></modules>
+    <modules>
+        <module>s4_Grupos-api</module>
+        <module>s4_Grupos-back</module>
+    </modules>
     
     <repositories>
         <repository>
