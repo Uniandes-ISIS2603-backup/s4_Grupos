@@ -61,13 +61,13 @@ public class PatrocinioPersistence
     }
 
     /**
-     * Actualiza una locacion.
-     * @param locacionEntity: la locacion que viene con los nuevos cambios.
+     * Actualiza un patrocinio .
+     * @param patrocinioEntity: la locacion que viene con los nuevos cambios.
      * @return la locacion con los cambios aplicados.
      */
-    public LocacionEntity update(LocacionEntity locacionEntity) {
-        LOGGER.log(Level.INFO, "Actualizando la localizacion por el id", locacionEntity.getId());
-        return em.merge(locacionEntity);
+    public PatrocinioEntity update(PatrocinioEntity patrocinioEntity) {
+        LOGGER.log(Level.INFO, "Actualizando la localizacion por el id", patrocinioEntity.getId());
+        return em.merge(patrocinioEntity);
     }
 
     /**
@@ -75,11 +75,11 @@ public class PatrocinioPersistence
      * Borra una locacion de la base de datos recibiendo como argumento el id de 
      *  la locacion
      *
-     * @param idLocacion: id correspondiente a la locacion a borrar.
+     * @param idPatrocinio: id correspondiente a la locacion a borrar.
      */
-    public void delete(String idLocacion) {
-        LOGGER.log(Level.INFO, "Borrando la locacion con el id", idLocacion);
-        LocacionEntity locacionEntity = em.find(LocacionEntity.class, idLocacion);
+    public void delete(String idPatrocinio) {
+        LOGGER.log(Level.INFO, "Borrando la locacion con el id", idPatrocinio);
+        PatrocinioEntity locacionEntity = em.find(PatrocinioEntity.class, idPatrocinio);
         em.remove(locacionEntity);
     }  
 }
