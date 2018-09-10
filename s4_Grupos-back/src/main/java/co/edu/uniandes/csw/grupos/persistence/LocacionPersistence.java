@@ -60,7 +60,7 @@ public class LocacionPersistence {
      * @param idLocacion: nombre correspondiente la localizacon buscada.
      * @return una locacion.
      */
-    public LocacionEntity find(String idLocacion) {
+    public LocacionEntity find(Long idLocacion) {
         LOGGER.log(Level.INFO, "Consultando la localizacion por id", idLocacion);
         return em.find(LocacionEntity.class, idLocacion);
     }
@@ -82,7 +82,7 @@ public class LocacionPersistence {
      *
      * @param idLocacion: id correspondiente a la locacion a borrar.
      */
-    public void delete(String idLocacion) {
+    public void delete(Long idLocacion) {
         LOGGER.log(Level.INFO, "Borrando la locacion con el id", idLocacion);
         LocacionEntity locacionEntity = em.find(LocacionEntity.class, idLocacion);
         em.remove(locacionEntity);
