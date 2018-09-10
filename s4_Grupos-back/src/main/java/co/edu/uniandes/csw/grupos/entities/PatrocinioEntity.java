@@ -20,11 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PatrocinioEntity extends BaseEntity implements Serializable 
 {
-    /**
-     * el identificador unico
-     */
-    @Id
-    private Long id;
+    
     
     /**
      * nombre del patrocinador
@@ -43,21 +39,7 @@ public class PatrocinioEntity extends BaseEntity implements Serializable
     @ManyToMany
     private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
 
-    /**
-     * retorna el id del patrocinio 
-     * @return Long id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * modifica el id del patrocinio
-     * @param id el nuevo id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
     
     /**
      * retorna el nombre del patrocinador
