@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,6 +18,7 @@ import javax.persistence.Query;
  *
  * @author j.barbosaj
  */
+@Stateless
 public class PatrocinioPersistence 
 {
       private static final Logger LOGGER = Logger.getLogger(PatrocinioEntity.class.getName());
@@ -55,7 +57,7 @@ public class PatrocinioPersistence
      * @param idPatrocinio: nombre correspondiente al patrocinio buscado.
      * @return una locacion.
      */
-    public PatrocinioEntity find(String idPatrocinio) {
+    public PatrocinioEntity find(Long idPatrocinio) {
         LOGGER.log(Level.INFO, "Consultando la localizacion por id", idPatrocinio);
         return em.find(PatrocinioEntity .class, idPatrocinio);
     }
@@ -77,7 +79,7 @@ public class PatrocinioPersistence
      *
      * @param idPatrocinio: id correspondiente a la locacion a borrar.
      */
-    public void delete(String idPatrocinio) {
+    public void delete(Long idPatrocinio) {
         LOGGER.log(Level.INFO, "Borrando la locacion con el id", idPatrocinio);
         PatrocinioEntity locacionEntity = em.find(PatrocinioEntity.class, idPatrocinio);
         em.remove(locacionEntity);
