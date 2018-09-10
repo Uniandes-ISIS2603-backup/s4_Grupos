@@ -48,7 +48,7 @@ public class DistritoPersistenceTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(DistritoEntity.class.getPackage())
-                .addPackage(DistritoEntity.class.getPackage())
+                .addPackage(DistritoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
