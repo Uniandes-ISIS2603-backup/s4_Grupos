@@ -20,7 +20,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * Pruebas de persistencia de Books
+ * Pruebas de persistencia de Distritos
  *
  * @author ISIS2603
  */
@@ -112,7 +112,7 @@ public class DistritoPersistenceTest {
     }
 
     /**
-     * Prueba para consultar la lista de Books.
+     * Prueba para consultar la lista de Distritos.
      */
     @Test
     public void getDistritosTest() {
@@ -130,7 +130,7 @@ public class DistritoPersistenceTest {
     }
 
     /**
-     * Prueba para consultar un Book.
+     * Prueba para consultar un Distrito.
      */
     @Test
     public void getDistritoTest() {
