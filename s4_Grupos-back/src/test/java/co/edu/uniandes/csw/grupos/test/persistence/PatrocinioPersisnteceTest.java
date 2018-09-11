@@ -31,7 +31,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 
 public class PatrocinioPersisnteceTest {
-        @Inject
+    
+    @Inject
     private PatrocinioPersistence patrocinioPersistence;
 
     @PersistenceContext
@@ -102,7 +103,7 @@ public class PatrocinioPersisnteceTest {
      * Prueba para crear un Patrocinio.
      */
     @Test
-    public void createAuthorTest() {
+    public void createPatrocinioTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PatrocinioEntity  newEntity = factory.manufacturePojo(PatrocinioEntity.class);
         PatrocinioEntity result = patrocinioPersistence.create(newEntity);
@@ -118,7 +119,7 @@ public class PatrocinioPersisnteceTest {
      * Prueba para consultar la lista de Patrocinios.
      */
     @Test
-    public void getAuthorsTest() {
+    public void getPatrociniosTest() {
         List<PatrocinioEntity > list = patrocinioPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (PatrocinioEntity  ent : list) {
@@ -136,7 +137,7 @@ public class PatrocinioPersisnteceTest {
      * Prueba para consultar un Patrocinio.
      */
     @Test
-    public void getAuthorTest() {
+    public void getPatrocinioTest() {
         PatrocinioEntity entity = data.get(0);
        PatrocinioEntity  newEntity = patrocinioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -148,7 +149,7 @@ public class PatrocinioPersisnteceTest {
      * Prueba para actualizar un Patrocinio.
      */
     @Test
-    public void updateAuthorTest() {
+    public void updatePatrocinioTest() {
         PatrocinioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         PatrocinioEntity newEntity = factory.manufacturePojo( PatrocinioEntity.class);
@@ -166,7 +167,7 @@ public class PatrocinioPersisnteceTest {
      * Prueba para eliminar un Patrocinio.
      */
     @Test
-    public void deleteAuthorTest() {
+    public void deletePatrocinioTest() {
         PatrocinioEntity entity = data.get(0);
         patrocinioPersistence.delete(entity.getId());
         PatrocinioEntity deleted = em.find( PatrocinioEntity.class, entity.getId());

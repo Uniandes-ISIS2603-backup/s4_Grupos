@@ -20,12 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class LocacionEntity extends BaseEntity implements Serializable  {
     
-    /**
-     * primary key
-     * representa un identificador unico asignado por la DB
-     */
-    @Id
-    private Long id;
+
     
     /**
      * Representa un el distrito al cual pertenece la locacion
@@ -80,21 +75,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
         this.distrito = distrito;
     }
 
-    /**
-     * retorna el identificador unico de la locacion
-     * @return Long
-     */
-    public Long getId() {
-        return id;
-    }
-    /**
-     * modifica el identificador unico de la locacion
-     * @param id Long
-     */
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 
     /**
      * retorna el nombre de la localizacion

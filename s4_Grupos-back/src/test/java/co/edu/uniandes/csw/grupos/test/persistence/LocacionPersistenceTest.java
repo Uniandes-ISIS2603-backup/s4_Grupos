@@ -103,7 +103,7 @@ public class LocacionPersistenceTest {
      * Prueba para crear un Patrocinio.
      */
     @Test
-    public void createAuthorTest() {
+    public void createLocacionTest() {
         PodamFactory factory = new PodamFactoryImpl();
         LocacionEntity  newEntity = factory.manufacturePojo(LocacionEntity.class);
         LocacionEntity result = locacionesPersistence.create(newEntity);
@@ -112,14 +112,14 @@ public class LocacionPersistenceTest {
 
         LocacionEntity entity = em.find(LocacionEntity .class, result.getId());
 
-        Assert.assertEquals(newEntity.getLocacion() , entity.getLocacion());
+        Assert.assertEquals(newEntity.getId() , entity.getId());
     }
 
     /**
      * Prueba para consultar la lista de Locaciones.
      */
     @Test
-    public void getAuthorsTest() {
+    public void getLocacionesTest() {
         List<LocacionEntity > list = locacionesPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (LocacionEntity  ent : list) {
@@ -137,19 +137,19 @@ public class LocacionPersistenceTest {
      * Prueba para consultar un Patrocinio.
      */
     @Test
-    public void getAuthorTest() {
+    public void getLocacionTest() {
         LocacionEntity entity = data.get(0);
-        LocacionEntity newEntity = locacionesPersistence.find(entity.getLocacion());
+        LocacionEntity newEntity = locacionesPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getLocacion(), newEntity.getLocacion());
-        Assert.assertEquals(entity.getDirecion(), newEntity.getDirecion());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
     }
 
     /**
      * Prueba para actualizar un Patrocinio.
      */
     @Test
-    public void updateAuthorTest() {
+    public void updateLocacionTest() {
         LocacionEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         LocacionEntity newEntity = factory.manufacturePojo( LocacionEntity.class);
@@ -167,9 +167,9 @@ public class LocacionPersistenceTest {
      * Prueba para eliminar un Patrocinio.
      */
     @Test
-    public void deleteAuthorTest() {
+    public void deleteLocacionTest() {
         LocacionEntity entity = data.get(0);
-        locacionesPersistence.delete(entity.getLocacion());
+        locacionesPersistence.delete(entity.getId());
         LocacionEntity deleted = em.find( LocacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
