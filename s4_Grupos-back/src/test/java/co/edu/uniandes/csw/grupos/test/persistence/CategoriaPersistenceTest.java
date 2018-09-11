@@ -5,8 +5,8 @@
 */
 package co.edu.uniandes.csw.grupos.test.persistence;
 
-import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
-import co.edu.uniandes.csw.grupos.persistence.GrupoDeInteresPersistence;
+import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
+import co.edu.uniandes.csw.grupos.persistence.CategoriaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,10 +29,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class GrupoDeInteresPersistenceTest {
+public class CategoriaPersistenceTest {
     
     @Inject
-    private GrupoDeInteresPersistence grupoInteresPersistence;
+    private CategoriaPersistence categoriaPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -40,7 +40,7 @@ public class GrupoDeInteresPersistenceTest {
     @Inject
             UserTransaction utx;
     
-    private List<GrupoDeInteresEntity> data = new ArrayList<>();
+    private List<CategoriaEntity> data = new ArrayList<>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -50,8 +50,8 @@ public class GrupoDeInteresPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(GrupoDeInteresEntity.class.getPackage())
-                .addPackage(GrupoDeInteresPersistence.class.getPackage())
+                .addPackage(CategoriaEntity.class.getPackage())
+                .addPackage(CategoriaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -82,7 +82,7 @@ public class GrupoDeInteresPersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from GrupoDeInteresEntity").executeUpdate();
+        em.createQuery("delete from CategoriaEntity").executeUpdate();
     }
     
     /**
@@ -93,7 +93,7 @@ public class GrupoDeInteresPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             
-            GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
+            CategoriaEntity entity = factory.manufacturePojo(CategoriaEntity.class);
             em.persist(entity);
             data.add(entity);
         }
@@ -103,14 +103,14 @@ public class GrupoDeInteresPersistenceTest {
      * Prueba para crear un grupo..
      */
     @Test
-    public void createGrupoTest() {
+    public void createCategoriaTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        GrupoDeInteresEntity  newEntity = factory.manufacturePojo(GrupoDeInteresEntity.class);
-        GrupoDeInteresEntity result = grupoInteresPersistence.create(newEntity);
+        CategoriaEntity  newEntity = factory.manufacturePojo(CategoriaEntity.class);
+        CategoriaEntity result = categoriaPersistence.create(newEntity);
         
         Assert.assertNotNull(result);
         
-        GrupoDeInteresEntity  entity = em.find(GrupoDeInteresEntity.class, result.getId());
+        CategoriaEntity  entity = em.find(CategoriaEntity.class, result.getId());
         
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
@@ -120,12 +120,12 @@ public class GrupoDeInteresPersistenceTest {
      * Prueba para consultar la lista de grupos.
      */
     @Test
-    public void getGruposTest() {
-        List<GrupoDeInteresEntity > list = grupoInteresPersistence.findAll();
+    public void getCategoriasTest() {
+        List<CategoriaEntity > list = categoriaPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (GrupoDeInteresEntity  ent : list) {
+        for (CategoriaEntity  ent : list) {
             boolean found = false;
-            for (GrupoDeInteresEntity  entity : data) {
+            for (CategoriaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -134,46 +134,48 @@ public class GrupoDeInteresPersistenceTest {
         }
     }
     
+    
     /**
      * Prueba para consultar un Grupo.
      */
     @Test
-    public void getGrupoTest() {
-        GrupoDeInteresEntity entity = data.get(0);
-        GrupoDeInteresEntity  newEntity = grupoInteresPersistence.find(entity.getId());
+    public void getCategoriaTest() {
+        CategoriaEntity entity = data.get(0);
+        CategoriaEntity  newEntity = categoriaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
         Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
     }
+    
     
     /**
      * Prueba para actualizar un grupo.
      */
     @Test
     public void updateGrupoTest() {
-        GrupoDeInteresEntity entity = data.get(0);
+        CategoriaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        GrupoDeInteresEntity newEntity = factory.manufacturePojo( GrupoDeInteresEntity.class);
+        CategoriaEntity newEntity = factory.manufacturePojo( CategoriaEntity.class);
         
         newEntity.setId(entity.getId());
         
-        grupoInteresPersistence.update(newEntity);
+        categoriaPersistence.update(newEntity);
         
-        GrupoDeInteresEntity resp = em.find( GrupoDeInteresEntity.class, entity.getId());
+        CategoriaEntity resp = em.find( CategoriaEntity.class, entity.getId());
         
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
+    
     
     /**
      * Prueba para eliminar un Grupo.
      */
     @Test
     public void deleteGrupoTest() {
-        GrupoDeInteresEntity entity = data.get(0);
-        grupoInteresPersistence.delete(entity.getId());
-        GrupoDeInteresEntity deleted = em.find( GrupoDeInteresEntity.class, entity.getId());
+        CategoriaEntity entity = data.get(0);
+        categoriaPersistence.delete(entity.getId());
+        CategoriaEntity deleted = em.find( CategoriaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
     
 }
