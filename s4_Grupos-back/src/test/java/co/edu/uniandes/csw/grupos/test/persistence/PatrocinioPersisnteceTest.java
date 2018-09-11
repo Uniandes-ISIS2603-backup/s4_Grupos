@@ -31,7 +31,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 
 public class PatrocinioPersisnteceTest {
-        @Inject
+    
+    @Inject
     private PatrocinioPersistence patrocinioPersistence;
 
     @PersistenceContext
