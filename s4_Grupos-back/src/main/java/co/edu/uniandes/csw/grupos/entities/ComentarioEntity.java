@@ -7,10 +7,9 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
-
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 
@@ -21,21 +20,17 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ComentarioEntity extends BaseEntity implements Serializable
 {
-   
+    @PodamExclude
+    @OneToOne
+    private CiudadanoEntity ciudadano;
+    
+    @ManyToOne
+    NoticiaEntity noticia;
+    
     private String nombre;
     private String texto;
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private NoticiaEntity noticia;
 
 
-    public NoticiaEntity getNoticia() {
-        return noticia;
-    }
-
-    public void setNoticia(NoticiaEntity noticia) {
-        this.noticia = noticia;
-    }
     public String getNombre() {
         return nombre;
     }
