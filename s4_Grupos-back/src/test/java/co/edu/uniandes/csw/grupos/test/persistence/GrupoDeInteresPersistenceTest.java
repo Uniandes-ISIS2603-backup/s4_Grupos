@@ -41,7 +41,7 @@ public class GrupoDeInteresPersistenceTest {
     @Inject
             UserTransaction utx;
     
-    private List<GrupoDeInteresEntity> data = new ArrayList<>();
+    private List<GrupoDeInteresEntity>  data = new ArrayList<>();
     
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
