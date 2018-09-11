@@ -80,7 +80,7 @@ public class NoticiaPersistence {
      */
     public NoticiaEntity find(Long grupoId, Long noticiasId) {
         LOGGER.log(Level.INFO, "Consultando el noticia con id = {0} del libro con id = " + grupoId, noticiasId);
-        TypedQuery<NoticiaEntity> q = em.createQuery("select p from NoticiaEntity p where (p.book.id = :bookid) and (p.id = :noticiasId)", NoticiaEntity.class);
+        TypedQuery<NoticiaEntity> q = em.createQuery("select p from NoticiaEntity p where (p.grupo.id = :grupoid) and (p.id = :noticiasId)", NoticiaEntity.class);
         q.setParameter("grupoid", grupoId);
         q.setParameter("noticiasId", noticiasId);
         List<NoticiaEntity> results = q.getResultList();
