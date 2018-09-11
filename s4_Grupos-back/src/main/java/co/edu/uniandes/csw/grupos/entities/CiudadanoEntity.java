@@ -6,7 +6,12 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,6 +20,15 @@ import javax.persistence.Entity;
 @Entity
 public class CiudadanoEntity extends PersonaEntity implements Serializable
 {
+    @PodamExclude
+    @OneToMany
+//(mappedBy = "grupodeinteres", fetch = FetchType.LAZY )
+    Collection<GrupoDeInteresEntity> gruposDeInteres;
+    
+    @PodamExclude
+    @OneToOne
+    ComentarioEntity comentario;
+    
     public CiudadanoEntity()
     {
         super();

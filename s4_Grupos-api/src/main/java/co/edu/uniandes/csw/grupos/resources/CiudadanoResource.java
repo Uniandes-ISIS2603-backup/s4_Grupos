@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
+import co.edu.uniandes.csw.grupos.dtos.CiudadanoDetailDTO;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -34,12 +37,24 @@ public class CiudadanoResource
      * @return ciudadno creado
      */
     @POST
-    public CiudadanoDTO createCiudadano(CiudadanoDTO ciudadano)
+    public CiudadanoDetailDTO createCiudadano(CiudadanoDetailDTO ciudadano)
     {
         //trhows Exception
         return ciudadano;
     }
     
+    @GET
+    public List<CiudadanoDetailDTO> getCiudadanos( )
+    {
+        return new ArrayList<CiudadanoDetailDTO>();
+    }
+    
+    @GET
+    @Path("{user :\\d+}")
+    public CiudadanoDetailDTO getCiudadano(@PathParam("user") Long user)
+    {
+        return new CiudadanoDetailDTO();
+    }
   
     
     /**
@@ -48,10 +63,10 @@ public class CiudadanoResource
      * @return un ciudadano actualizado
      */
     @PUT
-    @Path("{usuer :\\d+`}")
-    public CiudadanoDTO modificaCiudadano(@PathParam("user") Long user)
+    @Path("{user :\\d+}")
+    public CiudadanoDetailDTO modificaCiudadano(@PathParam("user") Long user, CiudadanoDTO ciudadano )
     {
-        return new CiudadanoDTO();
+        return new CiudadanoDetailDTO();
     }
     
     /**
@@ -59,7 +74,7 @@ public class CiudadanoResource
      */
     @DELETE
     @Path("{user: \\d+}")
-    public void eliminarCiudadano(@PathParam("user")Long user)
+    public void eliminarCiudadano(@PathParam("user") Long user)
     {
         
     }

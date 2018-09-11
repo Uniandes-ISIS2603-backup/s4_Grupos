@@ -72,8 +72,8 @@ public class ComentarioResource
      * @return el comentario modificado
      */
     @PUT
-    @Path("{id:\\d+`}")
-    public ComentarioDTO modificarComentario(@PathParam("id") Long id)
+    @Path("{id:\\d+}")
+    public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario)
     {
         return new ComentarioDTO();
     }
@@ -83,7 +83,7 @@ public class ComentarioResource
      */
     @DELETE
     @Path("{comentariosId: \\d+}")
-    public void eliminarComentario(@PathParam("comentariosId" )Long pId)
+    public void eliminarComentario(@PathParam("comentariosId")Long pId)
     {
         
     }
