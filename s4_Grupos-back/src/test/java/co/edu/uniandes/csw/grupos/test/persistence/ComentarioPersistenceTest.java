@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.grupos.test.persistence;
 
-import co.edu.uniandes.csw.grupos.entities.CiudadanoEntity;
-import co.edu.uniandes.csw.grupos.persistence.CiudadanoPersistence;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -29,10 +29,10 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author estudiante
  */
 @RunWith(Arquillian.class)
-public class CiudadanoPersistenceTest 
+public class ComentarioPersistenceTest 
 {
      @Inject
-    private CiudadanoPersistence ciudadanoPersistence;
+    private ComentarioPersistence comentarioPersistence;
 
     @PersistenceContext
     private EntityManager em;
@@ -40,7 +40,7 @@ public class CiudadanoPersistenceTest
     @Inject
     UserTransaction utx;
 
-    private List<CiudadanoEntity> data = new ArrayList<CiudadanoEntity>();
+    private List<ComentarioEntity> data = new ArrayList<ComentarioEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -50,8 +50,8 @@ public class CiudadanoPersistenceTest
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CiudadanoEntity.class.getPackage())
-                .addPackage(CiudadanoPersistence.class.getPackage())
+                .addPackage(ComentarioEntity.class.getPackage())
+                .addPackage(ComentarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -81,7 +81,7 @@ public class CiudadanoPersistenceTest
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from CiudadanoEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
 
     /**
@@ -91,7 +91,7 @@ public class CiudadanoPersistenceTest
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            CiudadanoEntity entity = factory.manufacturePojo(CiudadanoEntity.class);
+            ComentarioEntity entity = factory.manufacturePojo(ComentarioEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -99,31 +99,31 @@ public class CiudadanoPersistenceTest
     }
 
     /**
-     * Prueba para crear un Ciudadano.
+     * Prueba para crear un Comentario.
      */
     @Test
-    public void createCiudadanoTest() {
+    public void createComentarioTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        CiudadanoEntity newEntity = factory.manufacturePojo(CiudadanoEntity.class);
-        CiudadanoEntity result = ciudadanoPersistence.create(newEntity);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
+        ComentarioEntity result = comentarioPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        CiudadanoEntity entity = em.find(CiudadanoEntity.class, result.getId());
+        ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 
     /**
-     * Prueba para consultar la lista de Ciudadanos.
+     * Prueba para consultar la lista de Comentarios.
      */
     @Test
-    public void getCiudadanosTest() {
-        List<CiudadanoEntity> list = ciudadanoPersistence.findAll();
+    public void getComentariosTest() {
+        List<ComentarioEntity> list = comentarioPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (CiudadanoEntity ent : list) {
+        for (ComentarioEntity ent : list) {
             boolean found = false;
-            for (CiudadanoEntity entity : data) {
+            for (ComentarioEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -133,41 +133,41 @@ public class CiudadanoPersistenceTest
     }
 
     /**
-     * Prueba para consultar un Ciudadano.
+     * Prueba para consultar un Comentario.
      */
     @Test
-    public void getCiudadanoTest() {
-        CiudadanoEntity entity = data.get(0);
-        CiudadanoEntity newEntity = ciudadanoPersistence.find(entity.getId());
+    public void getComentarioTest() {
+        ComentarioEntity entity = data.get(0);
+        ComentarioEntity newEntity = comentarioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
 
     /**
-     * Prueba para eliminar un Ciudadano.
+     * Prueba para eliminar un Comentario.
      */
     @Test
-    public void deleteCiudadanoTest() {
-        CiudadanoEntity entity = data.get(0);
-        ciudadanoPersistence.delete(entity.getId());
-        CiudadanoEntity deleted = em.find(CiudadanoEntity.class, entity.getId());
+    public void deleteComentarioTest() {
+        ComentarioEntity entity = data.get(0);
+        comentarioPersistence.delete(entity.getId());
+        ComentarioEntity deleted = em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Ciudadano.
+     * Prueba para actualizar un Comentario.
      */
     @Test
-    public void upadteCiudadanoTest() {
-        CiudadanoEntity entity = data.get(0);
+    public void upadteComentarioTest() {
+        ComentarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        CiudadanoEntity newEntity = factory.manufacturePojo(CiudadanoEntity.class);
+        ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
 
         newEntity.setId(entity.getId());
 
-        ciudadanoPersistence.update(newEntity);
+        comentarioPersistence.update(newEntity);
 
-        CiudadanoEntity resp = em.find(CiudadanoEntity.class, entity.getId());
+        ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }

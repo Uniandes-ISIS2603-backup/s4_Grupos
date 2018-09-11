@@ -20,9 +20,9 @@ import javax.persistence.TypedQuery;
  * @author estudiante
  */
 @Stateless
-public class CiudadanoPersistance 
+public class CiudadanoPersistence 
 {
-        private static final Logger LOGGER = Logger.getLogger(CiudadanoPersistance.class.getName());
+        private static final Logger LOGGER = Logger.getLogger(CiudadanoPersistence.class.getName());
 
     @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
@@ -32,7 +32,7 @@ public class CiudadanoPersistance
      *
      * Crea un nuevo ciudadano con la información recibida en la entidad.
      *
-     * @param ciudadanoEntity  La entidad que representa la nueva noticia
+     * @param ciudadanoEntity  La entidad que representa la nueva ciudadano
      * @return La entidad creada
      */
     public CiudadanoEntity create(CiudadanoEntity ciudadanoEntity) {
@@ -43,7 +43,7 @@ public class CiudadanoPersistance
     }
     
         /**
-     * Devuelve todas las ciudadano de la base de datos.
+     * Devuelve todos las ciudadano de la base de datos.
      *
      * @return una lista con todas las ciudadano que encuentre en la base de
      * datos, "select u from CiudadanoEntity u" es como un "select * from
@@ -66,7 +66,7 @@ public class CiudadanoPersistance
         return em.find(CiudadanoEntity.class, ciudadanoUser);
     }
     /**
-     * Actualizar una noticia
+     * Actualizar un ciudadano
      *
      * Actualiza la entidad que recibe en la base de datos
      *
@@ -83,7 +83,7 @@ public class CiudadanoPersistance
      *
      * Elimina un ciudadano asociado al usuario que recibe
      *
-     * @param ciudadanoUser El ID de la noticia que se desea borrar
+     * @param ciudadanoUser El ID de la ciudadano que se desea borrar
      */
     public void delete(Long ciudadanoUser) {
         LOGGER.log(Level.INFO, "Borrando ciudadano con usuario = {0}", ciudadanoUser);
