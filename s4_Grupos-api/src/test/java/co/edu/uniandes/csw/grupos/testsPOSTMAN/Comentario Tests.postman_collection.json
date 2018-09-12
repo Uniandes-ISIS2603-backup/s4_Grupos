@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "11b8dbeb-78fb-4cea-aa07-90fb1b84ab09",
+		"name": "Comentario Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7db2238-2424-460c-93e9-1222e331c7e5",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nombre\": \"Daniel\",\n\t\"texto\": \"Esto es un comentario\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"comentarios"
+					]
+				},
+				"description": "Crea un nuevo comentario"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los comentarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e9949b4-88e4-4196-a2a6-beea5ebdb10a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\": 21,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"olakase\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"comentarios"
+					]
+				},
+				"description": "Obtiene los comentarios de la aplicación"
+			},
+			"response": []
+		},
+		{
+			"name": "Editar comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dadc055f-b3ba-4032-97b6-5cf01c4ea7a3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nombre\": \"Daniel\",\n\t\"texto\": \"Esto es un comentario\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"comentarios",
+						"1"
+					]
+				},
+				"description": "Edita un comentario con la información suministrada"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un comentario ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a74d99a3-9392-4c9d-83d5-dcbf7b6947a8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"comentarios"
+					]
+				},
+				"description": "Obtiene un comentario de la aplicacion con el id que le entra como parametro"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un comentario ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5d52be9-b022-45ff-82cd-a2829c58fcb0",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"comentarios",
+						"1"
+					]
+				},
+				"description": "Borra un comentario con el id que se recibe "
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c77d46f5-c8ec-43f8-a782-7ebc56886661",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ea28a059-0e16-4431-a24c-ad7f87875c7d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

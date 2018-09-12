@@ -50,9 +50,7 @@ public class GrupoDeInteresPersistence {
     
     /**
      * Devuelve todos los grupos de interes de la base de datos.     *
-     * @return una lista con todas los grupos de interes que encuentre en la base de
-     * datos, "select u from DistritoEntity u" es como un "select * from
-     * DistritoEntity;" - "SELECT * FROM table_name" en SQL.
+     * @return una lista con todas los grupos de interes que encuentre en la base de datos
      */
     public List<GrupoDeInteresEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los grupos");
@@ -65,7 +63,7 @@ public class GrupoDeInteresPersistence {
     
     /**
      * Retorna el grupo con el id ingresado por parámetro.   
-     * @param grupoId: id correspondiente a la distrito buscada.
+     * @param grupoId: id correspondiente al grupo buscado.
      * @return grupo con el id asociado.
      */
     public GrupoDeInteresEntity find(Long grupoId) {
