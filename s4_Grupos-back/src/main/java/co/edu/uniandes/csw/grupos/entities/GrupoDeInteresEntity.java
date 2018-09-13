@@ -55,8 +55,28 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
      public void setDescripcion(String pDescripcion) {
         descripcion = pDescripcion;
     }
+      @PodamExclude
+    @OneToMany(mappedBy = "grupo")
+    private List<NoticiaEntity> noticias = new ArrayList<NoticiaEntity>();
 
-   
+    /**
+     * Devuelve las locaciones de el distrito.
+     *
+     * @return Lista de entidades de Distrito.
+     */
+    public List<NoticiaEntity> getNoticias () {
+        return noticias;
+    }
+  
+
+    /**
+     * Modifica las locaciones de el distrito.
+     *
+     * @param locaciones Las nuevos locaciones.
+     */
+    public void setNoticias(List<NoticiaEntity> noticias) {
+        this.noticias = noticias;
+    }
 
    
 }

@@ -36,11 +36,11 @@ public class GrupoDeInteresLogic {
      */
     public GrupoDeInteresEntity createGrupo(GrupoDeInteresEntity grupoEntity) throws BusinessLogicException {
         
-        LOGGER.log(Level.INFO, "Inicia proceso de creación de la editorial");
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del grupo");
                 
         if (persistence.findByName(grupoEntity.getNombre()) != null) {           
             
-            throw new BusinessLogicException("Ya existe una Editorial con el nombre \"" + grupoEntity.getNombre() + "\"");
+            throw new BusinessLogicException("Ya existe un grupo con el nombre \"" + grupoEntity.getNombre() + "\"");
             
         }
         
@@ -100,11 +100,11 @@ public class GrupoDeInteresLogic {
     }
 
     /**
-     * Borrar un grupo.     *
+     * Borrar un grupo.     
      * @param grupoId: id del grupo a borrar
      */
-    public void deleteEditorial(Long grupoId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el grupo editorial con id = {0}", grupoId);        
+    public void deleteGrupo(Long grupoId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el grupo con id = {0}", grupoId);        
         persistence.delete(grupoId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar la editorial con id = {0}", grupoId);
     }
