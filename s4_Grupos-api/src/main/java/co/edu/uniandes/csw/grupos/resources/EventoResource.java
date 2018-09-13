@@ -19,7 +19,7 @@ import javax.ws.rs.Produces;
  * @author ac.beltrans
  * @version 1.0
  */
-@Path("eventos")
+//@Path("eventos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -28,7 +28,7 @@ public class EventoResource {
     /**
      * Crea un nuevo evento y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
-     * @param evento {@link EventoDTO} - EL evento que se desea a?adir.
+     * @param evento {@link EventoDTO} - EL evento que se desea a�adir.
      * @return JSON {@link EventoDTO} - El evento guardado con su id
      */
     @POST
@@ -39,9 +39,9 @@ public class EventoResource {
     /**
      * Devuelve todos los eventos registrados.
      *
-     * @param eventos
+     * @
      * @return JSONArray {@link EventoDTO} - Los eventos
-     * registrados. Si no hay ninguno retorna una lista vac?a.
+     * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
     public List<EventoDTO> getEventos() {
@@ -50,39 +50,38 @@ public class EventoResource {
 
     /**
      * Busca un evento por su nombre y lo retorna.     *
-     * @param nombreEvento Nombre del evento que se desea actualizar. Este debe
+     * @param idEvento Id del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
      * @return JSON {@link EventoDTO} - El evento que se deseaba buscar.
      */
     @GET
-    @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public EventoDTO getEvento(@PathParam("nombreEvento") String nombreEvento) {
+    @Path("{idEvento:\\d+`}")
+    public EventoDTO getEvento(@PathParam("idEvento") Long idEvento) {
         return new EventoDTO();
     }
 
     /**
-     * Actualiza el evento con el nombre recibido desde la petici?n.
-     * @param nombreEvento Nombre del evento que se desea actualizar. Este debe
+     * Actualiza el evento con el nombre recibido desde la petici�n.
+     * @param idEvento Id del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
      * @param evento {@link EventoDTO} El evento que se desea guardar.
      * @return JSON {@link EventoDTO} - El evento guardado.
      */
     @PUT
-    @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public EventoDTO updateEvento(@PathParam("nombreEvento") String nombreEvento, EventoDTO evento) {
+    @Path("{idEvento:\\d+`}")
+    public EventoDTO updateEvento(@PathParam("idEvento") Long idEvento, EventoDTO evento) {
         return evento;
     }
 
     /**
      * Borra el evento con el nobre asociado recibido en la URL.
      *
-     * @param nombreEvento Nombre del evento que se desea borrar. Este debe ser
+     * @param idEvento Id del evento que se desea borrar. Este debe ser
      * una cadena de caracteres.
-     * @return evento que se eliminò
      */
     @DELETE
-    @Path("{nombreEvento: [a-zA-Z][a-zA-Z]*}}")
-    public EventoDTO deleteEvento(@PathParam("nombreEvento") String nombreEvento) {
-    	return new EventoDTO();
+    @Path("{idEvento: \\d+}")
+    public void deleteEvento(@PathParam("idEvento") Long idEvento) {
+    	
     }
 }

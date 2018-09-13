@@ -18,6 +18,11 @@ public class PersonaEntity extends BaseEntity implements Serializable
     private String nombre;
     private long usuario;
     private String contraseña;
+    
+    public PersonaEntity()
+    {
+        super();
+    }
 
     public String getNombre() {
         return nombre;

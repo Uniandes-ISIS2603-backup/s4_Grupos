@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -15,11 +16,12 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author ac.beltrans
  */
-public abstract class AdministradorEntity extends PersonaEntity implements Serializable {
+@Entity
+public class AdministradorEntity extends PersonaEntity implements Serializable {
     
     
     @PodamExclude
-    @ManyToMany(mappedBy = "gruposDeInteres", fetch = javax.persistence.FetchType.LAZY)
+    @ManyToMany
     private List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
     
     public AdministradorEntity()
