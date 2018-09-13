@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "c375351d-f552-415d-99d0-ee5111ddbb87",
+		"name": "Patrocionio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/patrocinios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"patrocinios"
+					]
+				},
+				"description": "post con un json vacio "
+			},
+			"response": []
+		},
+		{
+			"name": "get lista total",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/patrocinios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"patrocinios"
+					]
+				},
+				"description": "get con un json vacio "
+			},
+			"response": []
+		},
+		{
+			"name": "get unitario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/patrocinios/ha",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"patrocinios",
+						"ha"
+					]
+				},
+				"description": "retornar un patrocinador"
+			},
+			"response": []
+		},
+		{
+			"name": "put",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/patrocinios/ho",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"patrocinios",
+						"ho"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/patrocinios/ho",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"patrocinios",
+						"ho"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
