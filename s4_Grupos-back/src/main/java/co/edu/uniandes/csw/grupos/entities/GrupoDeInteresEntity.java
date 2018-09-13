@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -24,7 +25,19 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     
     private String descripcion;
     
-   
+    
+    @PodamExclude
+    @OneToMany
+    private List<EventoEntity> eventos;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<AdministradorEntity> administradores = new ArrayList<AdministradorEntity>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<CiudadanoEntity> ciudadanos = new ArrayList<CiudadanoEntity>();
+    
     
     public String getNombre() {
         

@@ -1,7 +1,6 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDTO;
-import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
@@ -28,7 +27,7 @@ public class AdministradorResource {
     /**
      * Crea un nuevo administrador y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
-     * @param administrador {@link AdministradorDTO} - EL administrador que se desea a?adir.
+     * @param administrador {@link AdministradorDTO} - EL administrador que se desea a�adir.
      * @return JSON {@link AdministradorDTO} - El administrador guardado con su id
      */
     @POST
@@ -40,18 +39,18 @@ public class AdministradorResource {
      * Devuelve todos los administradores registrados.
      *
      * @return JSONArray {@link AdministradorDTO} - Los administradores
-     * registrados. Si no hay ninguno retorna una lista vac?a.
+     * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
-    public List<AdministradorDTO> getAdministradores() {
-        return new ArrayList<AdministradorDTO>();
+    public List<AdministradorDTO> getAdministradores(List<AdministradorDTO> administradores) {
+        return administradores;
     }
 
     /**
      * Busca un administrador por su id y lo retorna.
      *
      * @param administradorId Identificador del libro que se esta buscando. Este debe
-     * ser una cadena de d?gitos.
+     * ser una cadena de d�gitos.
      * @return JSON {@link AdministradorDTO} - El administrador que se deseaba buscar.
      */
     @GET
@@ -61,9 +60,9 @@ public class AdministradorResource {
     }
 
     /**
-     * Actualiza el administrador con el id recibido desde la petici?n.
+     * Actualiza el administrador con el id recibido desde la petici�n.
      * @param administradorId Identificador del administrador que se desea actualizar. Este debe
-     * ser una cadena de d?gitos.
+     * ser una cadena de d�gitos.
      * @param administrador {@link AdministradorDTO} El administrador que se desea guardar.
      * @return JSON {@link AdministradorDTO} - El adminisrador guardado.
      */
@@ -77,7 +76,7 @@ public class AdministradorResource {
      * Borra el administrador con el id asociado recibido en la URL.
      *
      * @param administradorId Identificador del administrador que se desea borrar. Este debe ser
-     * una cadena de d?gitos.
+     * una cadena de d�gitos.
      * @return 
      */
     @DELETE

@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,6 +18,7 @@ import javax.persistence.Query;
  *
  * @author estudiante
  */
+@Stateless
 public class AdministradorPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(AdministradorPersistence.class.getName());
@@ -56,7 +58,7 @@ public class AdministradorPersistence {
      * @param idAdministrador: nombre correspondiente al administrador buscado.
      * @return un administrador.
      */
-    public AdministradorEntity find(String idAdministrador) {
+    public AdministradorEntity find(Long idAdministrador) {
         LOGGER.log(Level.INFO, "Consultando el administrador por id", idAdministrador);
         return em.find(AdministradorEntity.class, idAdministrador);
     }
@@ -78,7 +80,7 @@ public class AdministradorPersistence {
      *
      * @param idAdministrador: id correspondiente al administrador a borrar.
      */
-    public void delete(String idAdministrador) {
+    public void delete(Long idAdministrador) {
         LOGGER.log(Level.INFO, "Borrando el administrador con el id", idAdministrador);
         AdministradorEntity administradorEntity = em.find(AdministradorEntity.class, idAdministrador);
         em.remove(administradorEntity);

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -28,7 +29,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
     private Date fecha;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private GrupoDeInteresEntity grupoDeInteres;
     
     @PodamExclude
@@ -39,6 +40,11 @@ public class EventoEntity extends BaseEntity implements Serializable{
     @OneToOne
     private LocacionEntity locacion;
     
+    public EventoEntity()
+    {
+        
+    }
+        
     /**
      * Devuelve el nombre del evento.
      *
