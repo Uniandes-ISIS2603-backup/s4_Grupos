@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 /**
  * Clase que maneja la persistencia para Evento. Se conecta a través del Entity
  * Manager de javax.persistance con la base de datos SQL.
@@ -40,27 +40,31 @@ public class EventoPersistence {
     }
 
     /**
-     * Devuelve todos los eventos de la base de datos.
+     * Buscar un evento
      *
-     * @return una lista con todos los eventos que encuentre en la base de datos,
-     * "select u from EventoEntity u" es como un "select * from EventoEntity;" -
-     * "SELECT * FROM table_name" en SQL.
-     */
-    public List<EventoEntity> findAll() {
-        LOGGER.log(Level.INFO, "Consultando todos los eventos");
-        Query q = em.createQuery("select u from EventoEntity u");
-        return q.getResultList();
-    }
-
-    /**
-     * Busca si hay algun evento con el nombre que se envía de argumento
+     * Busca si hay algun evento asociada a un Grupo de interés y con un ID específico
      *
-     * @param nombreEvento: nombre correspondiente al evento buscado.
-     * @return un evento.
+     * @param grupoId El ID del grupo con respecto al cual se busca
+     * @param eventosId El ID del evento buscado
+     * @return El evento encontrado o null. Nota: Si existe uno o más eventos
+     * devuelve siempre el primero que encuentra
      */
-    public EventoEntity find(String nombreEvento) {
-        LOGGER.log(Level.INFO, "Consultando el evento por el nombre", nombreEvento);
-        return em.find(EventoEntity.class, nombreEvento);
+    public EventoEntity find(Long grupoId, Long eventosId) {
+        LOGGER.log(Level.INFO, "Consultando el evento con id = {0} del grupo con id = " + grupoId, eventosId);
+        TypedQuery<EventoEntity> q = em.createQuery("select p from EventoEntity p where (p.grupo.id = :grupoid) and (p.id = :eventosId)", EventoEntity.class);
+        q.setParameter("grupoid", grupoId);
+        q.setParameter("eventosId", eventosId);
+        List<EventoEntity> results = q.getResultList();
+        EventoEntity evento = null;
+        if (results == null) {
+            evento = null;
+        } else if (results.isEmpty()) {
+            evento = null;
+        } else if (results.size() >= 1) {
+            evento = results.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar el evento con id = {0} del grupo con id =" + grupoId, eventosId);
+        return evento;
     }
 
     /**
@@ -69,20 +73,20 @@ public class EventoPersistence {
      * @return un evento con los cambios aplicados.
      */
     public EventoEntity update(EventoEntity eventoEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el evento por el nombre", eventoEntity.getId());
+        LOGGER.log(Level.INFO, "Actualizando el evento por el id = {0}", eventoEntity.getId());
         return em.merge(eventoEntity);
     }
 
     /**
      *
-     * Borra un evento de la base de datos recibiendo como argumento el nombre del
+     * Borra un evento de la base de datos recibiendo como argumento el id del
      * evento
      *
-     * @param nombreEvento: nombre correspondiente al evento a borrar.
+     * @param idEvento: id correspondiente al evento a borrar.
      */
-    public void delete(String nombreEvento) {
-        LOGGER.log(Level.INFO, "Borrando el evento por el nombre", nombreEvento);
-        EventoEntity eventoEntity = em.find(EventoEntity.class, nombreEvento);
+    public void delete(Long idEvento) {
+        LOGGER.log(Level.INFO, "Borrando el evento por el id = {0}", idEvento);
+        EventoEntity eventoEntity = em.find(EventoEntity.class, idEvento);
         em.remove(eventoEntity);
     }   
     
