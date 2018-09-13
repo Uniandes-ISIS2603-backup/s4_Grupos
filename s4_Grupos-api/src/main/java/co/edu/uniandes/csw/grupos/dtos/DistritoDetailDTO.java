@@ -54,7 +54,7 @@ public class DistritoDetailDTO extends DistritoDTO {
             if (distritoEntity.getLocaciones() != null) {
                 locaciones = new ArrayList<>();
                 for (LocacionEntity entityLoc : distritoEntity.getLocaciones()) {
-                   // locaciones.add(new LocacionDTO(entityLoc));
+                   locaciones.add(new LocacionDTO(entityLoc));
                 }
             }
         }
@@ -73,7 +73,7 @@ public class DistritoDetailDTO extends DistritoDTO {
         if (locaciones != null) {
             List<LocacionEntity> locacionesEntity = new ArrayList<>();
             for (LocacionDTO dtoLocacion : locaciones) {
-                //locacionsEntity.add(dtoLocacion.toEntity());
+                locacionesEntity.add(dtoLocacion.toEntity());
             }
             distritoEntity.setLocaciones(locacionesEntity);
         }
