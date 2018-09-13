@@ -95,7 +95,7 @@ public class CategoriaPersistence {
     public CategoriaEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando categoria por nombre ", name);
         // Se crea un query para buscar categorias con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("select e from CategoriaEntity e where e.name = :name", CategoriaEntity.class);
+        TypedQuery query = em.createQuery("select e from CategoriaEntity e where e.nombre = :name", CategoriaEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
