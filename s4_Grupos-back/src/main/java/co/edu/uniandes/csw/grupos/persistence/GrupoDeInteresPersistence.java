@@ -92,12 +92,19 @@ public class GrupoDeInteresPersistence {
      * @param name: Nombre del grupo de interes que se está buscando
      * @return El grupo fe interés con el nombre ingresado por parámetro, null si no existe ninguno.
      */
+    
     public GrupoDeInteresEntity findByName(String name) {
+        
         LOGGER.log(Level.INFO, "Consultando grupo de interés por nombre ", name);
         // Se crea un query para buscar distritos con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("select e from GrupoDeInteresEntity e where e.name = :name", GrupoDeInteresEntity.class);
+                
+        TypedQuery query = em.createQuery("select e from GrupoDeInteresEntity e where e.nombre = :name", GrupoDeInteresEntity.class);
+                
+        
         // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
+        query = query.setParameter("name", name);    
+        
+        
         // Se invoca el query se obtiene la lista resultado
         List<GrupoDeInteresEntity> sameName = query.getResultList();
         GrupoDeInteresEntity result;
