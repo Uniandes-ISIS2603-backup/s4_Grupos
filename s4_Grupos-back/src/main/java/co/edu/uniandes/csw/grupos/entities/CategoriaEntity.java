@@ -19,18 +19,18 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class CategoriaEntity extends BaseEntity implements Serializable {
          
     
-    private long nombre;
+    private String nombre;
     
     private String descripcion;
     
     
     
-    public long getNombre() {
+    public String getNombre() {
         
         return nombre;
     }
 
-    public void setNombre(long pNombre) {
+    public void setNombre(String pNombre) {
         nombre = pNombre;
     }
 
