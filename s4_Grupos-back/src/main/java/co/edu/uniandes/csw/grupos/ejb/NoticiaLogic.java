@@ -74,7 +74,7 @@ public class NoticiaLogic {
      *
      */
     public NoticiaEntity getNoticia(Long gruposId, Long noticiasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el noticia con id = {0} del libro con id = " + gruposId, noticiasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
         return persistence.find(gruposId, noticiasId);
     }
 
@@ -87,11 +87,11 @@ public class NoticiaLogic {
      *
      */
     public NoticiaEntity updateNoticia(Long gruposId, NoticiaEntity noticiaEntity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el noticia con id = {0} del libro con id = " + gruposId, noticiaEntity.getId());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el noticia con id = {0} del grupo con id = " + gruposId, noticiaEntity.getId());
         GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
         noticiaEntity.setGrupoDeInteres(grupoEntity);
         persistence.update(noticiaEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el noticia con id = {0} del libro con id = " + gruposId, noticiaEntity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el noticia con id = {0} del grupo con id = " + gruposId, noticiaEntity.getId());
         return noticiaEntity;
     }
 
@@ -100,16 +100,16 @@ public class NoticiaLogic {
      *
      * @param noticiasId Identificador de la instancia a eliminar.
      * @param gruposId id del GrupoDeInteres el cual es padre del Noticia.
-     * @throws BusinessLogicException Si la reseña no esta asociada al libro.
+     * @throws BusinessLogicException Si la noticia no esta asociada al grupo.
      *
      */
     public void deleteNoticia(Long gruposId, Long noticiasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el noticia con id = {0} del libro con id = " + gruposId, noticiasId);
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
         NoticiaEntity old = getNoticia(gruposId, noticiasId);
         if (old == null) {
-            throw new BusinessLogicException("El noticia con id = " + noticiasId + " no esta asociado a el libro con id = " + gruposId);
+            throw new BusinessLogicException("El noticia con id = " + noticiasId + " no esta asociado a el grupo con id = " + gruposId);
         }
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el noticia con id = {0} del libro con id = " + gruposId, noticiasId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
     }
 }
