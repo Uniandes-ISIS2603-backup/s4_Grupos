@@ -20,9 +20,7 @@ public class GrupoDeInteresDTO implements Serializable {
     private String descripcion;
     
     private long id;
-    
-    private ArrayList<CiudadanoDetailDTO> ciudadanos;
-    
+        
     
     /**
      * Constructor por defecto.
@@ -58,13 +56,9 @@ public class GrupoDeInteresDTO implements Serializable {
         
         return id;
     }
+   
     
-    public ArrayList<CiudadanoDetailDTO> getCiudadanos(){
-        
-        return ciudadanos;        
-    }
-    
-       public void setNombre(String pNombre){
+    public void setNombre(String pNombre){
         
         nombre = pNombre;
     }
@@ -77,13 +71,7 @@ public class GrupoDeInteresDTO implements Serializable {
     public void setId(long pId){
         
         id = pId;
-    }
-    
-    public void setCiudadanos(ArrayList<CiudadanoDetailDTO> pCiudadanos){
-        
-        ciudadanos = pCiudadanos;        
-    }
-    
+    }    
  
     public GrupoDeInteresEntity toEntity()
     {

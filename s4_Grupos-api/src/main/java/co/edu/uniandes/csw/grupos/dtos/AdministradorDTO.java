@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
 import co.edu.uniandes.csw.grupos.entities.PersonaEntity;
 import java.io.Serializable;
 
@@ -20,6 +21,12 @@ public class AdministradorDTO extends PersonaDTO implements Serializable{
      */
     public AdministradorDTO() {
         super();
+    }
+
+    AdministradorDTO(AdministradorEntity admin) {
+
+        // HAY QUE HACER ESTE CONSTRUCTOR        
+        
     }
     
     @Override

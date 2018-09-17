@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.CiudadanoEntity;
 import co.edu.uniandes.csw.grupos.entities.PersonaEntity;
 import java.io.Serializable;
 
@@ -16,6 +17,13 @@ public class CiudadanoDTO extends PersonaDTO implements Serializable
 {
     public CiudadanoDTO()
     {
+        
+    }
+
+    CiudadanoDTO(CiudadanoEntity ciud) {
+
+
+        // HAY QUE HACER ESTE CONSTRUCTOR       
         
     }
 
