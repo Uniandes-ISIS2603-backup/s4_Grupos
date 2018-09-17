@@ -34,9 +34,7 @@ public class DistritoLogic {
      */
     public DistritoEntity createDistrito(DistritoEntity distritoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del distrito");
-        if (distritoEntity.getLocaciones() == null ) {
-            throw new BusinessLogicException("La locacion es inválida");
-        }
+        
         if (!validatename(distritoEntity.getName())) {
             throw new BusinessLogicException("El name es inválido");
         }

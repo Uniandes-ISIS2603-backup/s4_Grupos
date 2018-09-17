@@ -64,6 +64,7 @@ public class NoticiaPersistence {
     public void delete(Long noticiasId) {
         LOGGER.log(Level.INFO, "Borrando noticia con id = {0}", noticiasId);
         NoticiaEntity noticiaEntity = em.find(NoticiaEntity.class, noticiasId);
+        em.refresh(noticiaEntity);
         em.remove(noticiaEntity);
         LOGGER.log(Level.INFO, "Saliendo de borrar El noticia con id = {0}", noticiasId);
     }
