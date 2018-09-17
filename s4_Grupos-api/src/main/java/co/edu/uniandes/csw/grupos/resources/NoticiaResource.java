@@ -45,7 +45,7 @@ public class NoticiaResource {
      * Crea una nueva noticia con la informacion que se recibe en el cuerpo de la
      * petición y se regresa un objeto identico.
      *
-     * @param gruposID El ID del grupo del cual se le agrega la noticia
+     * @param gruposId El Id del grupo del cual se le agrega la noticia
      * @param noticia {@link NoticiaDTO} - La noticia que se desea guardar.
      * @return JSON {@link NoticiaTO} - La noticia guardada 
      * @return JSON {@link NoticiaDTO} - La noticia guardada con el atributo id
@@ -54,10 +54,10 @@ public class NoticiaResource {
      * Error de lógica que se genera cuando ya existe la noticia.
      */
     @POST
-    public NoticiaDetailDTO createNoticia(@PathParam("gruposID") Long gruposID,NoticiaDTO noticia) throws BusinessLogicException
+    public NoticiaDetailDTO createReview(@PathParam("gruposId") Long gruposId, NoticiaDTO noticia) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "NoticiaResource createNoticia: input: {0}", noticia.toString());
-        NoticiaDetailDTO nuevoNoticiaDTO = new NoticiaDetailDTO(noticiaLogic.createNoticia(gruposID, noticia.toEntity()));
+        NoticiaDetailDTO nuevoNoticiaDTO = new NoticiaDetailDTO(noticiaLogic.createNoticia(gruposId, noticia.toEntity()));
         LOGGER.log(Level.INFO, "NoticiaResource createNoticia: output: {0}", nuevoNoticiaDTO.toString());
         return nuevoNoticiaDTO;
     }
@@ -71,7 +71,7 @@ public class NoticiaResource {
      */
     
     @GET
-    public List<NoticiaDetailDTO> consultarNoticias(@PathParam("gruposID") Long gruposID)
+    public List<NoticiaDetailDTO> consultarNoticias(@PathParam("gruposId") Long gruposID)
     {
          LOGGER.log(Level.INFO, "NoticiaResource getNoticias: input: {0}", gruposID);
         List<NoticiaDetailDTO> listaDTOs = listEntity2DetailDTO(noticiaLogic.getNoticias(gruposID));
@@ -93,12 +93,12 @@ public class NoticiaResource {
      */
     @GET
     @Path("{id:\\d+}")
-    public NoticiaDTO consultarNoticia(@PathParam("gruposID") Long gruposID,@PathParam("id") Long id)
+    public NoticiaDTO consultarNoticia(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id)
     {
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: input: {0}", id);
-        NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
+        NoticiaEntity entity = noticiaLogic.getNoticia(gruposId, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposID + "/noticias/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/noticias/" + id + " no existe.", 404);
         }
         NoticiaDTO noticiaDTO = new NoticiaDTO(entity);
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: output: {0}", noticiaDTO.toString());
@@ -122,7 +122,7 @@ public class NoticiaResource {
      */
     @PUT
      @Path("{id:\\d+}")
-    public NoticiaDTO editarNoticia(@PathParam("gruposID") Long gruposID,@PathParam("id") Long id,NoticiaDTO noticia) throws BusinessLogicException
+    public NoticiaDTO editarNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id,NoticiaDTO noticia) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "NoticiaResource updateNoticia: input: gruposID: {0} , id: {1} , noticia:{2}", new Object[]{gruposID, id, noticia.toString()});
         if (id.equals(noticia.getId())) {
@@ -149,7 +149,7 @@ public class NoticiaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteNoticia(@PathParam("gruposID") Long gruposID,@PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) throws BusinessLogicException {
        NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /grupos/" + gruposID + "/noticias/" + id + " no existe.", 404);

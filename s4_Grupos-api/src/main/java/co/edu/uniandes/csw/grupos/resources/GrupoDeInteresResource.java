@@ -37,7 +37,7 @@ import javax.ws.rs.WebApplicationException;
 public class GrupoDeInteresResource {
     
     
-    private static final Logger LOGGER = Logger.getLogger(DistritoResource.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GrupoDeInteresResource.class.getName());
     
     @Inject
     private GrupoDeInteresLogic grupoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias
@@ -94,10 +94,10 @@ public class GrupoDeInteresResource {
      * Error de lógica que se genera cuando no se encuentra el grupo.     
      */        
     @GET
-    @Path("{nombreGrupo: [a-zA-Z][a-zA-Z]*}")
-    public GrupoDeInteresDetailDTO getGrupo(@PathParam("nombregrupo") Long pGrupoId){
+    @Path("{grupoId: \\d+}")
+    public GrupoDeInteresDetailDTO getGrupo(@PathParam("grupoId") Long pGrupoId)  {
         
-        LOGGER.log(Level.INFO, "DistritoResource getDistrito: input: {0}", pGrupoId);
+        LOGGER.log(Level.INFO, "GrupoDeInteresResource getGrupoDeInteres: input: {0}", pGrupoId);
         GrupoDeInteresEntity grupoEntity =grupoLogic.getGrupo(pGrupoId);
         if (grupoEntity == null) {
             throw new WebApplicationException("El recurso /grupos/" + pGrupoId + " no existe.", 404);
@@ -113,9 +113,9 @@ public class GrupoDeInteresResource {
      *
      * @param pGrupoId Identificador de el distrito que se desea
      * actualizar. Este debe ser una cadena de dígitos.
-     * @param grupo {@link DistritoDetailDTO} El distrito que se desea
+     * @param grupo {@link GrupoDeInteresDetailDTO} El distrito que se desea
      * guardar.
-     * @return JSON {@link DistritoDetailDTO} - El distrito guardada.
+     * @return JSON {@link GrupoDeInteresDetailDTO} - El distrito guardada.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el distrito a
      * actualizar.
@@ -123,7 +123,7 @@ public class GrupoDeInteresResource {
      * Error de lógica que se genera cuando no se puede actualizar el distrito.
      */    
     @PUT
-    @Path("{nombregrupo: [a-zA-Z][a-zA-Z]*}")
+    @Path("{nombregrupo: \\d+}")
     public GrupoDeInteresDTO modifyGrupo(@PathParam("nombregrupo") Long pGrupoId, GrupoDeInteresDetailDTO grupo) throws BusinessLogicException {
         
          LOGGER.log(Level.INFO, "GrupoDeInteresResource modifyGrupo: input: id: {0} , Grupo: {1}", new Object[]{pGrupoId, grupo.toString()});
@@ -149,7 +149,7 @@ public class GrupoDeInteresResource {
      * Error de lógica que se genera cuando no se encuentra el distrito.  
      */
     @DELETE
-    @Path("{nombregrupo: [a-zA-Z][a-zA-Z]*}")
+    @Path("{nombregrupo: \\d+}")
     public void deleteGrupo(@PathParam("nombregrupo") Long grupoId) throws BusinessLogicException {
         
         LOGGER.log(Level.INFO, "GrupoDeInteresResource deleteGrupo: input: {0}", grupoId);
@@ -175,10 +175,10 @@ public class GrupoDeInteresResource {
      */
     @Path("{gruposId: \\d+}/noticias")
     public Class<NoticiaResource> getNoticiaResource(@PathParam("gruposId") Long gruposId) {
-        /**if (bookLogic.getBook(booksId) == null) {
-         * throw new WebApplicationException("El recurso /books/" + booksId + "/reviews no existe.", 404);
-         * }
-         * */
+        if (grupoLogic.getGrupo(gruposId) == null) {
+          throw new WebApplicationException("El recurso /gruposdeinteres/" + gruposId + "/noticias no existe.", 404);
+         }
+         
         return NoticiaResource.class;
     }
     
@@ -189,9 +189,9 @@ public class GrupoDeInteresResource {
      * Este método convierte una lista de objetos GrupoDeInteresEntity a una lista de
      * objetos GrupoDeInteresDetailDTO (json)
      *
-     * @param entityList corresponde a la lista del Distrito de tipo Entity que
+     * @param entityList corresponde a la lista del GrupoDeInteres de tipo Entity que
      * vamos a convertir a DTO.
-     * @return la lista del Distrito en forma DTO (json)
+     * @return la lista del GrupoDeInteres en forma DTO (json)
      */
     private List<GrupoDeInteresDetailDTO> entity2DetailDTO(List<GrupoDeInteresEntity> entityList) {
         List<GrupoDeInteresDetailDTO> list = new ArrayList<>();

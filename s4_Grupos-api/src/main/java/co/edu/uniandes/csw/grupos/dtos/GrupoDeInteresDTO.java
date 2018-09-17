@@ -35,7 +35,7 @@ public class GrupoDeInteresDTO implements Serializable {
      */
     public GrupoDeInteresDTO(GrupoDeInteresEntity grupoEntity){        
          if (grupoEntity != null) {
-         
+             id=grupoEntity.getId();
             nombre = grupoEntity.getNombre();
             descripcion = grupoEntity.getDescripcion();
         }   
