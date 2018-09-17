@@ -58,9 +58,7 @@ public class DistritoResource {
         DistritoDetailDTO nuevoDistritoDTO = new DistritoDetailDTO(distritoLogic.createDistrito(distrito.toEntity()));
         LOGGER.log(Level.INFO, "DistritoResource createDistrito: output: {0}", nuevoDistritoDTO.toString());
         return nuevoDistritoDTO;
-    }
-
- 
+    } 
 
     /**
      * Busca el distrito con el id asociado recibido en la URL y lo devuelve.

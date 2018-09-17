@@ -37,6 +37,13 @@ public class EventoDTO implements Serializable {
     public EventoDTO() {
     }
 
+    EventoDTO(EventoEntity event) {
+        
+        // HAY QUE HACER ESTE CONSTRUCTOR
+        
+        
+    }
+
       /**
        * Constructor a partir de la entidad
        *
