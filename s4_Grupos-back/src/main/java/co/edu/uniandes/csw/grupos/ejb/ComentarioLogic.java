@@ -102,4 +102,6 @@ public class ComentarioLogic
         persistence.delete(comentariosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el comentario con id = {0}", comentariosId);
     }    
+
+   
 }
