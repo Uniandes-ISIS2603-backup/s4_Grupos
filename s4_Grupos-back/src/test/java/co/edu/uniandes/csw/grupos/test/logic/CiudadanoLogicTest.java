@@ -102,11 +102,11 @@ public class CiudadanoLogicTest
             entity.setGruposDeInteres(new ArrayList<>());
             data.add(entity);
         }
-        CiudadanoEntity ciudadano = data.get(2);
-        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
+//        CiudadanoEntity ciudadano = data.get(2);
+//        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
 //        entity.getCiudadanos().add(ciudadano);
-        em.persist(entity);
-//        ciudadano.getGrupoDeInteres().add(entity);
+//        em.persist(entity);
+//        ciudadano.getGruposDeInteres().add(entity);
 
 //        PrizeEntity prize = factory.manufacturePojo(PrizeEntity.class);
 //        prize.setCiudadano(data.get(1));

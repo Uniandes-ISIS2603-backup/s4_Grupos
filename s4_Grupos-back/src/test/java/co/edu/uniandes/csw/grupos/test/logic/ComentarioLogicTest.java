@@ -86,7 +86,6 @@ public class ComentarioLogicTest
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from GrupoDeInteresEntity").executeUpdate();
         em.createQuery("delete from ComentarioEntity").executeUpdate();
     }
 

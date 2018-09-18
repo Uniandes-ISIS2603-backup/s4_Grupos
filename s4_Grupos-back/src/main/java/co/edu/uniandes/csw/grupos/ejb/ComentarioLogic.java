@@ -37,7 +37,7 @@ public class ComentarioLogic
         LOGGER.log(Level.INFO, "Inicia proceso de creación del comentario");
         ComentarioEntity newComentarioEntity = persistence.create(comentarioEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del comentario");
-        return new ComentarioEntity();
+        return newComentarioEntity;
     }
 
     /**
