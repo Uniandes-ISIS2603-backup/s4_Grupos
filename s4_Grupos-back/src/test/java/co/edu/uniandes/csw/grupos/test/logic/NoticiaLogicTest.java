@@ -126,7 +126,18 @@ public class NoticiaLogicTest {
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getRutaImagen(), entity.getRutaImagen());
     }
-
+      /**
+     * Prueba para crear una noticia a un grupo que no existe.
+     *
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     */
+    @Test(expected = BusinessLogicException.class)
+    public void createNoticiaConGrupoDeInteresNulo() throws BusinessLogicException {
+        NoticiaEntity newEntity = factory.manufacturePojo(NoticiaEntity.class);
+        NoticiaEntity result = noticiaLogic.createNoticia((long)-1, newEntity);
+        Assert.assertNull(result);
+    }
+ 
     /**
      * Prueba para consultar la lista de Noticias.
      *

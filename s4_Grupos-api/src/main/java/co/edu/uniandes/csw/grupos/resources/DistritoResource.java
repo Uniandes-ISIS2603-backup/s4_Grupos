@@ -34,7 +34,9 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class DistritoResource {
-
+private final static String NOEXISTE1="El recurso /distritos/";
+    
+    private final static String NOEXISTE2=" no existe.";
      private static final Logger LOGGER = Logger.getLogger(DistritoResource.class.getName());
 
     @Inject
@@ -76,7 +78,7 @@ public class DistritoResource {
          LOGGER.log(Level.INFO, "DistritoResource getDistrito: input: {0}", distritosId);
         DistritoEntity distritoEntity = distritoLogic.getDistrito(distritosId);
         if (distritoEntity == null) {
-            throw new WebApplicationException("El recurso /distritos/" + distritosId + " no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + distritosId + NOEXISTE2, 404);
         }
         DistritoDetailDTO distritoDetailDTO = new DistritoDetailDTO(distritoEntity);
         LOGGER.log(Level.INFO, "DistritoResource getDistrito: output: {0}", distritoDetailDTO.toString());
@@ -106,7 +108,7 @@ public class DistritoResource {
          LOGGER.log(Level.INFO, "DistritoResource updateDistrito: input: id: {0} , Distrito: {1}", new Object[]{distritosId, distrito.toString()});
         distrito.setId(distritosId);
         if (distritoLogic.getDistrito(distritosId) == null) {
-            throw new WebApplicationException("El recurso /distritos/" + distritosId + " no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + distritosId + NOEXISTE2, 404);
         }
         DistritoDetailDTO detailDTO = new DistritoDetailDTO(distritoLogic.updateDistrito(distritosId, distrito.toEntity()));
         LOGGER.log(Level.INFO, "DistritoResource updateDistrito: output: {0}", detailDTO.toString());
@@ -131,7 +133,7 @@ public class DistritoResource {
        LOGGER.log(Level.INFO, "DistritoResource deleteDistrito: input: {0}", distritosId);
         DistritoEntity entity = distritoLogic.getDistrito(distritosId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /distritos/" + distritosId + " no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + distritosId + NOEXISTE2, 404);
         }
         distritoLogic.deleteDistrito(distritosId);
         LOGGER.info("DistritoResource deleteDistrito: output: void");
@@ -166,7 +168,7 @@ public class DistritoResource {
     @Path("{distritosId: \\d+}/locaciones")
     public Class<LocacionResource> getLocacionResource(@PathParam("distritosId") Long distritosId) {
         if (distritoLogic.getDistrito(distritosId) == null) {
-            throw new WebApplicationException("El recurso /distritos/" + distritosId + "/locaciones no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + distritosId + "/locaciones no existe.", 404);
         }
         
         return LocacionResource.class;

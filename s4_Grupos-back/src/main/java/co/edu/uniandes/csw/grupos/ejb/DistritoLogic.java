@@ -100,8 +100,6 @@ public class DistritoLogic {
      */
     public void deleteDistrito(Long distritosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el distrito con id = {0}", distritosId);
-        List<LocacionEntity> locations = getDistrito(distritosId).getLocaciones();
-      
         persistence.delete(distritosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el distrito con id = {0}", distritosId);
     }
