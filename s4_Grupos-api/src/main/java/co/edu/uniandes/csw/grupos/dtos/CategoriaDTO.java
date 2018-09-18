@@ -25,10 +25,8 @@ public class CategoriaDTO {
      * Convierte un Entity a DTO con los valores del Entity que recibe por Parámetro.
      * @param catEntity Entity a convertir a DTO.
      */
-    public CategoriaDTO(CategoriaEntity catEntity){
-        
-         if (catEntity != null) {
-         
+    public CategoriaDTO(CategoriaEntity catEntity){        
+         if (catEntity != null) {         
             nombre = catEntity.getNombre();
             descripcion = catEntity.getDescripcion();
         }   

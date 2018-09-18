@@ -9,6 +9,6 @@ package co.edu.uniandes.csw.grupos.resources;
  *
  * @author estudiante
  */
-public class EventoPatrocinioResoruce {
+public class EventoPatrocinioResource {
     
 }

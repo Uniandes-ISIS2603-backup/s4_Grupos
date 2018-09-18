@@ -168,4 +168,12 @@ public class EventoDTO implements Serializable {
     public void setGrupoDeInteres(GrupoDeInteresDTO grupoDeInteres) {
         this.grupoDeInteres = grupoDeInteres;
     }
+
+    public EventoEntity toEntity() {
+
+        // HAY QUE IMPLEMENTAR ESTE TO ENTITY
+        
+        return new EventoEntity();
+
+    }
 }

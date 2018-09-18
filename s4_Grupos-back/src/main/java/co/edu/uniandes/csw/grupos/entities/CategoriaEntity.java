@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -23,6 +26,18 @@ public class CategoriaEntity extends BaseEntity implements Serializable {
     
     private String descripcion;
     
+    
+    @PodamExclude
+    @ManyToMany
+    private List<GrupoDeInteresEntity> grupos = new ArrayList<GrupoDeInteresEntity>();    
+
+    public List<GrupoDeInteresEntity> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<GrupoDeInteresEntity> grupos) {
+        this.grupos = grupos;
+    }
     
     
     public String getNombre() {

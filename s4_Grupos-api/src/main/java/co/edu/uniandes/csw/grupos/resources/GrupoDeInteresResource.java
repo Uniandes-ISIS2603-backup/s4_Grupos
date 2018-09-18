@@ -176,7 +176,7 @@ public class GrupoDeInteresResource {
     @Path("{gruposId: \\d+}/noticias")
     public Class<NoticiaResource> getNoticiaResource(@PathParam("gruposId") Long gruposId) {
         if (grupoLogic.getGrupo(gruposId) == null) {
-          throw new WebApplicationException("El recurso /gruposdeinteres/" + gruposId + "/noticias no existe.", 404);
+          throw new WebApplicationException("El recurso /gruposdeinteres/" + gruposId + "/grupos no existe.", 404);
          }
          
         return NoticiaResource.class;

@@ -107,11 +107,66 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
                     
                 }
                 
-            }           
+            }
             
-        }       
+        }
         
     }
+    
+    
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return El DTO de el distrito para transformar a Entity
+     */
+    @Override
+    public GrupoDeInteresEntity toEntity() {
+        
+        GrupoDeInteresEntity grupoEntity = super.toEntity();
+        
+        if (administradores != null) {
+            List<AdministradorEntity> adminEntity = new ArrayList<>();
+            for (AdministradorDTO dtoAdmin : administradores) {
+                adminEntity.add((AdministradorEntity) dtoAdmin.toEntity());
+            }
+            grupoEntity.setAdministradores(adminEntity);
+        }
+        
+        if (eventos != null) {
+            List<EventoEntity> eventEnt = new ArrayList<>();
+            for (EventoDTO dtoEvent : eventos) {
+                eventEnt.add(dtoEvent.toEntity());
+            }
+            grupoEntity.setEventos(eventEnt);
+        }
+        
+        if (noticias != null) {
+            List<NoticiaEntity> noticiaEnt = new ArrayList<>();
+            for (NoticiaDTO dtoNoti : noticias) {
+                noticiaEnt.add(dtoNoti.toEntity());
+            }
+            grupoEntity.setNoticias(noticiaEnt);
+        }        
+        
+        if (categorias != null) {
+            List<CategoriaEntity> categEnt = new ArrayList<>();
+            for (CategoriaDTO dtoCat : categorias) {
+                categEnt.add(dtoCat.toEntity());
+            }
+            grupoEntity.setCategorias(categEnt);
+        }
+        
+        if (ciudadanos != null) {
+            List<CiudadanoEntity> ciudadanoEnt = new ArrayList<>();
+            for (CiudadanoDTO dtoCiudadano : ciudadanos) {
+                ciudadanoEnt.add((CiudadanoEntity) dtoCiudadano.toEntity());
+            }
+            grupoEntity.setCiudadanos(ciudadanoEnt);
+        }     
+ 
+        return grupoEntity;        
+    }
+    
     
     
     public List<BlogDTO> getBlogs() {
