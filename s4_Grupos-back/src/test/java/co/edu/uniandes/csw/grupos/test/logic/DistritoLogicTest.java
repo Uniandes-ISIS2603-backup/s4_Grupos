@@ -116,7 +116,7 @@ public class DistritoLogicTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-
+     
     /**
      * Prueba para crear un Distrito con Name inválido
      *
@@ -169,6 +169,15 @@ public class DistritoLogicTest {
             }
             Assert.assertTrue(found);
         }
+    }
+    /**
+     * Prueba para obtener una distritoque no existe.
+     *
+     * 
+     */
+    public void getDistritoNulo() throws BusinessLogicException {
+        DistritoEntity result = distritoLogic.getDistrito((long)-1);
+        Assert.assertNull(result);
     }
 
     /**

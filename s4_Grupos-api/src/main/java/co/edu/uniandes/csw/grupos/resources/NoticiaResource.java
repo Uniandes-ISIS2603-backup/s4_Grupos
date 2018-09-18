@@ -28,7 +28,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 /**
- * Clase que implementa el recurso "noticias".
+ * Clase que implementa el recurso NOEXISTE2.
  *
  * @version 1.0
  */
@@ -37,6 +37,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class NoticiaResource {
     
+    private final static String NOEXISTE1="El recurso /grupos/";
+    private final static String NOEXISTE2="/noticias/";
+    private final static String NOEXISTE3=" no existe";
      private static final Logger LOGGER = Logger.getLogger(NoticiaResource.class.getName());
 
     @Inject
@@ -98,7 +101,7 @@ public class NoticiaResource {
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: input: {0}", id);
         NoticiaEntity entity = noticiaLogic.getNoticia(gruposId, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/noticias/" + id + " no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + gruposId + NOEXISTE2 + id + NOEXISTE3, 404);
         }
         NoticiaDTO noticiaDTO = new NoticiaDTO(entity);
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: output: {0}", noticiaDTO.toString());
@@ -130,7 +133,7 @@ public class NoticiaResource {
         }
         NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposID + "/noticias/" + id + " no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + gruposID + NOEXISTE2 + id + NOEXISTE3, 404);
 
         }
         NoticiaDTO noticiaDTO = new NoticiaDTO(noticiaLogic.updateNoticia(gruposID, noticia.toEntity()));
@@ -152,7 +155,7 @@ public class NoticiaResource {
     public void deleteNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) throws BusinessLogicException {
        NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposID + "/noticias/" + id + " no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + gruposID + NOEXISTE2 + id + NOEXISTE3, 404);
         }
         noticiaLogic.deleteNoticia(gruposID, id);
     }
@@ -170,7 +173,7 @@ public class NoticiaResource {
     @Path("{id: \\d+}/comentarios")
     public Class<ComentarioResource> getComentarioResource(@PathParam("id") Long noticiassId) {
         /**if (grupoLogic.getGrupo(gruposID) == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposID + "/noticias no existe.", 404);
+            throw new WebApplicationException(NOEXISTE1 + gruposID + "/noticias no existe.", 404);
         }
         * */
         return ComentarioResource.class;

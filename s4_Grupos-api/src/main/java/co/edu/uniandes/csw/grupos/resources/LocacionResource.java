@@ -26,7 +26,6 @@ import javax.ws.rs.Produces;
  * @author Josealejandro barbosa Jacome ISIS2603
  * @version 1.0
  */
-@Path("locaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -38,7 +37,7 @@ public class LocacionResource {
      * @return JSON {@link LocaiconDTO} -La locacion  guardado con su id
      */
     @POST
-    public LocacionDTO crearLocacion(LocacionDTO locacionDto) {
+    public LocacionDTO crearLocacion(@PathParam("distritosId") Long distritosId, LocacionDTO locacionDto) {
     
         return  new LocacionDTO();
     }
@@ -49,7 +48,7 @@ public class LocacionResource {
      * registradas. Si no hay ninguna retorna una lista vac�a.
      */
     @GET
-    public List<LocacionDTO> getLocaciones() 
+    public List<LocacionDTO> getLocaciones(@PathParam("distritosId") Long distritosId) 
     {
         return new ArrayList<>();
     }
@@ -63,7 +62,7 @@ public class LocacionResource {
      */
     @GET
     @Path("{locacionId: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("locacionId") Long localizacionId) 
+    public LocacionDTO getLocacion(@PathParam("distritosId") Long distritosId, @PathParam("locacionId") Long localizacionId) 
     {
         return new LocacionDTO();
     }
@@ -77,7 +76,7 @@ public class LocacionResource {
      */
     @PUT
     @Path("{locacionId: \\d+}")
-    public LocacionDTO updateLocacion(@PathParam("LocacionId") Long locacionId, LocacionDTO locacion) 
+    public LocacionDTO updateLocacion(@PathParam("distritosId") Long distritosId, @PathParam("locacionId") Long locacionId, LocacionDTO locacion) 
     {
         return locacion;
     }
@@ -90,7 +89,7 @@ public class LocacionResource {
      */
     @DELETE
     @Path("{locacionId: \\d+}")
-    public LocacionDTO deleteLocaciones(@PathParam("locacionId") Long locacionId) 
+    public LocacionDTO deleteLocaciones(@PathParam("distritosId") Long distritosId, @PathParam("locacionId") Long locacionId) 
     {
     	return new LocacionDTO();
     }

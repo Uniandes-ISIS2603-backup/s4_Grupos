@@ -53,7 +53,10 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "grupo", orphanRemoval=true, cascade=CascadeType.ALL)
     private List<NoticiaEntity> noticias = new ArrayList<NoticiaEntity>();
     
-    
+    public GrupoDeInteresEntity()
+    {
+        
+    }
     public List<CategoriaEntity> getCategorias() {
         return categorias;
     }
