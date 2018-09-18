@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     
-    private List<BlogDTO> blogs;
     
     private List<AdministradorDTO> administradores;
     
@@ -165,16 +164,6 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
         }     
  
         return grupoEntity;        
-    }
-    
-    
-    
-    public List<BlogDTO> getBlogs() {
-        return blogs;
-    }
-    
-    public void setBlogs(List<BlogDTO> blogs) {
-        this.blogs = blogs;
     }
     
     public List<AdministradorDTO> getAdministradores() {

@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 
 /**
  * Clase que modela la relacion entre un ciudadano y un grupo de interes.
- * @author estudiante
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Path("ciudadanosGruposDeInteres")
 @Consumes("application/json")

@@ -7,24 +7,21 @@ package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un CiudadanoEntity
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Entity
 public class CiudadanoEntity extends PersonaEntity implements Serializable
 {
     @PodamExclude
-    @OneToMany
-//(mappedBy = "grupodeinteres", fetch = FetchType.LAZY )
+    @ManyToMany
     List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
     
     @PodamExclude
@@ -50,37 +47,6 @@ public class CiudadanoEntity extends PersonaEntity implements Serializable
     public CiudadanoEntity()
     {
         super();
-    }
-
-    @Override
-    public void setContraseña(String contraseña) {
-        super.setContraseña(contraseña); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getContraseña() {
-        return super.getContraseña(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setUsuario(long usuario) {
-        super.setUsuario(usuario); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public long getUsuario() {
-        return super.getUsuario(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        super.setNombre(nombre); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre(); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }   
     
 }

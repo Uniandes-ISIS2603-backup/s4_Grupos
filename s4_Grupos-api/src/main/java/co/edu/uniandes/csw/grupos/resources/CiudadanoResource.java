@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDetailDTO;
+import co.edu.uniandes.csw.grupos.ejb.CiudadanoLogic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -22,8 +23,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un CiudadanoResource
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Path("ciudadanos")
 @Produces("application/json")
@@ -31,6 +32,10 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class CiudadanoResource 
 {    
+    private static final Logger LOGGER = Logger.getLogger(CiudadanoResource.class.getName());
+    
+    @Inject
+    CiudadanoLogic comentarioLogic;
     /**
      * Crea un nuevo ciudadano
      * @param ciudadano
@@ -43,12 +48,21 @@ public class CiudadanoResource
         return ciudadano;
     }
     
+    /**
+     * Consulta la lista de todos los ciudadanos
+     * @return lista de todos los ciudadanos
+     */
     @GET
     public List<CiudadanoDetailDTO> getCiudadanos( )
     {
         return new ArrayList<CiudadanoDetailDTO>();
     }
     
+    /**
+     * Consulta un ciudadano con el numero de usuario dado parametro
+     * @param user numero de usuario que se desea consultar
+     * @return ciudadano con el numero de usuario dado por parametro
+     */
     @GET
     @Path("{user :\\d+}")
     public CiudadanoDetailDTO getCiudadano(@PathParam("user") Long user)
