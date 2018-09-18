@@ -5,11 +5,101 @@
  */
 package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 /**
  *
  * @author estudiante
  */
+@Stateless
 public class ComentarioLogic
 {
-    
+    private static final Logger LOGGER = Logger.getLogger(ComentarioLogic.class.getName());
+
+    @Inject
+    private ComentarioPersistence persistence;
+
+    /**
+     * Se encarga de crear un Comentario en la base de datos.
+     *
+     * @param comentarioEntity Objeto de ComentarioEntity con los datos nuevos
+     * @return Objeto de ComentarioEntity con los datos nuevos y su ID.
+     */
+    public ComentarioEntity createComentario(ComentarioEntity comentarioEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de creación del comentario");
+        ComentarioEntity newComentarioEntity = persistence.create(comentarioEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de creación del comentario");
+        return newComentarioEntity;
+    }
+
+    /**
+     * Obtiene la lista de los registros de Comentario.
+     *
+     * @return Colección de objetos de ComentarioEntity.
+     */
+    public List<ComentarioEntity> getComentarios() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los comentarioes");
+        List<ComentarioEntity> lista = persistence.findAll();
+        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los comentarioes");
+        return lista;
+    }
+
+    /**
+     * Obtiene los datos de una instancia de Comentario a partir de su ID.
+     *
+     * @param comentariosId Identificador de la instancia a consultar
+     * @return Instancia de ComentarioEntity con los datos del Comentario consultado.
+     */
+    public ComentarioEntity getComentario(Long comentariosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el comentario con id = {0}", comentariosId);
+        ComentarioEntity comentarioEntity = persistence.find(comentariosId);
+        if (comentarioEntity == null) {
+            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", comentariosId);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar el comentario con id = {0}", comentariosId);
+        return comentarioEntity;
+    }
+
+    /**
+     * Actualiza la información de una instancia de Comentario.
+     *
+     * @param comentariosId Identificador de la instancia a actualizar
+     * @param comentarioEntity Instancia de ComentarioEntity con los nuevos datos.
+     * @return Instancia de ComentarioEntity con los datos actualizados.
+     */
+    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el comentario con id = {0}", comentariosId);
+        ComentarioEntity newComentarioEntity = persistence.update(comentarioEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el comentario con id = {0}", comentariosId);
+        return newComentarioEntity;
+    }
+
+    /**
+     * Elimina una instancia de Comentario de la base de datos.
+     *
+     * @param comentariosId Identificador de la instancia a eliminar.
+     * @throws BusinessLogicException si el comentario tiene libros asociados.
+     */
+    public void deleteComentario(Long comentariosId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el comentario con id = {0}", comentariosId);
+//        List<GrupoDeInteresEntity> gruposDeInteres = getComentario(comentariosId).getGruposDeInteres();
+//        if (gruposDeInteres != null && !gruposDeInteres.isEmpty()) {
+//            throw new BusinessLogicException("No se puede borrar el comentario con id = " + comentariosId + " porque tiene books asociados");
+//        }
+        
+//        List<PrizeEntity> prizes = getComentario(comentariosId).getPrizes();
+//        if (prizes != null && !prizes.isEmpty()) {
+//            throw new BusinessLogicException("No se puede borrar el comentario con id = " + comentariosId + " porque tiene premios asociados");
+//        }
+        persistence.delete(comentariosId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el comentario con id = {0}", comentariosId);
+    }    
 }
