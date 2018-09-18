@@ -6,20 +6,28 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.CiudadanoEntity;
-import co.edu.uniandes.csw.grupos.entities.PersonaEntity;
 import java.io.Serializable;
 
 /**
- *
+ * Clase que representa un CiduadanoDTO
  * @author Daniel Augusto Ramirez Dueñas
  */
 public class CiudadanoDTO extends PersonaDTO implements Serializable
 {
+    /**
+     * 
+     */
     public CiudadanoDTO()
     {
-        
+        super();
     }
-
+    
+    /**
+     * Crea un objeto CiudadanoDTO a partir de un objeto CiudadanoEntity
+     * incluyendo los atributos de CiudadanoDTO.
+     * @param ciudadanoEntity Entidad CiudadanoEntity desde la cual se va a crear el
+     * nuevo objeto.
+     */
     public CiudadanoDTO(CiudadanoEntity ciudadanoEntity) {
        
         super(ciudadanoEntity);

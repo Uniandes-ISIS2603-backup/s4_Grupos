@@ -41,7 +41,7 @@ public class ComentarioPersistence
         return comentarioEntity;
     }
     
-        /**
+    /**
      * Devuelve todos los comentario de la base de datos.
      *
      * @return una lista con todos los comentario que encuentre en la base de
@@ -58,10 +58,7 @@ public class ComentarioPersistence
 
     public ComentarioEntity find(Long comentarioId) {
         LOGGER.log(Level.INFO, "Consultando comentario con id={0}", comentarioId);
-        /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
-        el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
-        Suponga que es algo similar a "select * from ComentarioEntity where id=id;" - "SELECT * FROM table_name WHERE condition;" en SQL.
-         */
+
         return em.find(ComentarioEntity.class, comentarioId);
     }
     /**

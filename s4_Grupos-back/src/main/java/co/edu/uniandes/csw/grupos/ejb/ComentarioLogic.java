@@ -89,15 +89,6 @@ public class ComentarioLogic
      */
     public void deleteComentario(Long comentariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el comentario con id = {0}", comentariosId);
-//        List<GrupoDeInteresEntity> gruposDeInteres = getComentario(comentariosId).getGruposDeInteres();
-//        if (gruposDeInteres != null && !gruposDeInteres.isEmpty()) {
-//            throw new BusinessLogicException("No se puede borrar el comentario con id = " + comentariosId + " porque tiene books asociados");
-//        }
-        
-//        List<PrizeEntity> prizes = getComentario(comentariosId).getPrizes();
-//        if (prizes != null && !prizes.isEmpty()) {
-//            throw new BusinessLogicException("No se puede borrar el comentario con id = " + comentariosId + " porque tiene premios asociados");
-//        }
         persistence.delete(comentariosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el comentario con id = {0}", comentariosId);
     }    

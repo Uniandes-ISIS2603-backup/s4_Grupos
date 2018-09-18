@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class CiudadanoPersistence 
 {
-        private static final Logger LOGGER = Logger.getLogger(CiudadanoPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CiudadanoPersistence.class.getName());
 
     @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
@@ -42,8 +42,8 @@ public class CiudadanoPersistence
         return ciudadanoEntity;
     }
     
-        /**
-     * Devuelve todos las ciudadano de la base de datos.
+    /**
+     * Devuelve todos los ciudadano de la base de datos.
      *
      * @return una lista con todas las ciudadano que encuentre en la base de
      * datos, "select u from CiudadanoEntity u" es como un "select * from
@@ -51,7 +51,7 @@ public class CiudadanoPersistence
      */
     public List<CiudadanoEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todas las ciudadano");
-        // Se crea un query para buscar todas las ciudadano en la base de datos.
+        // Se crea un query para buscar todas los ciudadano en la base de datos.
         TypedQuery query = em.createQuery("select u from CiudadanoEntity u", CiudadanoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de ciudadano.
         return query.getResultList();
@@ -59,10 +59,7 @@ public class CiudadanoPersistence
 
     public CiudadanoEntity find(Long ciudadanoUser) {
         LOGGER.log(Level.INFO, "Consultando ciudadano con id={0}", ciudadanoUser);
-        /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
-        el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
-        Suponga que es algo similar a "select * from CiudadanoEntity where id=id;" - "SELECT * FROM table_name WHERE condition;" en SQL.
-         */
+
         return em.find(CiudadanoEntity.class, ciudadanoUser);
     }
     /**

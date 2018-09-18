@@ -95,10 +95,6 @@ public class CiudadanoLogic
             throw new BusinessLogicException("No se puede borrar el ciudadano con id = " + ciudadanosId + " porque tiene books asociados");
         }
         
-//        List<PrizeEntity> prizes = getCiudadano(ciudadanosId).getPrizes();
-//        if (prizes != null && !prizes.isEmpty()) {
-//            throw new BusinessLogicException("No se puede borrar el ciudadano con id = " + ciudadanosId + " porque tiene premios asociados");
-//        }
         persistence.delete(ciudadanosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el ciudadano con id = {0}", ciudadanosId);
     }    
