@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -23,11 +25,27 @@ public class CiudadanoEntity extends PersonaEntity implements Serializable
     @PodamExclude
     @OneToMany
 //(mappedBy = "grupodeinteres", fetch = FetchType.LAZY )
-    Collection<GrupoDeInteresEntity> gruposDeInteres;
+    List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
     
     @PodamExclude
     @OneToOne
     ComentarioEntity comentario;
+
+    public List<GrupoDeInteresEntity> getGruposDeInteres() {
+        return gruposDeInteres;
+    }
+
+    public void setGruposDeInteres(List<GrupoDeInteresEntity> gruposDeInteres) {
+        this.gruposDeInteres = gruposDeInteres;
+    }
+
+    public ComentarioEntity getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(ComentarioEntity comentario) {
+        this.comentario = comentario;
+    }
     
     public CiudadanoEntity()
     {
