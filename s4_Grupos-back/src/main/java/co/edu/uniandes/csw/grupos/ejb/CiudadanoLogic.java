@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @ciudadano estudiante
+ * @author estudiante
  */
 @Stateless
 public class CiudadanoLogic 
