@@ -15,7 +15,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Entity
 public class ComentarioEntity extends BaseEntity implements Serializable

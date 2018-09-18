@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
 import java.util.List;
