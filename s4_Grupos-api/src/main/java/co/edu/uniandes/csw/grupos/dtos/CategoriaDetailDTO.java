@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,15 +16,51 @@ import java.util.ArrayList;
  */
 public class CategoriaDetailDTO extends CategoriaDTO {
     
-    private ArrayList<GrupoDeInteresDTO> gruposDeInteres;
+    private ArrayList<GrupoDeInteresDTO> gruposDeInteres;   
     
-    
-    
-    public CategoriaDetailDTO(){
+    public CategoriaDetailDTO(){  
         
-     
+        super();
+    }
+    
+     /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param categEntity La entidad de el distrito para transformar a DTO.
+     **/
+    public CategoriaDetailDTO(CategoriaEntity categEntity) {
+        super(categEntity);
+        if (categEntity != null) {
+            if (categEntity.getGrupos()!= null) {
+                gruposDeInteres = new ArrayList<>();
+                for (GrupoDeInteresEntity entityGrup : categEntity.getGrupos()) {
+                   gruposDeInteres.add(new GrupoDeInteresDTO(entityGrup));
+                }
+            }
+        }
         
     }
+    
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return El DTO de el distrito para transformar a Entity
+     */
+    @Override
+    public CategoriaEntity toEntity() {
+        CategoriaEntity categEntity = super.toEntity();
+        if (gruposDeInteres != null) {
+            List<GrupoDeInteresEntity> gruposEntity = new ArrayList<>();
+            for (GrupoDeInteresDTO dtoGrupo : gruposDeInteres) {
+                
+                gruposEntity.add(dtoGrupo.toEntity());
+            }
+            categEntity.setGrupos(gruposEntity);
+        }
+        
+        return categEntity;        
+    }
+    
     
     public ArrayList<GrupoDeInteresDTO> getGruposDeInteres(){
         
