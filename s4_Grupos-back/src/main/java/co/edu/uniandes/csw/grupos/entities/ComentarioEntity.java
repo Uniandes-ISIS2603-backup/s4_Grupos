@@ -14,7 +14,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
- *
+ * Clase que representa un ComentarioEntity
  * @author Daniel Augusto Ramirez Dueñas
  */
 @Entity

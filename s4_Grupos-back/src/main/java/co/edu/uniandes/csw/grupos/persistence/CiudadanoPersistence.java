@@ -16,8 +16,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un CiudadanoPersistence
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Stateless
 public class CiudadanoPersistence 

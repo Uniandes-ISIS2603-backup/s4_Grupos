@@ -15,8 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un ComentarioLogic
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Stateless
 public class ComentarioLogic

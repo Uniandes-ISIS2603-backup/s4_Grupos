@@ -16,8 +16,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un CiudadanoLogic
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Stateless
 public class CiudadanoLogic 

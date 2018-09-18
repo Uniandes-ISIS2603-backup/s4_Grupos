@@ -14,8 +14,8 @@ import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un CiudadanoEntity
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Entity
 public class CiudadanoEntity extends PersonaEntity implements Serializable
