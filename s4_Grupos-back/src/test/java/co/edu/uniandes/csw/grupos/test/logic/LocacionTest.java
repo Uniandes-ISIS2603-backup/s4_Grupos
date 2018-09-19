@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.grupos.test.logic;
 
-import co.edu.uniandes.csw.grupos.ejb.PatrocinioLogic;
-import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
+import co.edu.uniandes.csw.grupos.ejb.LocacionLogic;
+import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.grupos.persistence.PatrocinioPersistence;
+import co.edu.uniandes.csw.grupos.persistence.LocacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -31,11 +31,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author j.barbosaj
  */
 @RunWith(Arquillian.class)
-public class PatrocinioLogicTest {
+public class LocacionTest {
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private PatrocinioLogic patrocinioLogic;
+    private LocacionLogic locacionLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -43,7 +43,7 @@ public class PatrocinioLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<PatrocinioEntity> data = new ArrayList<PatrocinioEntity>();
+    private List<LocacionEntity> data = new ArrayList<LocacionEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -53,9 +53,9 @@ public class PatrocinioLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PatrocinioEntity.class.getPackage())
-                .addPackage(PatrocinioLogic.class.getPackage())
-                .addPackage(PatrocinioPersistence.class.getPackage())
+                .addPackage(LocacionEntity.class.getPackage())
+                .addPackage(LocacionLogic.class.getPackage())
+                .addPackage(LocacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -84,7 +84,7 @@ public class PatrocinioLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from PatrocinioEntity").executeUpdate();
+        em.createQuery("delete from LocacionEntity").executeUpdate();
     }
 
     /**
@@ -95,7 +95,7 @@ public class PatrocinioLogicTest {
      
         
         for (int i = 0; i < 3; i++) {
-            PatrocinioEntity entity = factory.manufacturePojo(PatrocinioEntity.class);
+            LocacionEntity entity = factory.manufacturePojo(LocacionEntity.class);
             
             em.persist(entity);
             data.add(entity);
@@ -103,68 +103,68 @@ public class PatrocinioLogicTest {
     }
 
     /**
-     * Prueba para crear un Patrocinio
+     * Prueba para crear un Locacion
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test
-    public void createPatrocinioTest() throws BusinessLogicException {
-        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
+    public void createLocacionTest() throws BusinessLogicException {
+        LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
       
-        PatrocinioEntity result = patrocinioLogic.createPatrocinio(newEntity);
+        LocacionEntity result = locacionLogic.createLocacion(newEntity);
         Assert.assertNotNull(result);
-        PatrocinioEntity entity = em.find(PatrocinioEntity.class, result.getId());
+        LocacionEntity entity = em.find(LocacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getNombre() , entity.getNombre());
+        Assert.assertEquals(newEntity.getLocacion() , entity.getLocacion());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
      
     /**
-     * Prueba para crear un Patrocinio con Name inválido
+     * Prueba para crear un Locacion con Name inválido
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void createPatrocinioTestConNameInvalido() throws BusinessLogicException {
-        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
-        newEntity.setNombre("");
-        patrocinioLogic.createPatrocinio(newEntity);
+    public void createLocacionTestConNameInvalido() throws BusinessLogicException {
+        LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
+        newEntity.setLocacion("");
+        locacionLogic.createLocacion(newEntity);
     }
 
     /**
-     * Prueba para crear un Patrocinio con Name inválido
+     * Prueba para crear un Locacion con Name inválido
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void createPatrocinioTestConNameInvalido2() throws BusinessLogicException {
-        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
-        newEntity.setNombre(null);
-        patrocinioLogic.createPatrocinio(newEntity);
+    public void createLocacionTestConNameInvalido2() throws BusinessLogicException {
+        LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
+        newEntity.setLocacion(null);
+        locacionLogic.createLocacion(newEntity);
     }
 
     /**
-     * Prueba para crear un Patrocinio con Name existente.
+     * Prueba para crear un Locacion con Name existente.
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void createPatrocinioTestConNameExistente() throws BusinessLogicException {
-        PatrocinioEntity newEntity = factory.manufacturePojo(PatrocinioEntity.class);
-        newEntity.setNombre(data.get(0).getNombre());
-        patrocinioLogic.createPatrocinio(newEntity);
+    public void createLocacionTestConNameExistente() throws BusinessLogicException {
+        LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
+        newEntity.setLocacion(data.get(0).getLocacion());
+        locacionLogic.createLocacion(newEntity);
     }
 
     /**
-     * Prueba para consultar la lista de Patrocinios.
+     * Prueba para consultar la lista de Locacions.
      */
     @Test
-    public void getPatrociniosTest() {
-        List<PatrocinioEntity> list = patrocinioLogic.getPatrocinios();
+    public void getLocacionsTest() {
+        List<LocacionEntity> list = locacionLogic.getLocaciones();
         Assert.assertEquals(data.size(), list.size());
-        for (PatrocinioEntity entity : list) {
+        for (LocacionEntity entity : list) {
             boolean found = false;
-            for (PatrocinioEntity storedEntity : data) {
+            for (LocacionEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -173,83 +173,80 @@ public class PatrocinioLogicTest {
         }
     }
     /**
-     * Prueba para obtener una patrocinioque no existe.
+     * Prueba para obtener una locacionque no existe.
      *
      * 
      */
-    public void getPatrocinioNulo() throws BusinessLogicException {
-        PatrocinioEntity result = patrocinioLogic.getPatrocinio((long)-1);
+    public void getLocacionNulo() throws BusinessLogicException {
+        LocacionEntity result = locacionLogic.getLocacion((long)-1);
         Assert.assertNull(result);
     }
-
     /**
-     * Prueba para consultar un Patrocinio.
+     * Prueba para consultar un Locacion.
      */
     @Test
-    public void getPatrocinioTest() {
-        PatrocinioEntity entity = data.get(0);
-        PatrocinioEntity resultEntity = patrocinioLogic.getPatrocinio(entity.getId());
+    public void getLocacionTest() {
+        LocacionEntity entity = data.get(0);
+        LocacionEntity resultEntity = locacionLogic.getLocacion(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+        Assert.assertEquals(entity.getLocacion(), resultEntity.getLocacion());
     }
 
     /**
-     * Prueba para actualizar un Patrocinio.
+     * Prueba para actualizar un Locacion.
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test
-    public void updatePatrocinioTest() throws BusinessLogicException {
-        PatrocinioEntity entity = data.get(0);
-        PatrocinioEntity pojoEntity = factory.manufacturePojo(PatrocinioEntity.class);
+    public void updateLocacionTest() throws BusinessLogicException {
+        LocacionEntity entity = data.get(0);
+        LocacionEntity pojoEntity = factory.manufacturePojo(LocacionEntity.class);
         pojoEntity.setId(entity.getId());
-        patrocinioLogic.updatePatrocinio(pojoEntity.getId(), pojoEntity);
-        PatrocinioEntity resp = em.find(PatrocinioEntity.class, entity.getId());
+        locacionLogic.updateLocacion(pojoEntity.getId(), pojoEntity);
+        LocacionEntity resp = em.find(LocacionEntity.class, entity.getId());
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(pojoEntity.getLocacion(), resp.getLocacion());
     }
 
     /**
-     * Prueba para actualizar un Patrocinio con Name inválido.
+     * Prueba para actualizar un Locacion con Name inválido.
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void updatePatrocinioConNameInvalidoTest() throws BusinessLogicException {
-        PatrocinioEntity entity = data.get(0);
-        PatrocinioEntity pojoEntity = factory.manufacturePojo(PatrocinioEntity.class);
-        pojoEntity.setNombre("");
+    public void updateLocacionConNameInvalidoTest() throws BusinessLogicException {
+        LocacionEntity entity = data.get(0);
+        LocacionEntity pojoEntity = factory.manufacturePojo(LocacionEntity.class);
+        pojoEntity.setLocacion("");
         pojoEntity.setId(entity.getId());
-        patrocinioLogic.updatePatrocinio(pojoEntity.getId(), pojoEntity);
+        locacionLogic.updateLocacion(pojoEntity.getId(), pojoEntity);
     }
 
     /**
-     * Prueba para actualizar un Patrocinio con Name inválido.
+     * Prueba para actualizar un Locacion con Name inválido.
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test(expected = BusinessLogicException.class)
-    public void updatePatrocinioConNameInvalidoTest2() throws BusinessLogicException {
-        PatrocinioEntity entity = data.get(0);
-        PatrocinioEntity pojoEntity = factory.manufacturePojo(PatrocinioEntity.class);
-        pojoEntity.setNombre(null);
+    public void updateLocacionConNameInvalidoTest2() throws BusinessLogicException {
+        LocacionEntity entity = data.get(0);
+        LocacionEntity pojoEntity = factory.manufacturePojo(LocacionEntity.class);
+        pojoEntity.setLocacion(null);
         pojoEntity.setId(entity.getId());
-        patrocinioLogic.updatePatrocinio(pojoEntity.getId(), pojoEntity);
+        locacionLogic.updateLocacion(pojoEntity.getId(), pojoEntity);
     }
 
     /**
-     * Prueba para eliminar un Patrocinio.
+     * Prueba para eliminar un Locacion.
      *
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @Test
-    public void deletePatrocinioTest() throws BusinessLogicException {
-        PatrocinioEntity entity = data.get(0);
-        patrocinioLogic.deletePatrocinio(entity.getId());
-        PatrocinioEntity deleted = em.find(PatrocinioEntity.class, entity.getId());
+    public void deleteLocacionTest() throws BusinessLogicException {
+        LocacionEntity entity = data.get(0);
+        locacionLogic.deleteLocacion(entity.getId());
+        LocacionEntity deleted = em.find(LocacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
-    
 }
