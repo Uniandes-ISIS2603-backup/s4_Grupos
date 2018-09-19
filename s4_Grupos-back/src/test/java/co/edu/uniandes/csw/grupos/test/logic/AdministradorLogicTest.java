@@ -100,11 +100,11 @@ public class AdministradorLogicTest {
             entity.setGruposDeInteres(new ArrayList<>());
             data.add(entity);
         }
-//        AdministradorEntity administrador = data.get(2);
-//        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
-//        entity.getAdministradores().add(administrador);
-//        em.persist(entity);
-//        administrador.getGruposDeInteres()).add(entity);
+        AdministradorEntity administrador = data.get(2);
+        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
+        entity.getAdministradores().add(administrador);
+        em.persist(entity);
+        administrador.getGruposDeInteres().add(entity);
     }
 
     /**
@@ -118,8 +118,7 @@ public class AdministradorLogicTest {
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
-        Assert.assertEquals(newEntity.getContraseña(), entity.getContraseña());
+        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
     }
 
     /**
@@ -150,8 +149,7 @@ public class AdministradorLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-        Assert.assertEquals(entity.getUsuario(), resultEntity.getUsuario());
-        Assert.assertEquals(entity.getContraseña(), resultEntity.getContraseña());
+        Assert.assertEquals(entity.getContrasena(), resultEntity.getContrasena());
     }
 
     /**
@@ -170,8 +168,7 @@ public class AdministradorLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getUsuario(), resp.getUsuario());
-        Assert.assertEquals(pojoEntity.getContraseña(), resp.getContraseña());
+        Assert.assertEquals(pojoEntity.getContrasena(), resp.getContrasena());
     }
 
     /**

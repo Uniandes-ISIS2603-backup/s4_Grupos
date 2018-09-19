@@ -50,7 +50,7 @@ public class EventoPersistence {
      * devuelve siempre el primero que encuentra
      */
     public EventoEntity find(Long grupoId, Long eventosId) {
-        LOGGER.log(Level.INFO, "Consultando el evento con id = {0} del grupo con id = " + grupoId, eventosId);
+        LOGGER.log(Level.INFO, "Consultando el noticia con id = {0} del libro con id = " + grupoId, eventosId);
         TypedQuery<EventoEntity> q = em.createQuery("select p from EventoEntity p where (p.grupo.id = :grupoid) and (p.id = :eventosId)", EventoEntity.class);
         q.setParameter("grupoid", grupoId);
         q.setParameter("eventosId", eventosId);
@@ -63,7 +63,7 @@ public class EventoPersistence {
         } else if (results.size() >= 1) {
             evento = results.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el evento con id = {0} del grupo con id =" + grupoId, eventosId);
+        LOGGER.log(Level.INFO, "Saliendo de consultar el noticia con id = {0} del libro con id =" + grupoId, eventosId);
         return evento;
     }
 

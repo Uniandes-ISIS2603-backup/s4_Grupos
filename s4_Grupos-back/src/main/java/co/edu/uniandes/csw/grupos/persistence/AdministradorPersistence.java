@@ -16,7 +16,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author estudiante
+ * @author ac.beltrans
  */
 @Stateless
 public class AdministradorPersistence {

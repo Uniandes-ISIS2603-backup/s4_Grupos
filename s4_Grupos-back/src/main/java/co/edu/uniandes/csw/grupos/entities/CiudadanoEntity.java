@@ -53,23 +53,13 @@ public class CiudadanoEntity extends PersonaEntity implements Serializable
     }
 
     @Override
-    public void setContraseña(String contraseña) {
-        super.setContraseña(contraseña); //To change body of generated methods, choose Tools | Templates.
+    public void setContrasena(String contrasena) {
+        super.setContrasena(contrasena); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getContraseña() {
-        return super.getContraseña(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setUsuario(long usuario) {
-        super.setUsuario(usuario); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public long getUsuario() {
-        return super.getUsuario(); //To change body of generated methods, choose Tools | Templates.
+    public String getContrasena() {
+        return super.getContrasena(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

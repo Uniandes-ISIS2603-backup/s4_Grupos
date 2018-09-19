@@ -38,13 +38,13 @@ public class CiudadanoDTO extends PersonaDTO implements Serializable
     }
 
     @Override
-    public void setContraseña(String contraseña) {
-        super.setContraseña(contraseña); //To change body of generated methods, choose Tools | Templates.
+    public void setContrasena(String contrasena) {
+        super.setContrasena(contrasena); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getContraseña() {
-        return super.getContraseña(); //To change body of generated methods, choose Tools | Templates.
+    public String getContrasena() {
+        return super.getContrasena(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -58,13 +58,13 @@ public class CiudadanoDTO extends PersonaDTO implements Serializable
     }
 
     @Override
-    public void setUsuario(Long usuario) {
-        super.setUsuario(usuario); //To change body of generated methods, choose Tools | Templates.
+    public void setId(Long usuario) {
+        super.setId(usuario); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Long getUsuario() {
-        return super.getUsuario(); //To change body of generated methods, choose Tools | Templates.
+    public Long getId() {
+        return super.getId(); //To change body of generated methods, choose Tools | Templates.
     }
     
     

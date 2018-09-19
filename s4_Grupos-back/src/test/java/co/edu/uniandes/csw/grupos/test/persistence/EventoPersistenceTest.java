@@ -124,20 +124,20 @@ public class EventoPersistenceTest {
         EventoEntity entity = em.find(EventoEntity.class, result.getId());
         
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-//        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
     }
 
-//    /**
-//     * Prueba para consultar un Evento.
-//     */
-//    @Test
-//    public void getEventoTest() {
-//        EventoEntity entity = data.get(0);
-//        EventoEntity newEntity = eventoPersistence.find(dataGrupos.get(0).getId(), entity.getId());
-//        Assert.assertNotNull(newEntity);
-//        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
-//        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
-//    }
+    /**
+     * Prueba para consultar un Evento.
+     */
+    @Test
+    public void getEventoTest() {
+        EventoEntity entity = data.get(0);
+        EventoEntity newEntity = eventoPersistence.find(dataGrupos.get(0).getId(), entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+    }
 
     /**
      * Prueba para eliminar un Evento.
@@ -166,7 +166,7 @@ public class EventoPersistenceTest {
         EventoEntity resp = em.find(EventoEntity.class, entity.getId());
         
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
-       // Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
         
     }
     

@@ -125,8 +125,7 @@ public class CiudadanoLogicTest
         CiudadanoEntity entity = em.find(CiudadanoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
-        Assert.assertEquals(newEntity.getContraseña(), entity.getContraseña());
+        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
     }
 
     /**
@@ -157,7 +156,7 @@ public class CiudadanoLogicTest
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-        Assert.assertEquals(entity.getContraseña(), resultEntity.getContraseña());
+        Assert.assertEquals(entity.getContrasena(), resultEntity.getContrasena());
     }
 
     /**
@@ -176,7 +175,7 @@ public class CiudadanoLogicTest
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getContraseña(), resp.getContraseña());
+        Assert.assertEquals(pojoEntity.getContrasena(), resp.getContrasena());
     }
 
     /**

@@ -112,8 +112,7 @@ public class AdministradorPersistenceTest {
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
-        Assert.assertEquals(newEntity.getContraseña(), entity.getContraseña());
+        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
     }
 
     /**
@@ -144,8 +143,7 @@ public class AdministradorPersistenceTest {
         newEntity = administradorPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
-        Assert.assertEquals(entity.getUsuario(), newEntity.getUsuario());
-        Assert.assertEquals(entity.getContraseña(), newEntity.getContraseña());
+        Assert.assertEquals(entity.getContrasena(), newEntity.getContrasena());
     }
 
     /**
@@ -164,8 +162,7 @@ public class AdministradorPersistenceTest {
         AdministradorEntity resp = em.find(AdministradorEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(newEntity.getUsuario(), resp.getUsuario());
-        Assert.assertEquals(newEntity.getContraseña(), resp.getContraseña());
+        Assert.assertEquals(newEntity.getContrasena(), resp.getContrasena());
         
     }
 

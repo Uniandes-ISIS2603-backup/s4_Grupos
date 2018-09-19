@@ -16,8 +16,7 @@ import javax.persistence.Entity;
 public class PersonaEntity extends BaseEntity implements Serializable
 {
     private String nombre;
-    private long usuario;
-    private String contraseña;
+    private String contrasena;
     
     public PersonaEntity()
     {
@@ -32,20 +31,12 @@ public class PersonaEntity extends BaseEntity implements Serializable
         this.nombre = nombre;
     }
 
-    public long getUsuario() {
-        return usuario;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setUsuario(long usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
    
 }
