@@ -25,6 +25,7 @@ public abstract class PersonaDTO implements Serializable
      */
     public PersonaDTO()
     {
+        
     }
     
     /**

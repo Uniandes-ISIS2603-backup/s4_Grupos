@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.ComentarioDTO;
 import co.edu.uniandes.csw.grupos.ejb.ComentarioLogic;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,7 +23,7 @@ import javax.ws.rs.Produces;
 
 
 /**
- *
+ * Clase que representa un ComentarioResource
  * @author Daniel Augusto Ramirez Dueñas
  */
 @Path("comentarios")
@@ -49,19 +51,24 @@ public class ComentarioResource
     }
     
     /**
-     * Consulta los comentario de un usuario
+     * Consulta todos los comentario de un usuario
      * @param comentario
      * @return los comentarios de un usuario
      */
     @GET
-    public ComentarioDTO consultarComentario()
+    public List<ComentarioDTO> consultarComentarios()
     {
-        return new ComentarioDTO();
+        return new ArrayList<ComentarioDTO>();
     }
     
+    /**
+     * Consulta un comentario de un usario dando el identificador del comentario
+     * @param comentariosId identificador del comentario que se va a consultar
+     * @return comentario de un usuario 
+     */
     @GET
     @Path("{comentariosId: \\d+}")
-    public ComentarioDTO consultarUnCiudadano(@PathParam("comentariosId") Long comentariosId)
+    public ComentarioDTO consultarUnComentario(@PathParam("comentariosId") Long comentariosId)
     {
         return new ComentarioDTO();
     }
