@@ -44,9 +44,10 @@ public class AdministradorResource {
      * por la base de datos.     *
      * @param administrador {@link AdministradorDTO} - EL administrador que se desea a�adir.
      * @return JSON {@link AdministradorDTO} - El administrador guardado con su id
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @POST
-    public AdministradorDTO createAdministrador(AdministradorDTO administrador) {
+    public AdministradorDTO createAdministrador(AdministradorDTO administrador) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: input: {0}", administrador.toString());
         AdministradorDTO administradorDTO;
         administradorDTO = new AdministradorDTO(administradorLogic.createAdministrador(administrador.ToEntity()));
@@ -96,10 +97,11 @@ public class AdministradorResource {
      * @return JSON {@link AdministradorDTO} - El adminisrador guardado.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el administrador.
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @PUT
     @Path("{administradorId: \\d+}")
-    public AdministradorDetailDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) {
+    public AdministradorDetailDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: input: administradorId: {0} , administrador: {1}", new Object[]{administradorId, administrador.toString()});
         administrador.setId(administradorId);
         if (administradorLogic.getAdministrador(administradorId) == null) {

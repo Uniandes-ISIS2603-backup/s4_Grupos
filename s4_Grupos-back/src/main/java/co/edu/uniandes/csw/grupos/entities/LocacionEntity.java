@@ -26,7 +26,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
      * Representa un el distrito al cual pertenece la locacion
      */
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private DistritoEntity distrito;
     
     /**

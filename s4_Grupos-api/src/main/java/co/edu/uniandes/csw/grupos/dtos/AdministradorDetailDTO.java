@@ -53,6 +53,7 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
      * @return Nueva objeto AuthorEntity.
      *
      */
+      @Override
     public AdministradorEntity ToEntity() {
         AdministradorEntity administradorEntity = super.ToEntity();
         if (gruposDeInteres != null) {
@@ -84,6 +85,10 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
         this.gruposDeInteres = gruposDeInteres;
     }
     
+    /**
+     * Método toString
+     * @return cadena de caracteres
+     */
     @Override
     public String toString() {
         return super.toString();

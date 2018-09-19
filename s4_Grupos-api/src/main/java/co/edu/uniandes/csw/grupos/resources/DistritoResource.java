@@ -55,7 +55,7 @@ private final static String NOEXISTE1="El recurso /distritos/";
      * inválido 
      */
     @POST
-    public DistritoDetailDTO createDistrito(DistritoDTO distrito) throws BusinessLogicException {
+    public DistritoDetailDTO createDistrito(DistritoDetailDTO distrito) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "DistritoResource createDistrito: input: {0}", distrito.toString());
         DistritoDetailDTO nuevoDistritoDTO = new DistritoDetailDTO(distritoLogic.createDistrito(distrito.toEntity()));
         LOGGER.log(Level.INFO, "DistritoResource createDistrito: output: {0}", nuevoDistritoDTO.toString());

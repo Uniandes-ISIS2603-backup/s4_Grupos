@@ -44,6 +44,25 @@ public class EventoLogic {
     public EventoEntity createEvento(Long gruposId, EventoEntity eventoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear evento");
         GrupoDeInteresEntity grupo = grupoPersistence.find(gruposId);
+        if(grupoPersistence.find(gruposId)==null)
+        {
+            throw new BusinessLogicException("El grupo no es valido");
+        }
+        if((eventoEntity.getId() == null || eventoEntity.getId() < 0) || eventoEntity.getId().toString().contains("[a-zA-Z]+"))
+        {
+            throw new BusinessLogicException("El id no es válido");
+        }
+        if (persistence.find(gruposId, eventoEntity.getId())!=null) {
+            throw new BusinessLogicException("El id ya existe");
+        }
+        if(eventoEntity.getNombre() == null || eventoEntity.getNombre().isEmpty())
+        {
+            throw new BusinessLogicException("El nombre no es válido");
+        }
+        if(eventoEntity.getFecha() == null || eventoEntity.getFecha().isEmpty())
+        {
+            throw new BusinessLogicException("La fecha no es válida");
+        }
         eventoEntity.setGrupoDeInteres(grupo);
         LOGGER.log(Level.INFO, "Termina proceso de creación del evento");
         return persistence.create(eventoEntity);
@@ -82,10 +101,22 @@ public class EventoLogic {
      * @param eventoEntity Instancia de EventoEntity con los nuevos datos.
      * @param gruposId id del Grupo el cual sera padre del Evento actualizado.
      * @return Instancia de EventoEntity con los datos actualizados.
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      *
      */
-    public EventoEntity updateEvento(Long gruposId, EventoEntity eventoEntity) {
+    public EventoEntity updateEvento(Long gruposId, EventoEntity eventoEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el evento con id = {0} del grupo con id = " + gruposId, eventoEntity.getId());
+        if(grupoPersistence.find(gruposId)==null)
+        {
+            throw new BusinessLogicException("El grupo no es valido");
+        }
+        if((eventoEntity.getId() == null || eventoEntity.getId() < 0) || eventoEntity.getId().toString().contains("[a-zA-Z]+"))
+        {
+            throw new BusinessLogicException("El id no es válido");
+        }
+        if (persistence.find(gruposId, eventoEntity.getId())!=null) {
+            throw new BusinessLogicException("El id ya existe");
+        }
         GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
         eventoEntity.setGrupoDeInteres(grupoEntity);
         persistence.update(eventoEntity);
@@ -115,7 +146,7 @@ public class EventoLogic {
         if (old.getLocacion() != null) {
             throw new BusinessLogicException("No se puede borrar el evento con id = " + eventosId + " porque tiene una locacion asociada");
         }
-        persistence.delete(eventosId);
+        persistence.delete(old.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar el evento con id = {0} del grupo con id = " + gruposId, eventosId);
     }
     

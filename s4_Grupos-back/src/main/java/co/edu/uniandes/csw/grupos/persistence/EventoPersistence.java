@@ -25,6 +25,14 @@ public class EventoPersistence {
 
     @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
+    
+    /**
+     * Constructor por defecto
+     */
+    public EventoPersistence()
+    {
+        
+    }
 
     /**
      * Método para persisitir la entidad en la base de datos.
@@ -87,6 +95,7 @@ public class EventoPersistence {
     public void delete(Long idEvento) {
         LOGGER.log(Level.INFO, "Borrando el evento por el id = {0}", idEvento);
         EventoEntity eventoEntity = em.find(EventoEntity.class, idEvento);
+        em.refresh(eventoEntity);
         em.remove(eventoEntity);
     }   
     

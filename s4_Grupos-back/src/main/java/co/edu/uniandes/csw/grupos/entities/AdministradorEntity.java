@@ -27,26 +27,6 @@ public class AdministradorEntity extends PersonaEntity implements Serializable {
     public AdministradorEntity()
     {
         super();
-    }   
-    
-    @Override
-    public void setContrasena(String contrasena) {
-        super.getContrasena(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getContrasena() {
-        return super.getContrasena(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        super.setNombre(nombre); 
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre();
     }
     
     /**

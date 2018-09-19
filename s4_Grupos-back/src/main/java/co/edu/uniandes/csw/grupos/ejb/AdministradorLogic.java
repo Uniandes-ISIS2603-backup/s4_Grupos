@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.AdministradorPersistence;
+import static com.gs.collections.impl.block.factory.StringPredicates.contains;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,10 +33,26 @@ public class AdministradorLogic {
      * Se encarga de crear un Administrador en la base de datos.
      *
      * @param administradorEntity Objeto de AdministradorEntity con los datos nuevos
+     * throws BusinessLogicException lanza la excepción cuando el administrador ya existe o noe es valido
      * @return Objeto de AdministradorEntity con los datos nuevos y su ID.
      */
-    public AdministradorEntity createAdministrador(AdministradorEntity administradorEntity) {
+    public AdministradorEntity createAdministrador(AdministradorEntity administradorEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del administrador");
+        if((administradorEntity.getId() == null || administradorEntity.getId() < 0) || administradorEntity.getId().toString().contains("[a-zA-Z]+"))
+        {
+            throw new BusinessLogicException("El id no es válido");
+        }
+        if (persistence.find(administradorEntity.getId())!=null) {
+            throw new BusinessLogicException("El id ya existe");
+        }
+        if(administradorEntity.getNombre() == null || administradorEntity.getNombre().isEmpty())
+        {
+            throw new BusinessLogicException("El nombre no es válido");
+        }
+        if(administradorEntity.getContrasena() == null || administradorEntity.getContrasena().isEmpty())
+        {
+            throw new BusinessLogicException("La contraseña no es válida");
+        }
         AdministradorEntity newAdministradorEntity = persistence.create(administradorEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del administrador");
         return newAdministradorEntity;
@@ -76,8 +93,12 @@ public class AdministradorLogic {
      * @param administradorEntity Instancia de AuthorEntity con los nuevos datos.
      * @return Instancia de AdministradorEntity con los datos actualizados.
      */
-    public AdministradorEntity updateAdministrador(Long administradorId, AdministradorEntity administradorEntity) {
+    public AdministradorEntity updateAdministrador(Long administradorId, AdministradorEntity administradorEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el administrador con id = {0}", administradorId);
+        if(administradorEntity.getId() == null || administradorEntity.getId() < 0)
+        {
+            throw new BusinessLogicException("El id no es válido");
+        }
         AdministradorEntity newAdministradorEntity = persistence.update(administradorEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el administrador con id = {0}", administradorId);
         return newAdministradorEntity;
