@@ -139,6 +139,7 @@ public class AdministradorLogicTest {
         }
     }
 
+    
     /**
      * Prueba para consultar un Administrador.
      */
