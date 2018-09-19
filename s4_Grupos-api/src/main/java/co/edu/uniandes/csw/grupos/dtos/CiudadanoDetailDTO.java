@@ -79,8 +79,7 @@ public class CiudadanoDetailDTO extends CiudadanoDTO
      */
     public void setGruposDeInteres(List<GrupoDeInteresDTO> gruposDeInteres) {
         this.gruposDeInteres = gruposDeInteres;
-    }
-    
+    }  
     
 }
 

@@ -7,17 +7,19 @@ package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import java.io.Serializable;
-import java.util.Date;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
  * @author ac.beltrans
  */
+
 public class EventoDTO implements Serializable {
 
     private Long id;
     private String nombre;
-    private Date fecha;
+    private String fecha;
 
     /*
     * Relaci�n a una locaci�n 
@@ -36,47 +38,45 @@ public class EventoDTO implements Serializable {
      */
     public EventoDTO() {
     }
-
-    EventoDTO(EventoEntity event) {
-        
-        // HAY QUE HACER ESTE CONSTRUCTOR
-        
-        
+    /**
+     * Constructor a partir de la entidad
+     *
+     * @param eventoEntity La entidad del evento
+    */
+    public EventoDTO(EventoEntity eventoEntity) {
+        if (eventoEntity != null) {
+         this.nombre = eventoEntity.getNombre();
+         this.fecha = eventoEntity.getFecha();
+          if (eventoEntity.getGrupoDeInteres() != null) {
+              this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
+            }else {
+              this.grupoDeInteres = null;
+            }
+            if (eventoEntity.getLocacion() != null) {
+             this.locacion = new LocacionDTO(eventoEntity.getLocacion());
+            }else {
+             this.locacion = null;
+         }
+       }
     }
-
+  
       /**
-       * Constructor a partir de la entidad
+       * M�todo para transformar el DTO a una entidad.
        *
-       * @param eventoEntity La entidad del evento
+       * @return La entidad del evento asociado.
        */
-//      public EventoDTO(EventoEntity eventoEntity) {
-//          if (eventoEntity != null) {
-//            this.nombre = eventoEntity.getNombre();
-//            this.fecha = eventoEntity.getFecha();
-//            this.id = eventoEntity.getId();
-//            if (eventoEntity.getGrupoDeInteres() != null) {
-//                this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
-//            } else {
-//                this.grupoDeInteres = null;
-//            }
-//        }
-//      }
-//  
-//      /**
-//       * M�todo para transformar el DTO a una entidad.
-//       *
-//       * @return La entidad del evento asociado.
-//       */
-//      public EventoEntity toEntity() {
-//        EventoEntity eventoEntity = new EventoEntity();
-//        eventoEntity.setNombre(this.nombre);
-//        eventoEntity.setFecha(this.fecha);
-//        eventoEntity.setId(this.id);
-//        if (this.grupoDeInteres != null) {
-//            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
-//        }
-//        return eventoEntity;
-//      }
+      public EventoEntity toEntity() {
+        EventoEntity eventoEntity = new EventoEntity();
+        eventoEntity.setNombre(this.nombre);
+        eventoEntity.setFecha(this.fecha);
+        if (this.grupoDeInteres != null) {
+            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
+        }
+        if (this.locacion != null) {
+            eventoEntity.setLocacion(this.locacion.toEntity());
+        }
+        return eventoEntity;
+      }
      
      /**
      * Devuelve el id del evento
@@ -120,7 +120,7 @@ public class EventoDTO implements Serializable {
      *
      * @return fecha evento
      */
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -129,7 +129,7 @@ public class EventoDTO implements Serializable {
      *
      * @param fecha fecha evento a modificar
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -168,12 +168,14 @@ public class EventoDTO implements Serializable {
     public void setGrupoDeInteres(GrupoDeInteresDTO grupoDeInteres) {
         this.grupoDeInteres = grupoDeInteres;
     }
-
-    public EventoEntity toEntity() {
-
-        // HAY QUE IMPLEMENTAR ESTE TO ENTITY
-        
-        return new EventoEntity();
-
+    
+    /**
+     * Método toString
+     * @return Cadena de caracteres
+     */
+    @Override
+    public String toString()
+    {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }

@@ -16,9 +16,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public abstract class PersonaDTO implements Serializable
 {
-    private Long usuario;
-    private String nombre;
-    private String contraseña;
+    protected Long id;
+    protected String nombre;
+    protected String contrasena;
     
     /**
      * Constructor por defecto
@@ -38,45 +38,84 @@ public abstract class PersonaDTO implements Serializable
     {
         if (personaEntity != null)
         {
-            this.usuario = personaEntity.getUsuario();
+            this.id = personaEntity.getId();
             this.nombre = personaEntity.getNombre();
-            this.contraseña = personaEntity.getContraseña();
+            this.contrasena = personaEntity.getContrasena();
         }   
     }
-
-    public Long getUsuario() {
-        return usuario;
+    
+    /**
+     * Devuelve el Id de la Persona
+     *
+     * @return el id
+     */
+    public Long getId() {
+        return id;
     }
-
-    public void setUsuario(Long usuario) {
-        this.usuario = usuario;
+    
+    /**
+     * Modifica el Id de la Persona
+     *
+     * @param id el id de la Persona
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
-
+    
+    /**
+     * Devuelve el nombre de la Persona
+     *
+     * @return el nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    
+    /**
+     * Modifica el nombre de la Persona
+     *
+     * @param nombre el nombre de la Persona
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    
+    /**
+     * Devuelve la contrasena de la Persona
+     *
+     * @return la contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
     }
     
+    /**
+     * Modifica la contrasena de la Persona
+     *
+     * @param contrasena la contrasena de la Persona
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+    
+    /**
+       * M�todo para transformar el DTO a una entidad.
+       *
+       * @return La entidad de la Persona asociada.
+       */
     public PersonaEntity toEntity()
     {
         PersonaEntity personaEntity = new PersonaEntity();
-        personaEntity.setUsuario(this.usuario);
+        personaEntity.setId(this.id);
         personaEntity.setNombre(this.nombre);
-        personaEntity.setContraseña(this.contraseña);
+        personaEntity.setContrasena(this.contrasena);
         return personaEntity;
     }
     
+    /**
+     * Método toString
+     * @return la cadena de caracteres
+     */
     @Override
     public String toString()
     {

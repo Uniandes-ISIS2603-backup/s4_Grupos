@@ -42,25 +42,25 @@ public class EventoLogic {
      *
      */
     public EventoEntity createEvento(Long gruposId, EventoEntity eventoEntity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de crear review");
+        LOGGER.log(Level.INFO, "Inicia proceso de crear evento");
         GrupoDeInteresEntity grupo = grupoPersistence.find(gruposId);
         eventoEntity.setGrupoDeInteres(grupo);
         LOGGER.log(Level.INFO, "Termina proceso de creación del evento");
         return persistence.create(eventoEntity);
     }
 
-//    /**
-//     * Obtiene la lista de los registros de eventos que pertenecen a un grupo de interes.
-//     *
-//     * @param gruposId id del GrupoDeInteres el cual es padre de los eventos.
-//     * @return Colección de objetos de EventoEntity.
-//     */
-//    public List<EventoEntity> getEventos(Long gruposId) {
-//        LOGGER.log(Level.INFO, "Inicia proceso de consultar los eventos asociados al grupo con id = {0}", gruposId);
-//        GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
-//        LOGGER.log(Level.INFO, "Termina proceso de consultar los eventos asociados al grupo con id = {0}", gruposId);
-//        return grupoEntity.getEventos();
-//    }
+    /**
+     * Obtiene la lista de los registros de eventos que pertenecen a un grupo de interes.
+     *
+     * @param gruposId id del GrupoDeInteres el cual es padre de los eventos.
+     * @return Colección de objetos de EventoEntity.
+     */
+    public List<EventoEntity> getEventos(Long gruposId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar los eventos asociados al grupo con id = {0}", gruposId);
+        GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar los eventos asociados al grupo con id = {0}", gruposId);
+        return grupoEntity.getEventos();
+    }
 
     /**
      * Obtiene los datos de una instancia de Evento a partir de su ID. La
@@ -112,7 +112,9 @@ public class EventoLogic {
             throw new BusinessLogicException("No se puede borrar el autor con id = " + eventosId + " porque tiene premios asociados");
         }
         
-        //falta locacion
+        if (old.getLocacion() != null) {
+            throw new BusinessLogicException("No se puede borrar el evento con id = " + eventosId + " porque tiene una locacion asociada");
+        }
         persistence.delete(eventosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el evento con id = {0} del grupo con id = " + gruposId, eventosId);
     }
