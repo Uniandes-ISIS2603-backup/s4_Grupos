@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.test.logic;
 
 import co.edu.uniandes.csw.grupos.ejb.AdministradorLogic;
 import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.AdministradorPersistence;
 import java.util.ArrayList;
