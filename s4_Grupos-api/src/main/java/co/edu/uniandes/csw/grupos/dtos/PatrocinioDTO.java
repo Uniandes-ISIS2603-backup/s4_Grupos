@@ -45,6 +45,7 @@ public class PatrocinioDTO implements Serializable
      */
     public PatrocinioDTO ()
     {
+           
     }
     
     /**
@@ -56,7 +57,8 @@ public class PatrocinioDTO implements Serializable
     
     
     public PatrocinioDTO(PatrocinioEntity patrocinioEntity) {
-       
+       setNombre(patrocinioEntity.getNombre());
+       setValor(patrocinioEntity.getValor());
     }
     
 
