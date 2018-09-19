@@ -100,18 +100,14 @@ public class AdministradorLogicTest {
             entity.setGruposDeInteres(new ArrayList<>());
             data.add(entity);
         }
-        AdministradorEntity administrador = data.get(2);
-        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
-        entity.getAdministradores().add(administrador);
-        em.persist(entity);
-        administrador.getGruposDeInteres().add(entity);
     }
 
     /**
      * Prueba para crear un Administrador
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @Test
-    public void createAdministradorTest() {
+    public void createAdministradorTest() throws BusinessLogicException {
         AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
         AdministradorEntity result = administradorLogic.createAdministrador(newEntity);
         Assert.assertNotNull(result);
@@ -155,9 +151,10 @@ public class AdministradorLogicTest {
 
     /**
      * Prueba para actualizar un Administrador.
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @Test
-    public void updateAdministradorTest() {
+    public void updateAdministradorTest() throws BusinessLogicException {
         AdministradorEntity entity = data.get(0);
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
 
@@ -175,7 +172,7 @@ public class AdministradorLogicTest {
     /**
      * Prueba para eliminar un Administrador
      *
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @Test
     public void deleteAdministradorTest() throws BusinessLogicException {

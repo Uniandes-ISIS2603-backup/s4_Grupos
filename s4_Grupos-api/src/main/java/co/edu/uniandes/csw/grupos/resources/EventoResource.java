@@ -79,7 +79,7 @@ public class EventoResource {
      */
     @GET
     @Path("{idEvento:\\d+}")
-    public EventoDTO getEvento(@PathParam("gruposId") Long gruposId, @PathParam("idEvento") Long idEvento) throws WebApplicationException {
+    public EventoDTO getEvento(@PathParam("gruposId") Long gruposId, @PathParam("idEvento") Long idEvento) throws WebApplicationException, BusinessLogicException {
         LOGGER.log(Level.INFO, "EventoResource getEvento: input: {0}", idEvento);
         EventoEntity entity = eventoLogic.getEvento(gruposId, idEvento);
         if (entity == null) {

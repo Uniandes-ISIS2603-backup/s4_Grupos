@@ -22,19 +22,39 @@ public class PersonaEntity extends BaseEntity implements Serializable
     {
         super();
     }
-
+    
+    /**
+     * Devuelve el nombre de la Persona
+     *
+     * @return el nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    
+    /**
+     * Modifica el nombre de la Persona
+     *
+     * @param nombre el nombre de la Persona
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    /**
+     * Devuelve la contrasena de la Persona
+     *
+     * @return la contrasena
+     */
     public String getContrasena() {
         return contrasena;
     }
-
+    
+    /**
+     * Modifica la contrasena de la Persona
+     *
+     * @param contrasena la contrasena de la Persona
+     */
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }

@@ -25,6 +25,14 @@ public class AdministradorPersistence {
 
     @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
+    
+    /**
+     * Constructor por defecto
+     */
+    public AdministradorPersistence ()
+    {
+        super();
+    }
 
     /**
      * Método para persisitir la entidad en la base de datos.
