@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -50,6 +51,15 @@ public class LocacionDTO implements Serializable
     private Long latitud;
     private Long longitud;
     private Long id;
+    private DistritoDTO distrito;
+
+    public DistritoDTO getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(DistritoDTO distrito) {
+        this.distrito = distrito;
+    }
     
     /**
      * Constructor por defecto
@@ -72,6 +82,7 @@ public class LocacionDTO implements Serializable
         setLongitud(locaionEntiy.getLongitud());
         setLocacion(locaionEntiy.getLocacion());
         setTipo(locaionEntiy.getTipo());
+        distrito= new DistritoDTO(locaionEntiy.getDistrito());
     }
     
     
@@ -199,6 +210,7 @@ public class LocacionDTO implements Serializable
          locacionEntity.setTipo(this.tipo);
          locacionEntity.setLatitud(this.latitud);
          locacionEntity.setLongitud(this.longitud);
+         locacionEntity.setDistrito(distrito.toEntity());
         return locacionEntity;
     }
     
