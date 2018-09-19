@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
-import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
 import java.util.List;
@@ -16,8 +15,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
- * @author estudiante
+ * Clase que representa un ComentarioLogic
+ * @author Daniel Augusto Ramirez Dueñas
  */
 @Stateless
 public class ComentarioLogic
@@ -90,15 +89,6 @@ public class ComentarioLogic
      */
     public void deleteComentario(Long comentariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el comentario con id = {0}", comentariosId);
-//        List<GrupoDeInteresEntity> gruposDeInteres = getComentario(comentariosId).getGruposDeInteres();
-//        if (gruposDeInteres != null && !gruposDeInteres.isEmpty()) {
-//            throw new BusinessLogicException("No se puede borrar el comentario con id = " + comentariosId + " porque tiene books asociados");
-//        }
-        
-//        List<PrizeEntity> prizes = getComentario(comentariosId).getPrizes();
-//        if (prizes != null && !prizes.isEmpty()) {
-//            throw new BusinessLogicException("No se puede borrar el comentario con id = " + comentariosId + " porque tiene premios asociados");
-//        }
         persistence.delete(comentariosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el comentario con id = {0}", comentariosId);
     }    

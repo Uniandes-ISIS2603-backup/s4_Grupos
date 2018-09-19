@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.persistence;
 
 
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
+import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -86,5 +88,32 @@ public class LocacionPersistence {
         LOGGER.log(Level.INFO, "Borrando la locacion con el id", idLocacion);
         LocacionEntity locacionEntity = em.find(LocacionEntity.class, idLocacion);
         em.remove(locacionEntity);
+    }
+    
+     /**
+     * Busca si hay alguna distrito con el nombre que se envía de argumento
+     *
+     * @param name: Nombre de la locacion que se está buscando
+     * @return null si no existe ninguna locacion con el nombre del argumento.
+     * Si existe alguna devuelve la primera.
+     */
+    public LocacionEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando locacion por nombre ", name);
+        // Se crea un query para buscar locacion con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From LocacionEntity e where e.name = :name", LocacionEntity.class);
+        // Se remplaza el placeholder ":name" con el valor del argumento 
+        query = query.setParameter("name", name);
+        // Se invoca el query se obtiene la lista resultado
+        List<LocacionEntity> sameName = query.getResultList();
+        LocacionEntity result;
+        if (sameName == null) {
+            result = null;
+        } else if (sameName.isEmpty()) {
+            result = null;
+        } else {
+            result = sameName.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar locaion por nombre ", name);
+        return result;
     }
 }

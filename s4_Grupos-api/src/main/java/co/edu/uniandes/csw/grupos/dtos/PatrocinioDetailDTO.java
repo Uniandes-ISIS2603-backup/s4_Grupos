@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
+import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,20 +51,40 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
        */
     
       public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
-
+          super( patrocinadorEntity);
+           eventos  = new ArrayList<>();
+          if(patrocinadorEntity != null)
+          {
+              if(patrocinadorEntity.getEventos() != null)
+              {
+                    for(EventoEntity enty : patrocinadorEntity.getEventos()  )
+                     {
+                        eventos.add(new EventoDTO(enty));
+                     }
+              }
+          }
       }
-  
-      /**
-       * Transformar el DTO a una entidad
-       *
-       * @return La entidad que representa un administrador.
-       */
+       
     
-      public PatrocinioEntity toEntity() {
-          
-          
-          return  new PatrocinioEntity();
-      }
+         /**
+     * Transformar un DTO a un Entity
+     *
+     * @return El DTO de el patrocinio para transformar a Entity
+     */
+    @Override
+    public PatrocinioEntity toEntity() {
+        PatrocinioEntity patroEntity = super.toEntity();
+        if (eventos != null) {
+            List<EventoEntity> gruposEntity = new ArrayList<>();
+            for (EventoDTO dtoEvento : eventos) {
+                
+                gruposEntity.add(dtoEvento.toEntity());
+            }
+             patroEntity.setEventos(gruposEntity);
+        }
+        
+        return patroEntity;        
+    }
 
     /**
      * Devuelve los eventos asociados al Patrocinador
@@ -80,8 +102,8 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
      * @param eventos eventos que se quieren modificar
      */
     
-    public void setEventos(List<EventoDTO> gruposDeInteres) {
-        this.eventos   = gruposDeInteres;
+    public void setEventos(List<EventoDTO> pEventos) {
+        this.eventos   = pEventos;
     }    
     
 }
