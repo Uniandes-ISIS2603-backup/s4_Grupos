@@ -50,9 +50,6 @@ public class EventoLogic {
         {
             throw new BusinessLogicException("El id no es válido");
         }
-        if (persistence.find(gruposId, eventoEntity.getId())!=null) {
-            throw new BusinessLogicException("El id ya existe");
-        }
         if(eventoEntity.getNombre() == null || eventoEntity.getNombre().isEmpty())
         {
             throw new BusinessLogicException("El nombre no es válido");
@@ -110,9 +107,6 @@ public class EventoLogic {
         if((eventoEntity.getId() == null || eventoEntity.getId() < 0) || eventoEntity.getId().toString().contains("[a-zA-Z]+"))
         {
             throw new BusinessLogicException("El id no es válido");
-        }
-        if (persistence.find(gruposId, eventoEntity.getId())!=null) {
-            throw new BusinessLogicException("El id ya existe");
         }
         GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
         eventoEntity.setGrupoDeInteres(grupoEntity);

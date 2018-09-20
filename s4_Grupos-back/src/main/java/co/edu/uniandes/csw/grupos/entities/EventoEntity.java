@@ -24,7 +24,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
     private String fecha;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne()
     private GrupoDeInteresEntity grupoDeInteres;
     
     @PodamExclude

@@ -39,7 +39,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.edu.uniandes.csw.grupos.resources.DistritoResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.GrupoDeInteresCiudadanoResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.GrupoDeInteresResource.class);
-        resources.add(co.edu.uniandes.csw.grupos.resources.LocacionResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.NoticiaResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.PatrocinioResource.class);
     }
     
