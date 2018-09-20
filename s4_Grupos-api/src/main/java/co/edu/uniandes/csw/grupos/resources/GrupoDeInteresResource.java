@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 @Path ("gruposdeinteres")
 @Produces ("application/json")
@@ -111,16 +111,16 @@ public class GrupoDeInteresResource {
      * Actualiza el grupo con el id recibido en la URL con la informacion
      * que se recibe en el cuerpo de la petición.
      *
-     * @param pGrupoId Identificador de el distrito que se desea
+     * @param pGrupoId Identificador de el grupo que se desea
      * actualizar. Este debe ser una cadena de dígitos.
-     * @param grupo {@link GrupoDeInteresDetailDTO} El distrito que se desea
+     * @param grupo {@link GrupoDeInteresDetailDTO} El grupo que se desea
      * guardar.
-     * @return JSON {@link GrupoDeInteresDetailDTO} - El distrito guardada.
+     * @return JSON {@link GrupoDeInteresDetailDTO} - El grupo guardado.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el distrito a
+     * Error de lógica que se genera cuando no se encuentra el grupo a
      * actualizar.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede actualizar el distrito.
+     * Error de lógica que se genera cuando no se puede actualizar el grupo.
      */    
     @PUT
     @Path("{nombregrupo: \\d+}")
@@ -141,16 +141,14 @@ public class GrupoDeInteresResource {
      /**
      * Borra el grupo con el id asociado recibido en la URL.
      *
-     * @param grupoId Identificador de la distrito que se desea borrar.
+     * @param grupoId Identificador del grupo que se desea borrar.
      * Este debe ser una cadena de dígitos.
-     *  @throws co.edu.uniandes.csw.distritostore.exceptions.BusinessLogicException
-     * cuando el distrito tiene autores asociados.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el distrito.  
+     * Error de lógica que se genera cuando no se encuentra el grupo.  
      */
     @DELETE
     @Path("{nombregrupo: \\d+}")
-    public void deleteGrupo(@PathParam("nombregrupo") Long grupoId) throws BusinessLogicException {
+    public void deleteGrupo(@PathParam("nombregrupo") Long grupoId) {
         
         LOGGER.log(Level.INFO, "GrupoDeInteresResource deleteGrupo: input: {0}", grupoId);
         GrupoDeInteresEntity entity = grupoLogic.getGrupo(grupoId);
