@@ -14,7 +14,7 @@ import javax.inject.Inject;
 /**
  * Clase que implementa la conexion con la persistencia para la entidad de Distrito.
  *
- * @authos sarabepu
+ * @author sarabepu
  */
 @Stateless
 public class DistritoLogic {
