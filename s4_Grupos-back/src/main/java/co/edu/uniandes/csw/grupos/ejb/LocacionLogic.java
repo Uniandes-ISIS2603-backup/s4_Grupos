@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.grupos.ejb;
 
+import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.DistritoPersistence;
@@ -27,6 +28,8 @@ public class LocacionLogic
 
     @Inject
     private LocacionPersistence persistence;
+     @Inject
+    private DistritoPersistence distritoPersistence;
 
     /**
      * Guardar un nuevo locacion
@@ -36,7 +39,7 @@ public class LocacionLogic
      * @throws BusinessLogicException Si el name es inválido o ya existe en la
      * persistencia.
      */
-    public LocacionEntity createLocacion    (LocacionEntity locacionEntity) throws BusinessLogicException {
+    public LocacionEntity createLocacion    (Long distritoId, LocacionEntity locacionEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del distrito");
         
         if (!validatename(locacionEntity.getLocacion())) {
@@ -45,6 +48,12 @@ public class LocacionLogic
         if (persistence.findByName(locacionEntity.getLocacion()) != null) {
             throw new BusinessLogicException("El name ya existe");
         }
+        DistritoEntity distrito = distritoPersistence.find(locacionEntity.getDistrito().getId());
+        if(distritoPersistence.find(distritoId)==null)
+        {
+            throw new BusinessLogicException("El distrito no es valido");
+        }
+        locacionEntity.setDistrito(distrito);
         persistence.create(locacionEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del distrito");
         return locacionEntity;

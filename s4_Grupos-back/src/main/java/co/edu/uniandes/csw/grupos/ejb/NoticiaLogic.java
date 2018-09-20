@@ -42,6 +42,9 @@ public class NoticiaLogic {
     public NoticiaEntity createNoticia(Long gruposId, NoticiaEntity noticiaEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear noticia");
         GrupoDeInteresEntity grupo = grupoPersistence.find(gruposId);
+        if (!validateString(noticiaEntity.getDescripcion())) {
+            throw new BusinessLogicException("La descripción es inválido");
+        }
         if(grupoPersistence.find(gruposId)==null)
         {
             throw new BusinessLogicException("El grupo no es valido");
@@ -111,5 +114,14 @@ public class NoticiaLogic {
         }
         persistence.delete(old.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
+    }
+    /**
+     * Verifica que el string no sea invalido.
+     *
+     * @param string a verificar
+     * @return true si el name es valido.
+     */
+    private boolean validateString(String string) {
+        return !(string == null || string.isEmpty());
     }
 }
