@@ -26,8 +26,9 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
+ * Pruebas de persistencia de Eventos
  *
- * @author ac.beltrans
+ * @author ISIS2603
  */
 @RunWith(Arquillian.class)
 public class EventoPersistenceTest {
@@ -43,7 +44,7 @@ public class EventoPersistenceTest {
 
     private List<EventoEntity> data = new ArrayList<EventoEntity>();
 	
-    private List<GrupoDeInteresEntity> dataGrupos = new ArrayList<GrupoDeInteresEntity>();
+    private List<GrupoDeInteresEntity> dataGrupoDeInteres = new ArrayList<GrupoDeInteresEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -97,12 +98,12 @@ public class EventoPersistenceTest {
         for (int i = 0; i < 3; i++) {
             GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
             em.persist(entity);
-            dataGrupos.add(entity);
+            dataGrupoDeInteres.add(entity);
         }
         for (int i = 0; i < 3; i++) {
             EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
             if (i == 0) {
-                entity.setGrupoDeInteres(dataGrupos.get(0));
+                entity.setGrupoDeInteres(dataGrupoDeInteres.get(0));
             }
             em.persist(entity);
             data.add(entity);
@@ -122,9 +123,9 @@ public class EventoPersistenceTest {
         Assert.assertNotNull(result);
 
         EventoEntity entity = em.find(EventoEntity.class, result.getId());
-        
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 
     /**
@@ -133,7 +134,7 @@ public class EventoPersistenceTest {
     @Test
     public void getEventoTest() {
         EventoEntity entity = data.get(0);
-        EventoEntity newEntity = eventoPersistence.find(dataGrupos.get(0).getId(), entity.getId());
+        EventoEntity newEntity = eventoPersistence.find(dataGrupoDeInteres.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
         Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
@@ -164,10 +165,8 @@ public class EventoPersistenceTest {
         eventoPersistence.update(newEntity);
 
         EventoEntity resp = em.find(EventoEntity.class, entity.getId());
-        
+
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        
     }
-    
 }

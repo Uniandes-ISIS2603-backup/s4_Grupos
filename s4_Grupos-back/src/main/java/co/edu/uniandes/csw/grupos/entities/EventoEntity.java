@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author ac.beltrans
  */
 @Entity
 public class EventoEntity extends BaseEntity implements Serializable{
