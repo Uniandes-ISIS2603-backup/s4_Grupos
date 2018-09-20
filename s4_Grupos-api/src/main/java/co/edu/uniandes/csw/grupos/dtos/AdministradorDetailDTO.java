@@ -10,8 +10,6 @@ import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *

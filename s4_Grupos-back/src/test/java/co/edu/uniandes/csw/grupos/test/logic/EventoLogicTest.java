@@ -194,15 +194,4 @@ public class EventoLogicTest {
         EventoEntity deleted = em.find(EventoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
-    /**
-     * Prueba para eliminarle un evento a un grupo del cual no pertenece.
-     *
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
-     */
-    @Test(expected = BusinessLogicException.class)
-    public void deleteEventoConGrupoDeInteresNoAsociadoTest() throws BusinessLogicException {
-        EventoEntity entity = data.get(0);
-        eventoLogic.deleteEvento(dataGrupo.get(0).getId(), entity.getId());
-    }
 }
