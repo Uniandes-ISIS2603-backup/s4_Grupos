@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package co.edu.uniandes.csw.grupos.ejb;
 
+package co.edu.uniandes.csw.grupos.ejb;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
-import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
-import co.edu.uniandes.csw.grupos.persistence.EventoPersistence;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.GrupoDeInteresPersistence;
+import co.edu.uniandes.csw.grupos.persistence.EventoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,11 +13,14 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad de
+ EventoLogic(EventoLogic).
  *
- * @author estudiante
+ * @author ac.beltrans
  */
 @Stateless
 public class EventoLogic {
+
     private static final Logger LOGGER = Logger.getLogger(EventoLogic.class.getName());
 
     @Inject
@@ -32,10 +30,10 @@ public class EventoLogic {
     private GrupoDeInteresPersistence grupoPersistence;
 
     /**
-     * Se encarga de crear un Evento en la base de datos.
+     * Se encarga de crear un EventoLogic en la base de datos.
      *
      * @param eventoEntity Objeto de EventoEntity con los datos nuevos
-     * @param gruposId id del Grupo el cual sera padre del nuevo Evento.
+     * @param gruposId id del GrupoDeInteres el cual sera padre del nuevo EventoLogic.
      * @return Objeto de EventoEntity con los datos nuevos y su ID.
      * @throws BusinessLogicException si gruposId no es el mismo que tiene el
      * entity.
@@ -52,9 +50,6 @@ public class EventoLogic {
         {
             throw new BusinessLogicException("El id no es válido");
         }
-        if (persistence.find(gruposId, eventoEntity.getId())!=null) {
-            throw new BusinessLogicException("El id ya existe");
-        }
         if(eventoEntity.getNombre() == null || eventoEntity.getNombre().isEmpty())
         {
             throw new BusinessLogicException("El nombre no es válido");
@@ -69,9 +64,9 @@ public class EventoLogic {
     }
 
     /**
-     * Obtiene la lista de los registros de eventos que pertenecen a un grupo de interes.
+     * Obtiene la lista de los registros de EventoLogic que pertenecen a un GrupoDeInteres.
      *
-     * @param gruposId id del GrupoDeInteres el cual es padre de los eventos.
+     * @param gruposId id del GrupoDeInteres el cual es padre de los Eventos.
      * @return Colección de objetos de EventoEntity.
      */
     public List<EventoEntity> getEventos(Long gruposId) {
@@ -82,12 +77,12 @@ public class EventoLogic {
     }
 
     /**
-     * Obtiene los datos de una instancia de Evento a partir de su ID. La
+     * Obtiene los datos de una instancia de EventoLogic a partir de su ID. La
      * existencia del elemento padre GrupoDeInteres se debe garantizar.
      *
      * @param gruposId El id del Grupo buscado
-     * @param eventosId Identificador del Evento a consultar
-     * @return Instancia de EventoEntity con los datos del Evento consultado.
+     * @param eventosId Identificador de la EventoLogic a consultar
+     * @return Instancia de EventoEntity con los datos del EventoLogic consultado.
      *
      */
     public EventoEntity getEvento(Long gruposId, Long eventosId) {
@@ -96,12 +91,11 @@ public class EventoLogic {
     }
 
     /**
-     * Actualiza la información de una instancia de Evento.
+     * Actualiza la información de una instancia de EventoLogic.
      *
      * @param eventoEntity Instancia de EventoEntity con los nuevos datos.
-     * @param gruposId id del Grupo el cual sera padre del Evento actualizado.
+     * @param gruposId id del GrupoDeInteres el cual sera padre del EventoLogic actualizado.
      * @return Instancia de EventoEntity con los datos actualizados.
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      *
      */
     public EventoEntity updateEvento(Long gruposId, EventoEntity eventoEntity) throws BusinessLogicException {
@@ -114,9 +108,6 @@ public class EventoLogic {
         {
             throw new BusinessLogicException("El id no es válido");
         }
-        if (persistence.find(gruposId, eventoEntity.getId())!=null) {
-            throw new BusinessLogicException("El id ya existe");
-        }
         GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
         eventoEntity.setGrupoDeInteres(grupoEntity);
         persistence.update(eventoEntity);
@@ -125,11 +116,11 @@ public class EventoLogic {
     }
 
     /**
-     * Elimina una instancia de Evento de la base de datos.
+     * Elimina una instancia de EventoLogic de la base de datos.
      *
      * @param eventosId Identificador de la instancia a eliminar.
-     * @param gruposId id del Grupo el cual es padre del Evento.
-     * @throws BusinessLogicException Si la reseña no esta asociada al grupo.
+     * @param gruposId id del GrupoDeInteres el cual es padre del EventoLogic.
+     * @throws BusinessLogicException Si la evento no esta asociada al grupo.
      *
      */
     public void deleteEvento(Long gruposId, Long eventosId) throws BusinessLogicException {
@@ -137,7 +128,7 @@ public class EventoLogic {
         EventoEntity old = getEvento(gruposId, eventosId);
         if (old == null) {
             throw new BusinessLogicException("El evento con id = " + eventosId + " no esta asociado a el grupo con id = " + gruposId);
-        }        
+        }
         List<PatrocinioEntity> patrocinios = getEvento(gruposId, eventosId).getPatrocinios();
         if (patrocinios != null && !patrocinios.isEmpty()) {
             throw new BusinessLogicException("No se puede borrar el autor con id = " + eventosId + " porque tiene premios asociados");
@@ -149,5 +140,4 @@ public class EventoLogic {
         persistence.delete(old.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar el evento con id = {0} del grupo con id = " + gruposId, eventosId);
     }
-    
 }

@@ -47,7 +47,8 @@ public class EventoResource {
      * @return JSON {@link EventoDTO} - El evento guardado con su id
      */
     @POST
-    public EventoDetailDTO createEvento(@PathParam("gruposId")Long gruposId, EventoDTO evento) throws BusinessLogicException {
+    public EventoDetailDTO createReview(@PathParam("gruposId") Long gruposId, EventoDTO evento) throws BusinessLogicException 
+    {
         LOGGER.log(Level.INFO, "EventoResource createEvento: input: {0}", evento.toString());
         EventoDetailDTO nuevoEventoDTO = new EventoDetailDTO(eventoLogic.createEvento(gruposId, evento.toEntity()));
         LOGGER.log(Level.INFO, "EventoResource createEvento: output: {0}", nuevoEventoDTO.toString());
@@ -61,29 +62,31 @@ public class EventoResource {
      * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
-    public List<EventoDTO> getEventos(@PathParam("gruposId") Long gruposId) {
-        LOGGER.log(Level.INFO, "EventoResource getEventos: input: {0}", gruposId);
-        List<EventoDTO> listaDTOs = listEntity2DTO(eventoLogic.getEventos(gruposId));
-        LOGGER.log(Level.INFO, "EventoGrupoDeInteres getGrupos: output: {0}", listaDTOs.toString());
+    public List<EventoDetailDTO> getEventos(@PathParam("gruposId") Long gruposId)
+    {
+         LOGGER.log(Level.INFO, "EventoResource getEventos: input: {0}", gruposId);
+        List<EventoDetailDTO> listaDTOs = listEntity2DetailDTO(eventoLogic.getEventos(gruposId));
+        LOGGER.log(Level.INFO, "eventoGruposResource getGrupos: output: {0}", listaDTOs.toString());
         return listaDTOs;
     }
 
     /**
      * Busca un evento por su nombre y lo retorna. 
      * @param gruposId El ID del grupo del cual se buscan los eventos
-     * @param idEvento Id del evento que se desea actualizar. Este debe
+     * @param id Id del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
      * @return JSON {@link EventoDTO} - El evento que se deseaba buscar.
      * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
      * Error de lógica que se genera cuando no se encuentra el evento.
      */
     @GET
-    @Path("{idEvento:\\d+}")
-    public EventoDTO getEvento(@PathParam("gruposId") Long gruposId, @PathParam("idEvento") Long idEvento) throws WebApplicationException, BusinessLogicException {
-        LOGGER.log(Level.INFO, "EventoResource getEvento: input: {0}", idEvento);
-        EventoEntity entity = eventoLogic.getEvento(gruposId, idEvento);
+    @Path("{id:\\d+}")
+    public EventoDTO getEvento(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id)
+    {
+        LOGGER.log(Level.INFO, "EventoResource getEvento: input: {0}", id);
+        EventoEntity entity = eventoLogic.getEvento(gruposId, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /gruposdeinteres/" + gruposId + "/eventos/" + idEvento + " no existe.", 404);
+            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/eventos/" + id + " no existe", 404);
         }
         EventoDTO eventoDTO = new EventoDTO(entity);
         LOGGER.log(Level.INFO, "EventoResource getEvento: output: {0}", eventoDTO.toString());
@@ -93,7 +96,7 @@ public class EventoResource {
     /**
      * Actualiza el evento con el nombre recibido desde la petici�n.
      * @param gruposId El ID del grupo de interes del cual se guarda el evento
-     * @param idEvento Id del evento que se desea actualizar. Este debe
+     * @param id Id del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
      * @param evento {@link EventoDTO} El evento que se desea guardar.
      * @return JSON {@link EventoDTO} - El evento guardado.
@@ -103,15 +106,16 @@ public class EventoResource {
      * Error de lógica que se genera cuando no se encuentra el evento.
      */
     @PUT
-    @Path("{idEvento:\\d+}")
-    public EventoDTO updateEvento(@PathParam("gruposId") Long gruposId, @PathParam("idEvento") Long idEvento, EventoDTO evento) throws BusinessLogicException, WebApplicationException {
-        LOGGER.log(Level.INFO, "ReviewResource updateReview: input: gruposId: {0} , idEvento: {1} , evento:{2}", new Object[]{gruposId, idEvento, evento.toString()});
-        if (idEvento.equals(evento.getId())) {
+     @Path("{id:\\d+}")
+    public EventoDTO updateEvento(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id,EventoDTO evento) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "EventoResource updateEvento: input: gruposId: {0} , id: {1} , evento:{2}", new Object[]{gruposId, id, evento.toString()});
+        if (id.equals(evento.getId())) {
             throw new BusinessLogicException("Los ids del Evento no coinciden.");
         }
-        EventoEntity entity = eventoLogic.getEvento(gruposId, idEvento);
+        EventoEntity entity = eventoLogic.getEvento(gruposId, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/eventos/" + idEvento + " no existe.", 404);
+            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/eventos/" + id + " no existe", 404);
 
         }
         EventoDTO eventoDTO = new EventoDTO(eventoLogic.updateEvento(gruposId, evento.toEntity()));
@@ -122,7 +126,7 @@ public class EventoResource {
     /**
      * Borra el evento con el nobre asociado recibido en la URL.
      * @param gruposId El ID del grupo del cual se va a eliminar el evento.
-     * @param idEvento Id del evento que se desea borrar. Este debe ser
+     * @param id Id del evento que se desea borrar. Este debe ser
      * una cadena de caracteres.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando ya existe el evento.
@@ -130,13 +134,13 @@ public class EventoResource {
      * Error de lógica que se genera cuando no se encuentra el evento.
      */
     @DELETE
-    @Path("{idEvento: \\d+}")
-    public void deleteEvento(@PathParam("gruposId") Long gruposId, @PathParam("idEvento") Long idEvento) throws WebApplicationException, BusinessLogicException {
-    	EventoEntity entity = eventoLogic.getEvento(gruposId, idEvento);
+    @Path("{id: \\d+}")
+    public void deleteEvento(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id) throws BusinessLogicException {
+       EventoEntity entity = eventoLogic.getEvento(gruposId, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/eventos/" + idEvento + " no existe.", 404);
+            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/eventos/" + id + " no existe", 404);
         }
-        eventoLogic.deleteEvento(gruposId, idEvento);
+        eventoLogic.deleteEvento(gruposId, id);
     }
     
     /**
@@ -149,10 +153,10 @@ public class EventoResource {
      * vamos a convertir a DTO.
      * @return la lista de eventos en forma DTO (json)
      */
-    private List<EventoDTO> listEntity2DTO(List<EventoEntity> entityList) {
-        List<EventoDTO> list = new ArrayList<>();
+    private List<EventoDetailDTO> listEntity2DetailDTO(List<EventoEntity> entityList) {
+        List<EventoDetailDTO> list = new ArrayList<>();
         for (EventoEntity entity : entityList) {
-            list.add(new EventoDTO(entity));
+            list.add(new EventoDetailDTO(entity));
         }
         return list;
     }

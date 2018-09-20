@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author ac.beltrans
  */
 @Entity
 public class EventoEntity extends BaseEntity implements Serializable{
@@ -24,7 +24,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
     private String fecha;
     
     @PodamExclude
-    @ManyToOne
+    @ManyToOne()
     private GrupoDeInteresEntity grupoDeInteres;
     
     @PodamExclude
@@ -35,13 +35,6 @@ public class EventoEntity extends BaseEntity implements Serializable{
     @OneToOne(mappedBy = "evento")
     private LocacionEntity locacion;
     
-    /**
-     * Constructor por defecto
-     */
-    public EventoEntity()
-    {
-        
-    }
         
     /**
      * Devuelve el nombre del evento.

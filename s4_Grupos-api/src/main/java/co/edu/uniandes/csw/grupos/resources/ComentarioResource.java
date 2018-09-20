@@ -7,8 +7,11 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.ComentarioDTO;
 import co.edu.uniandes.csw.grupos.ejb.ComentarioLogic;
+import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,6 +23,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 
 /**
@@ -32,6 +36,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ComentarioResource 
 {
+    private final static String NOEXISTE1= "/comentarios/";
+    private final static String NOEXISTE2= " no existe";
     private static final Logger LOGGER = Logger.getLogger(ComentarioResource.class.getName());
     
     @Inject
@@ -41,57 +47,97 @@ public class ComentarioResource
      * Crea un comentario
      * @param comentario
      * @return un comentario
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @POST
-    public ComentarioDTO  createComentario (ComentarioDTO comentario) 
+    public ComentarioDTO  createComentario (ComentarioDTO comentario) throws BusinessLogicException 
     {
-        //throws Exception
-        
-        return comentario;
+        LOGGER.log(Level.INFO, "ComentarioResource createComentario: input: {0}", comentario.toString());
+        ComentarioDTO nuevoComentarioDTO = new ComentarioDTO(comentarioLogic.createComentario(comentario.toEntity()));
+        LOGGER.log(Level.INFO, "ComentarioResource createComentario: output: {0}", nuevoComentarioDTO.toString());
+        return nuevoComentarioDTO;
     }
     
     /**
      * Consulta todos los comentario de un usuario
-     * @param comentario
      * @return los comentarios de un usuario
      */
     @GET
     public List<ComentarioDTO> consultarComentarios()
     {
-        return new ArrayList<ComentarioDTO>();
+        LOGGER.log(Level.INFO, "ComentarioResource getComentarios: input: {0}");
+        List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios());
+        LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}", listaDTOs.toString());
+        return listaDTOs;
     }
     
     /**
      * Consulta un comentario de un usario dando el identificador del comentario
+     * @param id
      * @param comentariosId identificador del comentario que se va a consultar
      * @return comentario de un usuario 
      */
     @GET
-    @Path("{comentariosId: \\d+}")
-    public ComentarioDTO consultarUnComentario(@PathParam("comentariosId") Long comentariosId)
+    @Path("{id: \\d+}")
+    public ComentarioDTO consultarUnComentario(@PathParam("id") Long id)
     {
-        return new ComentarioDTO();
+        LOGGER.log(Level.INFO, "ComentarioResource getComentario: input: {0}", id);
+        ComentarioEntity entity = comentarioLogic.getComentario(id);
+        if (entity == null) {
+            throw new WebApplicationException( NOEXISTE1 + id + NOEXISTE2, 404);
+        }
+        ComentarioDTO comentarioDTO = new ComentarioDTO(entity);
+        LOGGER.log(Level.INFO, "ComentarioResource getComentario: output: {0}", comentarioDTO.toString());
+        return comentarioDTO;
     }
     
     /**
      * Modifica un comentario con el texto que le entra por paramtro
-     * @param texto
+     * @param id
+     * @param comentario
      * @return el comentario modificado
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @PUT
     @Path("{id:\\d+}")
-    public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario)
+    public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
-        return new ComentarioDTO();
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0} , id: {1} , comentario:{2}", new Object[]{id, comentario.toString()});
+        if (id.equals(comentario.getId())) {
+            throw new BusinessLogicException("Los ids del Comentario no coinciden.");
+        }
+        ComentarioEntity entity = comentarioLogic.getComentario(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException(NOEXISTE1 + id + NOEXISTE2, 404);
+
+        }
+        ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}", comentarioDTO.toString());
+        return comentarioDTO;
     }
     
     /**
      * Elimina un comentario
+     * @param id
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
      */
     @DELETE
-    @Path("{comentariosId: \\d+}")
-    public void eliminarComentario(@PathParam("comentariosId")Long pId)
+    @Path("{id: \\d+}")
+    public void eliminarComentario(@PathParam("id")Long id) throws BusinessLogicException
     {
-        
+        ComentarioEntity entity = comentarioLogic.getComentario(id);
+        if (entity == null) {
+            throw new WebApplicationException(NOEXISTE1 + id + NOEXISTE2 , 404);
+        }
+        comentarioLogic.deleteComentario(id);
+    }
+
+    private List<ComentarioDTO> listEntityToDTO(List<ComentarioEntity> entityList) {
+        List<ComentarioDTO> list = new ArrayList<>();
+        for (ComentarioEntity entity : entityList) {
+            list.add(new ComentarioDTO(entity));
+        }
+        return list;       
     }
 }

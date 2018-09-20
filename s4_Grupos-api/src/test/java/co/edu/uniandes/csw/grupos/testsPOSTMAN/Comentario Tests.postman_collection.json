@@ -92,6 +92,42 @@
 			"response": []
 		},
 		{
+			"name": "Obtener un comentario ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a74d99a3-9392-4c9d-83d5-dcbf7b6947a8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"comentarios",
+						"1"
+					]
+				},
+				"description": "Obtiene un comentario de la aplicacion con el id que le entra como parametro"
+			},
+			"response": []
+		},
+		{
 			"name": "Editar comentario",
 			"event": [
 				{
@@ -115,7 +151,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"nombre\": \"Daniel\",\n\t\"texto\": \"Esto es un comentario\"\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"nombre\": \"Daniel\",\n\t\"texto\": \"Esto es un comentario replicado\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios/1",
@@ -132,41 +168,6 @@
 					]
 				},
 				"description": "Edita un comentario con la información suministrada"
-			},
-			"response": []
-		},
-		{
-			"name": "Obtener un comentario ",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a74d99a3-9392-4c9d-83d5-dcbf7b6947a8",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/s4_Grupos-api/api/comentarios",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s4_Grupos-api",
-						"api",
-						"comentarios"
-					]
-				},
-				"description": "Obtiene un comentario de la aplicacion con el id que le entra como parametro"
 			},
 			"response": []
 		},

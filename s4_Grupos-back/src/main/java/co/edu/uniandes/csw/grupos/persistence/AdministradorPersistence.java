@@ -67,7 +67,7 @@ public class AdministradorPersistence {
      * @return un administrador.
      */
     public AdministradorEntity find(Long idAdministrador) {
-        LOGGER.log(Level.INFO, "Consultando el administrador por id", idAdministrador);
+        //LOGGER.log(Level.INFO, "Consultando el administrador por id", idAdministrador);
         return em.find(AdministradorEntity.class, idAdministrador);
     }
 
@@ -77,7 +77,7 @@ public class AdministradorPersistence {
      * @return un administrador con los cambios aplicados.
      */
     public AdministradorEntity update(AdministradorEntity administradorEntity) {
-        LOGGER.log(Level.INFO, "Actualizando el administrador por el id", administradorEntity.getId());
+        //LOGGER.log(Level.INFO, "Actualizando el administrador por el id", administradorEntity.getId());
         return em.merge(administradorEntity);
     }
 
@@ -89,7 +89,7 @@ public class AdministradorPersistence {
      * @param idAdministrador: id correspondiente al administrador a borrar.
      */
     public void delete(Long idAdministrador) {
-        LOGGER.log(Level.INFO, "Borrando el administrador con el id", idAdministrador);
+        //LOGGER.log(Level.INFO, "Borrando el administrador con el id", idAdministrador);
         AdministradorEntity administradorEntity = em.find(AdministradorEntity.class, idAdministrador);
         em.remove(administradorEntity);
     }
