@@ -28,14 +28,6 @@ public class EventoPersistence {
     protected EntityManager em;
     
     /**
-     * Constructor por defecto
-     */
-    public EventoPersistence()
-    {
-        
-    }
-    
-    /**
      * Método para persisitir la entidad en la base de datos.
      *
      * @param eventoEntity objeto evento que se creará en la base de datos

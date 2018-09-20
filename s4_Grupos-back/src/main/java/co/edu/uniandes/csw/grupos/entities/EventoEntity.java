@@ -35,13 +35,6 @@ public class EventoEntity extends BaseEntity implements Serializable{
     @OneToOne(mappedBy = "evento")
     private LocacionEntity locacion;
     
-    /**
-     * Constructor por defecto
-     */
-    public EventoEntity()
-    {
-        
-    }
         
     /**
      * Devuelve el nombre del evento.
