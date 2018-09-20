@@ -38,14 +38,15 @@ public class PatrocinioLogic
     public PatrocinioEntity createPatrocinio    (PatrocinioEntity patrocinioEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del patrocinio");
         
-        if (!validatename(patrocinioEntity.getNombre())) {
-            throw new BusinessLogicException("El name es inválido");
-        }
-        if (persistence.findByName(patrocinioEntity.getNombre()) != null) {
-            throw new BusinessLogicException("El name ya existe");
-        }
+//        if (!validatename(patrocinioEntity.getNombre())) {
+//            throw new BusinessLogicException("El name es inválido");
+//        }
+//        if (persistence.findByName(patrocinioEntity.getNombre()) != null) {
+//            throw new BusinessLogicException("El name ya existe");
+//        }
         persistence.create(patrocinioEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del patrocinio");
+           LOGGER.log(Level.WARNING, patrocinioEntity.toString());
         return patrocinioEntity;
     }
 

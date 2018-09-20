@@ -28,7 +28,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author estudiante
+ * @author j.barbosaj
  */
 @RunWith(Arquillian.class)
 public class PatrocinioLogicTest {

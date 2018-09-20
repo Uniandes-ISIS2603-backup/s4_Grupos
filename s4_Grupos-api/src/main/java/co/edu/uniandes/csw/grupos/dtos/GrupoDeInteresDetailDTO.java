@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     
