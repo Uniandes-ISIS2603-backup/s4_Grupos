@@ -29,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"usuario\": 21,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"olakase\"\n}"
+					"raw": "{\n    \"id\": 1,\n    \"nombre\": \"Daniel Augusto Ramirez Duenas\",\n    \"contrasena\": \"olakase\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos",
@@ -118,7 +118,7 @@
 					"raw": "{\n    \"usuario\": 21,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"olakase\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/21",
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -128,10 +128,54 @@
 						"s4_Grupos-api",
 						"api",
 						"ciudadanos",
-						"21"
+						"1"
 					]
 				},
 				"description": "Consulta la lista de ciudadanos que se encuentran en la aplicación."
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Ciudadano",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ce941af-156c-41e7-b1ef-1bec988b2650",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"pepeGri\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos",
+						"3"
+					]
+				},
+				"description": "Edita la información de un ciudadano"
 			},
 			"response": []
 		},
@@ -162,7 +206,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/21",
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -172,54 +216,10 @@
 						"s4_Grupos-api",
 						"api",
 						"ciudadanos",
-						"21"
+						"1"
 					]
 				},
 				"description": "Borra a un ciudadano con usuario dado por paramtreo"
-			},
-			"response": []
-		},
-		{
-			"name": "Editar Ciudadano",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "7ce941af-156c-41e7-b1ef-1bec988b2650",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"usuario\": 21,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"olakase\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/21",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s4_Grupos-api",
-						"api",
-						"ciudadanos",
-						"21"
-					]
-				},
-				"description": "Edita la información de un ciudadano"
 			},
 			"response": []
 		}
