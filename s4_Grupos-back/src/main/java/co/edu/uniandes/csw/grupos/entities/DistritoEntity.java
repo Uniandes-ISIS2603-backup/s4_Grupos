@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.grupos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,7 +27,7 @@ public class DistritoEntity extends BaseEntity implements Serializable {
 
     
     @PodamExclude
-    @OneToMany(mappedBy = "distrito")
+    @OneToMany(mappedBy = "distrito", orphanRemoval=true, cascade=CascadeType.ALL)
     private List<LocacionEntity> locaciones = new ArrayList<LocacionEntity>();
     
 public DistritoEntity()

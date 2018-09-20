@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.test.logic;
 
 import co.edu.uniandes.csw.grupos.ejb.AdministradorLogic;
 import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.AdministradorPersistence;
 import java.util.ArrayList;
@@ -99,26 +100,21 @@ public class AdministradorLogicTest {
             entity.setGruposDeInteres(new ArrayList<>());
             data.add(entity);
         }
-//        AdministradorEntity administrador = data.get(2);
-//        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
-//        entity.getAdministradores().add(administrador);
-//        em.persist(entity);
-//        administrador.getGruposDeInteres()).add(entity);
     }
 
     /**
      * Prueba para crear un Administrador
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @Test
-    public void createAdministradorTest() {
+    public void createAdministradorTest() throws BusinessLogicException {
         AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
         AdministradorEntity result = administradorLogic.createAdministrador(newEntity);
         Assert.assertNotNull(result);
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
-        Assert.assertEquals(newEntity.getContraseña(), entity.getContraseña());
+        Assert.assertEquals(newEntity.getContrasena(), entity.getContrasena());
     }
 
     /**
@@ -139,6 +135,7 @@ public class AdministradorLogicTest {
         }
     }
 
+    
     /**
      * Prueba para consultar un Administrador.
      */
@@ -149,15 +146,15 @@ public class AdministradorLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
-        Assert.assertEquals(entity.getUsuario(), resultEntity.getUsuario());
-        Assert.assertEquals(entity.getContraseña(), resultEntity.getContraseña());
+        Assert.assertEquals(entity.getContrasena(), resultEntity.getContrasena());
     }
 
     /**
      * Prueba para actualizar un Administrador.
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @Test
-    public void updateAdministradorTest() {
+    public void updateAdministradorTest() throws BusinessLogicException {
         AdministradorEntity entity = data.get(0);
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
 
@@ -169,14 +166,13 @@ public class AdministradorLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        Assert.assertEquals(pojoEntity.getUsuario(), resp.getUsuario());
-        Assert.assertEquals(pojoEntity.getContraseña(), resp.getContraseña());
+        Assert.assertEquals(pojoEntity.getContrasena(), resp.getContrasena());
     }
 
     /**
      * Prueba para eliminar un Administrador
      *
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @Test
     public void deleteAdministradorTest() throws BusinessLogicException {

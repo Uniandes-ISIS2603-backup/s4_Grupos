@@ -27,37 +27,6 @@ public class AdministradorEntity extends PersonaEntity implements Serializable {
     public AdministradorEntity()
     {
         super();
-    }   
-    
-    @Override
-    public void setContraseña(String contraseña) {
-        super.setContraseña(contraseña); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getContraseña() {
-        return super.getContraseña(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        super.setNombre(nombre); 
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre();
-    }
-
-    
-    public void setUsuario(Long usuario) {
-        super.setUsuario(usuario);
-    }
-
-    
-    @Override
-    public long getUsuario() {
-        return super.getUsuario();
     }
     
     /**

@@ -5,8 +5,13 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
@@ -16,9 +21,51 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
       //relación  uno o muchos grupos de interés
       private List<GrupoDeInteresDTO> gruposDeInteres;
 
-        public AdministradorDetailDTO() {
-            super();
+    /**
+     * Constructor vacío
+     */
+    public AdministradorDetailDTO() {
+        super();
+    }
+
+    /**
+     * Crea un objeto AdministradorDetailDTO a partir de un objeto AdministradorEntity
+     * incluyendo los atributos de AdministradorDTO.
+     *
+     * @param administradorEntity Entidad AuthorEntity desde la cual se va a crear el
+     * nuevo objeto.
+     *
+     */
+    public AdministradorDetailDTO (AdministradorEntity administradorEntity) {
+        super(administradorEntity);
+        if (administradorEntity != null) {
+            gruposDeInteres  = new ArrayList<>();
+            for (GrupoDeInteresEntity entityGrupos : administradorEntity.getGruposDeInteres()) {
+                gruposDeInteres.add(new GrupoDeInteresDTO(entityGrupos));
+            }
         }
+    }
+    
+    /**
+     * Convierte un objeto AdministradorDetailDTO a AdministradorEntity incluyendo los
+     * atributos de AdministradorDTO.
+     *
+     * @return Nueva objeto AuthorEntity.
+     *
+     */
+      @Override
+    public AdministradorEntity ToEntity() {
+        AdministradorEntity administradorEntity = super.ToEntity();
+        if (gruposDeInteres != null) {
+            List<GrupoDeInteresEntity> gruposEntity = new ArrayList<>();
+            for (GrupoDeInteresDTO dtoGrupos : gruposDeInteres) {
+                gruposEntity.add(dtoGrupos.toEntity());
+            }
+            administradorEntity.setGruposDeInteres(gruposEntity);
+        }
+        
+        return administradorEntity;
+    }
 
     /**
      * Devuelve los grupos de interes asociados al administrador
@@ -36,5 +83,14 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
      */
     public void setGruposDeInteres(List<GrupoDeInteresDTO> gruposDeInteres) {
         this.gruposDeInteres = gruposDeInteres;
+    }
+    
+    /**
+     * Método toString
+     * @return cadena de caracteres
+     */
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

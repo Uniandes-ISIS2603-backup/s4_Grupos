@@ -28,7 +28,7 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     
     
     @PodamExclude
-    @OneToMany
+    @OneToMany (mappedBy = "grupoDeInteres")
     private List<EventoEntity> eventos;
     
     @PodamExclude

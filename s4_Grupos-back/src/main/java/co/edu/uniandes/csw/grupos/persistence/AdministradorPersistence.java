@@ -16,7 +16,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author estudiante
+ * @author ac.beltrans
  */
 @Stateless
 public class AdministradorPersistence {
@@ -25,6 +25,14 @@ public class AdministradorPersistence {
 
     @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
+    
+    /**
+     * Constructor por defecto
+     */
+    public AdministradorPersistence ()
+    {
+        super();
+    }
 
     /**
      * Método para persisitir la entidad en la base de datos.

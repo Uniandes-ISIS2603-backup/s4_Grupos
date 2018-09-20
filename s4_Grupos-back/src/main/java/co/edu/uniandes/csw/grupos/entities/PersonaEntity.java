@@ -16,36 +16,47 @@ import javax.persistence.Entity;
 public class PersonaEntity extends BaseEntity implements Serializable
 {
     private String nombre;
-    private long usuario;
-    private String contraseña;
+    private String contrasena;
     
     public PersonaEntity()
     {
         super();
     }
-
+    
+    /**
+     * Devuelve el nombre de la Persona
+     *
+     * @return el nombre
+     */
     public String getNombre() {
         return nombre;
     }
-
+    
+    /**
+     * Modifica el nombre de la Persona
+     *
+     * @param nombre el nombre de la Persona
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public long getUsuario() {
-        return usuario;
+    
+    /**
+     * Devuelve la contrasena de la Persona
+     *
+     * @return la contrasena
+     */
+    public String getContrasena() {
+        return contrasena;
     }
-
-    public void setUsuario(long usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    
+    /**
+     * Modifica la contrasena de la Persona
+     *
+     * @param contrasena la contrasena de la Persona
+     */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
    
 }

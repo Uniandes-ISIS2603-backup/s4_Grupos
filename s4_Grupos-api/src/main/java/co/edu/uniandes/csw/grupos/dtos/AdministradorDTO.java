@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+
 import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
-import co.edu.uniandes.csw.grupos.entities.PersonaEntity;
 import java.io.Serializable;
 
 /**
@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author ac.beltrans
  */
 public class AdministradorDTO extends PersonaDTO implements Serializable{
-    //atributos
+    
 
     /**
      * Constructor por defecto
@@ -22,45 +22,28 @@ public class AdministradorDTO extends PersonaDTO implements Serializable{
     public AdministradorDTO() {
         super();
     }
-
-    AdministradorDTO(AdministradorEntity admin) {
-
-        // HAY QUE HACER ESTE CONSTRUCTOR        
-        
+    
+    /**
+     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.
+     *
+     * @param administradorEntity: Es la entidad que se va a convertir a DTO
+     */
+    public AdministradorDTO(AdministradorEntity administradorEntity)
+    {
+        super (administradorEntity);
     }
     
-    @Override
-    public PersonaEntity toEntity() {
-        return super.toEntity(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setContraseña(String contraseña) {
-        super.setContraseña(contraseña); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getContraseña() {
-        return super.getContraseña(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        super.setNombre(nombre); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setUsuario(Long usuario) {
-        super.setUsuario(usuario); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Long getUsuario() {
-        return super.getUsuario(); //To change body of generated methods, choose Tools | Templates.
+    /**
+       * M�todo para transformar el DTO a una entidad.
+       *
+       * @return La entidad del administrador asociado.
+       */
+    public AdministradorEntity ToEntity() {
+        AdministradorEntity administradorEntity = new AdministradorEntity();
+        administradorEntity.setId(this.id);
+        administradorEntity.setNombre(this.nombre);
+        administradorEntity.setContrasena(this.contrasena);
+        return administradorEntity;
     }
 }

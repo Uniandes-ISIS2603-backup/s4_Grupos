@@ -4,32 +4,27 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.entities;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- * Clase que representa un evento en la persistencia y permite su serialización
- * @author ac.beltrans
+ *
+ * @author estudiante
  */
 @Entity
 public class EventoEntity extends BaseEntity implements Serializable{
-    
-    private String nombre;    
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String nombre;
+    private String fecha;
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private GrupoDeInteresEntity grupoDeInteres;
     
     @PodamExclude
@@ -37,9 +32,12 @@ public class EventoEntity extends BaseEntity implements Serializable{
     private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "evento")
     private LocacionEntity locacion;
     
+    /**
+     * Constructor por defecto
+     */
     public EventoEntity()
     {
         
@@ -69,7 +67,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
      *
      * @return la fecha
      */
-    public Date getFecha()
+    public String getFecha()
     {
         return fecha;
     }
@@ -79,7 +77,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
      *
      * @param fecha fecha a cambiar
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
     
@@ -136,5 +134,4 @@ public class EventoEntity extends BaseEntity implements Serializable{
     public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
         this.patrocinios = patrocinios;
     }
-    
 }

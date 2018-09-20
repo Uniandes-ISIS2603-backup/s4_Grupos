@@ -1,8 +1,17 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDTO;
+import co.edu.uniandes.csw.grupos.dtos.AdministradorDetailDTO;
+import co.edu.uniandes.csw.grupos.dtos.PersonaDTO;
+import co.edu.uniandes.csw.grupos.ejb.AdministradorLogic;
+import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
+import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -11,6 +20,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * Clase que implementa el recurso "administradores".
@@ -24,15 +34,25 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class AdministradorResource {
 
+    private static final Logger LOGGER = Logger.getLogger(AdministradorResource.class.getName());
+
+    @Inject
+    private AdministradorLogic administradorLogic;
+    
     /**
      * Crea un nuevo administrador y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
      * @param administrador {@link AdministradorDTO} - EL administrador que se desea a�adir.
      * @return JSON {@link AdministradorDTO} - El administrador guardado con su id
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @POST
-    public AdministradorDTO createAdministrador(AdministradorDTO administrador) {
-        return administrador;    
+    public AdministradorDTO createAdministrador(AdministradorDTO administrador) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: input: {0}", administrador.toString());
+        AdministradorDTO administradorDTO;
+        administradorDTO = new AdministradorDTO(administradorLogic.createAdministrador(administrador.ToEntity()));
+        LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: output: {0}", administradorDTO.toString());
+        return administradorDTO;    
     }
 
     /**
@@ -42,21 +62,31 @@ public class AdministradorResource {
      * registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
-    public List<AdministradorDTO> getAdministradores(List<AdministradorDTO> administradores) {
-        return administradores;
+    public List<AdministradorDetailDTO> getAdministradores() {
+        LOGGER.info("AdministradorResource getAdministradores: input: void");
+        List<AdministradorDetailDTO> listaAdministradores = listEntity2DTO(administradorLogic.getAdministradores());
+        LOGGER.log(Level.INFO, "AdministradorResource getAdministradores: output: {0}", listaAdministradores.toString());
+        return listaAdministradores;
     }
 
     /**
      * Busca un administrador por su id y lo retorna.
      *
-     * @param administradorId Identificador del libro que se esta buscando. Este debe
+     * @param administradorId Identificador del administrador que se esta buscando. Este debe
      * ser una cadena de d�gitos.
      * @return JSON {@link AdministradorDTO} - El administrador que se deseaba buscar.
      */
     @GET
     @Path("{administradorId: \\d+}")
-    public AdministradorDTO getAdministrador(@PathParam("administradorId") Long administradorId) {
-        return new AdministradorDTO();
+    public AdministradorDetailDTO getAdministrador(@PathParam("administradorId") Long administradorId) {
+        LOGGER.log(Level.INFO, "AdministradorResource getAdministrador: input: {0}", administradorId);
+        AdministradorEntity administradorEntity = administradorLogic.getAdministrador(administradorId);
+        if (administradorEntity == null) {
+            throw new WebApplicationException("El recurso /administradores/" + administradorId + " no existe.", 404);
+        }
+        AdministradorDetailDTO detailDTO = new AdministradorDetailDTO(administradorEntity);
+        LOGGER.log(Level.INFO, "AdministradorResource getAdministrador: output: {0}", detailDTO.toString());
+        return detailDTO;
     }
 
     /**
@@ -65,11 +95,21 @@ public class AdministradorResource {
      * ser una cadena de d�gitos.
      * @param administrador {@link AdministradorDTO} El administrador que se desea guardar.
      * @return JSON {@link AdministradorDTO} - El adminisrador guardado.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
+     * Error de lógica que se genera cuando no se encuentra el administrador.
+     * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @PUT
     @Path("{administradorId: \\d+}")
-    public AdministradorDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) {
-        return administrador;    
+    public AdministradorDetailDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: input: administradorId: {0} , administrador: {1}", new Object[]{administradorId, administrador.toString()});
+        administrador.setId(administradorId);
+        if (administradorLogic.getAdministrador(administradorId) == null) {
+            throw new WebApplicationException("El recurso /administrador/" + administradorId + " no existe.", 404);
+        }
+        AdministradorDetailDTO detailDTO = new AdministradorDetailDTO(administradorLogic.updateAdministrador(administradorId, administrador.ToEntity()));
+        LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: output: {0}", detailDTO.toString());
+        return detailDTO;    
     }
 
     /**
@@ -77,11 +117,31 @@ public class AdministradorResource {
      *
      * @param administradorId Identificador del administrador que se desea borrar. Este debe ser
      * una cadena de d�gitos.
-     * @return 
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera cuando ya existe el administrador.
      */
     @DELETE
     @Path("{administradorId: \\d+}")
-    public AdministradorDTO deleteAdministrador(@PathParam("administradorId") Long administradorId) {
-    	return new AdministradorDTO();
+    public void deleteAdministrador(@PathParam("administradorId") Long administradorId) throws BusinessLogicException {
+    	LOGGER.log(Level.INFO, "AdministradorResource deleteAdministrador: input: {0}", administradorId);
+        if (administradorLogic.getAdministrador(administradorId) == null) {
+            throw new WebApplicationException("El recurso /administradores/" + administradorId + " no existe.", 404);
+        }
+        administradorLogic.deleteAdministrador(administradorId);
+        LOGGER.info("AdministradorResource deleteAdministrador: output: void");
+    }
+    
+    /**
+     * Convierte una lista de AdministradorEntity a una lista deAdministradorDetailDTO.
+     *
+     * @param entityList Lista de AdministradorEntity a convertir.
+     * @return Lista de AdministradorDetailDTO convertida.
+     */
+    private List<AdministradorDetailDTO> listEntity2DTO(List<AdministradorEntity> entityList) {
+        List<AdministradorDetailDTO> list = new ArrayList<>();
+        for (AdministradorEntity entity : entityList) {
+            list.add(new AdministradorDetailDTO(entity));
+        }
+        return list;
     }
 }
