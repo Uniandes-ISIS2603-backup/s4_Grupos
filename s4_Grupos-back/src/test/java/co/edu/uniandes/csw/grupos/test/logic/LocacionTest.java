@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.test.logic;
 
 import co.edu.uniandes.csw.grupos.ejb.LocacionLogic;
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
+import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.LocacionPersistence;
 import java.util.ArrayList;
@@ -110,8 +111,9 @@ public class LocacionTest {
     @Test
     public void createLocacionTest() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
+        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
       
-        LocacionEntity result = locacionLogic.createLocacion(newEntity);
+        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
         Assert.assertNotNull(result);
         LocacionEntity entity = em.find(LocacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -128,7 +130,9 @@ public class LocacionTest {
     public void createLocacionTestConNameInvalido() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
         newEntity.setLocacion("");
-        locacionLogic.createLocacion(newEntity);
+        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
+      
+        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
     }
 
     /**
@@ -140,7 +144,9 @@ public class LocacionTest {
     public void createLocacionTestConNameInvalido2() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
         newEntity.setLocacion(null);
-        locacionLogic.createLocacion(newEntity);
+        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
+      
+        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
     }
 
     /**
@@ -152,7 +158,9 @@ public class LocacionTest {
     public void createLocacionTestConNameExistente() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
         newEntity.setLocacion(data.get(0).getLocacion());
-        locacionLogic.createLocacion(newEntity);
+        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
+      
+        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
     }
 
     /**
