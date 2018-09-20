@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 public class CategoriaDetailDTO extends CategoriaDTO {
     

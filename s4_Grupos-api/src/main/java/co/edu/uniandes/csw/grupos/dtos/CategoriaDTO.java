@@ -6,16 +6,21 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
+import java.io.Serializable;
+
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
-public class CategoriaDTO {
+public class CategoriaDTO implements Serializable{
     
     private String descripcion;
     
     private String nombre;
+
+  
+    private long id;
     
     public CategoriaDTO(){
         
@@ -31,6 +36,15 @@ public class CategoriaDTO {
             descripcion = catEntity.getDescripcion();
         }   
     } 
+    
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
     
     public String getDescripcion(){
         
