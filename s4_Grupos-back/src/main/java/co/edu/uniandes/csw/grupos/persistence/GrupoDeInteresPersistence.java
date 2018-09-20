@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 @Stateless
 public class GrupoDeInteresPersistence {

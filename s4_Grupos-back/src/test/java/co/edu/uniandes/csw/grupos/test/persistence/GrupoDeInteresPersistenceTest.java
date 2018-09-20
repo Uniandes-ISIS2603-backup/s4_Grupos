@@ -26,7 +26,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 @RunWith(Arquillian.class)
 public class GrupoDeInteresPersistenceTest {
