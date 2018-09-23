@@ -14,4 +14,6 @@ insert into PersonaEntity (id, nombre, contrasena) values (666, 'Pacman Returns'
 
 insert into GrupoDeInteresEntity (id, nombre, descripcion) values (24, 'Planes de ocio', 'Nada como dormir todo el dia');
 
-insert into ComentarioEntity (id, nombre, texto) values (21, 'Daniel Augusto Ramirez Dueñas', 'Looool que buen grupo')
+insert into ComentarioEntity (id, nombre, texto) values (21, 'Daniel Augusto Ramirez Duenas', 'Looool que buen grupo');
+
+insert into ComentarioEntity (id, nombre, texto) values (99, 'Andrea Beltran' , 'Hola, de que trata este grupo?');

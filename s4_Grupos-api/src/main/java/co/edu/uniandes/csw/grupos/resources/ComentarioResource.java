@@ -133,6 +133,18 @@ public class ComentarioResource
         }
         comentarioLogic.deleteComentario(id);
     }
+    
+    @DELETE
+    public void eliminarComentarios() throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "ComentarioResource getComentarios: input: {0}");
+        List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios());
+        for (int i = 0; i < listaDTOs.size(); i++)
+        {
+            comentarioLogic.deleteComentario(listaDTOs.get(i).getId());
+        }
+        LOGGER.log(Level.INFO, "ComentariosResource getComentarios: output: {0}");
+    }
 
     private List<ComentarioDTO> listEntityToDTO(List<ComentarioEntity> entityList) {
         List<ComentarioDTO> list = new ArrayList<>();
