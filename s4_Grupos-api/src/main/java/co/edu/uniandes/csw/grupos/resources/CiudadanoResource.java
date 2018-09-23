@@ -50,9 +50,9 @@ public class CiudadanoResource
     @POST
     public CiudadanoDTO createCiudadano(CiudadanoDTO ciudadano) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: input: {0}", ciudadano.toString());
+        LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: input: {0}");
         CiudadanoDTO nuevoCiudadanoDTO = new CiudadanoDTO(ciudadanoLogic.createCiudadano(ciudadano.toEntity()));
-        LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: output: {0}", nuevoCiudadanoDTO.toString());
+        LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: output: {0}");
         return nuevoCiudadanoDTO;
     }
     
@@ -65,7 +65,7 @@ public class CiudadanoResource
     {
         LOGGER.log(Level.INFO, "CiudadanoResource getCiudadanos: input: {0}");
         List<CiudadanoDTO> listaDTOs = listEntityToDTO(ciudadanoLogic.getCiudadanos());
-        LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}", listaDTOs.toString());
+        LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}");
         return listaDTOs;
     }
     
@@ -85,7 +85,7 @@ public class CiudadanoResource
             throw new WebApplicationException( NOEXISTE1 + id + NOEXISTE2, 404);
         }
         CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(entity);
-        LOGGER.log(Level.INFO, "CiudadanoResource getCiudadano: output: {0}", ciudadanoDTO.toString());
+        LOGGER.log(Level.INFO, "CiudadanoResource getCiudadano: output: {0}");
         return ciudadanoDTO;
     }
   
@@ -101,7 +101,7 @@ public class CiudadanoResource
     @Path("{id :\\d+}")
     public CiudadanoDTO modificarCiudadano(@PathParam("id") Long id, CiudadanoDTO ciudadano ) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: input: gruposID: {0} , id: {1} , ciudadano:{2}", new Object[]{id, ciudadano.toString()});
+        LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: input: id: {0} , ciudadano:{1}", new Object[]{id});
         if (id.equals(ciudadano.getId())) {
             throw new BusinessLogicException("Los ids del Ciudadano no coinciden.");
         }
@@ -112,13 +112,14 @@ public class CiudadanoResource
 
         }
         CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(ciudadanoLogic.updateCiudadano(id,ciudadano.toEntity()));
-        LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: output:{0}", ciudadanoDTO.toString());
+        LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: output:{0}");
         return ciudadanoDTO;
     }
     
     /**
      * Elimina un ciudadano
      * @param id
+     * @throws BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")

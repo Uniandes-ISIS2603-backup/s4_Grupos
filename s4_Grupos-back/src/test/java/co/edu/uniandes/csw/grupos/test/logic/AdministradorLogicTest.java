@@ -111,6 +111,12 @@ public class AdministradorLogicTest {
         AdministradorEntity newEntity = factory.manufacturePojo(AdministradorEntity.class);
         AdministradorEntity result = administradorLogic.createAdministrador(newEntity);
         Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getContrasena());
+        Assert.assertNotNull(result.getNombre());
+        Assert.assertNotNull(result.getId());
+        Assert.assertNotEquals("", result.getContrasena());
+        Assert.assertNotEquals("", result.getNombre());
+        Assert.assertNotEquals("", result.getId());
         AdministradorEntity entity = em.find(AdministradorEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
@@ -158,6 +164,8 @@ public class AdministradorLogicTest {
         AdministradorEntity entity = data.get(0);
         AdministradorEntity pojoEntity = factory.manufacturePojo(AdministradorEntity.class);
 
+        Assert.assertNotNull(entity.getId());
+        Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
         administradorLogic.updateAdministrador(pojoEntity.getId(), pojoEntity);

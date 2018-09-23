@@ -52,7 +52,7 @@ public class ComentarioResource
     @POST
     public ComentarioDTO  createComentario (ComentarioDTO comentario) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "ComentarioResource createComentario: input: {0}", comentario.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource createComentario: input: {0}");
         ComentarioDTO nuevoComentarioDTO = new ComentarioDTO(comentarioLogic.createComentario(comentario.toEntity()));
         LOGGER.log(Level.INFO, "ComentarioResource createComentario: output: {0}", nuevoComentarioDTO.toString());
         return nuevoComentarioDTO;
@@ -67,7 +67,7 @@ public class ComentarioResource
     {
         LOGGER.log(Level.INFO, "ComentarioResource getComentarios: input: {0}");
         List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios());
-        LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}", listaDTOs.toString());
+        LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}");
         return listaDTOs;
     }
     
@@ -87,7 +87,7 @@ public class ComentarioResource
             throw new WebApplicationException( NOEXISTE1 + id + NOEXISTE2, 404);
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(entity);
-        LOGGER.log(Level.INFO, "ComentarioResource getComentario: output: {0}", comentarioDTO.toString());
+        LOGGER.log(Level.INFO, "ComentarioResource getComentario: output: {0}");
         return comentarioDTO;
     }
     
@@ -102,7 +102,7 @@ public class ComentarioResource
     @Path("{id:\\d+}")
     public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0} , id: {1} , comentario:{2}", new Object[]{id, comentario.toString()});
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0}, comentario:{1}", new Object[]{id});
         if (id.equals(comentario.getId())) {
             throw new BusinessLogicException("Los ids del Comentario no coinciden.");
         }

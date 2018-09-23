@@ -25,7 +25,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToOne()
-    private GrupoDeInteresEntity grupoDeInteres;
+    private GrupoDeInteresEntity grupo;
     
     @PodamExclude
     @ManyToMany(mappedBy = "eventos", fetch = javax.persistence.FetchType.LAZY)
@@ -35,7 +35,11 @@ public class EventoEntity extends BaseEntity implements Serializable{
     @OneToOne(mappedBy = "evento")
     private LocacionEntity locacion;
     
+    public EventoEntity()
+    {
         
+    }
+    
     /**
      * Devuelve el nombre del evento.
      *
@@ -79,8 +83,8 @@ public class EventoEntity extends BaseEntity implements Serializable{
      *
      * @return Una entidad de grupo de interes.
      */
-    public GrupoDeInteresEntity getGrupoDeInteres() {
-        return grupoDeInteres;
+    public GrupoDeInteresEntity getGrupo() {
+        return grupo;
     }
     
     /**
@@ -88,8 +92,8 @@ public class EventoEntity extends BaseEntity implements Serializable{
      *
      * @param grupoDeInteresEntity El nuevo grupo de interés.
      */
-    public void setGrupoDeInteres(GrupoDeInteresEntity grupoDeInteresEntity) {
-        this.grupoDeInteres = grupoDeInteresEntity;
+    public void setGrupo(GrupoDeInteresEntity grupoDeInteresEntity) {
+        this.grupo = grupoDeInteresEntity;
     }
     
     /**

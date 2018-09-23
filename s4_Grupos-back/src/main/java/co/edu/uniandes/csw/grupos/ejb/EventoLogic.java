@@ -58,7 +58,7 @@ public class EventoLogic {
         {
             throw new BusinessLogicException("La fecha no es válida");
         }
-        eventoEntity.setGrupoDeInteres(grupo);
+        eventoEntity.setGrupo(grupo);
         LOGGER.log(Level.INFO, "Termina proceso de creación del evento");
         return persistence.create(eventoEntity);
     }
@@ -109,7 +109,7 @@ public class EventoLogic {
             throw new BusinessLogicException("El id no es válido");
         }
         GrupoDeInteresEntity grupoEntity = grupoPersistence.find(gruposId);
-        eventoEntity.setGrupoDeInteres(grupoEntity);
+        eventoEntity.setGrupo(grupoEntity);
         persistence.update(eventoEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el evento con id = {0} del grupo con id = " + gruposId, eventoEntity.getId());
         return eventoEntity;
