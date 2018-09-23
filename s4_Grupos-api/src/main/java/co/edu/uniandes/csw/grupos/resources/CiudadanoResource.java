@@ -65,7 +65,7 @@ public class CiudadanoResource
     {
         LOGGER.log(Level.INFO, "CiudadanoResource getCiudadanos: input: {0}");
         List<CiudadanoDTO> listaDTOs = listEntityToDTO(ciudadanoLogic.getCiudadanos());
-        LOGGER.log(Level.INFO, "EditorialCiudadanosResource getCiudadanos: output: {0}");
+        LOGGER.log(Level.INFO, "CiudadanosResource getCiudadanos: output: {0}");
         return listaDTOs;
     }
     
