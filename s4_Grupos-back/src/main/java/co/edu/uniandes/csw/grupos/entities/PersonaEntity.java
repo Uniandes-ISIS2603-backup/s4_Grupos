@@ -9,8 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
- *
- * @author estudiante
+ * Clase que representa una PersonaEntity
+ * @author Daniel Ramirez - Andrea Beltran.
  */
 @Entity
 public class PersonaEntity extends BaseEntity implements Serializable
