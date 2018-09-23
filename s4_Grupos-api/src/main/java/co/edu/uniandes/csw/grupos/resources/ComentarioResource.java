@@ -113,6 +113,7 @@ public class ComentarioResource
 
         }
         ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
+        comentarioLogic.deleteComentario(id);
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}", comentarioDTO.toString());
         return comentarioDTO;
     }

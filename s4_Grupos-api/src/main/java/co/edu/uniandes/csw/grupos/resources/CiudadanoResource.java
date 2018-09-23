@@ -112,6 +112,7 @@ public class CiudadanoResource
 
         }
         CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(ciudadanoLogic.updateCiudadano(id,ciudadano.toEntity()));
+        ciudadanoLogic.deleteCiudadano(id);
         LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: output:{0}");
         return ciudadanoDTO;
     }
