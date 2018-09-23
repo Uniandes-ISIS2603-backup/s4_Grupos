@@ -66,10 +66,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": \"2\", \"nombre\":\"ss\", \"fecha\": \"add\"\n}"
+					"raw": "{\n\t\"id\": \"2\", \"nombre\":\"ss\", \"fecha\": \"\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/1/eventos",
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/24/eventos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,7 +79,7 @@
 						"s4_Grupos-api",
 						"api",
 						"gruposdeinteres",
-						"1",
+						"24",
 						"eventos"
 					]
 				}
@@ -145,9 +145,9 @@
 			"response": []
 		},
 		{
-			"name": "CrearGrupo",
+			"name": "GetGrupo",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -156,7 +156,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"grupo\", \"descripcion\":\"ss\", \"id\": \"1\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres",

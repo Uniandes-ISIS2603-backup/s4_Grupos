@@ -47,7 +47,7 @@ public class EventoResource {
      * @return JSON {@link EventoDTO} - El evento guardado con su id
      */
     @POST
-    public EventoDetailDTO createReview(@PathParam("gruposId") Long gruposId, EventoDTO evento) throws BusinessLogicException 
+    public EventoDetailDTO createEvento(@PathParam("gruposId") Long gruposId, EventoDTO evento) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "EventoResource createEvento: input: {0}", evento.toString());
         EventoDetailDTO nuevoEventoDTO = new EventoDetailDTO(eventoLogic.createEvento(gruposId, evento.toEntity()));

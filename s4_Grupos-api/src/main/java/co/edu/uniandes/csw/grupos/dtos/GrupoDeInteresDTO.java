@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 public class GrupoDeInteresDTO implements Serializable {
     

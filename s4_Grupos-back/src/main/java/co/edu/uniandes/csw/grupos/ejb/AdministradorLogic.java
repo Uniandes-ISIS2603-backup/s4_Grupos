@@ -9,14 +9,11 @@ import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.AdministradorPersistence;
-import static com.gs.collections.impl.block.factory.StringPredicates.contains;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import reactor.core.action.ForEachAction;
 
 /**
  *

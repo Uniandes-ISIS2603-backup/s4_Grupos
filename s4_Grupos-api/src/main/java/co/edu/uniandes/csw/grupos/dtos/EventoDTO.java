@@ -47,8 +47,9 @@ public class EventoDTO implements Serializable {
         if (eventoEntity != null) {
          this.nombre = eventoEntity.getNombre();
          this.fecha = eventoEntity.getFecha();
-          if (eventoEntity.getGrupoDeInteres() != null) {
-              this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupoDeInteres());
+         this.id = eventoEntity.getId();
+          if (eventoEntity.getGrupo() != null) {
+              this.grupoDeInteres = new GrupoDeInteresDTO(eventoEntity.getGrupo());
             }else {
               this.grupoDeInteres = null;
             }
@@ -69,8 +70,9 @@ public class EventoDTO implements Serializable {
         EventoEntity eventoEntity = new EventoEntity();
         eventoEntity.setNombre(this.nombre);
         eventoEntity.setFecha(this.fecha);
+        eventoEntity.setId(this.id);
         if (this.grupoDeInteres != null) {
-            eventoEntity.setGrupoDeInteres(this.grupoDeInteres.toEntity());
+            eventoEntity.setGrupo(this.grupoDeInteres.toEntity());
         }
         if (this.locacion != null) {
             eventoEntity.setLocacion(this.locacion.toEntity());

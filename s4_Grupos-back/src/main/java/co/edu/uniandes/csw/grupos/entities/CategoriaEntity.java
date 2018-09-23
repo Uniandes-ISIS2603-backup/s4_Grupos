@@ -15,7 +15,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 
 @Entity

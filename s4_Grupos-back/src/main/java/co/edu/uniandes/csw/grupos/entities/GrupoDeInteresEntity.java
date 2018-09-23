@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author estudiante
+ * @author s.carrero
  */
 @Entity
 public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
@@ -28,7 +28,7 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     
     
     @PodamExclude
-    @OneToMany (mappedBy = "grupoDeInteres")
+    @OneToMany (mappedBy = "grupo")
     private List<EventoEntity> eventos;
     
     @PodamExclude

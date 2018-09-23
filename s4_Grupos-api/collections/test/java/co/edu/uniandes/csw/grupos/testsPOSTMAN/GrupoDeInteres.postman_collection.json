@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "6aa2b3a6-e08f-43b6-940f-1bddadbdd317",
+		"name": "GrupoDeInteresPruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createGrupo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombregrupo\":\"asdf\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getGrupos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres"
+					]
+				},
+				"description": "Retorna los grupos de interes."
+			},
+			"response": []
+		},
+		{
+			"name": "getGrupo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "nombregrupo",
+						"value": "abc"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres"
+					]
+				},
+				"description": "Obtener un grupo en específico."
+			},
+			"response": []
+		},
+		{
+			"name": "modifyGrupo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombregrupo\":\"abc\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteGrupo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombregrupo\":\"abc\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres"
+					]
+				},
+				"description": "Elimina un grupo."
+			},
+			"response": []
+		}
+	]
+}
