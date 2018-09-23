@@ -103,7 +103,7 @@ public class EventoPersistenceTest {
         for (int i = 0; i < 3; i++) {
             EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
             if (i == 0) {
-                entity.setGrupoDeInteres(dataGrupoDeInteres.get(0));
+                entity.setGrupo(dataGrupoDeInteres.get(0));
             }
             em.persist(entity);
             data.add(entity);

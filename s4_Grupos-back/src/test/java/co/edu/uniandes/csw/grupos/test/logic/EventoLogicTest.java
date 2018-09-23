@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author estudiante
+ * @author ac.beltrans
  */
 @RunWith(Arquillian.class)
 public class EventoLogicTest {
@@ -106,7 +106,7 @@ public class EventoLogicTest {
 
         for (int i = 0; i < 3; i++) {
             EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
-            entity.setGrupoDeInteres(dataGrupo.get(1));
+            entity.setGrupo(dataGrupo.get(1));
             em.persist(entity);
             data.add(entity);
         }
@@ -115,14 +115,20 @@ public class EventoLogicTest {
     /**
      * Prueba para crear un Evento.
      *
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void createEventoTest() throws BusinessLogicException {
         EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
-        newEntity.setGrupoDeInteres(dataGrupo.get(1));
+        newEntity.setGrupo(dataGrupo.get(1));
         EventoEntity result = eventoLogic.createEvento(dataGrupo.get(1).getId(), newEntity);
         Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getFecha());
+        Assert.assertNotNull(result.getNombre());
+        Assert.assertNotNull(result.getId());
+        Assert.assertNotEquals("", result.getFecha());
+        Assert.assertNotEquals("", result.getNombre());
+        Assert.assertNotEquals("", result.getId());
         EventoEntity entity = em.find(EventoEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -133,7 +139,7 @@ public class EventoLogicTest {
     /**
      * Prueba para consultar la lista de Eventos.
      *
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void getEventosTest() throws BusinessLogicException {
@@ -165,12 +171,15 @@ public class EventoLogicTest {
 
     /**
      * Prueba para actualizar un Evento.
+     * @throws BusinessLogicException
      */
     @Test
     public void updateEventoTest() throws BusinessLogicException {
         EventoEntity entity = data.get(0);
         EventoEntity pojoEntity = factory.manufacturePojo(EventoEntity.class);
 
+        Assert.assertNotNull(entity.getId());
+        Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
         eventoLogic.updateEvento(dataGrupo.get(1).getId(), pojoEntity);
@@ -185,7 +194,7 @@ public class EventoLogicTest {
     /**
      * Prueba para eliminar un Evento.
      *
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @Test
     public void deleteEventoTest() throws BusinessLogicException {
