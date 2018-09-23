@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
+import co.edu.uniandes.csw.grupos.ejb.PatrocinioLogic;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
+import java.util.logging.Logger;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -36,9 +38,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class PatrocinioDTO implements Serializable
  {
+     private static final Logger LOGGER = Logger.getLogger(PatrocinioLogic.class.getName());
     
     private String nombre;
     private Integer valor;
+    private Long id;
     
     /**
      * Constructor por defecto
@@ -53,12 +57,13 @@ public class PatrocinioDTO implements Serializable
      * la entidad que viene de argumento.
      *
      * @param patrocinioEntity: Es la entidad que se va a convertir a DTO
-     */
-    
-    
-    public PatrocinioDTO(PatrocinioEntity patrocinioEntity) {
-       setNombre(patrocinioEntity.getNombre());
-       setValor(patrocinioEntity.getValor());
+     */    
+    public PatrocinioDTO(PatrocinioEntity patrocinioEntity)
+    {
+       LOGGER.info("comienza la creacion del DTO patrocinio");
+       this.nombre =  (patrocinioEntity.getNombre());
+       this.valor =(patrocinioEntity.getValor());
+       LOGGER.info("Termina la creacion del DTO patrocinio");
     }
     
 
@@ -107,7 +112,7 @@ public class PatrocinioDTO implements Serializable
     
     public PatrocinioEntity toEntity() {
          PatrocinioEntity patrocinioEntity = new PatrocinioEntity();
-   
+         patrocinioEntity.setId(this.id);
         patrocinioEntity.setNombre(this.nombre);
         patrocinioEntity.setValor(this.valor);
               
@@ -119,5 +124,25 @@ public class PatrocinioDTO implements Serializable
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+
+   /**
+     * Modifica el ID del patrocinio
+     *
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    /**
+     * retorna el id del patrocinio
+     * @return  id  
+     */
+    public Long getId()
+    {
+        return this.id;
+    }            
+           
+    
     
 }

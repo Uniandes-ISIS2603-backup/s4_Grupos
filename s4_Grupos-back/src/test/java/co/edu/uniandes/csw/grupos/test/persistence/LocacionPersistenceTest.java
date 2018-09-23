@@ -139,7 +139,7 @@ public class LocacionPersistenceTest {
     @Test
     public void getLocacionTest() {
         LocacionEntity entity = data.get(0);
-        LocacionEntity newEntity = locacionesPersistence.find(entity.getId());
+        LocacionEntity newEntity = locacionesPersistence.find(entity.getDistrito().getId() ,entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getLocacion(), newEntity.getLocacion());
         Assert.assertEquals(entity.getId(), newEntity.getId());
