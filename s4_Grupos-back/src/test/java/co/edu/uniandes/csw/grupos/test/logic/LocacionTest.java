@@ -176,8 +176,8 @@ public class LocacionTest {
      */
     @Test
     public void getLocacionessTest() {
-        List<LocacionEntity> list = locacionLogic.getLocaciones(distritos.get(1).getId());
-//        Assert.assertEquals(data.size(), list.size());
+        List<LocacionEntity> list = locacionLogic.getLocaciones();
+        Assert.assertEquals(data.size(), list.size());
         for (LocacionEntity entity : list) {
             boolean found = false;
             for (LocacionEntity storedEntity : data) {
@@ -195,7 +195,7 @@ public class LocacionTest {
      */
     @Test
     public void getLocacionNulo() throws BusinessLogicException {
-        LocacionEntity result = locacionLogic.getLocacion((long)-1, (long)-1);
+        LocacionEntity result = locacionLogic.getLocacion( (long)-1);
         Assert.assertNull(result);
     }
     /**
@@ -204,7 +204,7 @@ public class LocacionTest {
     @Test
     public void getLocacionTest() {
         LocacionEntity entity = data.get(0);
-        LocacionEntity resultEntity = locacionLogic.getLocacion(entity.getDistrito().getId(), entity.getId());
+        LocacionEntity resultEntity = locacionLogic.getLocacion( entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getLocacion(), resultEntity.getLocacion());
@@ -262,7 +262,7 @@ public class LocacionTest {
     @Test
     public void deleteLocacionTest() throws BusinessLogicException {
         LocacionEntity entity = data.get(0);
-        locacionLogic.deleteLocacion(entity.getDistrito().getId() , entity.getId());
+        locacionLogic.deleteLocacion(entity.getId());
         LocacionEntity deleted = em.find(LocacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

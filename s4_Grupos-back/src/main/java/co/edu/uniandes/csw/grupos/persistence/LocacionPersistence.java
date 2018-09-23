@@ -62,23 +62,10 @@ public class LocacionPersistence {
      * @param idLocacion: nombre correspondiente la localizacon buscada.
      * @return una locacion.
      */
-    public LocacionEntity find(Long idDistrito ,Long idLocacion) {
-        LOGGER.log(Level.INFO, "Consultando el review con id = {0} del libro con id = " + idDistrito, idLocacion);
-        TypedQuery<LocacionEntity> q = em.createQuery("select p from LocacionEntity p where (p.distrito.id = :idDistrito) and (p.id = :idLocacion)", LocacionEntity.class);
-        q.setParameter("idDistrito", idDistrito);
-        q.setParameter("idLocacion", idLocacion);
-        List<LocacionEntity> results = q.getResultList();
-        LocacionEntity review = null;
-        if (results == null) {
-            review = null;
-        } else if (results.isEmpty()) {
-            review = null;
-        } else if (results.size() >= 1) {
-            review = results.get(0);
+    public LocacionEntity find(Long idLocacion) {
+        LOGGER.log(Level.INFO, "Consultando la localizacion por id", idLocacion);
+        return em.find(LocacionEntity.class, idLocacion);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el review con id = {0} del libro con id =" + idDistrito, idLocacion);
-        return review;
-    }
 
     /**
      * Actualiza una locacion.
