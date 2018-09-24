@@ -122,7 +122,7 @@ public class CiudadanoResource
     @Path("{id :\\d+}")
     public CiudadanoDTO modificarCiudadano(@PathParam("id") Long id, CiudadanoDTO ciudadano ) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: input: id: {0} , ciudadano:{1}", new Object[]{id});
+        LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: input: id: {0} , ciudadano:{1}", new Object[]{id, ciudadano.toString()});
         if (id.equals(ciudadano.getId())) 
         {
             throw new BusinessLogicException("Los ids del Ciudadano no coinciden.");
