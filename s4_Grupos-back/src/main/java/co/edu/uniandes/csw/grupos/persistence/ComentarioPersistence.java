@@ -58,7 +58,6 @@ public class ComentarioPersistence
 
     public ComentarioEntity find(Long comentarioId) {
         LOGGER.log(Level.INFO, "Consultando comentario con id={0}", comentarioId);
-
         return em.find(ComentarioEntity.class, comentarioId);
     }
     /**

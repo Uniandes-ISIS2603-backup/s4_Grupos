@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -156,7 +158,14 @@ public class ComentarioLogicTest
 
         pojoEntity.setId(entity.getId());
 
-        comentarioLogic.updateComentario(pojoEntity.getId(), pojoEntity);
+        try 
+        {
+            comentarioLogic.updateComentario(pojoEntity.getId(), pojoEntity);
+        } 
+        catch (BusinessLogicException ex)
+        {
+            Logger.getLogger(ComentarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
 

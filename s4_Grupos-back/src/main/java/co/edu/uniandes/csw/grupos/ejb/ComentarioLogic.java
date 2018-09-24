@@ -73,9 +73,19 @@ public class ComentarioLogic
      * @param comentariosId Identificador de la instancia a actualizar
      * @param comentarioEntity Instancia de ComentarioEntity con los nuevos datos.
      * @return Instancia de ComentarioEntity con los datos actualizados.
+     * @throws BusinessLogicException
      */
-    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) {
+    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) throws BusinessLogicException
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el comentario con id = {0}", comentariosId);
+//        if (comentarioEntity.getNombre().compareTo(persistence.find(comentariosId).getNombre()) == 0) 
+//        {
+//        }
+//        else 
+//        {
+//            throw new BusinessLogicException("El nombre del usuario no es el mismo. Por favor verifique el nombre");
+//        }
+//  
         ComentarioEntity newComentarioEntity = persistence.update(comentarioEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el comentario con id = {0}", comentariosId);
         return newComentarioEntity;
