@@ -28,7 +28,7 @@ public class CategoriaPersistence {
 
     /**     
      * Crea una nueva categoria con la información recibida en la entidad.     *
-     * @param categoriaEntity La entidad que representa el nuevo grupo
+     * @param categoriaEntity La entidad que representa la nueva categoria
      * @return La entidad creada
      */
     public CategoriaEntity create(CategoriaEntity categoriaEntity) {
@@ -40,7 +40,7 @@ public class CategoriaPersistence {
 
     /**  
      * Actualiza la categoria que recibe      
-     * @param grupoEntity El grupo actualizado que se quiere persistir
+     * @param categoriaEntity  la categoria actualizado que se quiere persistir
      * @return La entidad luego de la acutalización
      */
     public CategoriaEntity update(CategoriaEntity categoriaEntity) {
@@ -50,7 +50,7 @@ public class CategoriaPersistence {
 
     /**
      * Elimina la categoria asociada al ID categoriaId.
-     * @param categoriaId El ID del grupo que se desea borrar
+     * @param categoriaId El ID de la categoria que se desea borrar
      */
     public void delete(Long categoriaId) {
         LOGGER.log(Level.INFO, "Borrando categoria con id = {0}", categoriaId);
@@ -67,7 +67,7 @@ public class CategoriaPersistence {
         LOGGER.log(Level.INFO, "Consultando todas las categorias");
         // Se crea un query para buscar todas las categorias en la base de datos.
         TypedQuery query = em.createQuery("select u from CategoriaEntity u", CategoriaEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de distritos.
+        // Note que en el query se hace uso del método getResultList() que obtiene una lista de categorias.
         return query.getResultList();
     }
     
@@ -80,7 +80,7 @@ public class CategoriaPersistence {
         LOGGER.log(Level.INFO, "Consultando categoría con id={0}", categoriaId);
         /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
         el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
-        Suponga que es algo similar a "select * from DistritoEntity where id=id;" - "SELECT * FROM table_name WHERE condition;" en SQL.
+        Suponga que es algo similar a "select * from CategoriaEntity where id=id;" - "SELECT * FROM table_name WHERE condition;" en SQL.
          */
         return em.find(CategoriaEntity.class, categoriaId);
     }    
@@ -110,10 +110,6 @@ public class CategoriaPersistence {
         }
         LOGGER.log(Level.INFO, "Saliendo de consultar categoria por nombre ", name);
         return result;
-    }
-    
-    
-    
-    
+    }  
     
 }

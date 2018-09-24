@@ -121,7 +121,7 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     /**
      * Modifica las locaciones de el distrito.
      *
-     * @param locaciones Las nuevos locaciones.
+     * @param noticias  Las nuevos locaciones.
      */
     public void setNoticias(List<NoticiaEntity> noticias) {
         this.noticias = noticias;

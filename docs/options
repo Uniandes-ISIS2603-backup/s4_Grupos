@@ -4,20 +4,20 @@
 'UTF-8'
 -protected
 -sourcepath
-'C:/Users/estudiante/Documents/NetBeansProjects/Proyecto/s4_Grupos/s4_Grupos-back/src/main/java'
+'C:/Users/estudiante/Desktop/Desarrollo de SW/s4_Grupos/s4_Grupos-back/src/main/java'
 -author
 -bottom
 'Copyright &#169; 2018. All rights reserved.'
 -charset
 'UTF-8'
 -d
-'C:/Users/estudiante/Documents/NetBeansProjects/Proyecto/s4_Grupos/s4_Grupos-back/target/site/../../../docs'
+'C:/Users/estudiante/Desktop/Desarrollo de SW/s4_Grupos/s4_Grupos-back/target/site/../../../docs'
 -docencoding
 'UTF-8'
 -doctitle
 's4_groupTeam-back 1.0 API'
 -linkoffline
-'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/estudiante/Documents/NetBeansProjects/Proyecto/s4_Grupos/s4_Grupos-back/target/javadoc-bundle-options'
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/estudiante/Desktop/Desarrollo de SW/s4_Grupos/s4_Grupos-back/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
