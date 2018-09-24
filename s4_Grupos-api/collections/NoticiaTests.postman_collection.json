@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "f040123d-5331-483f-8641-c63abc3d8630",
+		"name": "NoticiaTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETnoticia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/2/noticias/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"2",
+						"noticias",
+						"6"
+					]
+				},
+				"description": "obtiene una noticia dada de un grupo dado"
+			},
+			"response": []
+		},
+		{
+			"name": "POSTnoticia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"descripcion\":\"gg\", \n\"rutaImagen\": \"ruta\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/1/noticias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"1",
+						"noticias"
+					]
+				},
+				"description": "Postea la noticia mandada por json en el grupo dado"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT noticia",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"nombre\", \n\"ruta\":\"gg\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/1/noticias/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"1",
+						"noticias",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete noticia",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/1/noticias/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"1",
+						"noticias",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET noticias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/gruposdeinteres/1/noticias/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"1",
+						"noticias",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
