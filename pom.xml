@@ -11,8 +11,8 @@
     <name>s4_groupTeam</name>
  
     <modules>
-        <module>s4_Grupos-api</module>
         <module>s4_Grupos-back</module>
+        <module>s4_Grupos-api</module>
     </modules>
     
     <repositories>
