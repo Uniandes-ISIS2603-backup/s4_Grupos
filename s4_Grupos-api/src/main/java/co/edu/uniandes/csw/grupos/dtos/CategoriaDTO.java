@@ -10,7 +10,9 @@ import java.io.Serializable;
 
 
 /**
- *
+ * CategoriaDTO Objeto de transferencia de datos de Categoriaes. Los DTO contienen las
+ * representaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
  * @author s.carrero
  */
 public class CategoriaDTO implements Serializable{

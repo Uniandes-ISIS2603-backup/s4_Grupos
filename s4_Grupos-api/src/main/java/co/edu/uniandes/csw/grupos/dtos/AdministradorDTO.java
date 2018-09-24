@@ -10,7 +10,7 @@ import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
 import java.io.Serializable;
 
 /**
- *AdministradorDTO Objeto de transferencia de datos de Administradores. Los DTO contienen las
+ * AdministradorDTO Objeto de transferencia de datos de Administradores. Los DTO contienen las
  * representaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
  * @author ac.beltrans

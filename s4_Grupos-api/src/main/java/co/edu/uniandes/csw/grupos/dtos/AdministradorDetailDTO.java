@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  Clase que extiende de {@link AdministradorDTO} para manejar las relaciones entre los
+ * Clase que extiende de {@link AdministradorDTO} para manejar las relaciones entre los
  * AdministradorDTO y otros DTOs. Para conocer el contenido de un Administrador vaya a la
  * documentacion de {@link AdministradorDTO}
  * @author ac.beltrans
