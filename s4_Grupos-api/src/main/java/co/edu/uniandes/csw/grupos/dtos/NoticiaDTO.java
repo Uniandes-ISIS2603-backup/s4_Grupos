@@ -8,7 +8,9 @@ import java.io.Serializable;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 
 /**
- *
+ * NoticiaDTO Objeto de transferencia de datos de Noticias. Los DTO contienen las
+ * representaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
  * @author estudiante
  */
 public class NoticiaDTO implements Serializable 

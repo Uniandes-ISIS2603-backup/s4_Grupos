@@ -14,7 +14,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
+ *Clase que extiende de {@link EventoDTO} para manejar las relaciones entre los
+ * EventoDTO y otros DTOs. Para conocer el contenido de un Evento vaya a la
+ * documentacion de {@link EventoDTO}
  * @author ac.beltrans
  */
 public class EventoDetailDTO extends EventoDTO implements Serializable {

@@ -67,9 +67,8 @@ private final static String NOEXISTE1="El recurso /distritos/";
      *
      * @param distritosId Identificador de el distrito que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSON {@link DistritoDetailDTO} - El distrito buscada
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el distrito.
+     * @return JSON El distrito buscado
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el distrito.
      
      */
     @GET
@@ -91,14 +90,12 @@ private final static String NOEXISTE1="El recurso /distritos/";
      *
      * @param distritosId Identificador de el distrito que se desea
      * actualizar. Este debe ser una cadena de dígitos.
-     * @param distrito {@link DistritoDetailDTO} El distrito que se desea
+     * @param distrito El distrito que se desea
      * guardar.
-     * @return JSON {@link DistritoDetailDTO} - El distrito guardada.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el distrito a
+     * @return JSON  El distrito guardada.
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el distrito a
      * actualizar.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede actualizar el distrito.
+     * @throws BusinessLogicException Error de lógica que se genera cuando no se puede actualizar el distrito.
      
      */
     @PUT
@@ -121,10 +118,8 @@ private final static String NOEXISTE1="El recurso /distritos/";
      *
      * @param distritosId Identificador de la distrito que se desea borrar.
      * Este debe ser una cadena de dígitos.
-     *  @throws co.edu.uniandes.csw.distritostore.exceptions.BusinessLogicException
-     * cuando el distrito tiene autores asociados.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el distrito.
+     * @throws BusinessLogicException cuando el distrito tiene autores asociados.
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el distrito.
   
      */
     @DELETE
@@ -141,10 +136,9 @@ private final static String NOEXISTE1="El recurso /distritos/";
    /**
      * Busca y devuelve todas las distoitos que existen en la aplicacion.
      *
-     * @return JSONArray {@link DistritoDetailDTO} - Las distritoes
-     * encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray Las distritos encontrados en la aplicación. Si no hay ninguna retorna una lista vacía.
+     *
      */
-    /**/
     @GET
     public List<DistritoDetailDTO> getDistritos() {
         

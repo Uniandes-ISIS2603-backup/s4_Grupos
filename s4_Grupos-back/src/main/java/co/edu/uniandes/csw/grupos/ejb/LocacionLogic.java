@@ -17,7 +17,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Clase que representa un LocacionLogic
  * @author j.barbosaj   
  */
 @Stateless
@@ -34,6 +34,7 @@ public class LocacionLogic
     /**
      * Guardar un nuevo locacion
      *
+     * @param distritoId el Id del distrito
      * @param locacionEntity La entidad de tipo locacion del nuevo locacion a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException Si el name es inválido o ya existe en la

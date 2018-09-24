@@ -28,7 +28,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
+ * Pruebas de lógica de Eventos
  * @author ac.beltrans
  */
 @RunWith(Arquillian.class)

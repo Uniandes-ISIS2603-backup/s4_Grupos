@@ -2,7 +2,6 @@ package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDTO;
 import co.edu.uniandes.csw.grupos.dtos.AdministradorDetailDTO;
-import co.edu.uniandes.csw.grupos.dtos.PersonaDTO;
 import co.edu.uniandes.csw.grupos.ejb.AdministradorLogic;
 import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
@@ -95,8 +94,7 @@ public class AdministradorResource {
      * ser una cadena de d�gitos.
      * @param administrador {@link AdministradorDTO} El administrador que se desea guardar.
      * @return JSON {@link AdministradorDTO} - El adminisrador guardado.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el administrador.
+     * @throws WebApplicationException error de lógica que se genera cuando no se encuentra el administrador.
      * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @PUT
@@ -117,8 +115,7 @@ public class AdministradorResource {
      *
      * @param administradorId Identificador del administrador que se desea borrar. Este debe ser
      * una cadena de d�gitos.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando ya existe el administrador.
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe el administrador.
      */
     @DELETE
     @Path("{administradorId: \\d+}")

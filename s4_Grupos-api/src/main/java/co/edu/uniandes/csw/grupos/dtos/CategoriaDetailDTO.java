@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que extiende de {@link CategoriaDTO} para manejar las relaciones entre los
+ * CategoriaDTO y otros DTOs. Para conocer el contenido de un Categoria vaya a la
+ * documentacion de {@link CategoriaDTO}
  * @author s.carrero
  */
 public class CategoriaDetailDTO extends CategoriaDTO {

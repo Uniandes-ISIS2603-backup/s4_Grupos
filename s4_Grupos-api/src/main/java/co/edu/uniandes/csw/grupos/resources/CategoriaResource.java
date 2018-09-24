@@ -50,8 +50,7 @@ public class CategoriaResource {
      * @param pCategoria  - La categoria que se desea guardar.
      * @return JSON - El grupo guardado con el atributo id
      * autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}
-     * Error de lógica que se genera cuando ya existe el grupo o es inválido
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe el grupo o es inválido
      */
     @POST
     public CategoriaDTO createCategoria( CategoriaDTO pCategoria) throws BusinessLogicException{
@@ -68,12 +67,11 @@ public class CategoriaResource {
     
     /**
      * Busca y devuelve todas las categorias que existen en la aplicacion.
-     *
-     * @return JSONArray {@link GrupoDeInteresDetailDTO} - Las categorias son encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     * @return JSONArray Las categorias son encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     
     @GET
-    public List<CategoriaDetailDTO> getCategorias(ArrayList<CategoriaDTO> pCategorias){
+    public List<CategoriaDetailDTO> getCategorias(){
         
         LOGGER.info("GrupoDeInteresResource getGrupos: input: void");
         List<CategoriaDetailDTO> listaGrupos = entity2DetailDTO(grupoLogic.getCategorias());
@@ -90,11 +88,9 @@ public class CategoriaResource {
      * @param categoria {@link CategoriaDetailDTO} La categoria que se desea
      * guardar.
      * @return JSON {@link CategoriaDetailDTO} - La categoria guardada.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra la categoria a
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra la categoria a
      * actualizar.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede actualizar la categoria.
+     * @throws BusinessLogicException Error de lógica que se genera cuando no se puede actualizar la categoria.
      */
     @PUT
     @Path("{nombrecategoria: \\d+}")
@@ -120,8 +116,7 @@ public class CategoriaResource {
      *
      * @param categId Identificador de la categoria que se desea borrar.
      * Este debe ser una cadena de dígitos.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra la categoria.  
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra la categoria.  
      */    
     @DELETE
     @Path("{nombrecategoria: \\d+}")

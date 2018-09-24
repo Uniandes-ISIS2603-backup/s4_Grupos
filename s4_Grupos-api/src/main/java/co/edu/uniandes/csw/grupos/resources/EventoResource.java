@@ -40,11 +40,10 @@ public class EventoResource {
     /**
      * Crea un nuevo evento y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
-     * @param gruposId {@link EventoDTO} - EL ide del grupo sel cual se le agrega el evento
-     * @param evento {@link EventoDTO} - EL evento que se desea a�adir.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando ya existe el evento.
-     * @return JSON {@link EventoDTO} - El evento guardado con su id
+     * @param gruposId EL ide del grupo sel cual se le agrega el evento
+     * @param evento  EL evento que se desea a�adir.
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe el evento.
+     * @return JSON El evento guardado con su id
      */
     @POST
     public EventoDetailDTO createEvento(@PathParam("gruposId") Long gruposId, EventoDTO evento) throws BusinessLogicException 
@@ -58,8 +57,7 @@ public class EventoResource {
     /**
      * Devuelve todos los eventos de un grupo de interés.     *
      * @param gruposId id del grupo de interés
-     * @return JSONArray {@link EventoDTO} - Los eventos
-     * registrados. Si no hay ninguno retorna una lista vac�a.
+     * @return JSONArray Los eventos registrados. Si no hay ninguno retorna una lista vac�a.
      */
     @GET
     public List<EventoDetailDTO> getEventos(@PathParam("gruposId") Long gruposId)
@@ -75,9 +73,8 @@ public class EventoResource {
      * @param gruposId El ID del grupo del cual se buscan los eventos
      * @param id Id del evento que se desea actualizar. Este debe
      * ser una cadena de caracteres.
-     * @return JSON {@link EventoDTO} - El evento que se deseaba buscar.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el evento.
+     * @return JSON El evento que se deseaba buscar.
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el evento.
      */
     @GET
     @Path("{id:\\d+}")
@@ -100,10 +97,8 @@ public class EventoResource {
      * ser una cadena de caracteres.
      * @param evento {@link EventoDTO} El evento que se desea guardar.
      * @return JSON {@link EventoDTO} - El evento guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando ya existe el evento.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el evento.
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe el evento.
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el evento.
      */
     @PUT
      @Path("{id:\\d+}")
@@ -128,10 +123,8 @@ public class EventoResource {
      * @param gruposId El ID del grupo del cual se va a eliminar el evento.
      * @param id Id del evento que se desea borrar. Este debe ser
      * una cadena de caracteres.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando ya existe el evento.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el evento.
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe el evento.
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el evento.
      */
     @DELETE
     @Path("{id: \\d+}")

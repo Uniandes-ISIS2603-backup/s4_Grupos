@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que extiende de {@link AdministradorDTO} para manejar las relaciones entre los
+ * AdministradorDTO y otros DTOs. Para conocer el contenido de un Administrador vaya a la
+ * documentacion de {@link AdministradorDTO}
  * @author ac.beltrans
  */
 public class AdministradorDetailDTO extends AdministradorDTO implements Serializable {
@@ -30,7 +32,7 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
      * Crea un objeto AdministradorDetailDTO a partir de un objeto AdministradorEntity
      * incluyendo los atributos de AdministradorDTO.
      *
-     * @param administradorEntity Entidad AuthorEntity desde la cual se va a crear el
+     * @param administradorEntity Entidad AdministradorEntity desde la cual se va a crear el
      * nuevo objeto.
      *
      */
@@ -48,7 +50,7 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
      * Convierte un objeto AdministradorDetailDTO a AdministradorEntity incluyendo los
      * atributos de AdministradorDTO.
      *
-     * @return Nueva objeto AuthorEntity.
+     * @return Nueva objeto AdministradorEntity.
      *
      */
       @Override

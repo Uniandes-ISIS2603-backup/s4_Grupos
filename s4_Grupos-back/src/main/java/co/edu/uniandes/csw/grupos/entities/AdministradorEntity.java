@@ -13,7 +13,7 @@ import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que representa un AdministradorEntity
  * @author ac.beltrans
  */
 @Entity

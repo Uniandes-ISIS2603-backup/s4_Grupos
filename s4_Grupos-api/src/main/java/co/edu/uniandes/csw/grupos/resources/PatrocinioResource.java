@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.resources;
-import co.edu.uniandes.csw.grupos.dtos.DistritoDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.PatrocinioDetailDTO;
-import co.edu.uniandes.csw.grupos.dtos.LocacionDTO;
 import co.edu.uniandes.csw.grupos.dtos.PatrocinioDTO;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import co.edu.uniandes.csw.grupos.ejb.PatrocinioLogic;
-import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +53,9 @@ public class PatrocinioResource {
     /**
      * Crea un nuevo patrocinador y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
-     * @param patrocionioDto {@link PatrocionioDto} - El patrocinador que se desea anadir.
-     * @return JSON {@link PatrocionioDto} -La patrocinio  guardado con su id
+     * @param patrocionioDto El patrocinador que se desea anadir.
+     * @return JSON La patrocinio  guardado con su id
+     * @throws BusinessLogicException Si ya existia el patrocinador
      */
     @POST
     public PatrocinioDTO crearPatrocinador(PatrocinioDTO patrocionioDto) throws BusinessLogicException {
@@ -89,7 +87,7 @@ public class PatrocinioResource {
      * Busca un patrocinio por su nombre y lo retorna.
      *
      * @param patrociniosId identificador del patrocinador
-     * @return JSON {@link patrocinioDTO} - EL patrocinio que se deseaba buscar.
+     * @return JSON El patrocinio que se deseaba buscar.
      */
     @GET
 
@@ -109,9 +107,9 @@ public class PatrocinioResource {
     /**
      * Actualiza el patrocinio con el id recibido desde la petici�n.
      * @param patrociniosId Identificador del patrocinio que se desea actualizar
-     * @param patrocinio {@link PatrocinioDTO} El patrocinioo que se desea guardar.
+     * @param patrocinio {@link PatrocinioDTO} El patrocinio que se desea guardar.
      * @return JSON {@link PatrocinioDTO} - El patrocinio guardado.
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException Si no existe el patrocinio a actualizar.
      */
     @PUT
    @Path("{patrocinadorId:  \\d+}")
@@ -133,7 +131,7 @@ public class PatrocinioResource {
      *
      * 
      * @param patrociniosId Identificador del patrocinio que se desea eliminar
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException Si no existia el patrocinio
      */
     @DELETE
     @Path("{patrocinadorId :  \\d+}")

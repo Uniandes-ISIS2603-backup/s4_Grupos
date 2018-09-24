@@ -49,12 +49,9 @@ public class NoticiaResource {
      * petición y se regresa un objeto identico.
      *
      * @param gruposId El Id del grupo del cual se le agrega la noticia
-     * @param noticia {@link NoticiaDTO} - La noticia que se desea guardar.
-     * @return JSON {@link NoticiaTO} - La noticia guardada 
-     * @return JSON {@link NoticiaDTO} - La noticia guardada con el atributo id
-     * autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando ya existe la noticia.
+     * @param noticia La noticia que se desea guardar.
+     * @return JSON La noticia guardada 
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe la noticia.
      */
     @POST
     public NoticiaDetailDTO createReview(@PathParam("gruposId") Long gruposId, NoticiaDTO noticia) throws BusinessLogicException 
@@ -67,8 +64,8 @@ public class NoticiaResource {
    /**
      * Busca y devuelve todas las noticias que existen en un grupo.
      *
-     * @param grupoId El ID del grupo del cual se buscan las noticias
-     * @return JSONArray {@link NoticiaDTO} - Las noticias encontradas en el
+     * @param gruposID El ID del grupo del cual se buscan las noticias
+     * @return JSONArray Las noticias encontradas en el
      * grupo. Si no hay ninguna retorna una lista vacía.
      * 
      */
@@ -86,13 +83,10 @@ public class NoticiaResource {
      * Busca y devuelve la notcia con el ID recibido en la URL, relativa a un
      * grupo.
      *
-     * @param grupoID El ID de del grupo cual se buscan las noticias
+     * @param gruposId El ID de del grupo cual se buscan las noticias
      * @param id El ID de la noticia que se busca
      * @return {@link NoticiaDTO} - La noticia encontrada en el grupo.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el grupo.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra la noticia.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper}Error de lógica que se genera cuando no se encuentra la noticia.
      */
     @GET
     @Path("{id:\\d+}")
@@ -142,7 +136,7 @@ public class NoticiaResource {
     }
     /**
      * Borra la noticia del grupo con el id con el id asociado recibido en la URL.
-     * *@param gruposID El ID del grupo del cual se va a eliminar la noticia.
+     * @param gruposID El ID del grupo del cual se va a eliminar la noticia.
      * @param id Identificador de la noticia que se desea borrar.
      * Este debe ser una cadena de dígitos.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
@@ -166,7 +160,7 @@ public class NoticiaResource {
      * dependen de la noticia, es una redirección al servicio que maneja el segmento
      * de la URL que se encarga de las comentarios.
      *
-     * @param id El ID de la noticia con respecto al cual se accede al
+     * @param noticiassId El ID de la noticia con respecto al cual se accede al
      * servicio.
      * @return El servicio de Comentarios para ese grupo en paricular.\
      */

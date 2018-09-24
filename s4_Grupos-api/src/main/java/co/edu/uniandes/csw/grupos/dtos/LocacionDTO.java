@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.grupos.dtos;
 
-import co.edu.uniandes.csw.grupos.entities.DistritoEntity;
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -73,16 +72,15 @@ public class LocacionDTO implements Serializable
      * la entidad que viene de argumento.
      *
      * @param locacionEntity: Es la entidad que se va a convertir a DTO
-     */
-   
-    public  LocacionDTO(LocacionEntity locaionEntiy) {
-        setDirecion(locaionEntiy.getDirecion());
-        setId(locaionEntiy.getId());
-        setLatitud(locaionEntiy.getLatitud());
-        setLongitud(locaionEntiy.getLongitud());
-        setLocacion(locaionEntiy.getLocacion());
-        setTipo(locaionEntiy.getTipo());
-        distrito= new DistritoDTO(locaionEntiy.getDistrito());
+     */   
+    public  LocacionDTO(LocacionEntity locacionEntity) {
+        setDirecion(locacionEntity.getDirecion());
+        setId(locacionEntity.getId());
+        setLatitud(locacionEntity.getLatitud());
+        setLongitud(locacionEntity.getLongitud());
+        setLocacion(locacionEntity.getLocacion());
+        setTipo(locacionEntity.getTipo());
+        distrito= new DistritoDTO(locacionEntity.getDistrito());
     }
     
     

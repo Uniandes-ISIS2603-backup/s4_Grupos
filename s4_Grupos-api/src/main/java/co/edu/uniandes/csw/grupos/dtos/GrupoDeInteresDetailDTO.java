@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que extiende de {@link GrupoDeInteresDTO} para manejar las relaciones entre los
+ * GrupoDeInteresDTO y otros DTOs. Para conocer el contenido de un GrupoDeInteres vaya a la
+ * documentacion de {@link GrupoDeInteresDTO}
  * @author s.carrero
  */
 public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
@@ -204,14 +206,7 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     
     public void setCiudadanos(List<CiudadanoDTO> ciudadanos) {
         this.ciudadanos = ciudadanos;
-    }
-    
-    
-    
-    
-    
-    
-    
+    } 
     
     
     

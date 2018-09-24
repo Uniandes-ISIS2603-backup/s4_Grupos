@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.ejb.PatrocinioLogic;
-import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
@@ -17,19 +16,19 @@ import java.util.logging.Logger;
 /**
  * Clase que extiende de {@link PatrocinioDTO} para manejar las relaciones entre los
  * PatrocinioDTO y otros DTOs. Para conocer el contenido de un Patrocinio vaya a la
- * documentacion de {@link PatrocinoDTO}
+ * documentacion de PatrocinioDTO
  *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *     
+ *
  *   }
  * </pre> Por ejemplo un autor se representa asi:<br>
  *
  * <pre>
  *
  *   {
- *     
+ *
  *   }
  *
  * </pre>
@@ -39,41 +38,41 @@ import java.util.logging.Logger;
 public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
 {
     //logger
-     private static final Logger LOGGER = Logger.getLogger(PatrocinioLogic.class.getName());
-     
-     
+    private static final Logger LOGGER = Logger.getLogger(PatrocinioLogic.class.getName());
+    
+    
     // relación  cero a muchos Eventos
     private List<EventoDTO> eventos ;
-
+    
     public PatrocinioDetailDTO() {
         super();
     }
-  
-      /**
-       * Constructor para transformar un Entity a un DTO
-       *
-       * @param PatrocinioEntity La entidad de la cual se construye el DTO
-       */
     
-      public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
-          super( patrocinadorEntity);
-           LOGGER.info("comienza la creacion del detailDTO patrocinio");
-           eventos  = new ArrayList<>();
-          if(patrocinadorEntity != null)
-          {
-              if(patrocinadorEntity.getEventos() != null)
-              {
-                    for(EventoEntity enty : patrocinadorEntity.getEventos()  )
-                     {
-                        eventos.add(new EventoDTO(enty));
-                     }
-              }
-          }
-           LOGGER.info("finaliza la creacion del detailDTO patrocinio");
-      }
-       
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param patrocinadorEntity  La entidad de la cual se construye el DTO
+     */
     
-         /**
+    public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
+        super( patrocinadorEntity);
+        LOGGER.info("comienza la creacion del detailDTO patrocinio");
+        eventos  = new ArrayList<>();
+        if(patrocinadorEntity != null)
+        {
+            if(patrocinadorEntity.getEventos() != null)
+            {
+                for(EventoEntity enty : patrocinadorEntity.getEventos()  )
+                {
+                    eventos.add(new EventoDTO(enty));
+                }
+            }
+        }
+        LOGGER.info("finaliza la creacion del detailDTO patrocinio");
+    }
+    
+    
+    /**
      * Transformar un DTO a un Entity
      *
      * @return El DTO de el patrocinio para transformar a Entity
@@ -87,12 +86,12 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
                 
                 gruposEntity.add(dtoEvento.toEntity());
             }
-             patroEntity.setEventos(gruposEntity);
+            patroEntity.setEventos(gruposEntity);
         }
         
-        return patroEntity;        
+        return patroEntity;
     }
-
+    
     /**
      * Devuelve los eventos asociados al Patrocinador
      *
@@ -102,15 +101,15 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
     public List<EventoDTO> getEventos() {
         return new ArrayList<EventoDTO>();
     }
-
+    
     /**
      * Modifica los eventos del patrocinador.
      *
-     * @param eventos eventos que se quieren modificar
+     * @param pEventos eventos que se quieren modificar
      */
     
     public void setEventos(List<EventoDTO> pEventos) {
         this.eventos   = pEventos;
-    }    
+    }
     
 }

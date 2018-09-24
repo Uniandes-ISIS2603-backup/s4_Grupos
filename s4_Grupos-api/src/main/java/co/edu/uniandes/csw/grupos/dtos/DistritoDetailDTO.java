@@ -25,6 +25,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *      "name": string,
  *      "locaciones": [{@link LocacionDTO}]
  *   }
+ * </pre>
  * @author sarabepu
  */
 public class DistritoDetailDTO extends DistritoDTO {

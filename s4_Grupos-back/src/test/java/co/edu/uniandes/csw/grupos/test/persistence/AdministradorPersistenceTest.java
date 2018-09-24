@@ -25,7 +25,7 @@ import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- *
+ * Pruebas de persistencia de Administradores
  * @author estudiante
  */
 @RunWith(Arquillian.class)

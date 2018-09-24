@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 /**
- *
+ * Clase que representa un NoticiaEntity
  * @author estudiante
  */
 @Entity

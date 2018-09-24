@@ -96,6 +96,8 @@ public class EventoLogic {
      * @param eventoEntity Instancia de EventoEntity con los nuevos datos.
      * @param gruposId id del GrupoDeInteres el cual sera padre del EventoLogic actualizado.
      * @return Instancia de EventoEntity con los datos actualizados.
+     * @throws BusinessLogicException si gruposId no es el mismo que tiene el
+     * entity.
      *
      */
     public EventoEntity updateEvento(Long gruposId, EventoEntity eventoEntity) throws BusinessLogicException {

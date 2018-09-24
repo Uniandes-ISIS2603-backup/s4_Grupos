@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * GrupoDeInteresDTO Objeto de transferencia de datos de GrupoDeInteres. Los DTO contienen las
+ * representaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
  * @author s.carrero
  */
 public class GrupoDeInteresDTO implements Serializable {
@@ -19,7 +21,7 @@ public class GrupoDeInteresDTO implements Serializable {
     
     private String descripcion;
     
-    private long id;
+    private Long id;
         
     
     /**
@@ -52,7 +54,7 @@ public class GrupoDeInteresDTO implements Serializable {
         return descripcion;
     }
     
-    public long getId(){
+    public Long getId(){
         
         return id;
     }
@@ -68,7 +70,7 @@ public class GrupoDeInteresDTO implements Serializable {
         descripcion = pDescripcion;
     }
     
-    public void setId(long pId){
+    public void setId(Long pId){
         
         id = pId;
     }    

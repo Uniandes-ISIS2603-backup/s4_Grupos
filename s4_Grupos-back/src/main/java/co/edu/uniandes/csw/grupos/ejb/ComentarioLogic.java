@@ -73,9 +73,8 @@ public class ComentarioLogic
      * @param comentariosId Identificador de la instancia a actualizar
      * @param comentarioEntity Instancia de ComentarioEntity con los nuevos datos.
      * @return Instancia de ComentarioEntity con los datos actualizados.
-     * @throws BusinessLogicException
      */
-    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) throws BusinessLogicException
+    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el comentario con id = {0}", comentariosId);
         ComentarioEntity newComentarioEntity = persistence.update(comentarioEntity);

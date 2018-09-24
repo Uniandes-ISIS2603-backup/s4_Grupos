@@ -7,10 +7,7 @@ package co.edu.uniandes.csw.grupos.resources;
 import co.edu.uniandes.csw.grupos.dtos.LocacionDTO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -33,22 +30,22 @@ public class LocacionResource {
   /**
      * Crea un nuevo administrador y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
-     * @param LocacionDto {@link LocaiconDTO} - La locacion que se desea anadir.
-     * @return JSON {@link LocaiconDTO} -La locacion  guardado con su id
+     * @param locacionId Id de la locacion
+     * @param locacionDto La locacion que se desea anadir.
+     * @return JSON La locacion  guardado con su id
      */
     @POST
-    public LocacionDTO crearLocacion(@PathParam("distritosId") Long distritosId, LocacionDTO locacionDto) {
+    public LocacionDTO crearLocacion(@PathParam("locacionId") Long locacionId, LocacionDTO locacionDto) {
     
         return  new LocacionDTO();
     }
     /**
      * Devuelve todos las locaciones registradas.
-     *
      * @return JSONArray {@link LocacionDTO} - Las locaciones
      * registradas. Si no hay ninguna retorna una lista vac�a.
      */
     @GET
-    public List<LocacionDTO> getLocaciones(@PathParam("distritosId") Long distritosId) 
+    public List<LocacionDTO> getLocaciones() 
     {
         return new ArrayList<>();
     }
@@ -58,38 +55,38 @@ public class LocacionResource {
      *
      * @param localizacionId Identificador del localzacion que se esta buscando. Este debe
      * ser una cadena de d�gitos.
-     * @return JSON {@link localizacionDTO} - La localizacion que se deseaba buscar.
+     * @return JSON La localizacion que se deseaba buscar.
      */
     @GET
     @Path("{locacionId: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("distritosId") Long distritosId, @PathParam("locacionId") Long localizacionId) 
+    public LocacionDTO getLocacion(@PathParam("locacionId") Long localizacionId) 
     {
         return new LocacionDTO();
     }
 
     /**
      * Actualiza el localizacion con el id recibido desde la petici�n.
-     * @param localizacionId Identificador de la localizacion que se desea actualizar. Este debe
+     * @param locacionId Identificador de la localizacion que se desea actualizar. Este debe
      * ser una cadena de d�gitos.
-     * @param localizacion {@link LocalizacionDTO} El administrador que se desea guardar.
-     * @return JSON {@link LocalizacionDTO} - La locacion guardado.
+     * @param locacion DTO de la locacion
+     * @return JSON La locacion guardado.
      */
     @PUT
     @Path("{locacionId: \\d+}")
-    public LocacionDTO updateLocacion(@PathParam("distritosId") Long distritosId, @PathParam("locacionId") Long locacionId, LocacionDTO locacion) 
+    public LocacionDTO updateLocacion( @PathParam("locacionId") Long locacionId, LocacionDTO locacion) 
     {
         return locacion;
     }
 
     /**
-     * Borra la locacion con el id asociado recibido en la URL.
-     *
+     * Borra la locacion con el id asociado recibido en la URL.     *
      * @param locacionId Identificador de la locacion que se desea borrar. Este debe ser
      * una cadena de d�gitos.
+     * @return la locacion
      */
     @DELETE
     @Path("{locacionId: \\d+}")
-    public LocacionDTO deleteLocaciones(@PathParam("distritosId") Long distritosId, @PathParam("locacionId") Long locacionId) 
+    public LocacionDTO deleteLocaciones(@PathParam("locacionId") Long locacionId) 
     {
     	return new LocacionDTO();
     }

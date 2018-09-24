@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Clase que representa un PatrocinioLogic
  * @author estudiante
  */
 @Stateless

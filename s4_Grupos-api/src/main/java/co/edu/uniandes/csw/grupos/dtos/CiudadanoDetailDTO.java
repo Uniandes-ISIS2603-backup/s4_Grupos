@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Clase que representa un CiudadanoDetailDTO
- * @ciudadano Daniel Augusto Ramirez Dueñas
+ * @author Daniel Augusto Ramirez Dueñas
  */
 public class CiudadanoDetailDTO extends CiudadanoDTO
 {
