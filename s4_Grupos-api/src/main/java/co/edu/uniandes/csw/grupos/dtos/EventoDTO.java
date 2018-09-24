@@ -11,7 +11,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
- *
+ *EventoDTO Objeto de transferencia de datos de Eventos. Los DTO contienen las
+ * representaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
  * @author ac.beltrans
  */
 
