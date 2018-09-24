@@ -102,26 +102,23 @@ public class CiudadanoLogicTest
             entity.setGruposDeInteres(new ArrayList<>());
             data.add(entity);
         }
-//        CiudadanoEntity ciudadano = data.get(2);
-//        GrupoDeInteresEntity entity = factory.manufacturePojo(GrupoDeInteresEntity.class);
-//        entity.getCiudadanos().add(ciudadano);
-//        em.persist(entity);
-//        ciudadano.getGruposDeInteres().add(entity);
-
-//        PrizeEntity prize = factory.manufacturePojo(PrizeEntity.class);
-//        prize.setCiudadano(data.get(1));
-//        em.persist(prize);
-//        data.get(1).getPrizes().add(prize);
     }
 
     /**
      * Prueba para crear un Ciudadano.
      */
     @Test
-    public void createCiudadanoTest() {
+    public void createCiudadanoTest() 
+    {
         CiudadanoEntity newEntity = factory.manufacturePojo(CiudadanoEntity.class);
         CiudadanoEntity result = ciudadanoLogic.createCiudadano(newEntity);
         Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getContrasena());
+        Assert.assertNotNull(result.getNombre());
+        Assert.assertNotNull(result.getId());
+        Assert.assertNotEquals("", result.getContrasena());
+        Assert.assertNotEquals("", result.getNombre());
+        Assert.assertNotEquals("", result.getId());
         CiudadanoEntity entity = em.find(CiudadanoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
@@ -167,6 +164,8 @@ public class CiudadanoLogicTest
         CiudadanoEntity entity = data.get(0);
         CiudadanoEntity pojoEntity = factory.manufacturePojo(CiudadanoEntity.class);
 
+        Assert.assertNotNull(entity.getId());
+        Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
         ciudadanoLogic.updateCiudadano(pojoEntity.getId(), pojoEntity);
@@ -181,7 +180,7 @@ public class CiudadanoLogicTest
     /**
      * Prueba para eliminar un Ciudadano
      *
-     * @throws co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException
+     * @throws BusinessLogicException cuando no se puede crear un Ciudadano.
      */
     @Test
     public void deleteCiudadanoTest() throws BusinessLogicException {

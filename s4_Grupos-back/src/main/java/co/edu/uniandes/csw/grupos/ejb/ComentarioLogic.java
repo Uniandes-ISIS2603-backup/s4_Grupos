@@ -61,7 +61,7 @@ public class ComentarioLogic
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el comentario con id = {0}", comentariosId);
         ComentarioEntity comentarioEntity = persistence.find(comentariosId);
         if (comentarioEntity == null) {
-            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", comentariosId);
+            LOGGER.log(Level.SEVERE, "La comentario con el id = {0} no existe", comentariosId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar el comentario con id = {0}", comentariosId);
         return comentarioEntity;
