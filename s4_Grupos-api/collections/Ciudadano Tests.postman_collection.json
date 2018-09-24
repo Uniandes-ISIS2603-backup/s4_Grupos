@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "9e82e9e3-932a-4015-b533-91c9dd154772",
+		"name": "Ciudadano Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un ciudadano",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "98e9bb40-d45d-4939-95f1-98b373503aa8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n\t\"contrasena\": \"olakease123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos"
+					]
+				},
+				"description": "Crea un nuevo ciudadano"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener ciudadanos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13963cd1-89c8-4efa-8a7e-9a55adbc10af",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nombre\": \"Daniel\",\n\t\"texto\": \"Esto es un comentario\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos"
+					]
+				},
+				"description": "Crea un nuevo comentario"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un ciudadano con el usuario dado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52d1214c-0d47-4cee-ab77-a0549a89af1f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\": 21,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"olakase\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos",
+						"10"
+					]
+				},
+				"description": "Consulta la lista de ciudadanos que se encuentran en la aplicación."
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Ciudadano",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ce941af-156c-41e7-b1ef-1bec988b2650",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"nombre\": \"Daniel Augusto Ramirez Dueñas\",\n    \"contraseña\": \"pepeGri\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos",
+						"15"
+					]
+				},
+				"description": "Edita la información de un ciudadano"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Ciudadano",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "22979fdd-393b-4929-9015-e96f097262ba",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos",
+						"11"
+					]
+				},
+				"description": "Borra a un ciudadano con usuario dado por paramtreo"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Ciudadanos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "22979fdd-393b-4929-9015-e96f097262ba",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s4_Grupos-api/api/ciudadanos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"ciudadanos"
+					]
+				},
+				"description": "Borra todos los ciudadanos que se encuentrarn en la aplicación."
+			},
+			"response": []
+		}
+	]
+}

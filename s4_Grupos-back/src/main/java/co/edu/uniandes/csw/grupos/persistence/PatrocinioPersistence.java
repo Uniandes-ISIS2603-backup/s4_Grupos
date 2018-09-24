@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
-import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

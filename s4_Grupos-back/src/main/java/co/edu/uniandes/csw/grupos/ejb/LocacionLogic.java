@@ -47,7 +47,7 @@ public class LocacionLogic
         }
         if (persistence.findByName(locacionEntity.getLocacion()) != null) {
             throw new BusinessLogicException("El name ya existe");
-        }
+        }      
         DistritoEntity distrito = distritoPersistence.find(locacionEntity.getDistrito().getId());
         if(distritoPersistence.find(distritoId)==null)
         {

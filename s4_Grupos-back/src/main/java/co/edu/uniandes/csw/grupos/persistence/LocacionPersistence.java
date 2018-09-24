@@ -65,7 +65,7 @@ public class LocacionPersistence {
     public LocacionEntity find(Long idLocacion) {
         LOGGER.log(Level.INFO, "Consultando la localizacion por id", idLocacion);
         return em.find(LocacionEntity.class, idLocacion);
-    }
+        }
 
     /**
      * Actualiza una locacion.

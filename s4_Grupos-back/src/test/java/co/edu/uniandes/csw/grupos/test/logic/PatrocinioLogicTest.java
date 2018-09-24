@@ -85,7 +85,7 @@ public class PatrocinioLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PatrocinioEntity").executeUpdate();
-    }
+           }
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las

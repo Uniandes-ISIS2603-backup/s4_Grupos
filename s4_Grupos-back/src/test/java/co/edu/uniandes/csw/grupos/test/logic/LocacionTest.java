@@ -45,6 +45,7 @@ public class LocacionTest {
     private UserTransaction utx;
 
     private List<LocacionEntity> data = new ArrayList<LocacionEntity>();
+    private List<DistritoEntity> distritos = new ArrayList<DistritoEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -86,6 +87,8 @@ public class LocacionTest {
      */
     private void clearData() {
         em.createQuery("delete from LocacionEntity").executeUpdate();
+        em.createQuery("delete from DistritoEntity").executeUpdate();
+
     }
 
     /**
@@ -94,10 +97,16 @@ public class LocacionTest {
      */
     private void insertData() {
      
+        for(int i = 0 ; i < 3 ; i++)
+        {
+            DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
+            em.persist(newDis);
+            distritos.add(newDis);
+        }
         
         for (int i = 0; i < 3; i++) {
             LocacionEntity entity = factory.manufacturePojo(LocacionEntity.class);
-            
+            entity.setDistrito(distritos.get(i));
             em.persist(entity);
             data.add(entity);
         }
@@ -111,14 +120,15 @@ public class LocacionTest {
     @Test
     public void createLocacionTest() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
-        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
+        newEntity.setDistrito( distritos.get(1));
       
-        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
+        LocacionEntity result = locacionLogic.createLocacion( distritos.get(1).getId(), newEntity);
         Assert.assertNotNull(result);
+        Assert.assertEquals(newEntity.getDistrito(), result.getDistrito());
         LocacionEntity entity = em.find(LocacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getLocacion() , entity.getLocacion());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
+
     }
      
     /**
@@ -130,9 +140,9 @@ public class LocacionTest {
     public void createLocacionTestConNameInvalido() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
         newEntity.setLocacion("");
-        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
+       newEntity.setDistrito(distritos.get(1));
       
-        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
+        LocacionEntity result = locacionLogic.createLocacion(distritos.get(1).getId() ,newEntity);
     }
 
     /**
@@ -144,9 +154,8 @@ public class LocacionTest {
     public void createLocacionTestConNameInvalido2() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
         newEntity.setLocacion(null);
-        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
-      
-        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
+        newEntity.setDistrito(distritos.get(1));      
+        LocacionEntity result = locacionLogic.createLocacion(distritos.get(1).getId()  ,newEntity);
     }
 
     /**
@@ -158,16 +167,15 @@ public class LocacionTest {
     public void createLocacionTestConNameExistente() throws BusinessLogicException {
         LocacionEntity newEntity = factory.manufacturePojo(LocacionEntity.class);
         newEntity.setLocacion(data.get(0).getLocacion());
-        DistritoEntity newDis = factory.manufacturePojo(DistritoEntity.class);
-      
-        LocacionEntity result = locacionLogic.createLocacion(newDis.getId() ,newEntity);
+        newEntity.setDistrito(distritos.get(1));      
+        LocacionEntity result = locacionLogic.createLocacion(distritos.get(1).getId()  ,newEntity);
     }
 
     /**
      * Prueba para consultar la lista de Locacions.
      */
     @Test
-    public void getLocacionsTest() {
+    public void getLocacionessTest() {
         List<LocacionEntity> list = locacionLogic.getLocaciones();
         Assert.assertEquals(data.size(), list.size());
         for (LocacionEntity entity : list) {
@@ -185,8 +193,9 @@ public class LocacionTest {
      *
      * 
      */
+    @Test
     public void getLocacionNulo() throws BusinessLogicException {
-        LocacionEntity result = locacionLogic.getLocacion((long)-1);
+        LocacionEntity result = locacionLogic.getLocacion( (long)-1);
         Assert.assertNull(result);
     }
     /**
@@ -195,7 +204,7 @@ public class LocacionTest {
     @Test
     public void getLocacionTest() {
         LocacionEntity entity = data.get(0);
-        LocacionEntity resultEntity = locacionLogic.getLocacion(entity.getId());
+        LocacionEntity resultEntity = locacionLogic.getLocacion( entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getLocacion(), resultEntity.getLocacion());
@@ -242,7 +251,7 @@ public class LocacionTest {
         LocacionEntity pojoEntity = factory.manufacturePojo(LocacionEntity.class);
         pojoEntity.setLocacion(null);
         pojoEntity.setId(entity.getId());
-        locacionLogic.updateLocacion(pojoEntity.getId(), pojoEntity);
+        locacionLogic.updateLocacion(distritos.get(1).getId(), pojoEntity);
     }
 
     /**
