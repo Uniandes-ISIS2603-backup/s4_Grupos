@@ -49,9 +49,9 @@ public class ComentarioResource
     
     /**
      * Crea un comentario
-     * @param comentario
+     * @param comentario Comentario a crear
      * @return un comentario
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException Si ya existe el comentario
      */
     @POST
     public ComentarioDTO  createComentario (ComentarioDTO comentario) throws BusinessLogicException 
@@ -77,7 +77,7 @@ public class ComentarioResource
     
     /**
      * Consulta un comentario de un usario dando el identificador del comentario
-     * @param id
+     * @param id Id del comentario
      * @return comentario de un usuario 
      */
     @GET
@@ -96,10 +96,10 @@ public class ComentarioResource
     
     /**
      * Modifica un comentario con el texto que le entra por paramtro
-     * @param id
-     * @param comentario
+     * @param id id del comentario a modificar
+     * @param comentario Dto del comentario.
      * @return el comentario modificado
-     * @throws BusinessLogicException
+     * @throws BusinessLogicException Si no existe el comentario con el id ingresado.
      */
     @PUT
     @Path("{id:\\d+}")
@@ -138,8 +138,8 @@ public class ComentarioResource
     
     /**
      * Elimina un comentario
-     * @param id
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @param id id del comentario a eliminar
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException Si no existe el comentario.
      */
     @DELETE
     @Path("{id: \\d+}")

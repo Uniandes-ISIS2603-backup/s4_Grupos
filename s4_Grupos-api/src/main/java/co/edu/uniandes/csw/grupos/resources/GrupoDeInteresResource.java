@@ -52,8 +52,7 @@ public class GrupoDeInteresResource {
      * @param pGrupo  - EL grupo que se desea guardar.
      * @return JSON - El grupo guardado con el atributo id
      * autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper}
-     * Error de lógica que se genera cuando ya existe el grupo o es inválido
+     * @throws BusinessLogicException Error de lógica que se genera cuando ya existe el grupo o es inválido
      */
     @POST
     public GrupoDeInteresDTO createGrupo( GrupoDeInteresDTO pGrupo) throws BusinessLogicException{
@@ -70,11 +69,11 @@ public class GrupoDeInteresResource {
     
     
      /**
-     * Busca y devuelve todos los grupos que existen en la aplicacion.
+     * 
+     * Busca y devuelve todos los grupos que existen en la aplicacion.    
+     * @return listaGrupos JSONArray Los grupos son encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      *
-     * @return JSONArray {@link GrupoDeInteresDetailDTO} - Los grupos son encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
-     */
-    /**/    
+     */    
     @GET
     public List<GrupoDeInteresDetailDTO> getGrupos(){
         
@@ -89,9 +88,8 @@ public class GrupoDeInteresResource {
      *
      * @param pGrupoId Identificador de el grupo que se esta buscando.
      * Este debe ser una cadena de dígitos.
-     * @return JSON {@link GrupoDeInteresDetailDTO} - El grupo buscado
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el grupo.     
+     * @return JSON El grupo buscado
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el grupo.     
      */        
     @GET
     @Path("{grupoId: \\d+}")
@@ -113,14 +111,11 @@ public class GrupoDeInteresResource {
      *
      * @param pGrupoId Identificador de el grupo que se desea
      * actualizar. Este debe ser una cadena de dígitos.
-     * @param grupo {@link GrupoDeInteresDetailDTO} El grupo que se desea
+     * @param grupo El grupo que se desea
      * guardar.
-     * @return JSON {@link GrupoDeInteresDetailDTO} - El grupo guardado.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el grupo a
-     * actualizar.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera cuando no se puede actualizar el grupo.
+     * @return JSON El grupo guardado.
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el grupo a actualizar.
+     * @throws BusinessLogicException Error de lógica que se genera cuando no se puede actualizar el grupo.
      */    
     @PUT
     @Path("{nombregrupo: \\d+}")
@@ -143,8 +138,7 @@ public class GrupoDeInteresResource {
      *
      * @param grupoId Identificador del grupo que se desea borrar.
      * Este debe ser una cadena de dígitos.
-     * @throws WebApplicationException {@link WebApplicationExceptionMapper} -
-     * Error de lógica que se genera cuando no se encuentra el grupo.  
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra el grupo.  
      */
     @DELETE
     @Path("{nombregrupo: \\d+}")

@@ -85,11 +85,11 @@ public class NoticiaDetailDTO extends NoticiaDTO implements Serializable {
     }
 
     /**
-     * Modifica la lista de libros de la noticia.
+     * Modifica la lista de comentarios de la noticia.
      *
-     * @param books the books to set
+     * @param comentarios  Los comentarios a establecer
      */
-    public void setBooks(List<ComentarioDTO> comentarios) {
+    public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios    = comentarios;
     }
 /**

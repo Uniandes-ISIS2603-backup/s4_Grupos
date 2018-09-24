@@ -1,4 +1,5 @@
-co.edu.uniandes.csw.grupos.ejb
-co.edu.uniandes.csw.grupos.entities
-co.edu.uniandes.csw.grupos.exceptions
-co.edu.uniandes.csw.grupos.persistence
+co.edu.uniandes.csw.grupos.adapters
+co.edu.uniandes.csw.grupos.dtos
+co.edu.uniandes.csw.grupos.mappers
+co.edu.uniandes.csw.grupos.resources
+org.netbeans.rest.application.config

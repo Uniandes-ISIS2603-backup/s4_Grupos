@@ -43,9 +43,9 @@ public class CiudadanoResource
     CiudadanoLogic ciudadanoLogic;
     /**
      * Crea un nuevo ciudadano
-     * @param ciudadano
-     * @return ciudadno creado
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @param ciudadano Dto del ciudadano por parametro
+     * @return Ciudadano creado
+     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException Si ya existia el ciudadano
      */
     @POST
     public CiudadanoDTO createCiudadano(CiudadanoDTO ciudadano) throws BusinessLogicException
@@ -92,8 +92,7 @@ public class CiudadanoResource
     
     /**
      * Consulta un ciudadano con el numero de usuario dado parametro
-     * @param id
-     * @param user numero de usuario que se desea consultar
+     * @param id id del ciudadano a consultar
      * @return ciudadano con el numero de usuario dado por parametro
      */
     @GET
@@ -113,10 +112,10 @@ public class CiudadanoResource
     
     /**
      * Actualiza un ciudadano con sus nuevas caacteristicas
-     * @param id
-     * @param ciudadano
+     * @param id id del ciudadano a actualizar
+     * @param ciudadano Dto del ciudadano ingresado por parametro
      * @return un ciudadano actualizado
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException Si no existe el ciudadano a actualizar.
      */
     @PUT
     @Path("{id :\\d+}")
@@ -141,8 +140,8 @@ public class CiudadanoResource
     
     /**
      * Elimina un ciudadano
-     * @param id
-     * @throws BusinessLogicException
+     * @param id id del ciudadano a eliminar.
+     * @throws BusinessLogicException Si no existe el ciudadano a eliminar
      */
     @DELETE
     @Path("{id: \\d+}")
