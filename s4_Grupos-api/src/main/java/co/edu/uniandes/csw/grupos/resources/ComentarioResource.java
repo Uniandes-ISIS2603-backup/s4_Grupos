@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.grupos.resources;
 
+import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
 import co.edu.uniandes.csw.grupos.dtos.ComentarioDTO;
+import co.edu.uniandes.csw.grupos.ejb.CiudadanoLogic;
 import co.edu.uniandes.csw.grupos.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
@@ -36,12 +38,15 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ComentarioResource 
 {
-    private final static String NOEXISTE1= "/comentarios/";
-    private final static String NOEXISTE2= " no existe";
+    private static final String NOEXISTE1= "/comentarios/";
+    private static final String NOEXISTE2= " no existe";
     private static final Logger LOGGER = Logger.getLogger(ComentarioResource.class.getName());
     
     @Inject
     ComentarioLogic comentarioLogic;
+    
+    @Inject
+    CiudadanoResource ciudadanoResource;
     
     /**
      * Crea un comentario
@@ -74,7 +79,6 @@ public class ComentarioResource
     /**
      * Consulta un comentario de un usario dando el identificador del comentario
      * @param id
-     * @param comentariosId identificador del comentario que se va a consultar
      * @return comentario de un usuario 
      */
     @GET
@@ -96,13 +100,15 @@ public class ComentarioResource
      * @param id
      * @param comentario
      * @return el comentario modificado
-     * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
      */
     @PUT
     @Path("{id:\\d+}")
     public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0}, comentario:{1}", new Object[]{id});
+        List<CiudadanoDTO> listaDTOs = ciudadanoResource.getCiudadanos();
+        boolean termino = false;
         if (id.equals(comentario.getId())) {
             throw new BusinessLogicException("Los ids del Comentario no coinciden.");
         }
@@ -112,10 +118,23 @@ public class ComentarioResource
             throw new WebApplicationException(NOEXISTE1 + id + NOEXISTE2, 404);
 
         }
-        ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
-        comentarioLogic.deleteComentario(id);
-        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}", comentarioDTO.toString());
-        return comentarioDTO;
+        
+        for (int i = 0; i < listaDTOs.size() && !termino; i++)
+        {
+            if (comentario.getNombre().compareTo(listaDTOs.get(i).getNombre()) == 0)
+            {
+                 ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
+                 comentarioLogic.deleteComentario(id);
+                 LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}");
+                 termino = true;
+                 return comentarioDTO;
+            }
+            else
+            {
+                throw new WebApplicationException("El ciudadano con nombre: "  +  comentario.getNombre() + " no existe. Por favor verifique el nombre.");
+            }
+        }
+        throw new WebApplicationException("El comentario con identificador: " + id + " no se actualizo con éxito.");
     }
     
     /**
