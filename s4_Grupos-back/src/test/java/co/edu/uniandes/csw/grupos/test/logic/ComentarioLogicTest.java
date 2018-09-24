@@ -111,6 +111,12 @@ public class ComentarioLogicTest
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
         ComentarioEntity result = comentarioLogic.createComentario(newEntity);
         Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getTexto());
+        Assert.assertNotNull(result.getNombre());
+        Assert.assertNotNull(result.getId());
+        Assert.assertNotEquals("", result.getTexto());
+        Assert.assertNotEquals("", result.getNombre());
+        Assert.assertNotEquals("", result.getId());
         ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
@@ -156,6 +162,8 @@ public class ComentarioLogicTest
         ComentarioEntity entity = data.get(0);
         ComentarioEntity pojoEntity = factory.manufacturePojo(ComentarioEntity.class);
 
+        Assert.assertNotNull(entity.getId());
+        Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
         try 

@@ -22,11 +22,11 @@ public class CiudadanoEntity extends PersonaEntity implements Serializable
 {
     @PodamExclude
     @ManyToMany
-    List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
+    private List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
     
     @PodamExclude
     @OneToOne
-    ComentarioEntity comentario;
+    private ComentarioEntity comentario;
 
     public List<GrupoDeInteresEntity> getGruposDeInteres() {
         return gruposDeInteres;

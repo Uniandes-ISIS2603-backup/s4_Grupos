@@ -62,7 +62,7 @@ public class CiudadanoLogic
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el ciudadano con id = {0}", ciudadanosId);
         CiudadanoEntity ciudadanoEntity = persistence.find(ciudadanosId);
         if (ciudadanoEntity == null) {
-            LOGGER.log(Level.SEVERE, "La editorial con el id = {0} no existe", ciudadanosId);
+            LOGGER.log(Level.SEVERE, "El ciudadano con el id = {0} no existe", ciudadanosId);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar el ciudadano con id = {0}", ciudadanosId);
         return ciudadanoEntity;
