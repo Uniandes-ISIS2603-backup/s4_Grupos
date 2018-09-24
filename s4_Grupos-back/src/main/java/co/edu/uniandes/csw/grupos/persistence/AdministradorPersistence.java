@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- *
+ * Clase que representa un AdministradorPersistence
  * @author ac.beltrans
  */
 @Stateless

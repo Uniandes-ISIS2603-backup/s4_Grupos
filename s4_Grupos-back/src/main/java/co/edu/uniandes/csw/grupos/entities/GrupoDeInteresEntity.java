@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que representa un GrupoDeInteresEntity
  * @author s.carrero
  */
 @Entity

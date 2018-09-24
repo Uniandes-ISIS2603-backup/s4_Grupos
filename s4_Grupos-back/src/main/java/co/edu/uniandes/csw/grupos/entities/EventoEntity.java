@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que representa un EventoEntity
  * @author ac.beltrans
  */
 @Entity

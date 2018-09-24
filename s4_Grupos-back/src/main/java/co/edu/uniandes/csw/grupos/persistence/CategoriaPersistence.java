@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase que representa un CategoriaPersistence
  * @author s.carrero
  */
 @Stateless

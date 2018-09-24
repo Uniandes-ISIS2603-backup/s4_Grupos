@@ -16,7 +16,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase que representa un PatrocinioPersistence
  * @author j.barbosaj
  */
 @Stateless

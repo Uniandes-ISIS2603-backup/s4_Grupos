@@ -6,15 +6,13 @@
 package co.edu.uniandes.csw.grupos.entities;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
- *
+ * Clase que representa un LocacionEntity
  * @author j.barbosaj
  */
 @Entity
@@ -106,7 +104,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
 
     /**
      * modifica la dorecion asociada a la locacion
-     * @param direccion 
+     * @param direccion Direccion 
      */
     public void setDirecion(String direccion) {
         this.direcion = direccion;
@@ -114,7 +112,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
     
     /**
      * retorna la latitud de la locacion
-     * @return 
+     * @return la latitud
      */
 
     public Long getLatitud() {
@@ -123,7 +121,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
     
     /**
      * modifica la latitud de la locacion
-     * @param latitud 
+     * @param latitud La latitud ingresada por parametro
      */
 
     public void setLatitud(Long latitud) {
@@ -132,7 +130,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
     
     /**
      * retorna la longitud de la locacion
-     * @return 
+     * @return la longitud
      */
 
     public Long getLongitud() {
@@ -178,8 +176,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-    
+    }  
     
     
 }

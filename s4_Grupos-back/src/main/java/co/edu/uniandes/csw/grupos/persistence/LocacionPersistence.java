@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.grupos.persistence;
 
 
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
-import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +17,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * Clase que representa un LocacionPersistence
  * @author j.barbosaj
  */
 @Stateless
@@ -33,7 +32,7 @@ public class LocacionPersistence {
     /**
      * Método para persisitir la entidad en la base de datos.
      *
-     * @param LocacionEntity  objeto locacion que se creará en la base de datos
+     * @param locacionEntity  objeto locacion que se creará en la base de datos
      * @return devuelve la entidad creada con el nombre dado por la base de datos.
      */
     public LocacionEntity create(LocacionEntity locacionEntity) {

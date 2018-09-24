@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- *
+ * Clase que representa un AdministradorLogic
  * @author ac.beltrans
  */
 @Stateless
