@@ -19,7 +19,7 @@ public class GrupoDeInteresDTO implements Serializable {
     
     private String descripcion;
     
-    private long id;
+    private Long id;
         
     
     /**
@@ -52,7 +52,7 @@ public class GrupoDeInteresDTO implements Serializable {
         return descripcion;
     }
     
-    public long getId(){
+    public Long getId(){
         
         return id;
     }
@@ -68,7 +68,7 @@ public class GrupoDeInteresDTO implements Serializable {
         descripcion = pDescripcion;
     }
     
-    public void setId(long pId){
+    public void setId(Long pId){
         
         id = pId;
     }    

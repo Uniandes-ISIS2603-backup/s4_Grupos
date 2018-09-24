@@ -32,6 +32,8 @@ public class AdministradorLogic {
      * @param administradorEntity Objeto de AdministradorEntity con los datos nuevos
      * throws BusinessLogicException lanza la excepción cuando el administrador ya existe o noe es valido
      * @return Objeto de AdministradorEntity con los datos nuevos y su ID.
+     * @throws BusinessLogicException si gruposId no es el mismo que tiene el
+     * entity.
      */
     public AdministradorEntity createAdministrador(AdministradorEntity administradorEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del administrador");
@@ -89,6 +91,8 @@ public class AdministradorLogic {
      * @param administradorId Identificador de la instancia a actualizar
      * @param administradorEntity Instancia de AuthorEntity con los nuevos datos.
      * @return Instancia de AdministradorEntity con los datos actualizados.
+     * @throws BusinessLogicException si gruposId no es el mismo que tiene el
+     * entity.
      */
     public AdministradorEntity updateAdministrador(Long administradorId, AdministradorEntity administradorEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el administrador con id = {0}", administradorId);
