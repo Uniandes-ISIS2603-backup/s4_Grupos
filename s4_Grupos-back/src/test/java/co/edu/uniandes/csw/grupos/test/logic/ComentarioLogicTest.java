@@ -166,14 +166,7 @@ public class ComentarioLogicTest
         Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
-        try 
-        {
-            comentarioLogic.updateComentario(pojoEntity.getId(), pojoEntity);
-        } 
-        catch (BusinessLogicException ex)
-        {
-            Logger.getLogger(ComentarioLogicTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        comentarioLogic.updateComentario(pojoEntity.getId(), pojoEntity);
 
         ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
 
