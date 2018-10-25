@@ -39,7 +39,7 @@ import javax.ws.rs.WebApplicationException;
 public class PatrocinioResource {
     
     @Inject
-    private PatrocinioLogic patrocinioLogic;
+    PatrocinioLogic patrocinioLogic;
     /**
      * loger del resorce
      */

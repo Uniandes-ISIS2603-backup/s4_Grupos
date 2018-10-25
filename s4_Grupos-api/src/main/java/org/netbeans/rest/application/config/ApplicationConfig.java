@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(co.edu.uniandes.csw.grupos.filters.CORSFilter.class);
         resources.add(co.edu.uniandes.csw.grupos.mappers.BusinessLogicExceptionMapper.class);
         resources.add(co.edu.uniandes.csw.grupos.mappers.WebApplicationExceptionMapper.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.AdministradorResource.class);
@@ -40,6 +41,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.edu.uniandes.csw.grupos.resources.EventoResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.GrupoDeInteresCiudadanoResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.GrupoDeInteresResource.class);
+        resources.add(co.edu.uniandes.csw.grupos.resources.LocacionResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.NoticiaResource.class);
         resources.add(co.edu.uniandes.csw.grupos.resources.PatrocinioResource.class);
     }
