@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
+import co.edu.uniandes.csw.grupos.dtos.CiudadanoDetailDTO;
 import co.edu.uniandes.csw.grupos.ejb.CiudadanoLogic;
 import co.edu.uniandes.csw.grupos.entities.CiudadanoEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
@@ -48,15 +49,15 @@ public class CiudadanoResource
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException Si ya existia el ciudadano
      */
     @POST
-    public CiudadanoDTO createCiudadano(CiudadanoDTO ciudadano) throws BusinessLogicException
+    public CiudadanoDetailDTO createCiudadano(CiudadanoDetailDTO ciudadano) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: input: {0}");
-        List<CiudadanoDTO> listaDTOs = listEntityToDTO(ciudadanoLogic.getCiudadanos());
+        List<CiudadanoDetailDTO> listaDTOs = entity2DetailDTO(ciudadanoLogic.getCiudadanos());
         if (listaDTOs.isEmpty())
         {
-            CiudadanoDTO nuevoCiudadanoDTO = new CiudadanoDTO(ciudadanoLogic.createCiudadano(ciudadano.toEntity()));
+            CiudadanoDetailDTO nuevoCiudadanoDetailDTO = new CiudadanoDetailDTO(ciudadanoLogic.createCiudadano(ciudadano.toEntity()));
             LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: output: {0}");
-            return nuevoCiudadanoDTO;
+            return nuevoCiudadanoDetailDTO;
         }
         else
         {
@@ -68,7 +69,7 @@ public class CiudadanoResource
                 }
                 else
                 {
-                    CiudadanoDTO nuevoCiudadanoDTO = new CiudadanoDTO(ciudadanoLogic.createCiudadano(ciudadano.toEntity()));
+                    CiudadanoDetailDTO nuevoCiudadanoDTO = new CiudadanoDetailDTO(ciudadanoLogic.createCiudadano(ciudadano.toEntity()));
                     LOGGER.log(Level.INFO, "CiudadanoResource createCiudadano: output: {0}");
                     return nuevoCiudadanoDTO;    
                 }
@@ -82,10 +83,10 @@ public class CiudadanoResource
      * @return lista de todos los ciudadanos
      */
     @GET
-    public List<CiudadanoDTO> getCiudadanos()
+    public List<CiudadanoDetailDTO> getCiudadanos()
     {
         LOGGER.log(Level.INFO, "CiudadanoResource getCiudadanos: input: {0}");
-        List<CiudadanoDTO> listaDTOs = listEntityToDTO(ciudadanoLogic.getCiudadanos());
+        List<CiudadanoDetailDTO> listaDTOs = entity2DetailDTO(ciudadanoLogic.getCiudadanos());
         LOGGER.log(Level.INFO, "CiudadanosResource getCiudadanos: output: {0}");
         return listaDTOs;
     }
@@ -97,14 +98,14 @@ public class CiudadanoResource
      */
     @GET
     @Path("{id :\\d+}")
-    public CiudadanoDTO getCiudadano(@PathParam("id") Long id)
+    public CiudadanoDetailDTO getCiudadano(@PathParam("id") Long id)
     {
         LOGGER.log(Level.INFO, "CiudadanoResource getCiudadano: input: {0}", id);
         CiudadanoEntity entity = ciudadanoLogic.getCiudadano(id);
         if (entity == null) {
             throw new WebApplicationException( NOEXISTE1 + id + NOEXISTE2, 404);
         }
-        CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(entity);
+        CiudadanoDetailDTO ciudadanoDTO = new CiudadanoDetailDTO(entity);
         LOGGER.log(Level.INFO, "CiudadanoResource getCiudadano: output: {0}");
         return ciudadanoDTO;
     }
@@ -119,7 +120,7 @@ public class CiudadanoResource
      */
     @PUT
     @Path("{id :\\d+}")
-    public CiudadanoDTO modificarCiudadano(@PathParam("id") Long id, CiudadanoDTO ciudadano ) throws BusinessLogicException
+    public CiudadanoDetailDTO modificarCiudadano(@PathParam("id") Long id, CiudadanoDetailDTO ciudadano ) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: input: id: {0} , ciudadano:{1}", new Object[]{id, ciudadano.toString()});
         if (id.equals(ciudadano.getId())) 
@@ -132,10 +133,10 @@ public class CiudadanoResource
             throw new WebApplicationException(NOEXISTE1 + id + NOEXISTE2, 404);
 
         }
-        CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(ciudadanoLogic.updateCiudadano(id,ciudadano.toEntity()));
+        CiudadanoDetailDTO ciudadanoDetailDTO = new CiudadanoDetailDTO(ciudadanoLogic.updateCiudadano(id,ciudadano.toEntity()));
         ciudadanoLogic.deleteCiudadano(id);
         LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: output:{0}");
-        return ciudadanoDTO;
+        return ciudadanoDetailDTO;
     }
     
     /**
@@ -173,5 +174,13 @@ public class CiudadanoResource
             list.add(new CiudadanoDTO(entity));
         }
         return list;    
+    }
+    
+        private List<CiudadanoDetailDTO> entity2DetailDTO(List<CiudadanoEntity> entityList) {
+        List<CiudadanoDetailDTO> list = new ArrayList<>();
+        for (CiudadanoEntity entity : entityList) {
+            list.add(new CiudadanoDetailDTO(entity));
+        }
+        return list;
     }
 }

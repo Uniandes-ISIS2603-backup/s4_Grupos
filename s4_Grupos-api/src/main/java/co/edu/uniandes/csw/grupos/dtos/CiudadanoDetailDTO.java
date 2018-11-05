@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.CiudadanoEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * Clase que representa un CiudadanoDetailDTO
  * @author Daniel Augusto Ramirez Dueñas
  */
-public class CiudadanoDetailDTO extends CiudadanoDTO
+public class CiudadanoDetailDTO extends CiudadanoDTO implements Serializable
 {
     /**
      * Relación  cero o muchos grupos de interes
@@ -41,7 +42,7 @@ public class CiudadanoDetailDTO extends CiudadanoDTO
         if (ciudadanoEntity != null) {
             gruposDeInteres = new ArrayList<>();
             for (GrupoDeInteresEntity entityGrupoDeInteress : ciudadanoEntity.getGruposDeInteres()) {
-                gruposDeInteres.add(new GrupoDeInteresDTO(entityGrupoDeInteress));
+                gruposDeInteres.add(new GrupoDeInteresDetailDTO(entityGrupoDeInteress));
             }
         }
     }
@@ -55,15 +56,15 @@ public class CiudadanoDetailDTO extends CiudadanoDTO
      */
     @Override
     public CiudadanoEntity toEntity() {
-        CiudadanoEntity authorEntity = (CiudadanoEntity) super.toEntity();
+        CiudadanoEntity ciudadanoEntity =  super.toEntity();
         if (gruposDeInteres != null) {
             List<GrupoDeInteresEntity> gruposDeInteresEntity = new ArrayList<>();
             for (GrupoDeInteresDTO dtoGrupoDeInteres : gruposDeInteres) {
                 gruposDeInteresEntity.add(dtoGrupoDeInteres.toEntity());
             }
-            authorEntity.setGruposDeInteres(gruposDeInteresEntity);
+            ciudadanoEntity.setGruposDeInteres(gruposDeInteresEntity);
         }
-        return authorEntity;
+        return ciudadanoEntity;
     }
     /**
      * Lista de los grupos de interes a los cuales pertenece un ciudadano.

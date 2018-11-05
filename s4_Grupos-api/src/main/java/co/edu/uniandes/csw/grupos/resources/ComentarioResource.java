@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.resources;
 
 import co.edu.uniandes.csw.grupos.dtos.CiudadanoDTO;
+import co.edu.uniandes.csw.grupos.dtos.CiudadanoDetailDTO;
 import co.edu.uniandes.csw.grupos.dtos.ComentarioDTO;
 import co.edu.uniandes.csw.grupos.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
@@ -106,7 +107,7 @@ public class ComentarioResource
     public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0}, comentario:{1}", new Object[]{id, comentario.toString()});
-        List<CiudadanoDTO> listaDTOs = ciudadanoResource.getCiudadanos();
+        List<CiudadanoDetailDTO> listaDTOs = ciudadanoResource.getCiudadanos();
         boolean termino = false;
         if (id.equals(comentario.getId())) {
             throw new BusinessLogicException("Los ids del Comentario no coinciden.");
