@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -48,7 +47,7 @@ public class PatrocinioPersistence
      */
     public List<PatrocinioEntity> findAll() {
         LOGGER.log(Level.INFO, "Consultando todos los patrocinadores");
-        Query q = em.createQuery("select u from PatrocinioEntity u");
+        TypedQuery q = em.createQuery("select u from PatrocinioEntity u", PatrocinioEntity.class);
         return q.getResultList();
     }
 

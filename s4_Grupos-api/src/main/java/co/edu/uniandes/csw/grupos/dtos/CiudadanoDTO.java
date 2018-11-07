@@ -19,7 +19,6 @@ public class CiudadanoDTO extends PersonaDTO implements Serializable
      */
     public CiudadanoDTO()
     {
-        super();
     }
     
     /**
@@ -40,10 +39,10 @@ public class CiudadanoDTO extends PersonaDTO implements Serializable
        * @return La entidad del administrador asociado.
        */
     public CiudadanoEntity toEntity() {
-        CiudadanoEntity administradorEntity = new CiudadanoEntity();
-        administradorEntity.setId(this.id);
-        administradorEntity.setNombre(this.nombre);
-        administradorEntity.setContrasena(this.contrasena);
-        return administradorEntity;
+        CiudadanoEntity ciudadanoEntity = new CiudadanoEntity();
+        ciudadanoEntity.setId(this.id);
+        ciudadanoEntity.setNombre(this.nombre);
+        ciudadanoEntity.setContrasena(this.contrasena);
+        return ciudadanoEntity;
     }
 }
