@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.uniandes.csw.grupos.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
@@ -17,21 +13,26 @@ import javax.persistence.TypedQuery;
 /**
  * Clase que maneja la persistencia para Evento. Se conecta a través del Entity
  * Manager de javax.persistance con la base de datos SQL.
+ * 
  * @author ac.beltrans
  */
 @Stateless
 public class EventoPersistence {
     
+
+
     private static final Logger LOGGER = Logger.getLogger(EventoPersistence.class.getName());
 
     @PersistenceContext(unitName = "GroupTeamPU")
     protected EntityManager em;
-    
+
     /**
-     * Método para persisitir la entidad en la base de datos.
+     * Crear una evento
      *
-     * @param eventoEntity objeto evento que se creará en la base de datos
-     * @return devuelve la entidad creada con el nombre dado por la base de datos.
+     * Crea una nueva evento con la información recibida en la entidad.
+     *
+     * @param eventoEntity La entidad que representa la nueva evento
+     * @return La entidad creada
      */
     public EventoEntity create(EventoEntity eventoEntity) {
         LOGGER.log(Level.INFO, "Creando un evento nuevo");
@@ -39,23 +40,26 @@ public class EventoPersistence {
         LOGGER.log(Level.INFO, "Evento creado");
         return eventoEntity;
     }
-    
+
     /**
-     * Actualiza un evento.
-     * @param eventoEntity: el evento que viene con los nuevos cambios.
-     * @return un evento con los cambios aplicados.
+     * Actualizar una evento
+     *
+     * Actualiza la entidad que recibe en la base de datos
+     *
+     * @param eventoEntity La entidad actualizada que se desea guardar
+     * @return La entidad resultante luego de la acutalización
      */
     public EventoEntity update(EventoEntity eventoEntity) {
         LOGGER.log(Level.INFO, "Actualizando evento con id = {0}", eventoEntity.getId());
         return em.merge(eventoEntity);
     }
-    
+
     /**
+     * Eliminar una evento
      *
-     * Borra un evento de la base de datos recibiendo como argumento el id del
-     * evento
+     * Elimina la evento asociada al ID que recibe
      *
-     * @param eventosId: id correspondiente al evento a borrar.
+     * @param eventosId El ID de la evento que se desea borrar
      */
     public void delete(Long eventosId) {
         LOGGER.log(Level.INFO, "Borrando evento con id = {0}", eventosId);
@@ -64,16 +68,16 @@ public class EventoPersistence {
         em.remove(eventoEntity);
         LOGGER.log(Level.INFO, "Saliendo de borrar El evento con id = {0}", eventosId);
     }
-    
+
     /**
-     * Buscar un evento
+     * Buscar una evento
      *
-     * Busca si hay algun evento asociada a un Grupo de interés y con un ID específico
+     * Busca si hay alguna evento asociada a un libro y con un ID específico
      *
-     * @param grupoId El ID del grupo con respecto al cual se busca
-     * @param eventosId El ID del evento buscado
-     * @return El evento encontrado o null. Nota: Si existe uno o más eventos
-     * devuelve siempre el primero que encuentra
+     * @param grupoId El ID del libro con respecto al cual se busca
+     * @param eventosId El ID de la evento buscada
+     * @return La evento encontrada o null. Nota: Si existe una o más eventos
+     * devuelve siempre la primera que encuentra
      */
     public EventoEntity find(Long grupoId, Long eventosId) {
         LOGGER.log(Level.INFO, "Consultando el evento con id = {0} del grupo con id = " + grupoId, eventosId);
@@ -89,8 +93,9 @@ public class EventoPersistence {
         } else if (results.size() >= 1) {
             evento = results.get(0);
         }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el evento con id = {0} del grupo con id =" + grupoId, eventosId);
+        LOGGER.log(Level.INFO, "Saliendo de consultar el evento con id = {0} del libro con id =" + grupoId, eventosId);
         return evento;
-          //return em.find(EventoEntity.class, eventosId);
     }
 }
+
+   

@@ -28,11 +28,11 @@ public class EventoEntity extends BaseEntity implements Serializable{
     private GrupoDeInteresEntity grupo;
     
     @PodamExclude
-    @ManyToMany(mappedBy = "eventos", fetch = javax.persistence.FetchType.LAZY)
+    @ManyToMany
     private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
     
     @PodamExclude
-    @OneToOne(mappedBy = "evento")
+    @OneToOne
     private LocacionEntity locacion;
     
     public EventoEntity()
