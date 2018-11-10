@@ -63,6 +63,7 @@ public class PatrocinioDTO implements Serializable
        LOGGER.info("comienza la creacion del DTO patrocinio");
        this.nombre =  (patrocinioEntity.getNombre());
        this.valor =(patrocinioEntity.getValor());
+       this.id = (patrocinioEntity.getId());
        LOGGER.info("Termina la creacion del DTO patrocinio");
     }
     

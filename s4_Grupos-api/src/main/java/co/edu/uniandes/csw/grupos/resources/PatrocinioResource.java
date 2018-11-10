@@ -92,7 +92,7 @@ public class PatrocinioResource {
     @GET
 
     @Path("{patrocinadorId:  \\d+}")
-    public PatrocinioDTO getPatrocinador(@PathParam("patrocinadorId") Long patrociniosId) 
+    public PatrocinioDetailDTO getPatrocinador(@PathParam("patrocinadorId") Long patrociniosId) 
     {
         LOGGER.log(Level.INFO, "PatrocinioResource getPatrocinio: input: {0}", patrociniosId);
         PatrocinioEntity patrocinioEntity = patrocinioLogic.getPatrocinio(patrociniosId);
