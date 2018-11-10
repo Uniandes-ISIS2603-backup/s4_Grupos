@@ -33,7 +33,7 @@ public class EventoDTO implements Serializable {
     * Relaci�n con un grupo de inter�s 
     * dado que esta tiene cardinalidad 1.
      */
-      private GrupoDeInteresDTO grupoDeInteres;
+     private GrupoDeInteresDTO grupoDeInteres;
 
     /**
      * Constructor por defecto

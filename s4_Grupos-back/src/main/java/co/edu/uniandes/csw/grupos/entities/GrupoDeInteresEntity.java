@@ -28,8 +28,8 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     
     
     @PodamExclude
-    @OneToMany (mappedBy = "grupo")
-    private List<EventoEntity> eventos;
+    @OneToMany(mappedBy = "grupo", orphanRemoval=true, cascade=CascadeType.ALL)
+    private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
     
     @PodamExclude
     @ManyToMany
@@ -42,12 +42,6 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToMany
     private List<CategoriaEntity> categorias = new ArrayList<CategoriaEntity>();
-      
-    
-//    @PodamExclude
-//    @OneToMany
-//    private List<BlogEntity> blogs;      
-    
     
     @PodamExclude
     @OneToMany(mappedBy = "grupo", orphanRemoval=true, cascade=CascadeType.ALL)

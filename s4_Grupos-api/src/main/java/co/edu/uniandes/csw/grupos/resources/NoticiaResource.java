@@ -32,6 +32,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @version 1.0
  */
+@Path ("noticias")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
