@@ -77,7 +77,7 @@ public class EventoResource {
     }
     
      /**
-     * Busca y devuelve la notcia con el ID recibido en la URL, relativa a un
+     * Busca y devuelve el evento con el ID recibido en la URL, relativa a un
      * grupo.
      *
      * @param gruposId El ID de del grupo cual se buscan las eventos

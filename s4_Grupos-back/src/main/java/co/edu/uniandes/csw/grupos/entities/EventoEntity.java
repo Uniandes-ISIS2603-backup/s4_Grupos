@@ -37,7 +37,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
     
     public EventoEntity()
     {
-        
+        super();
     }
     
     /**

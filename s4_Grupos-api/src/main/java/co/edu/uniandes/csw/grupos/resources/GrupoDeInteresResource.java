@@ -174,6 +174,25 @@ public class GrupoDeInteresResource {
         return NoticiaResource.class;
     }
     
+    /**
+     * Conexión con el servicio de eventos para un grupo. {@link LocacionResource}
+     *
+     * Este método conecta la ruta de /grupos con las rutas de /eventos que
+     * dependen de el grupo, es una redirección al servicio que maneja el segmento
+     * de la URL que se encarga de los eventos.
+     *
+     * @param gruposId El ID de el grupo con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Eventos para ese grupo en paricular.\
+     */
+    @Path("{gruposId: \\d+}/eventos")
+    public Class<EventoResource> getEventoResource(@PathParam("gruposId") Long gruposId) {
+        if (grupoLogic.getGrupo(gruposId) == null) {
+          throw new WebApplicationException("El recurso /gruposdeinteres/" + gruposId + "/grupos no existe.", 404);
+         }
+         
+        return EventoResource.class;
+    }
     
         /**
      * Convierte una lista de entidades a DTO.
