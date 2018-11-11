@@ -209,7 +209,10 @@ public class LocacionDTO implements Serializable
          locacionEntity.setTipo(this.tipo);
          locacionEntity.setLatitud(this.latitud);
          locacionEntity.setLongitud(this.longitud);
-         locacionEntity.setDistrito(distrito.toEntity());
+         if(distrito != null)
+         {            
+             locacionEntity.setDistrito(distrito.toEntity());
+          }   
         return locacionEntity;
     }
     
