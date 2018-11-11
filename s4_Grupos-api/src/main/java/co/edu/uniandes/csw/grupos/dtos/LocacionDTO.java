@@ -80,6 +80,7 @@ public class LocacionDTO implements Serializable
         setLongitud(locacionEntity.getLongitud());
         setLocacion(locacionEntity.getLocacion());
         setTipo(locacionEntity.getTipo());
+        setId(locacionEntity.getId());
         distrito= new DistritoDTO(locacionEntity.getDistrito());
     }
     
