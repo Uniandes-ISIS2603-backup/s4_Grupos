@@ -19,6 +19,7 @@ public class NoticiaDTO implements Serializable
 private String descripcion;
 private String rutaImagen;
 private Long id;
+private String titular;
 
 
  /**
@@ -31,6 +32,7 @@ private Long id;
             this.id = noticia.getId();
             descripcion= noticia.getDescripcion();
             rutaImagen= noticia.getRutaImagen();
+            titular=noticia.getTitular();
         
         }
     }
@@ -54,6 +56,18 @@ private Long id;
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+     /**
+     * Devuelve la descripcion de la noticia..
+     *
+     * @return la descripcion
+     */
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
     }
       /**
      * Devuelve la ruta de la imagen de noticia.
@@ -94,6 +108,7 @@ private Long id;
         noticia.setId(id);
         noticia.setDescripcion(descripcion);
         noticia.setRutaImagen(rutaImagen);
+        noticia.setTitular(titular);
         return noticia;
     }
     
