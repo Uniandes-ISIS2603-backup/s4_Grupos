@@ -39,11 +39,12 @@ public class EventoDetailDTO extends EventoDTO implements Serializable {
        */
       public EventoDetailDTO(EventoEntity eventoEntity) {
          super(eventoEntity);
-        if (eventoEntity.getPatrocinios() != null) {
-            patrocinios = new ArrayList<>();
+        if (eventoEntity != null) {
+            if (eventoEntity.getPatrocinios()!= null) {
+                patrocinios = new ArrayList<>();
             for (PatrocinioEntity entityPatrocinio : eventoEntity.getPatrocinios()) {
                 patrocinios.add(new PatrocinioDTO(entityPatrocinio));
-            }
+            }}
         }
       }
       /**

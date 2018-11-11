@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.uniandes.csw.grupos.ejb;
 
 import co.edu.uniandes.csw.grupos.entities.AdministradorEntity;
-import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
+import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.grupos.persistence.AdministradorPersistence;
 import java.util.List;
@@ -16,64 +12,57 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
- * Clase que representa un AdministradorLogic
- * @author ac.beltrans
+ * Clase que implementa la conexion con la persistencia para la entidad de Administrador.
+ *
+ * @author sarabepu
  */
 @Stateless
 public class AdministradorLogic {
+
     private static final Logger LOGGER = Logger.getLogger(AdministradorLogic.class.getName());
 
     @Inject
     private AdministradorPersistence persistence;
 
     /**
-     * Se encarga de crear un Administrador en la base de datos.
+     * Guardar un nuevo administrador
      *
-     * @param administradorEntity Objeto de AdministradorEntity con los datos nuevos
-     * throws BusinessLogicException lanza la excepción cuando el administrador ya existe o noe es valido
-     * @return Objeto de AdministradorEntity con los datos nuevos y su ID.
-     * @throws BusinessLogicException si gruposId no es el mismo que tiene el
-     * entity.
+     * @param administradorEntity La entidad de tipo administrador del nuevo administrador a persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException Si el name es inválido o ya existe en la
+     * persistencia.
      */
     public AdministradorEntity createAdministrador(AdministradorEntity administradorEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creación del administrador");
-        if((administradorEntity.getId() == null || administradorEntity.getId() < 0) || administradorEntity.getId().toString().contains("[a-zA-Z]+"))
-        {
-            throw new BusinessLogicException("El id no es válido");
+        
+        if (!validatename(administradorEntity.getNombre())) {
+            throw new BusinessLogicException("El name es inválido");
         }
-        if (persistence.find(administradorEntity.getId())!=null) {
-            throw new BusinessLogicException("El id ya existe");
+        if (persistence.findByNombre(administradorEntity.getNombre()) != null) {
+            throw new BusinessLogicException("El name ya existe");
         }
-        if(administradorEntity.getNombre() == null || administradorEntity.getNombre().isEmpty())
-        {
-            throw new BusinessLogicException("El nombre no es válido");
-        }
-        if(administradorEntity.getContrasena() == null || administradorEntity.getContrasena().isEmpty())
-        {
-            throw new BusinessLogicException("La contraseña no es válida");
-        }
-        AdministradorEntity newAdministradorEntity = persistence.create(administradorEntity);
+        persistence.create(administradorEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del administrador");
-        return newAdministradorEntity;
+        return administradorEntity;
     }
 
     /**
-     * Obtiene la lista de los registros de Administrador.
+     * Devuelve todos los administradores que hay en la base de datos.
      *
-     * @return Colección de objetos de AdministradorEntity.
+     * @return Lista de entidades de tipo administrador.
      */
     public List<AdministradorEntity> getAdministradores() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los administradores");
-        List<AdministradorEntity> lista = persistence.findAll();
+        List<AdministradorEntity> administradores = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los administradores");
-        return lista;
+        return administradores;
     }
 
     /**
-     * Obtiene los datos de una instancia de Administrador a partir de su ID.
+     * Busca un administrador por ID
      *
-     * @param administradoresId Identificador de la instancia a consultar
-     * @return Instancia de AdministradorEntity con los datos del Administrador consultado.
+     * @param administradoresId El id del administrador a buscar
+     * @return El administrador encontrado, null si no lo encuentra.
      */
     public AdministradorEntity getAdministrador(Long administradoresId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el administrador con id = {0}", administradoresId);
@@ -86,38 +75,42 @@ public class AdministradorLogic {
     }
 
     /**
-     * Actualiza la información de una instancia de Administrador.
+     * Actualizar un administrador por ID
      *
-     * @param administradorId Identificador de la instancia a actualizar
-     * @param administradorEntity Instancia de AuthorEntity con los nuevos datos.
-     * @return Instancia de AdministradorEntity con los datos actualizados.
-     * @throws BusinessLogicException si gruposId no es el mismo que tiene el
-     * entity.
+     * @param administradoresId El ID del administrador a actualizar
+     * @param administradorEntity La entidad del administrador con los cambios deseados
+     * @return La entidad del administrador luego de actualizarla
+     * @throws BusinessLogicException Si el IBN de la actualización es inválido
      */
-    public AdministradorEntity updateAdministrador(Long administradorId, AdministradorEntity administradorEntity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el administrador con id = {0}", administradorId);
-        if(administradorEntity.getId() == null || administradorEntity.getId() < 0)
-        {
-            throw new BusinessLogicException("El id no es válido");
+    public AdministradorEntity updateAdministrador(Long administradoresId, AdministradorEntity administradorEntity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el administrador con id = {0}", administradoresId);
+        if (!validatename(administradorEntity.getNombre())) {
+            throw new BusinessLogicException("El name es inválido");
         }
-        AdministradorEntity newAdministradorEntity = persistence.update(administradorEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el administrador con id = {0}", administradorId);
-        return newAdministradorEntity;
+        AdministradorEntity newEntity = persistence.update(administradorEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el administrador con id = {0}", administradorEntity.getId());
+        return newEntity;
     }
 
     /**
-     * Elimina una instancia de Administrador de la base de datos.
+     * Eliminar un administrador por ID
      *
-     * @param administradorId Identificador de la instancia a eliminar.
-     * @throws BusinessLogicException si el administrador tiene grupos asociados.
+     * @param administradoresId El ID del administrador a eliminar
+     * @throws BusinessLogicException si el administrador tiene locaciones asociados
      */
-    public void deleteAdministrador(Long administradorId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el administrador con id = {0}", administradorId);
-        List<GrupoDeInteresEntity> grupos = getAdministrador(administradorId).getGruposDeInteres();
-        if (grupos != null && !grupos.isEmpty()) {
-            throw new BusinessLogicException("No se puede borrar el administrador con id = " + administradorId + " porque tiene grupos asociados");
-        }
-        persistence.delete(administradorId);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el administrador con id = {0}", administradorId);
+    public void deleteAdministrador(Long administradoresId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el administrador con id = {0}", administradoresId);
+        persistence.delete(administradoresId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el administrador con id = {0}", administradoresId);
+    }
+
+    /**
+     * Verifica que el name no sea invalido.
+     *
+     * @param name a verificar
+     * @return true si el name es valido.
+     */
+    private boolean validatename(String name) {
+        return !(name == null || name.isEmpty());
     }
 }

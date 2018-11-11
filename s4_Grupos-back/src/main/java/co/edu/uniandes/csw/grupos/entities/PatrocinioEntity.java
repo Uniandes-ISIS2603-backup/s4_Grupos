@@ -38,7 +38,10 @@ public class PatrocinioEntity extends BaseEntity implements Serializable
     @ManyToMany
     private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
 
-   
+    public PatrocinioEntity()
+    {
+        super();
+    }
     
     /**
      * retorna el nombre del patrocinador
