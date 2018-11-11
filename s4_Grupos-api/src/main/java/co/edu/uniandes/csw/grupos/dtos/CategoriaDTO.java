@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
@@ -20,29 +20,29 @@ public class CategoriaDTO implements Serializable{
     private String descripcion;
     
     private String nombre;
-
-  
+    
     private long id;
     
     public CategoriaDTO(){
         
     }
     
-      /**
+    /**
      * Convierte un Entity a DTO con los valores del Entity que recibe por Parámetro.
      * @param catEntity Entity a convertir a DTO.
      */
-    public CategoriaDTO(CategoriaEntity catEntity){        
-         if (catEntity != null) {         
+    public CategoriaDTO(CategoriaEntity catEntity){
+        if (catEntity != null) {
+            id = catEntity.getId();
             nombre = catEntity.getNombre();
             descripcion = catEntity.getDescripcion();
-        }   
-    } 
+        }
+    }
     
     public long getId() {
         return id;
     }
-
+    
     public void setId(long id) {
         this.id = id;
     }
@@ -56,7 +56,7 @@ public class CategoriaDTO implements Serializable{
     public String  getNombre(){
         
         return nombre;
-    }    
+    }
     
     public void setDescripcion(String pDescripcion){
         
@@ -70,9 +70,9 @@ public class CategoriaDTO implements Serializable{
         
     }
     
-     public CategoriaEntity toEntity()
+    public CategoriaEntity toEntity()
     {
-        CategoriaEntity catEntity = new CategoriaEntity();      
+        CategoriaEntity catEntity = new CategoriaEntity();
         catEntity.setNombre(nombre);
         catEntity.setDescripcion(descripcion);
         return catEntity;

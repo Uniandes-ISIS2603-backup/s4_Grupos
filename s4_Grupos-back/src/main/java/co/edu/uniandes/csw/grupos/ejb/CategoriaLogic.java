@@ -42,10 +42,10 @@ public class CategoriaLogic {
             throw new BusinessLogicException("Ya existe una categoria con el nombre \"" + categoriaEntity.getNombre() + "\"");
             
         }        
-        // Invoca la persistencia para crear la editorial
+        // Invoca la persistencia para crear la categoria
         persistence.create(categoriaEntity);        
         
-        LOGGER.log(Level.INFO, "Termina proceso de creación del grupo");
+        LOGGER.log(Level.INFO, "Termina proceso de creación de la categoria");
         return categoriaEntity;
     }
 
