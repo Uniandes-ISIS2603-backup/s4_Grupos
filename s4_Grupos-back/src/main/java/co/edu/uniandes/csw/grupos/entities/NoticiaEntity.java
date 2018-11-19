@@ -20,6 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class NoticiaEntity extends BaseEntity implements Serializable{
     private String descripcion;
 private String rutaImagen;
+private String titular;
 @PodamExclude
 @ManyToOne()
 private GrupoDeInteresEntity grupo;
@@ -56,6 +57,13 @@ public GrupoDeInteresEntity getGrupoDeInteres() {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
 
     public String getRutaImagen() {
         return rutaImagen;
@@ -64,7 +72,7 @@ public GrupoDeInteresEntity getGrupoDeInteres() {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
-   
+
 
    
 

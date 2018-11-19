@@ -123,7 +123,7 @@ public class NoticiaResource {
     public NoticiaDTO editarNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id,NoticiaDTO noticia) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "NoticiaResource updateNoticia: input: gruposID: {0} , id: {1} , noticia:{2}", new Object[]{gruposID, id, noticia.toString()});
-        if (id.equals(noticia.getId())) {
+        if (!id.equals(noticia.getId())) {
             throw new BusinessLogicException("Los ids del Noticia no coinciden.");
         }
         NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
