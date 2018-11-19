@@ -60,7 +60,7 @@ public class PatrocinioResource {
     @POST
     public PatrocinioDTO crearPatrocinador(PatrocinioDTO patrocionioDto) throws BusinessLogicException {
     
-        LOGGER.log(Level.INFO, "PatrocinioResource createPatrocinio: input: {0}", patrocionioDto.toString()+ "hola mundo");
+        LOGGER.log(Level.INFO, "PatrocinioResource createPatrocinio: input: {0}", patrocionioDto.toString());
         PatrocinioDTO nuevoPatrocinioDTO = new PatrocinioDTO(patrocinioLogic.createPatrocinio(patrocionioDto.toEntity()));
         LOGGER.log(Level.INFO, "PatrocinioResource termino createPatrocinio: output: {0}", nuevoPatrocinioDTO.toString());
         return nuevoPatrocinioDTO;

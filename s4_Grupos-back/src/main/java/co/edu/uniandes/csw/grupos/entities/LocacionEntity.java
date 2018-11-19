@@ -34,6 +34,7 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
     @OneToOne
     private EventoEntity evento;
     
+  
      /**
      * El nombre de la locacion
      */
@@ -56,12 +57,16 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
      * componente de longitud geografica de la locacion
      */
      private Long longitud;
-     
-     /**
+            
+
+       public LocacionEntity()
+    {
+        super();
+    }
+       /**
       * retorna el distrito al cual pertenece
       * @return DistritoEntity
-      */   
-
+      */ 
     public DistritoEntity getDistrito() {
         return distrito;
     }

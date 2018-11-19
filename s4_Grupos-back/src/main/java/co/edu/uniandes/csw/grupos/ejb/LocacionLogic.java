@@ -49,7 +49,7 @@ public class LocacionLogic
         if (persistence.findByName(locacionEntity.getLocacion()) != null) {
             throw new BusinessLogicException("El name ya existe");
         }      
-        DistritoEntity distrito = distritoPersistence.find(locacionEntity.getDistrito().getId());
+        DistritoEntity distrito = distritoPersistence.find(distritoId);
         if(distritoPersistence.find(distritoId)==null)
         {
             throw new BusinessLogicException("El distrito no es valido");
