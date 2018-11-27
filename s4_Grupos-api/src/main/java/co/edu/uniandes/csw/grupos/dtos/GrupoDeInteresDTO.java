@@ -80,6 +80,7 @@ public class GrupoDeInteresDTO implements Serializable {
         GrupoDeInteresEntity grupoEntity = new GrupoDeInteresEntity();      
         grupoEntity.setNombre(nombre);
         grupoEntity.setDescripcion(descripcion);
+        grupoEntity.setId(id);
         return grupoEntity;
     }     
 }
