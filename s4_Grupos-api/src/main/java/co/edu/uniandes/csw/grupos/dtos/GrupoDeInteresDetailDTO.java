@@ -25,7 +25,7 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
     
     private List<AdministradorDTO> administradores;
     
-    private List<NoticiaDTO> noticias;
+    private List<NoticiaDetailDTO> noticias;
     
     private List<EventoDTO> eventos;
     
@@ -66,7 +66,7 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
                 
                 for(NoticiaEntity noti : grupoEntity.getNoticias()){
                     
-                    noticias.add(new NoticiaDTO(noti));
+                    noticias.add(new NoticiaDetailDTO(noti));
                     
                 }
                 
@@ -143,7 +143,7 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
         
         if (noticias != null) {
             List<NoticiaEntity> noticiaEnt = new ArrayList<>();
-            for (NoticiaDTO dtoNoti : noticias) {
+            for (NoticiaDetailDTO dtoNoti : noticias) {
                 noticiaEnt.add(dtoNoti.toEntity());
             }
             grupoEntity.setNoticias(noticiaEnt);
@@ -176,11 +176,11 @@ public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
         this.administradores = administradores;
     }
     
-    public List<NoticiaDTO> getNoticias() {
+    public List<NoticiaDetailDTO> getNoticias() {
         return noticias;
     }
     
-    public void setNoticias(List<NoticiaDTO> noticias) {
+    public void setNoticias(List<NoticiaDetailDTO> noticias) {
         this.noticias = noticias;
     }
     
