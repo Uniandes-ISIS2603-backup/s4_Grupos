@@ -34,6 +34,7 @@ public class DistritoDTO implements Serializable {
 
    
     private String name;
+    private String image;
     private Long id;
 
     /**
@@ -73,7 +74,14 @@ public class DistritoDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
     /**
      * Devuelve el nombre de la distrito.
      *
@@ -91,7 +99,7 @@ public class DistritoDTO implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
+ 
     /**
      * Convertir DTO a Entity
      *
