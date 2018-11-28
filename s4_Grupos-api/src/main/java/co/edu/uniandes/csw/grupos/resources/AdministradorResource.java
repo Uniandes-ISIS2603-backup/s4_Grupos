@@ -49,7 +49,7 @@ public class AdministradorResource {
     public AdministradorDTO createAdministrador(AdministradorDTO administrador) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: input: {0}", administrador.toString());
         AdministradorDTO administradorDTO;
-        administradorDTO = new AdministradorDTO(administradorLogic.createAdministrador(administrador.ToEntity()));
+        administradorDTO = new AdministradorDTO(administradorLogic.createAdministrador(administrador.toEntity()));
         LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: output: {0}", administradorDTO.toString());
         return administradorDTO;    
     }
@@ -106,7 +106,7 @@ public class AdministradorResource {
         if (administradorLogic.getAdministrador(administradoresId) == null) {
             throw new WebApplicationException("El recurso /administradores/" + administradoresId + " no existe.", 404);
         }
-        AdministradorDetailDTO detailDTO = new AdministradorDetailDTO(administradorLogic.updateAdministrador(administradoresId, administrador.ToEntity()));
+        AdministradorDetailDTO detailDTO = new AdministradorDetailDTO(administradorLogic.updateAdministrador(administradoresId, administrador.toEntity()));
         LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: output: {0}", detailDTO.toString());
         return detailDTO;
 

@@ -98,7 +98,7 @@ public class EventoResource {
         if (entity == null) {
             throw new WebApplicationException(GRUPOS + gruposId + EVENTOS + id + NO_EXISTE, 404);
         }
-        EventoDTO eventoDTO = new EventoDTO(entity);
+        EventoDetailDTO eventoDTO = new EventoDetailDTO(entity);
         LOGGER.log(Level.INFO, "EventoResource getEvento: output: {0}", eventoDTO.toString());
         return eventoDTO;
     }

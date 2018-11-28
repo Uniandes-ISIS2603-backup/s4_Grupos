@@ -54,8 +54,8 @@ public class AdministradorDetailDTO extends AdministradorDTO implements Serializ
      *
      */
       @Override
-    public AdministradorEntity ToEntity() {
-        AdministradorEntity administradorEntity = super.ToEntity();
+    public AdministradorEntity toEntity() {
+        AdministradorEntity administradorEntity = super.toEntity();
         if (gruposDeInteres != null) {
             List<GrupoDeInteresEntity> gruposEntity = new ArrayList<>();
             for (GrupoDeInteresDTO dtoGrupos : gruposDeInteres) {
