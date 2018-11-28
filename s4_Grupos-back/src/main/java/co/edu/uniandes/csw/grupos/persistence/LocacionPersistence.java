@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.grupos.persistence;
-
 
 import co.edu.uniandes.csw.grupos.entities.LocacionEntity;
 import java.util.List;
@@ -56,15 +50,31 @@ public class LocacionPersistence {
     }
 
     /**
-     * Busca si hay alguna localizacion con el nombre que se envía de argumento
+     * Buscar una locacion
      *
-     * @param idLocacion: nombre correspondiente la localizacon buscada.
-     * @return una locacion.
+     * Busca si hay alguna locacion asociada a un libro y con un ID específico
+     *
+     * @param distritoId El ID del libro con respecto al cual se busca
+     * @param locacionsId El ID de la locacion buscada
+     * @return La locacion encontrada o null. Nota: Si existe una o más locacions
+     * devuelve siempre la primera que encuentra
      */
-    public LocacionEntity find(Long idLocacion) {
-        LOGGER.log(Level.INFO, "Consultando la localizacion por id", idLocacion);
-        return em.find(LocacionEntity.class, idLocacion);
+    public LocacionEntity find(Long distritoId, Long locacionId) {
+       LOGGER.log(Level.INFO, "Consultando el locacion con id = {0} del libro con id = " + distritoId, locacionId);
+        TypedQuery<LocacionEntity> q = em.createQuery("select p from LocacionEntity p where (p.distrito.id = :distritoid) and (p.id = :locacionId)", LocacionEntity.class);
+        q.setParameter("distritoid", distritoId);
+        q.setParameter("locacionId", locacionId);
+        List<LocacionEntity> results = q.getResultList();
+        LocacionEntity locacion = null;
+        if (results == null) {
+            locacion = null;
+        } else if (results.isEmpty()) {
+            locacion = null;
+        } else if (results.size() >= 1) {
+            locacion = results.get(0);
         }
+        LOGGER.log(Level.INFO, "Saliendo de consultar el locacion con id = {0} del libro con id =" + distritoId, locacionId);
+        return locacion; }
 
     /**
      * Actualiza una locacion.
@@ -81,12 +91,15 @@ public class LocacionPersistence {
      * Borra una locacion de la base de datos recibiendo como argumento el id de 
      *  la locacion
      *
-     * @param idLocacion: id correspondiente a la locacion a borrar.
+     * @param locacionsId: id correspondiente a la locacion a borrar.
      */
-    public void delete(Long idLocacion) {
-        LOGGER.log(Level.INFO, "Borrando la locacion con el id", idLocacion);
-        LocacionEntity locacionEntity = em.find(LocacionEntity.class, idLocacion);
+    public void delete(Long locacionsId) {
+        LOGGER.log(Level.INFO, "Borrando locacion con id = {0}", locacionsId);
+        LocacionEntity locacionEntity = em.find(LocacionEntity.class, locacionsId);
+        em.refresh(locacionEntity);
         em.remove(locacionEntity);
+        LOGGER.log(Level.INFO, "Saliendo de borrar El locacion con id = {0}", locacionsId);
+    
     }
     
      /**
