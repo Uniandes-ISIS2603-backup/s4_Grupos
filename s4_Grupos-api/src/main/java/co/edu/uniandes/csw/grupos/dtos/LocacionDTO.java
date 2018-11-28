@@ -68,13 +68,15 @@ public class LocacionDTO implements Serializable
      */   
     public  LocacionDTO(LocacionEntity locacionEntity) {
         if (locacionEntity != null) {
-        setDirecion(locacionEntity.getDirecion());
-        setId(locacionEntity.getId());
-        setLatitud(locacionEntity.getLatitud());
-        setLongitud(locacionEntity.getLongitud());
-        setLocacion(locacionEntity.getLocacion());
-        setTipo(locacionEntity.getTipo());
-        setId(locacionEntity.getId());
+
+         this.direcion=locacionEntity.getDirecion();
+        this.id=locacionEntity.getId();
+        this.latitud=locacionEntity.getLatitud();
+        this.longitud=locacionEntity.getLongitud();
+        this.locacion=locacionEntity.getLocacion();
+        this.tipo=locacionEntity.getTipo();
+        this.id=locacionEntity.getId();
+
         }
     }
     

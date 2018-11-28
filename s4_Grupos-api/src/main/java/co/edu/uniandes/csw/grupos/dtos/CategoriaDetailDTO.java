@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.CategoriaEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * documentacion de {@link CategoriaDTO}
  * @author s.carrero
  */
-public class CategoriaDetailDTO extends CategoriaDTO {
+public class CategoriaDetailDTO extends CategoriaDTO implements Serializable {
     
     private ArrayList<GrupoDeInteresDTO> gruposDeInteres;   
     

@@ -98,7 +98,7 @@ public class NoticiaResource {
         if (entity == null) {
             throw new WebApplicationException( NOEXISTE2 + id + NOEXISTE3, 404);
         }
-        NoticiaDTO noticiaDTO = new NoticiaDTO(entity);
+        NoticiaDetailDTO noticiaDTO = new NoticiaDetailDTO(entity);
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: output: {0}", noticiaDTO.toString());
         return noticiaDTO;
     }
@@ -172,6 +172,7 @@ public class NoticiaResource {
         }
 
         return ComentarioResource.class;
+        
     }
     /**
      * Convierte una lista de entidades a DTO.

@@ -28,8 +28,9 @@ public class CategoriaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @ManyToMany
-    private List<GrupoDeInteresEntity> grupos = new ArrayList<GrupoDeInteresEntity>();    
-
+    private List<GrupoDeInteresEntity> grupos = new ArrayList<GrupoDeInteresEntity>();       
+    
+    
     public List<GrupoDeInteresEntity> getGrupos() {
         return grupos;
     }

@@ -53,6 +53,7 @@ public class DistritoDTO implements Serializable {
         if (distritoEntity != null) {
             this.id = distritoEntity.getId();
             this.name = distritoEntity.getName();
+            this.image=distritoEntity.getImage();
         }
     }
    
@@ -110,6 +111,7 @@ public class DistritoDTO implements Serializable {
         DistritoEntity distritoEntity = new DistritoEntity();
         distritoEntity.setId(this.id);
         distritoEntity.setName(this.name);
+        distritoEntity.setImage(this.image);
         return distritoEntity;
     }
     

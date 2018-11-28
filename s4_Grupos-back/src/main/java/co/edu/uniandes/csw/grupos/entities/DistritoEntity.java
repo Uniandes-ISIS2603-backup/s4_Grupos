@@ -24,7 +24,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class DistritoEntity extends BaseEntity implements Serializable {
    
     private String name;
+    private String image;
 
+   
     
     @PodamExclude
     @OneToMany(mappedBy = "distrito", orphanRemoval=true, cascade=CascadeType.ALL)
@@ -51,6 +53,14 @@ public DistritoEntity()
     public void setName(String name) {
         this.name = name;
     }
+     public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 
     /**
      * Devuelve las locaciones de el distrito.

@@ -44,10 +44,10 @@ public class PatrocinioLogic
         if (persistence.findByName(patrocinioEntity.getNombre()) != null) {
             throw new BusinessLogicException("El name ya existe");
         }
-         PatrocinioEntity newPatrocinioEntity =persistence.create(patrocinioEntity);
+        persistence.create(patrocinioEntity);
         LOGGER.log(Level.INFO, "Termina proceso de creación del patrocinio");
-        LOGGER.log(Level.WARNING, newPatrocinioEntity.toString());
-        return newPatrocinioEntity;
+       
+        return patrocinioEntity;
     }
 
     /**

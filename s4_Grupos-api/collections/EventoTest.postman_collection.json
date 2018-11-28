@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "8abdb867-db48-498d-b48d-cef53b7cc616",
+		"name": "EventoTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetEventos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEventoPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearEventos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nombre\":\"Jazz\", \n\"fecha\": \"16feb\"}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarEvento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"12\", \"nombre\": \"evento2\",\"fecha\":\"kkk\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarEvento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar evento con id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa558c75-d7a9-4b2c-acb0-9bfea673ef81",
+						"exec": [
+							"tests[\"No se deberia borrar un evento con un id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /gruposdeinteres/1/eventos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar evento con id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1a250fc-628f-4df7-96c6-f83ca2b0dbcc",
+						"exec": [
+							"tests[\"No se deberia actualizar un evento con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /gruposdeinteres/1/eventos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"12\", \"nombre\": \"evento2\",\"fecha\":\"11/02/2019\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEventorPorIdQueNoExiste",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e715df6-0608-4846-8b19-3e43b2b2f418",
+						"exec": [
+							"tests[\"No se deberia actualizar un evento con id que no existe\"] = responseCode.code === 404;",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El recurso /gruposdeinteres/1/eventos/0 no existe.\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/gruposdeinteres/{{new_id_e}}/eventos/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"gruposdeinteres",
+						"{{new_id_e}}",
+						"eventos",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

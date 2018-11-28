@@ -49,7 +49,7 @@ public class AdministradorResource {
     public AdministradorDTO createAdministrador(AdministradorDTO administrador) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: input: {0}", administrador.toString());
         AdministradorDTO administradorDTO;
-        administradorDTO = new AdministradorDTO(administradorLogic.createAdministrador(administrador.ToEntity()));
+        administradorDTO = new AdministradorDTO(administradorLogic.createAdministrador(administrador.toEntity()));
         LOGGER.log(Level.INFO, "AdministradorResource createAdministrador: output: {0}", administradorDTO.toString());
         return administradorDTO;    
     }
@@ -98,16 +98,18 @@ public class AdministradorResource {
      * @throws BusinessLogicException cuando no se puede crear un administrador
      */
     @PUT
-    @Path("{administradorId: \\d+}")
-    public AdministradorDetailDTO updateAdministrador(@PathParam("administradorId") Long administradorId, AdministradorDTO administrador) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: input: administradorId: {0} , administrador: {1}", new Object[]{administradorId, administrador.toString()});
-        administrador.setId(administradorId);
-        if (administradorLogic.getAdministrador(administradorId) == null) {
-            throw new WebApplicationException("El recurso /administrador/" + administradorId + " no existe.", 404);
+    @Path("{administradoresId: \\d+}")
+    public AdministradorDetailDTO updateAdministrador(@PathParam("administradoresId") Long administradoresId, AdministradorDetailDTO administrador) throws BusinessLogicException {
+       
+         LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: input: id: {0} , Administrador: {1}", new Object[]{administradoresId, administrador.toString()});
+        administrador.setId(administradoresId);
+        if (administradorLogic.getAdministrador(administradoresId) == null) {
+            throw new WebApplicationException("El recurso /administradores/" + administradoresId + " no existe.", 404);
         }
-        AdministradorDetailDTO detailDTO = new AdministradorDetailDTO(administradorLogic.updateAdministrador(administradorId, administrador.ToEntity()));
+        AdministradorDetailDTO detailDTO = new AdministradorDetailDTO(administradorLogic.updateAdministrador(administradoresId, administrador.toEntity()));
         LOGGER.log(Level.INFO, "AdministradorResource updateAdministrador: output: {0}", detailDTO.toString());
-        return detailDTO;    
+        return detailDTO;
+
     }
 
     /**

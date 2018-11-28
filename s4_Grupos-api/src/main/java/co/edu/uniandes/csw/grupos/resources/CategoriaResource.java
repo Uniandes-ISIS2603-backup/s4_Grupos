@@ -39,7 +39,7 @@ public class CategoriaResource {
     private static final Logger LOGGER = Logger.getLogger(CategoriaResource.class.getName());
     
     @Inject
-    private CategoriaLogic grupoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias
+    private CategoriaLogic categoriaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias
     
     
     /**
@@ -57,12 +57,32 @@ public class CategoriaResource {
         
         LOGGER.log(Level.INFO, "CategoriaResource createCategoria: input: {0}", pCategoria.toString());
         
-        CategoriaDetailDTO nuevaCategoriaDTO = new CategoriaDetailDTO(grupoLogic.createCategoria(pCategoria.toEntity()));
+        CategoriaDetailDTO nuevaCategoriaDTO = new CategoriaDetailDTO(categoriaLogic.createCategoria(pCategoria.toEntity()));
         
         LOGGER.log(Level.INFO, "CategoriaResource createCategoria: output: {0}", nuevaCategoriaDTO.toString());
         
         return nuevaCategoriaDTO;
         
+    }
+    
+    
+    /**
+     * Busca y devuelve la categoria con el id identificado.
+     * @return JSONArray Las categorias son encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     */
+    
+    @GET
+    @Path("{catId: \\d+}")    
+    public CategoriaDetailDTO getCategoria(@PathParam("catId") Long catId){
+        
+        LOGGER.log(Level.INFO, "CategoriaResource getCategoria: input: {0}", catId);
+        CategoriaEntity categoriaEntity = categoriaLogic.getCategoria(catId);
+        if (categoriaEntity == null) {
+            throw new WebApplicationException("El recurso /categoria/" + catId + " no existe.", 404);
+        }
+        CategoriaDetailDTO categoriaDetailDTO = new CategoriaDetailDTO(categoriaEntity);
+        LOGGER.log(Level.INFO, "CategoriaResource getCategoria: output: {0}", categoriaDetailDTO.toString());
+        return categoriaDetailDTO;
     }
     
     /**
@@ -74,7 +94,7 @@ public class CategoriaResource {
     public List<CategoriaDetailDTO> getCategorias(){
         
         LOGGER.info("GrupoDeInteresResource getGrupos: input: void");
-        List<CategoriaDetailDTO> listaGrupos = entity2DetailDTO(grupoLogic.getCategorias());
+        List<CategoriaDetailDTO> listaGrupos = entity2DetailDTO(categoriaLogic.getCategorias());
         LOGGER.log(Level.INFO, "GrupoDeInteresResource getGrupos: output: {0}", listaGrupos.toString());
         return listaGrupos;
     }
@@ -100,10 +120,10 @@ public class CategoriaResource {
         
         categoria.setId(pCatId);
         
-        if (grupoLogic.getCategoria(pCatId) == null) {
+        if (categoriaLogic.getCategoria(pCatId) == null) {
             throw new WebApplicationException("El recurso /categoria/" + pCatId + " no existe.", 404);
         }
-        CategoriaDetailDTO detailDTO = new CategoriaDetailDTO(grupoLogic.updateCategoria(pCatId, categoria.toEntity()));
+        CategoriaDetailDTO detailDTO = new CategoriaDetailDTO(categoriaLogic.updateCategoria(pCatId, categoria.toEntity()));
         LOGGER.log(Level.INFO, "CategoriaResource modifyCategoria: output: {0}", detailDTO.toString());
         return detailDTO;
         
@@ -111,23 +131,23 @@ public class CategoriaResource {
     }
     
     
-      /**
+    /**
      * Borra la categoria con el id asociado recibido en la URL.
      *
      * @param categId Identificador de la categoria que se desea borrar.
      * Este debe ser una cadena de dígitos.
-     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra la categoria.  
-     */    
+     * @throws WebApplicationException Error de lógica que se genera cuando no se encuentra la categoria.
+     */
     @DELETE
     @Path("{nombrecategoria: \\d+}")
     public void deleteCategoria(@PathParam("nombrecategoria") Long categId) {
         
-         LOGGER.log(Level.INFO, "CategoriaResource deleteGrupo: input: {0}", categId);
-        CategoriaEntity entity = grupoLogic.getCategoria(categId);
+        LOGGER.log(Level.INFO, "CategoriaResource deleteGrupo: input: {0}", categId);
+        CategoriaEntity entity = categoriaLogic.getCategoria(categId);
         if (entity == null) {
             throw new WebApplicationException("El recurso /categorias/" + categId + " no existe.", 404);
         }
-        grupoLogic.deleteCategoria(categId);
+        categoriaLogic.deleteCategoria(categId);
         LOGGER.info("CategoriaResource deleteGrupo: output: void");
         
     }

@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "de79accc-f765-4132-b584-8458bd65186c",
+		"name": "AdministradorTest",
+		"description": "Los recursos implementados por un administrador",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Administradores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b6b467a-cd15-4db8-b259-33dfd1f86141",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/administradores/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"administradores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Administrador",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ceeec2b-8b28-40bb-8f67-9900c699f312",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0fbd1ba-ec6a-4bda-9035-383a137e9cd4",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id_e\",data.id);",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"9\",\"nombre\":\"Cleo\",\"contrasena\":\"Mdjfir77\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/administradores/",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"administradores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Administrador por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc003fa6-342c-4a72-9c6a-1965ebe608a6",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/administradores/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"administradores",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Administrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e86d5fe-7658-48c1-a02c-2fb00e168ab9",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"1\",\"nombre\":\"nndd\",\"contrasena\":\"dd\"\n}"
+				},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/administradores/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"administradores",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAdministrador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "367f769a-d520-4c02-a719-19ee43730f80",
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{ip}}:{{puerto}}/s4_Grupos-api/api/administradores/{{new_id_e}}",
+					"protocol": "http",
+					"host": [
+						"{{ip}}"
+					],
+					"port": "{{puerto}}",
+					"path": [
+						"s4_Grupos-api",
+						"api",
+						"administradores",
+						"{{new_id_e}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

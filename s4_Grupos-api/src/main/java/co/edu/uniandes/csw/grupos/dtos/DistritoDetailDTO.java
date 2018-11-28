@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.*;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * </pre>
  * @author sarabepu
  */
-public class DistritoDetailDTO extends DistritoDTO {
+public class DistritoDetailDTO extends DistritoDTO implements Serializable {
     
     /*
     * Esta lista de tipo BookDTO contiene los books que estan asociados a una distrito

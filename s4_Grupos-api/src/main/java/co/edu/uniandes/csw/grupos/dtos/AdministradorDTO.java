@@ -41,7 +41,7 @@ public class AdministradorDTO extends PersonaDTO implements Serializable{
        *
        * @return La entidad del administrador asociado.
        */
-    public AdministradorEntity ToEntity() {
+    public AdministradorEntity toEntity() {
         AdministradorEntity administradorEntity = new AdministradorEntity();
         administradorEntity.setId(this.id);
         administradorEntity.setNombre(this.nombre);
