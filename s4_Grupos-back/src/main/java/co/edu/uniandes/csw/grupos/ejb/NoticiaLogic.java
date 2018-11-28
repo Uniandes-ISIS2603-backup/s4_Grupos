@@ -76,9 +76,9 @@ public class NoticiaLogic {
      * @return Instancia de NoticiaEntity con los datos del Noticia consultado.
      *
      */
-    public NoticiaEntity getNoticia(Long gruposId, Long noticiasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
-        return persistence.find(gruposId, noticiasId);
+    public NoticiaEntity getNoticia(Long noticiasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el noticia con id = {0}" , noticiasId);
+        return persistence.find(noticiasId);
     }
 
     /**
@@ -106,14 +106,14 @@ public class NoticiaLogic {
      * @throws BusinessLogicException Si la noticia no esta asociada al grupo.
      *
      */
-    public void deleteNoticia(Long gruposId, Long noticiasId) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
-        NoticiaEntity old = getNoticia(gruposId, noticiasId);
+    public void deleteNoticia(Long noticiasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el noticia con id = {0}", noticiasId);
+        NoticiaEntity old = getNoticia(noticiasId);
         if (old == null) {
-            throw new BusinessLogicException("El noticia con id = " + noticiasId + " no esta asociado a el grupo con id = " + gruposId);
+            throw new BusinessLogicException("El noticia con id = " + noticiasId);
         }
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el noticia con id = {0} del grupo con id = " + gruposId, noticiasId);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el noticia con id = {0}", noticiasId);
     }
     /**
      * Verifica que el string no sea invalido.

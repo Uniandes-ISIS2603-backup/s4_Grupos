@@ -79,22 +79,25 @@ public class NoticiaPersistence {
      * @return La noticia encontrada o null. Nota: Si existe una o más noticias
      * devuelve siempre la primera que encuentra
      */
-    public NoticiaEntity find(Long grupoId, Long noticiasId) {
-        LOGGER.log(Level.INFO, "Consultando el noticia con id = {0} del libro con id = " + grupoId, noticiasId);
-        TypedQuery<NoticiaEntity> q = em.createQuery("select p from NoticiaEntity p where (p.grupo.id = :grupoid) and (p.id = :noticiasId)", NoticiaEntity.class);
-        q.setParameter("grupoid", grupoId);
-        q.setParameter("noticiasId", noticiasId);
-        List<NoticiaEntity> results = q.getResultList();
-        NoticiaEntity noticia = null;
-        if (results == null) {
-            noticia = null;
-        } else if (results.isEmpty()) {
-            noticia = null;
-        } else if (results.size() >= 1) {
-            noticia = results.get(0);
-        }
-        LOGGER.log(Level.INFO, "Saliendo de consultar el noticia con id = {0} del libro con id =" + grupoId, noticiasId);
-        return noticia;
+    public NoticiaEntity find(Long noticiasId) {
+//        LOGGER.log(Level.INFO, "Consultando el noticia con id = {0} del libro con id = " + grupoId, noticiasId);
+//        TypedQuery<NoticiaEntity> q = em.createQuery("select p from NoticiaEntity p where (p.grupo.id = :grupoid) and (p.id = :noticiasId)", NoticiaEntity.class);
+//        q.setParameter("grupoid", grupoId);
+//        q.setParameter("noticiasId", noticiasId);
+//        List<NoticiaEntity> results = q.getResultList();
+//        NoticiaEntity noticia = null;
+//        if (results == null) {
+//            noticia = null;
+//        } else if (results.isEmpty()) {
+//            noticia = null;
+//        } else if (results.size() >= 1) {
+//            noticia = results.get(0);
+//        }
+//        LOGGER.log(Level.INFO, "Saliendo de consultar el noticia con id = {0} del libro con id =" + grupoId, noticiasId);
+//        return noticia;
+        LOGGER.log(Level.INFO, "Consultando grupo de interés con id={0}", noticiasId);
+
+        return em.find(NoticiaEntity.class, noticiasId);
     }
 }
 

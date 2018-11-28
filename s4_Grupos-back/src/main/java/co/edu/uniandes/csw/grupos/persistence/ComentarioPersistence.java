@@ -56,9 +56,22 @@ public class ComentarioPersistence
         return query.getResultList();
     }
 
-    public ComentarioEntity find(Long comentarioId) {
-        LOGGER.log(Level.INFO, "Consultando comentario con id={0}", comentarioId);
-        return em.find(ComentarioEntity.class, comentarioId);
+    public ComentarioEntity find(Long noticiaId, Long comentarioId) {
+        LOGGER.log(Level.INFO, "Consultando el comentario con id = {0} de la noticia con id = " + noticiaId, comentarioId);
+        TypedQuery<ComentarioEntity> q = em.createQuery("select p from ComentarioEntity p where (p.noticia.id = :noticiaId) and (p.id = :comentarioId)", ComentarioEntity.class);
+        q.setParameter("noticiaId", noticiaId);
+        q.setParameter("comentarioId", comentarioId);
+        List<ComentarioEntity> results = q.getResultList();
+        ComentarioEntity comentario = null;
+        if (results == null) {
+            comentario = null;
+        } else if (results.isEmpty()) {
+            comentario = null;
+        } else if (results.size() >= 1) {
+            comentario = results.get(0);
+        }
+        LOGGER.log(Level.INFO, "Saliendo de consultar el comentario con id = {0} de la noticia con id = " + noticiaId, comentarioId);
+        return comentario;
     }
     /**
      * Actualizar una comentario
