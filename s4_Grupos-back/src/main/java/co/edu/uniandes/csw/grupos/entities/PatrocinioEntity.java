@@ -36,7 +36,7 @@ public class PatrocinioEntity extends BaseEntity implements Serializable
      */
     @PodamExclude
     @ManyToMany
-    private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
+    private List<EventoEntity> eventos = new ArrayList<>();
 
     public PatrocinioEntity()
     {
@@ -92,5 +92,8 @@ public class PatrocinioEntity extends BaseEntity implements Serializable
         this.eventos = eventos;
     }
     
-    
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
 }
