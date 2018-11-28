@@ -20,6 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class EventoEntity extends BaseEntity implements Serializable{
+    
     private String nombre;
     private String fecha;
     
@@ -29,7 +30,7 @@ public class EventoEntity extends BaseEntity implements Serializable{
     
     @PodamExclude
     @ManyToMany
-    private List<PatrocinioEntity> patrocinios = new ArrayList<PatrocinioEntity>();
+    private List<PatrocinioEntity> patrocinios = new ArrayList<>();
     
     @PodamExclude
     @OneToOne
@@ -131,4 +132,9 @@ public class EventoEntity extends BaseEntity implements Serializable{
     public void setPatrocinios(List<PatrocinioEntity> patrocinios) {
         this.patrocinios = patrocinios;
     }
+    
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
 }

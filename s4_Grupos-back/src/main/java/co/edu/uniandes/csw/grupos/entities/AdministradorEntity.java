@@ -22,7 +22,7 @@ public class AdministradorEntity extends PersonaEntity implements Serializable {
     
     @PodamExclude
     @ManyToMany
-    private List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
+    private List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<>();
     
     public AdministradorEntity()
     {
@@ -47,4 +47,9 @@ public class AdministradorEntity extends PersonaEntity implements Serializable {
         this.gruposDeInteres = gruposDeInteres;
     }
     
+    
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
 }

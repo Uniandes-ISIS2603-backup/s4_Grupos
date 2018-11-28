@@ -22,7 +22,7 @@ public class CiudadanoEntity extends PersonaEntity implements Serializable
 {
     @PodamExclude
     @ManyToMany
-    private List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<GrupoDeInteresEntity>();
+    private List<GrupoDeInteresEntity> gruposDeInteres = new ArrayList<>();
     
     @PodamExclude
     @OneToOne
@@ -49,4 +49,8 @@ public class CiudadanoEntity extends PersonaEntity implements Serializable
         super();
     }   
     
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
 }

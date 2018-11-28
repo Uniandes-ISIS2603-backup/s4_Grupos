@@ -29,27 +29,27 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "grupo", orphanRemoval=true, cascade=CascadeType.ALL)
-    private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
+    private List<EventoEntity> eventos = new ArrayList<>();
     
     @PodamExclude
     @ManyToMany
-    private List<AdministradorEntity> administradores = new ArrayList<AdministradorEntity>();
+    private List<AdministradorEntity> administradores = new ArrayList<>();
     
     @PodamExclude
     @ManyToMany
-    private List<CiudadanoEntity> ciudadanos = new ArrayList<CiudadanoEntity>();
+    private List<CiudadanoEntity> ciudadanos = new ArrayList<>();
     
     @PodamExclude
     @ManyToMany
-    private List<CategoriaEntity> categorias = new ArrayList<CategoriaEntity>();
+    private List<CategoriaEntity> categorias = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "grupo", orphanRemoval=true, cascade=CascadeType.ALL)
-    private List<NoticiaEntity> noticias = new ArrayList<NoticiaEntity>();
+    private List<NoticiaEntity> noticias = new ArrayList<>();
     
     public GrupoDeInteresEntity()
     {
-        
+        //Constructor por defecto
     }
     public List<CategoriaEntity> getCategorias() {
         return categorias;
@@ -120,6 +120,11 @@ public class GrupoDeInteresEntity extends BaseEntity implements Serializable {
     public void setNoticias(List<NoticiaEntity> noticias) {
         this.noticias = noticias;
     }
+    
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
     
     
 }
