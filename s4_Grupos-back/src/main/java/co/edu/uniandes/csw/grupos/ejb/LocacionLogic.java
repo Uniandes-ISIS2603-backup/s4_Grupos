@@ -55,21 +55,22 @@ public class LocacionLogic
             throw new BusinessLogicException("El distrito no es valido");
         }
         locacionEntity.setDistrito(distrito);
-        persistence.create(locacionEntity);
+       
         LOGGER.log(Level.INFO, "Termina proceso de creación del distrito");
-        return locacionEntity;
+        return  persistence.create(locacionEntity);
     }
 
-    /**
-     * Devuelve todos los locaciones que hay en la base de datos.
+   /**
+     * Obtiene la lista de los registros de Locacion que pertenecen a un Distrito.
      *
-     * @return Lista de entidades de tipo locaciones.
+     * @param gruposId id del Distrito el cual es padre de los Locacions.
+     * @return Colección de objetos de LocacionEntity.
      */
-    public List<LocacionEntity> getLocaciones() {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los distritos");
-        List<LocacionEntity> distritos = persistence.findAll();
-        LOGGER.log(Level.INFO, "Termina proceso de consultar todos los distritos");
-        return distritos;
+    public List<LocacionEntity> getLocaciones(Long gruposId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar los noticias asociados al grupo con id = {0}", gruposId);
+        DistritoEntity grupoEntity = distritoPersistence.find(gruposId);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar los noticias asociados al grupo con id = {0}", gruposId);
+        return grupoEntity.getLocaciones();
     }
 
     /**
@@ -78,14 +79,9 @@ public class LocacionLogic
      * @param locacionID El id del locacion a buscar
      * @return La locacion encontrado, null si no lo encuentra.
      */
-    public LocacionEntity getLocacion(Long locacionID) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar el distrito con id = {0}", locacionID);
-        LocacionEntity locacionEntity = persistence.find(locacionID);
-        if (locacionEntity == null) {
-            LOGGER.log(Level.SEVERE, "El distrito con el id = {0} no existe", locacionID);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar el distrito con id = {0}", locacionID);
-        return locacionEntity;
+    public LocacionEntity getLocacion(Long distritoId,  Long locacionID) {
+         LOGGER.log(Level.INFO, "Inicia proceso de consultar el locacion con id = {0} del distrito con id = " + distritoId, locacionID);
+        return persistence.find(distritoId, locacionID);
     }
 
     /**
@@ -96,14 +92,13 @@ public class LocacionLogic
      * @return La entidad del locacion luego de actualizarla
      * @throws BusinessLogicException Si el IBN de la actualización es inválido
      */
-    public LocacionEntity updateLocacion(Long locacionID, LocacionEntity locacionEntity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el locaciones con id = {0}", locacionID);
-        if (!validatename(locacionEntity.getLocacion())) {
-            throw new BusinessLogicException("El name es inválido");
-        }
-        LocacionEntity newEntity = persistence.update(locacionEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar el locaciones con id = {0}", locacionEntity.getId());
-        return newEntity;
+    public LocacionEntity updateLocacion(Long distritoID, LocacionEntity locacionEntity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar el locacion con id = {0} del grupo con id = " + distritoID, locacionEntity.getId());
+        DistritoEntity grupoEntity = distritoPersistence.find(distritoID);
+        locacionEntity.setDistrito(grupoEntity);
+        persistence.update(locacionEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar el locacion con id = {0} del grupo con id = " + distritoID, locacionEntity.getId());
+        return locacionEntity;
     }
 
     /**
@@ -112,10 +107,14 @@ public class LocacionLogic
      * @param locacionID El ID del locacion a eliminar
      * @throws BusinessLogicException si la locacion tiene eventos asociados
      */
-    public void deleteLocacion(Long locacionID) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el distrito con id = {0}", locacionID);
-        persistence.delete(locacionID);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar el distrito con id = {0}", locacionID);
+    public void deleteLocacion(Long distritoId, Long locacionsId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el locacion con id = {0} del grupo con id = " + distritoId, locacionsId);
+        LocacionEntity old = getLocacion(distritoId, locacionsId);
+        if (old == null) {
+            throw new BusinessLogicException("El locacion con id = " + locacionsId + " no esta asociado a el grupo con id = " + distritoId);
+        }
+        persistence.delete(old.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar el locacion con id = {0} del grupo con id = " + distritoId, locacionsId);
     }
     
        /**

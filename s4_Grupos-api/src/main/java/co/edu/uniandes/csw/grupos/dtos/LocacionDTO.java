@@ -50,15 +50,8 @@ public class LocacionDTO implements Serializable
     private Long latitud;
     private Long longitud;
     private Long id;
-    private DistritoDTO distrito;
 
-    public DistritoDTO getDistrito() {
-        return distrito;
-    }
-
-    public void setDistrito(DistritoDTO distrito) {
-        this.distrito = distrito;
-    }
+   
     
     /**
      * Constructor por defecto
@@ -75,6 +68,7 @@ public class LocacionDTO implements Serializable
      */   
     public  LocacionDTO(LocacionEntity locacionEntity) {
         if (locacionEntity != null) {
+
          this.direcion=locacionEntity.getDirecion();
         this.id=locacionEntity.getId();
         this.latitud=locacionEntity.getLatitud();
@@ -82,7 +76,7 @@ public class LocacionDTO implements Serializable
         this.locacion=locacionEntity.getLocacion();
         this.tipo=locacionEntity.getTipo();
         this.id=locacionEntity.getId();
-        distrito= new DistritoDTO(locacionEntity.getDistrito());   
+
         }
     }
     
@@ -211,10 +205,7 @@ public class LocacionDTO implements Serializable
          locacionEntity.setTipo(this.tipo);
          locacionEntity.setLatitud(this.latitud);
          locacionEntity.setLongitud(this.longitud);
-         if(distrito != null)
-         {            
-             locacionEntity.setDistrito(distrito.toEntity());
-          }   
+        
         return locacionEntity;
     }
     

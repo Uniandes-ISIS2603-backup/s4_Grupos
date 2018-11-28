@@ -164,7 +164,7 @@ public class NoticiaLogicTest {
     @Test
     public void getNoticiaTest() {
         NoticiaEntity entity = data.get(0);
-        NoticiaEntity resultEntity = noticiaLogic.getNoticia(dataGrupoDeInteres.get(1).getId(), entity.getId());
+        NoticiaEntity resultEntity = noticiaLogic.getNoticia(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getRutaImagen(), resultEntity.getRutaImagen());
@@ -198,7 +198,7 @@ public class NoticiaLogicTest {
     @Test
     public void deleteNoticiaTest() throws BusinessLogicException {
         NoticiaEntity entity = data.get(0);
-        noticiaLogic.deleteNoticia(dataGrupoDeInteres.get(1).getId(), entity.getId());
+        noticiaLogic.deleteNoticia(entity.getId());
         NoticiaEntity deleted = em.find(NoticiaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -211,6 +211,6 @@ public class NoticiaLogicTest {
     @Test(expected = BusinessLogicException.class)
     public void deleteNoticiaConGrupoDeInteresNoAsociadoTest() throws BusinessLogicException {
         NoticiaEntity entity = data.get(0);
-        noticiaLogic.deleteNoticia(dataGrupoDeInteres.get(0).getId(), entity.getId());
+        noticiaLogic.deleteNoticia(entity.getId());
     }
 }

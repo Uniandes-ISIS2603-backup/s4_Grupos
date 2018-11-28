@@ -130,7 +130,7 @@ public class NoticiaPersistenceTest {
     @Test
     public void getNoticiaTest() {
         NoticiaEntity entity = data.get(0);
-        NoticiaEntity newEntity = noticiaPersistence.find(dataGrupoDeInteres.get(0).getId(), entity.getId());
+        NoticiaEntity newEntity = noticiaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getRutaImagen(), newEntity.getRutaImagen());
         Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());

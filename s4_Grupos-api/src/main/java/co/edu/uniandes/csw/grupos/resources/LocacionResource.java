@@ -39,13 +39,11 @@ public class LocacionResource {
     @Inject
     LocacionLogic locacionLogic;
     
-    private final static String NOEXISTE1="El recurso /locaciones/";    
-    private final static String NOEXISTE2=" no existe.";
-        /**
-     * loger del resorce
-     */
-    private static final Logger LOGGER = Logger.getLogger(LocacionResource.class.getName());
-    
+    private final static String NOEXISTE1="El recurso /grupos/";
+    private final static String NOEXISTE2="/locacions/";
+    private final static String NOEXISTE3=" no existe";
+     private static final Logger LOGGER = Logger.getLogger(LocacionResource.class.getName());
+
   /**
      * Crea un nuevo administrador y se regresa un objeto de tipo JSON generado 
      * por la base de datos.     *
@@ -55,8 +53,7 @@ public class LocacionResource {
      */
 //    @PathParam("locacionId") Long locacionId,
     @POST
-    @Path("{locacionId: \\d+}")
-    public LocacionDTO crearLocacion(   @PathParam("locacionId") Long distritoId, LocacionDTO locacionDto) throws BusinessLogicException {
+    public LocacionDTO crearLocacion(   @PathParam("distritosId") Long distritoId, LocacionDTO locacionDto) throws BusinessLogicException {
     
         LOGGER.log(Level.INFO, "LocacionResource createLocacion: input: {0}", locacionDto.toString()+ "hola mundo");    
         LocacionDTO nuevoLocacionDTO = new LocacionDTO( locacionLogic.createLocacion(distritoId ,locacionDto.toEntity()));
@@ -64,21 +61,22 @@ public class LocacionResource {
         return nuevoLocacionDTO;
     }
     /**
-     * Devuelve todos las locaciones registradas.
-     * @return JSONArray {@link LocacionDTO} - Las locaciones
-     * registradas. Si no hay ninguna retorna una lista vac�a.
+     * Busca y devuelve todas las locacions que existen en un grupo.
+     *
+     * @param gruposID El ID del grupo del cual se buscan las locacions
+     * @return JSONArray Las locacions encontradas en el
+     * grupo. Si no hay ninguna retorna una lista vacía.
+     * 
      */
+    
     @GET
-    public List<LocacionDTO> getLocaciones() 
+    public List<LocacionDTO> getLocaciones(@PathParam("distritosId") Long distritosID)
     {
-         LOGGER.info("LocacionResource getLocacions: input: void");
-        List<LocacionDTO> listaLocacions = listEntity2DTO(locacionLogic.getLocaciones());
-        LOGGER.log(Level.INFO, "LocacionResource getLocacions: output: {0}", listaLocacions.toString());
-        return listaLocacions;
-        
-       
+         LOGGER.log(Level.INFO, "LocacionResource getLocacions: input: {0}", distritosID);
+        List<LocacionDTO> listaDTOs = listEntity2DetailDTO(locacionLogic.getLocaciones(distritosID));
+        LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}", listaDTOs.toString());
+        return listaDTOs;
     }
-
     /**
      * Busca un administrador por su id y lo retorna.
      *
@@ -88,10 +86,10 @@ public class LocacionResource {
      */
     @GET
     @Path("{locacionId: \\d+}")
-    public LocacionDTO getLocacion(@PathParam("locacionId") Long locacionId) 
+    public LocacionDTO getLocacion( @PathParam("distritosId") Long distritoId,@PathParam("locacionId") Long locacionId) 
     {
        LOGGER.log(Level.INFO, "LocacionResource getLocacion: input: {0}", locacionId);
-        LocacionEntity locacionEntity = locacionLogic.getLocacion(locacionId);
+        LocacionEntity locacionEntity = locacionLogic.getLocacion(distritoId, locacionId);
         if (locacionEntity == null) {
             throw new WebApplicationException(NOEXISTE1 + locacionId + NOEXISTE2, 404);
         }
@@ -109,9 +107,20 @@ public class LocacionResource {
      */
     @PUT
     @Path("{locacionId: \\d+}")
-    public LocacionDTO updateLocacion( @PathParam("locacionId") Long locacionId, LocacionDTO locacion) 
+    public LocacionDTO updateLocacion(  @PathParam("distritosId") Long distritoId,@PathParam("locacionId") Long id, LocacionDTO locacion) throws BusinessLogicException
     {
-        return locacion;
+         LOGGER.log(Level.INFO, "LocacionResource updateLocacion: input: distritoId: {0} , id: {1} , locacion:{2}", new Object[]{distritoId, id, locacion.toString()});
+        if (!id.equals(locacion.getId())) {
+            throw new BusinessLogicException("Los ids de la locacion no coinciden.");
+        }
+        LocacionEntity entity = locacionLogic.getLocacion(distritoId, id);
+        if (entity == null) {
+            throw new WebApplicationException(NOEXISTE1 + distritoId + NOEXISTE2 + id + NOEXISTE3, 404);
+
+        }
+        LocacionDTO locacionDTO = new LocacionDTO(locacionLogic.updateLocacion(distritoId, locacion.toEntity()));
+        LOGGER.log(Level.INFO, "LocacionResource updateLocacion: output:{0}", locacionDTO.toString());
+        return locacionDTO;
     }
 
     /**
@@ -122,22 +131,25 @@ public class LocacionResource {
      */
     @DELETE
     @Path("{locacionId: \\d+}")
-    public LocacionDTO deleteLocaciones(@PathParam("locacionId") Long locacionId) 
-    {
-    	return new LocacionDTO();
+    public void deleteLocaciones( @PathParam("distritosId") Long distritosId,@PathParam("locacionId") Long id) throws BusinessLogicException 
+    {LocacionEntity entity = locacionLogic.getLocacion(distritosId, id);
+        if (entity == null) {
+            throw new WebApplicationException(NOEXISTE1 + distritosId + NOEXISTE2 + id + NOEXISTE3, 404);
+        }
+        locacionLogic.deleteLocacion(distritosId, id);
     }
     
-     /**
+      /**
      * Convierte una lista de entidades a DTO.
      *
      * Este método convierte una lista de objetos LocacionEntity a una lista de
-     * objetos DistritoDTO (json)
+     * objetos LocacionDetailDTO (json)
      *
-     * @param entityList corresponde a la lista del Locacion de tipo Entity que
+     * @param entityList corresponde a la lista de locacions de tipo Entity que
      * vamos a convertir a DTO.
-     * @return la lista del Locacion en forma DTO (json)
+     * @return la lista de locacions en forma DTO (json)
      */
-    private List<LocacionDTO> listEntity2DTO(List<LocacionEntity> entityList) {
+    private List<LocacionDTO> listEntity2DetailDTO(List<LocacionEntity> entityList) {
         List<LocacionDTO> list = new ArrayList<>();
         for (LocacionEntity entity : entityList) {
             list.add(new LocacionDTO(entity));

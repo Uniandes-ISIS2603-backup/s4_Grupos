@@ -35,6 +35,23 @@ public class ComentarioEntity extends BaseEntity implements Serializable
         return nombre;
     }
 
+    public CiudadanoEntity getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(CiudadanoEntity ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public NoticiaEntity getNoticia() {
+        return noticia;
+    }
+
+    public void setNoticia(NoticiaEntity noticia) {
+        this.noticia = noticia;
+    }
+    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
