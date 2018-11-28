@@ -31,22 +31,21 @@ public class EventoDetailDTO extends EventoDTO implements Serializable {
     public EventoDetailDTO() {
         super();
     }
-
-      /**
-       * Constructor para transformar un Entity a un DTO
-       *
-       * @param eventoEntity La entidad de la cual se construye el DTO
-       */
-      public EventoDetailDTO(EventoEntity eventoEntity) {
-         super(eventoEntity);
-        if (eventoEntity != null) {
-            if (eventoEntity.getPatrocinios()!= null) {
-                patrocinios = new ArrayList<>();
+    
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param eventoEntity La entidad de la cual se construye el DTO
+     */
+    public EventoDetailDTO(EventoEntity eventoEntity) {
+        super(eventoEntity);
+        if (eventoEntity != null && eventoEntity.getPatrocinios()!= null) {            
+            patrocinios = new ArrayList<>();
             for (PatrocinioEntity entityPatrocinio : eventoEntity.getPatrocinios()) {
                 patrocinios.add(new PatrocinioDTO(entityPatrocinio));
-            }}
+            }
         }
-      }
+    }
       /**
        * Transformar el DTO a una entidad
        *
