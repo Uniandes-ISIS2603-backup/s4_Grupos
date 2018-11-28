@@ -50,10 +50,6 @@ public class ComentarioLogicTest
     private UserTransaction utx;
 
     private List<ComentarioEntity> data = new ArrayList<>();
-    
-    private List<NoticiaEntity> dataNoticias = new ArrayList<NoticiaEntity>();
-
-    private List<GrupoDeInteresEntity> dataGrupoDeInteres = new ArrayList<GrupoDeInteresEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -115,8 +111,7 @@ public class ComentarioLogicTest
     @Test
     public void createComentarioTest() throws BusinessLogicException {
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
-        newEntity.setNoticia(dataNoticias.get(1));
-        ComentarioEntity result = comentarioLogic.createComentario(dataNoticias.get(1).getId(), newEntity);
+        ComentarioEntity result = comentarioLogic.createComentario(newEntity);
         Assert.assertNotNull(result);
         Assert.assertNotNull(result.getTexto());
         Assert.assertNotNull(result.getNombre());
@@ -135,7 +130,7 @@ public class ComentarioLogicTest
      */
     @Test
     public void getComentariosTest() {
-        List<ComentarioEntity> list = comentarioLogic.getComentarios(dataNoticias.get(1).getId());
+        List<ComentarioEntity> list = comentarioLogic.getComentarios();
         Assert.assertEquals(data.size(), list.size());
         for (ComentarioEntity entity : list) {
             boolean found = false;
@@ -154,7 +149,7 @@ public class ComentarioLogicTest
     @Test
     public void getComentarioTest() {
         ComentarioEntity entity = data.get(0);
-        ComentarioEntity resultEntity = comentarioLogic.getComentario(dataNoticias.get(1).getId(), entity.getId());
+        ComentarioEntity resultEntity = comentarioLogic.getComentario(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
@@ -173,7 +168,7 @@ public class ComentarioLogicTest
         Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
-        comentarioLogic.updateComentario(dataNoticias.get(1).getId(),pojoEntity.getId(), pojoEntity);
+        comentarioLogic.updateComentario(pojoEntity.getId(), pojoEntity);
 
         ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
 
@@ -190,7 +185,7 @@ public class ComentarioLogicTest
     @Test
     public void deleteComentarioTest() throws BusinessLogicException {
         ComentarioEntity entity = data.get(0);
-        comentarioLogic.deleteComentario(dataNoticias.get(1).getId(),entity.getId());
+        comentarioLogic.deleteComentario(entity.getId());
         ComentarioEntity deleted = em.find(ComentarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

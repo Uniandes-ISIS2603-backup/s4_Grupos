@@ -144,7 +144,7 @@ public class ComentarioPersistenceTest
     @Test
     public void getComentarioTest() {
         ComentarioEntity entity = data.get(0);
-        ComentarioEntity newEntity = comentarioPersistence.find(dataNoticias.get(0).getId(), entity.getId());
+        ComentarioEntity newEntity = comentarioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }

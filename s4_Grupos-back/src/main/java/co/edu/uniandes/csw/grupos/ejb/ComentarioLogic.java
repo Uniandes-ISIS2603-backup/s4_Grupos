@@ -42,14 +42,14 @@ public class ComentarioLogic
      * @param comentarioEntity Objeto de ComentarioEntity con los datos nuevos
      * @return Objeto de ComentarioEntity con los datos nuevos y su ID.
      */
-    public ComentarioEntity createComentario(Long noticiaId, ComentarioEntity comentarioEntity) throws BusinessLogicException {
+    public ComentarioEntity createComentario(ComentarioEntity comentarioEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear comentario");
-        NoticiaEntity noticia = noticiaPersistence.find(noticiaId);
-        if(noticia == null)
-        {
-            throw new BusinessLogicException("La noticia no es valida");
-        }
-        comentarioEntity.setNoticia(noticia);
+//        NoticiaEntity noticia = noticiaPersistence.find(noticiaId);
+//        if(noticia == null)
+//        {
+//            throw new BusinessLogicException("La noticia no es valida");
+//        }
+//        comentarioEntity.setNoticia(noticia);
         LOGGER.log(Level.INFO, "Termina proceso de creación del comentario");
         return persistence.create(comentarioEntity);
     }
@@ -59,11 +59,11 @@ public class ComentarioLogic
      *
      * @return Colección de objetos de ComentarioEntity.
      */
-    public List<ComentarioEntity> getComentarios(Long noticiaId) {
+    public List<ComentarioEntity> getComentarios() {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los comentarioes");
-        NoticiaEntity noticia = noticiaPersistence.find(noticiaId);
+        List<ComentarioEntity> comentario = persistence.findAll();
         LOGGER.log(Level.INFO, "Termina proceso de consultar todos los comentarioes");
-        return noticia.getComentarios();
+        return comentario;
     }
 
     /**
@@ -72,9 +72,9 @@ public class ComentarioLogic
      * @param comentariosId Identificador de la instancia a consultar
      * @return Instancia de ComentarioEntity con los datos del Comentario consultado.
      */
-    public ComentarioEntity getComentario(Long noticiaId, Long comentariosId) {
+    public ComentarioEntity getComentario(Long comentariosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar el comentario con id = {0}", comentariosId);
-        ComentarioEntity comentarioEntity = persistence.find( noticiaId, comentariosId);
+        ComentarioEntity comentarioEntity = persistence.find(comentariosId);
         if (comentarioEntity == null) {
             LOGGER.log(Level.SEVERE, "El comentario con el id = {0} no existe", comentariosId);
         }
@@ -89,11 +89,9 @@ public class ComentarioLogic
      * @param comentarioEntity Instancia de ComentarioEntity con los nuevos datos.
      * @return Instancia de ComentarioEntity con los datos actualizados.
      */
-    public ComentarioEntity updateComentario(Long noticiasId, Long comentariosId, ComentarioEntity comentarioEntity) 
+    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el comentario con id = {0}", comentariosId);
-        NoticiaEntity noticiaEntity = noticiaPersistence.find(noticiasId);
-        comentarioEntity.setNoticia(noticiaEntity);
         persistence.update(comentarioEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el comentario con id = {0}", comentariosId);
         return comentarioEntity;
@@ -105,12 +103,12 @@ public class ComentarioLogic
      * @param comentariosId Identificador de la instancia a eliminar.
      * @throws BusinessLogicException si el comentario tiene libros asociados.
      */
-    public void deleteComentario(Long noticiasId, Long comentariosId) throws BusinessLogicException {
+    public void deleteComentario(Long comentariosId) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el comentario con id = {0}", comentariosId);
-        ComentarioEntity old = getComentario(noticiasId, comentariosId);
+        ComentarioEntity old = getComentario(comentariosId);
         if (old == null)
         {
-            throw new BusinessLogicException("El comentario con id = " + comentariosId + " no esta asociado a la noticia con id = " + noticiasId);
+            throw new BusinessLogicException("El comentario con id = " + comentariosId + " no se pudo borrar con éxito");
         }
         persistence.delete(comentariosId);
         LOGGER.log(Level.INFO, "Termina proceso de borrar el comentario con id = {0}", comentariosId);
