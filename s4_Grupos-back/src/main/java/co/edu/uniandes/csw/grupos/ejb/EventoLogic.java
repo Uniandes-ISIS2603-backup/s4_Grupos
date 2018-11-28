@@ -71,7 +71,7 @@ public class EventoLogic {
      * Obtiene los datos de una instancia de Evento a partir de su ID. La
      * existencia del elemento padre GrupoDeInteres se debe garantizar.
      *
-     * @param gruposId El id del Grupo buscado
+     * @param gruposId El id del Libro buscado
      * @param eventosId Identificador de la Evento a consultar
      * @return Instancia de EventoEntity con los datos del Evento consultado.
      *

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.grupos.resources;
+
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
@@ -27,7 +28,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 /**
- * Clase que implementa el recurso "/eventos/".
+ * Clase que implementa el recurso EVENTOS.
  *
  * @version 1.0
  */
@@ -37,6 +38,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class EventoResource {
     
+    private final static String GRUPOS="El recurso /grupos/";
+    private final static String EVENTOS="/eventos/";
+    private final static String NO_EXISTE=" no existe";
      private static final Logger LOGGER = Logger.getLogger(EventoResource.class.getName());
 
     @Inject
@@ -68,7 +72,7 @@ public class EventoResource {
      */
     
     @GET
-    public List<EventoDetailDTO> consultarEventos(@PathParam("gruposId") Long gruposID)
+    public List<EventoDetailDTO> getEventos(@PathParam("gruposId") Long gruposID)
     {
          LOGGER.log(Level.INFO, "EventoResource getEventos: input: {0}", gruposID);
         List<EventoDetailDTO> listaDTOs = listEntity2DetailDTO(eventoLogic.getEventos(gruposID));
@@ -87,12 +91,12 @@ public class EventoResource {
      */
     @GET
     @Path("{id:\\d+}")
-    public EventoDTO consultarEvento(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id)
+    public EventoDTO getEvento(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id)
     {
         LOGGER.log(Level.INFO, "EventoResource getEvento: input: {0}", id);
         EventoEntity entity = eventoLogic.getEvento(gruposId, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposId + "/eventos/" + id + " no existe", 404);
+            throw new WebApplicationException(GRUPOS + gruposId + EVENTOS + id + NO_EXISTE, 404);
         }
         EventoDTO eventoDTO = new EventoDTO(entity);
         LOGGER.log(Level.INFO, "EventoResource getEvento: output: {0}", eventoDTO.toString());
@@ -101,7 +105,7 @@ public class EventoResource {
     
     
     /**
-     * Actualiza una notcia con la informacion que se recibe en el cuerpo de la
+     * Actualiza un evento con la informacion que se recibe en el cuerpo de la
      * petición y se regresa el objeto actualizado.
      *
      * @param gruposID El ID del grupo del cual se guarda la evento
@@ -116,15 +120,15 @@ public class EventoResource {
      */
     @PUT
      @Path("{id:\\d+}")
-    public EventoDTO editarEvento(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id,EventoDTO evento) throws BusinessLogicException
+    public EventoDTO updateEvento(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id,EventoDTO evento) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "EventoResource updateEvento: input: gruposID: {0} , id: {1} , evento:{2}", new Object[]{gruposID, id, evento.toString()});
-        if (id.equals(evento.getId())) {
+        if (!id.equals(evento.getId())) {
             throw new BusinessLogicException("Los ids del Evento no coinciden.");
         }
         EventoEntity entity = eventoLogic.getEvento(gruposID, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposID + "/eventos/" + id + " no existe", 404);
+            throw new WebApplicationException(GRUPOS + gruposID + EVENTOS + id + NO_EXISTE, 404);
 
         }
         EventoDTO eventoDTO = new EventoDTO(eventoLogic.updateEvento(gruposID, evento.toEntity()));
@@ -146,11 +150,10 @@ public class EventoResource {
     public void deleteEvento(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) throws BusinessLogicException {
        EventoEntity entity = eventoLogic.getEvento(gruposID, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /grupos/" + gruposID + "/eventos/" + id + " no existe", 404);
+            throw new WebApplicationException(GRUPOS + gruposID + EVENTOS + id + NO_EXISTE, 404);
         }
         eventoLogic.deleteEvento(gruposID, id);
     }
-    
     /**
      * Convierte una lista de entidades a DTO.
      *

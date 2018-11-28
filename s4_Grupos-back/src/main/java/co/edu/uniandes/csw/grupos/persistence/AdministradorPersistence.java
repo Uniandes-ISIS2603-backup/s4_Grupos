@@ -78,7 +78,6 @@ public class AdministradorPersistence {
      * @return un administrador con los cambios aplicados.
      */
     public AdministradorEntity update(AdministradorEntity administradorEntity) {
-        //LOGGER.log(Level.INFO, "Actualizando el administrador por el id", administradorEntity.getId());
         return em.merge(administradorEntity);
     }
 
