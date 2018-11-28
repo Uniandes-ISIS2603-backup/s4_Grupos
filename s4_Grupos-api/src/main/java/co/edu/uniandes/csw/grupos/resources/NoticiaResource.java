@@ -91,12 +91,12 @@ public class NoticiaResource {
      */
     @GET
     @Path("{id:\\d+}")
-    public NoticiaDTO consultarNoticia(@PathParam("gruposId") Long gruposId,@PathParam("id") Long id)
+    public NoticiaDTO consultarNoticia(@PathParam("id") Long id)
     {
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: input: {0}", id);
-        NoticiaEntity entity = noticiaLogic.getNoticia(gruposId, id);
+        NoticiaEntity entity = noticiaLogic.getNoticia(id);
         if (entity == null) {
-            throw new WebApplicationException(NOEXISTE1 + gruposId + NOEXISTE2 + id + NOEXISTE3, 404);
+            throw new WebApplicationException( NOEXISTE2 + id + NOEXISTE3, 404);
         }
         NoticiaDTO noticiaDTO = new NoticiaDTO(entity);
         LOGGER.log(Level.INFO, "NoticiaResource getNoticia: output: {0}", noticiaDTO.toString());
@@ -126,7 +126,7 @@ public class NoticiaResource {
         if (!id.equals(noticia.getId())) {
             throw new BusinessLogicException("Los ids del Noticia no coinciden.");
         }
-        NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
+        NoticiaEntity entity = noticiaLogic.getNoticia(id);
         if (entity == null) {
             throw new WebApplicationException(NOEXISTE1 + gruposID + NOEXISTE2 + id + NOEXISTE3, 404);
 
@@ -147,12 +147,12 @@ public class NoticiaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteNoticia(@PathParam("gruposId") Long gruposID,@PathParam("id") Long id) throws BusinessLogicException {
-       NoticiaEntity entity = noticiaLogic.getNoticia(gruposID, id);
+    public void deleteNoticia(@PathParam("id") Long id) throws BusinessLogicException {
+       NoticiaEntity entity = noticiaLogic.getNoticia(id);
         if (entity == null) {
-            throw new WebApplicationException(NOEXISTE1 + gruposID + NOEXISTE2 + id + NOEXISTE3, 404);
+            throw new WebApplicationException(NOEXISTE2 + id + NOEXISTE3, 404);
         }
-        noticiaLogic.deleteNoticia(gruposID, id);
+        noticiaLogic.deleteNoticia(id);
     }
     /**
      * Conexión con el servicio de comentarios para una noticia. {@link ComentarioResource}
@@ -165,12 +165,12 @@ public class NoticiaResource {
      * servicio.
      * @return El servicio de Comentarios para ese grupo en paricular.\
      */
-    @Path("{id: \\d+}/comentarios")
-    public Class<ComentarioResource> getComentarioResource(@PathParam("id") Long noticiassId) {
-        /**if (grupoLogic.getGrupo(gruposID) == null) {
-            throw new WebApplicationException(NOEXISTE1 + gruposID + "/noticias no existe.", 404);
+    @Path("{noticiasId: \\d+}/comentarios")
+    public Class<ComentarioResource> getComentarioResource(@PathParam("noticiasId") Long noticiasId) {
+        if (noticiaLogic.getNoticia(noticiasId) == null) {
+            throw new WebApplicationException(NOEXISTE2 + noticiasId + "/comentarios no existe", 404);
         }
-        * */
+
         return ComentarioResource.class;
     }
     /**

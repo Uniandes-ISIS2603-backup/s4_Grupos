@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.grupos.test.persistence;
 
 import co.edu.uniandes.csw.grupos.entities.ComentarioEntity;
+import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
+import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
 import co.edu.uniandes.csw.grupos.persistence.ComentarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,10 @@ public class ComentarioPersistenceTest
     UserTransaction utx;
 
     private List<ComentarioEntity> data = new ArrayList<ComentarioEntity>();
+        
+    private List<NoticiaEntity> dataNoticias = new ArrayList<NoticiaEntity>();
+	
+    private List<GrupoDeInteresEntity> dataGrupoDeInteres = new ArrayList<GrupoDeInteresEntity>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -138,7 +144,7 @@ public class ComentarioPersistenceTest
     @Test
     public void getComentarioTest() {
         ComentarioEntity entity = data.get(0);
-        ComentarioEntity newEntity = comentarioPersistence.find(entity.getId());
+        ComentarioEntity newEntity = comentarioPersistence.find(dataNoticias.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
     }
