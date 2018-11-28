@@ -74,14 +74,16 @@ public class LocacionDTO implements Serializable
      * @param locacionEntity: Es la entidad que se va a convertir a DTO
      */   
     public  LocacionDTO(LocacionEntity locacionEntity) {
-        setDirecion(locacionEntity.getDirecion());
-        setId(locacionEntity.getId());
-        setLatitud(locacionEntity.getLatitud());
-        setLongitud(locacionEntity.getLongitud());
-        setLocacion(locacionEntity.getLocacion());
-        setTipo(locacionEntity.getTipo());
-        setId(locacionEntity.getId());
-        distrito= new DistritoDTO(locacionEntity.getDistrito());
+        if (locacionEntity != null) {
+         this.direcion=locacionEntity.getDirecion();
+        this.id=locacionEntity.getId();
+        this.latitud=locacionEntity.getLatitud();
+        this.longitud=locacionEntity.getLongitud();
+        this.locacion=locacionEntity.getLocacion();
+        this.tipo=locacionEntity.getTipo();
+        this.id=locacionEntity.getId();
+        distrito= new DistritoDTO(locacionEntity.getDistrito());   
+        }
     }
     
     

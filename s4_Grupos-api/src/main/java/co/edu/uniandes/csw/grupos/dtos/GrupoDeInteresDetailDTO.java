@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.grupos.entities.CiudadanoEntity;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import co.edu.uniandes.csw.grupos.entities.NoticiaEntity;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
  * documentacion de {@link GrupoDeInteresDTO}
  * @author s.carrero
  */
-public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO {
+public class GrupoDeInteresDetailDTO extends GrupoDeInteresDTO implements Serializable {
     
     
     private List<AdministradorDTO> administradores;

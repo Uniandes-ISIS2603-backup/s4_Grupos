@@ -21,7 +21,7 @@ public class CategoriaDTO implements Serializable{
     
     private String nombre;
     
-    private long id;
+    private Long id;
     
     public CategoriaDTO(){
         
@@ -39,11 +39,11 @@ public class CategoriaDTO implements Serializable{
         }
     }
     
-    public long getId() {
+    public Long getId() {
         return id;
     }
     
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
