@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.grupos.dtos;
 
 import co.edu.uniandes.csw.grupos.entities.GrupoDeInteresEntity;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * GrupoDeInteresDTO Objeto de transferencia de datos de GrupoDeInteres. Los DTO contienen las
