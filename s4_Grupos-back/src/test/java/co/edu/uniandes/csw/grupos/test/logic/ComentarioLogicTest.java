@@ -50,6 +50,8 @@ public class ComentarioLogicTest
     private UserTransaction utx;
 
     private List<ComentarioEntity> data = new ArrayList<>();
+    
+    private List<NoticiaEntity> dataNoticia = new ArrayList<>();
 
     /**
      * @return Devuelve el jar que Arquillian va a desplegar en Payara embebido.
@@ -111,7 +113,8 @@ public class ComentarioLogicTest
     @Test
     public void createComentarioTest() throws BusinessLogicException {
         ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);
-        ComentarioEntity result = comentarioLogic.createComentario(newEntity);
+        newEntity.setNoticia(dataNoticia.get(0));
+        ComentarioEntity result = comentarioLogic.createComentario(dataNoticia.get(0).getId(), newEntity);
         Assert.assertNotNull(result);
         Assert.assertNotNull(result.getTexto());
         Assert.assertNotNull(result.getNombre());
@@ -168,7 +171,7 @@ public class ComentarioLogicTest
         Assert.assertNotEquals("", entity.getId());
         pojoEntity.setId(entity.getId());
 
-        comentarioLogic.updateComentario(pojoEntity.getId(), pojoEntity);
+        comentarioLogic.updateComentario(dataNoticia.get(0).getId(),pojoEntity.getId(), pojoEntity);
 
         ComentarioEntity resp = em.find(ComentarioEntity.class, entity.getId());
 

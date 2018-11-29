@@ -55,10 +55,10 @@ public class ComentarioResource
      * @throws co.edu.uniandes.csw.grupos.exceptions.BusinessLogicException Si ya existe el comentario
      */
     @POST
-    public ComentarioDTO  createComentario (ComentarioDTO comentario) throws BusinessLogicException 
+    public ComentarioDTO  createComentario (@PathParam("noticiasId") Long noticiasId, ComentarioDTO comentario) throws BusinessLogicException 
     {
         LOGGER.log(Level.INFO, "ComentarioResource createComentario: input: {0}");
-        ComentarioDTO nuevoComentarioDTO = new ComentarioDTO(comentarioLogic.createComentario(comentario.toEntity()));
+        ComentarioDTO nuevoComentarioDTO = new ComentarioDTO(comentarioLogic.createComentario(noticiasId, comentario.toEntity()));
         LOGGER.log(Level.INFO, "ComentarioResource createComentario: output: {0}", nuevoComentarioDTO.toString());
         return nuevoComentarioDTO;
     }
@@ -104,7 +104,7 @@ public class ComentarioResource
      */
     @PUT
     @Path("{id:\\d+}")
-    public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
+    public ComentarioDTO modificarComentario(@PathParam("noticiasId") Long noticiasId, @PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0}, comentario:{1}", new Object[]{id, comentario.toString()});
 //        List<CiudadanoDetailDTO> listaDTOs = ciudadanoResource.getCiudadanos();     
@@ -116,7 +116,7 @@ public class ComentarioResource
 
         }
         
-        ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
+        ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(noticiasId, id,comentario.toEntity()));
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}");
         return comentarioDTO;
 

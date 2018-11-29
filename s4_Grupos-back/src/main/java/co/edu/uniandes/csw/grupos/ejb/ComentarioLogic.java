@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.ws.rs.PathParam;
 
 /**
  * Clase que representa un ComentarioLogic
@@ -42,14 +43,14 @@ public class ComentarioLogic
      * @param comentarioEntity Objeto de ComentarioEntity con los datos nuevos
      * @return Objeto de ComentarioEntity con los datos nuevos y su ID.
      */
-    public ComentarioEntity createComentario(ComentarioEntity comentarioEntity) throws BusinessLogicException {
+    public ComentarioEntity createComentario(Long noticiaId, ComentarioEntity comentarioEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear comentario");
-//        NoticiaEntity noticia = noticiaPersistence.find(noticiaId);
-//        if(noticia == null)
-//        {
-//            throw new BusinessLogicException("La noticia no es valida");
-//        }
-//        comentarioEntity.setNoticia(noticia);
+        NoticiaEntity noticia = noticiaPersistence.find(noticiaId);
+        if(noticia == null)
+        {
+            throw new BusinessLogicException("La noticia no es valida");
+        }
+        comentarioEntity.setNoticia(noticia);
         LOGGER.log(Level.INFO, "Termina proceso de creación del comentario");
         return persistence.create(comentarioEntity);
     }
@@ -89,9 +90,11 @@ public class ComentarioLogic
      * @param comentarioEntity Instancia de ComentarioEntity con los nuevos datos.
      * @return Instancia de ComentarioEntity con los datos actualizados.
      */
-    public ComentarioEntity updateComentario(Long comentariosId, ComentarioEntity comentarioEntity) 
+    public ComentarioEntity updateComentario(Long noticiasId, Long comentariosId, ComentarioEntity comentarioEntity) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar el comentario con id = {0}", comentariosId);
+        NoticiaEntity noticia = noticiaPersistence.find(noticiasId);
+        comentarioEntity.setNoticia(noticia);
         persistence.update(comentarioEntity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar el comentario con id = {0}", comentariosId);
         return comentarioEntity;
