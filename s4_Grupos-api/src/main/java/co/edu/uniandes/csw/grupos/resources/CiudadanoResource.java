@@ -123,10 +123,7 @@ public class CiudadanoResource
     public CiudadanoDetailDTO modificarCiudadano(@PathParam("id") Long id, CiudadanoDetailDTO ciudadano ) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: input: id: {0} , ciudadano:{1}", new Object[]{id, ciudadano.toString()});
-        if (id.equals(ciudadano.getId())) 
-        {
-            throw new BusinessLogicException("Los ids del Ciudadano no coinciden.");
-        }
+        ciudadano.setId(id);
         CiudadanoEntity entity = ciudadanoLogic.getCiudadano(id);
         if (entity == null) 
         {
@@ -134,7 +131,6 @@ public class CiudadanoResource
 
         }
         CiudadanoDetailDTO ciudadanoDetailDTO = new CiudadanoDetailDTO(ciudadanoLogic.updateCiudadano(id,ciudadano.toEntity()));
-        ciudadanoLogic.deleteCiudadano(id);
         LOGGER.log(Level.INFO, "CiudadanoResource updateCiudadano: output:{0}");
         return ciudadanoDetailDTO;
     }

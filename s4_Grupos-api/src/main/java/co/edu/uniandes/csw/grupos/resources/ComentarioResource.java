@@ -68,10 +68,10 @@ public class ComentarioResource
      * @return los comentarios de un usuario
      */
     @GET
-    public List<ComentarioDTO> consultarComentarios(@PathParam("noticiasId") Long noticiasId)
+    public List<ComentarioDTO> consultarComentarios()
     {
         LOGGER.log(Level.INFO, "ComentarioResource getComentarios: input: {0}");
-        List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios(noticiasId));
+        List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios());
         LOGGER.log(Level.INFO, "EditorialGruposResource getGrupos: output: {0}");
         return listaDTOs;
     }
@@ -83,10 +83,10 @@ public class ComentarioResource
      */
     @GET
     @Path("{id: \\d+}")
-    public ComentarioDTO consultarUnComentario( @PathParam("noticiasId") Long noticiasId, @PathParam("id") Long id)
+    public ComentarioDTO consultarUnComentario(@PathParam("id") Long id)
     {
         LOGGER.log(Level.INFO, "ComentarioResource getComentario: input: {0}", id);
-        ComentarioEntity entity = comentarioLogic.getComentario(noticiasId, id);
+        ComentarioEntity entity = comentarioLogic.getComentario(id);
         if (entity == null) {
             throw new WebApplicationException( NOEXISTE1 + id + NOEXISTE2, 404);
         }
@@ -107,34 +107,21 @@ public class ComentarioResource
     public ComentarioDTO modificarComentario(@PathParam("noticiasId") Long noticiasId, @PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0}, comentario:{1}", new Object[]{id, comentario.toString()});
-        List<CiudadanoDetailDTO> listaDTOs = ciudadanoResource.getCiudadanos();
-        boolean termino = false;
-        if (id.equals(comentario.getId())) {
-            throw new BusinessLogicException("Los ids del Comentario no coinciden.");
-        }
-        ComentarioEntity entity = comentarioLogic.getComentario( noticiasId, id);
+//        List<CiudadanoDetailDTO> listaDTOs = ciudadanoResource.getCiudadanos();     
+        comentario.setId(id);
+        ComentarioEntity entity = comentarioLogic.getComentario(id);
         if (entity == null) 
         {
             throw new WebApplicationException(NOEXISTE1 + id + NOEXISTE2, 404);
 
         }
         
-        for (int i = 0; i < listaDTOs.size() && !termino; i++)
-        {
-            if (comentario.getNombre().compareTo(listaDTOs.get(i).getNombre()) == 0)
-            {
-                 ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(noticiasId, id,comentario.toEntity()));
-                 comentarioLogic.deleteComentario(noticiasId, id);
-                 LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}");
-                 termino = true;
-                 return comentarioDTO;
-            }
-            else
-            {
-                throw new WebApplicationException("El ciudadano con nombre: "  +  comentario.getNombre() + " no existe. Por favor verifique el nombre.");
-            }
-        }
-        throw new WebApplicationException("El comentario con identificador: " + id + " no se actualizo con éxito.");
+        ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(noticiasId, id,comentario.toEntity()));
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}");
+        return comentarioDTO;
+
+
+//        throw new WebApplicationException("El comentario con identificador: " + id + " no se actualizo con éxito.");
     }
     
     /**
@@ -144,23 +131,23 @@ public class ComentarioResource
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void eliminarComentario(@PathParam("gruposId") Long gruposId, @PathParam("noticiasId") Long noticiasId, @PathParam("id")Long id) throws BusinessLogicException
+    public void eliminarComentario(@PathParam("id")Long id) throws BusinessLogicException
     {
-        ComentarioEntity entity = comentarioLogic.getComentario(noticiasId, id);
+        ComentarioEntity entity = comentarioLogic.getComentario(id);
         if (entity == null) {
             throw new WebApplicationException(NOEXISTE1 + id + NOEXISTE2 , 404);
         }
-        comentarioLogic.deleteComentario(noticiasId, id);
+        comentarioLogic.deleteComentario(id);
     }
     
     @DELETE
-    public void eliminarComentarios(@PathParam("noticiasId") Long noticiasId) throws BusinessLogicException
+    public void eliminarComentarios() throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComentarioResource getComentarios: input: {0}");
-        List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios(noticiasId));
+        List<ComentarioDTO> listaDTOs = listEntityToDTO(comentarioLogic.getComentarios());
         for (int i = 0; i < listaDTOs.size(); i++)
         {
-            comentarioLogic.deleteComentario(noticiasId, listaDTOs.get(i).getId());
+            comentarioLogic.deleteComentario(listaDTOs.get(i).getId());
         }
         LOGGER.log(Level.INFO, "ComentariosResource getComentarios: output: {0}");
     }
