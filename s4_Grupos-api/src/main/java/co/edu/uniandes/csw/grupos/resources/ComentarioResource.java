@@ -107,8 +107,7 @@ public class ComentarioResource
     public ComentarioDTO modificarComentario(@PathParam("id") Long id, ComentarioDTO comentario) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "ComentarioResource updateComentario: input: id: {0}, comentario:{1}", new Object[]{id, comentario.toString()});
-        List<CiudadanoDetailDTO> listaDTOs = ciudadanoResource.getCiudadanos();
-        boolean termino = false;
+//        List<CiudadanoDetailDTO> listaDTOs = ciudadanoResource.getCiudadanos();     
         comentario.setId(id);
         ComentarioEntity entity = comentarioLogic.getComentario(id);
         if (entity == null) 
@@ -117,21 +116,12 @@ public class ComentarioResource
 
         }
         
-        for (int i = 0; i < listaDTOs.size() && !termino; i++)
-        {
-            if (comentario.getNombre().compareTo(listaDTOs.get(i).getNombre()) == 0)
-            {
-                 ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
-                 LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}");
-                 termino = true;
-                 return comentarioDTO;
-            }
-            else
-            {
-                throw new WebApplicationException("El ciudadano con nombre: "  +  comentario.getNombre() + " no existe. Por favor verifique el nombre.");
-            }
-        }
-        throw new WebApplicationException("El comentario con identificador: " + id + " no se actualizo con éxito.");
+        ComentarioDTO comentarioDTO = new ComentarioDTO(comentarioLogic.updateComentario(id,comentario.toEntity()));
+        LOGGER.log(Level.INFO, "ComentarioResource updateComentario: output:{0}");
+        return comentarioDTO;
+
+
+//        throw new WebApplicationException("El comentario con identificador: " + id + " no se actualizo con éxito.");
     }
     
     /**
