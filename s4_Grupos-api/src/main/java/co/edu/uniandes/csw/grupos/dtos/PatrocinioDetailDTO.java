@@ -5,13 +5,11 @@
 */
 package co.edu.uniandes.csw.grupos.dtos;
 
-import co.edu.uniandes.csw.grupos.ejb.PatrocinioLogic;
 import co.edu.uniandes.csw.grupos.entities.EventoEntity;
 import co.edu.uniandes.csw.grupos.entities.PatrocinioEntity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Clase que extiende de {@link PatrocinioDTO} para manejar las relaciones entre los
@@ -55,14 +53,11 @@ public class PatrocinioDetailDTO extends PatrocinioDTO implements Serializable
     public PatrocinioDetailDTO(PatrocinioEntity patrocinadorEntity) {
         super( patrocinadorEntity);
         eventos  = new ArrayList<>();
-        if(patrocinadorEntity != null)
+        if(patrocinadorEntity != null && patrocinadorEntity.getEventos() != null)
         {
-            if(patrocinadorEntity.getEventos() != null)
+            for(EventoEntity enty : patrocinadorEntity.getEventos()  )
             {
-                for(EventoEntity enty : patrocinadorEntity.getEventos()  )
-                {
-                    eventos.add(new EventoDTO(enty));
-                }
+                eventos.add(new EventoDTO(enty));
             }
         }
     }

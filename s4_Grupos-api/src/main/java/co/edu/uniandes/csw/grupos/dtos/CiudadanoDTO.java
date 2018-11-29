@@ -33,11 +33,12 @@ public class CiudadanoDTO extends PersonaDTO implements Serializable
 
     }
     
-        /**
-       * M?todo para transformar el DTO a una entidad.
-       *
-       * @return La entidad del administrador asociado.
-       */
+    /**
+     * Metodo para transformar el DTO a una entidad.
+     *
+     * @return La entidad del administrador asociado.
+     */
+    @Override
     public CiudadanoEntity toEntity() {
         CiudadanoEntity ciudadanoEntity = new CiudadanoEntity();
         ciudadanoEntity.setId(this.id);

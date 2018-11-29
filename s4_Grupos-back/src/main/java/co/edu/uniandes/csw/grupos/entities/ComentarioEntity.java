@@ -64,5 +64,10 @@ public class ComentarioEntity extends BaseEntity implements Serializable
         this.texto = texto;
     }
     
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
+    
     
 }

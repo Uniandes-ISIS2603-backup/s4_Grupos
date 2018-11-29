@@ -28,7 +28,7 @@ public class CategoriaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @ManyToMany
-    private List<GrupoDeInteresEntity> grupos = new ArrayList<GrupoDeInteresEntity>();       
+    private List<GrupoDeInteresEntity> grupos = new ArrayList<>();       
     
     
     public List<GrupoDeInteresEntity> getGrupos() {
@@ -57,5 +57,9 @@ public class CategoriaEntity extends BaseEntity implements Serializable {
         descripcion = pDescripcion;
     }
 
+      @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
     
 }

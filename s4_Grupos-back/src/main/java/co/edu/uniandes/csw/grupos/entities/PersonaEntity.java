@@ -58,5 +58,10 @@ public class PersonaEntity extends BaseEntity implements Serializable
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+    
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
    
 }

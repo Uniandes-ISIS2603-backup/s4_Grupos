@@ -184,4 +184,10 @@ public class LocacionEntity extends BaseEntity implements Serializable  {
     }  
     
     
+     @Override
+    public boolean equals(Object obj) {
+        return obj.equals(this);
+    }  
+    
+    
 }

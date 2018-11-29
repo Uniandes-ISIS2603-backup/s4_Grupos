@@ -52,13 +52,12 @@ public class DistritoDetailDTO extends DistritoDTO implements Serializable {
      **/
     public DistritoDetailDTO(DistritoEntity distritoEntity) {
         super(distritoEntity);
-        if (distritoEntity != null) {
-            if (distritoEntity.getLocaciones() != null) {
-                locaciones = new ArrayList<>();
-                for (LocacionEntity entityLoc : distritoEntity.getLocaciones()) {
-                   locaciones.add(new LocacionDTO(entityLoc));
-                }
-            }
+        if (distritoEntity != null && distritoEntity.getLocaciones() != null) {     
+            
+            locaciones = new ArrayList<>();
+            for (LocacionEntity entityLoc : distritoEntity.getLocaciones()) {
+                locaciones.add(new LocacionDTO(entityLoc));
+            }            
         }
         
     }

@@ -45,13 +45,12 @@ public class NoticiaDetailDTO extends NoticiaDTO implements Serializable {
      **/
     public NoticiaDetailDTO(NoticiaEntity noticiaEntity) {
         super(noticiaEntity);
-        if (noticiaEntity != null) {
-            if (noticiaEntity.getComentarios()!= null) {
-                comentarios = new ArrayList<>();
-                for (  ComentarioEntity entityCom : noticiaEntity.getComentarios()) {
-                    comentarios.add(new ComentarioDTO(entityCom));
-                }
+        if (noticiaEntity != null && noticiaEntity.getComentarios()!= null) {            
+            comentarios = new ArrayList<>();
+            for (  ComentarioEntity entityCom : noticiaEntity.getComentarios()) {
+                comentarios.add(new ComentarioDTO(entityCom));
             }
+            
         }
     }
     
